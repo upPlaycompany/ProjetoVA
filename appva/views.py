@@ -197,9 +197,7 @@ def logar(request):
 @login_required
 def deslogar(request):
     logout(request)
-    user = request.user
-    user.
-    return HttpResponseRedirect('/')
+    return HttpRequest('/')
 
 
 #
