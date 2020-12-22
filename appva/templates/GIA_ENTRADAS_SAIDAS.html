@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% block title %}
+GIA_ENTRADAS_SAIDAS
+{% endblock title %}
+{% block content %}
+<!-- DataTales Example -->
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+        <option value="dt_inicial">Pesquisar por data inicial</option>
+          <option value="cnae">Pesquisar por cnae</option>
+          <option value="contribuinte">Pesquisar por contribuinte</option>
+          <option value="inscricao">Pesquisar por inscrição</option>
+          <option value="municipio">Pesquisar por município</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>INSCRIÇÃO</th>
+                    <th>COD</th>
+                    <th>MUNICIPIO</th>
+                    <th>CAD</th>
+                    <th>CNAE</th>
+                    <th>CONTRIBUINTE</th>
+                    <th>DT_INICIAL</th>
+                    <th>DT_FINAL</th>
+                    <th>TIPO</th>
+                    <th>DT_PROCESS</th>
+                    <th>CFOP</th>
+                    <th>VR_CONTABIL</th>
+                    <th>CRC</th>
+                    <th>IE_ANTERIOR</th>
+                    <th>BASE_CALCULO</th>
+                    <th>ICMS</th>
+                    <th>ISENTAS</th>
+                    <th>OUTRAS</th>
+                    <th>IPI</th>
+                    <th>ICMS_ST</th>
+                    <th>REMESSA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>ANO EXERCÍCIO</th>
+                    <th>ANO BASE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for gia_entradas_saidas in order %}
+                <tr>
+                    <td>{{ gia_entradas_saidas.inscricao }}</td>
+                    <td>{{ gia_entradas_saidas.cod }}</td>
+                    <td>{{ gia_entradas_saidas.municipio }}</td>
+                    <td>{{ gia_entradas_saidas.cad }}</td>
+                    <td>{{ gia_entradas_saidas.cnae }}</td>
+                    <td>{{ gia_entradas_saidas.contribuinte }}</td>
+                    <td>{{ gia_entradas_saidas.dt_inicial }}</td>
+                    <td>{{ gia_entradas_saidas.dt_final }}</td>
+                    <td>{{ gia_entradas_saidas.tipo }}</td>
+                    <td>{{ gia_entradas_saidas.dt_process }}</td>
+                    <td>{{ gia_entradas_saidas.cfop }}</td>
+                    <td>{{ gia_entradas_saidas.vr_contabil }}</td>
+                    <td>{{ gia_entradas_saidas.crc }}</td>
+                    <td>{{ gia_entradas_saidas.ie_anterior }}</td>
+                    <td>{{ gia_entradas_saidas.base_calculo }}</td>
+                    <td>{{ gia_entradas_saidas.icms }}</td>
+                    <td>{{ gia_entradas_saidas.isentas }}</td>
+                    <td>{{ gia_entradas_saidas.outras }}</td>
+                    <td>{{ gia_entradas_saidas.ipi }}</td>
+                    <td>{{ gia_entradas_saidas.icms_st }}</td>
+                    <td>{{ gia_entradas_saidas.remessa }}</td>
+                    <td>{{ gia_entradas_saidas.descricao }}</td>
+                    <td>{{ gia_entradas_saidas.ano_exercicio }}</td>
+                    <td>{{ gia_entradas_saidas.ano_base }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+</div>
+<br>
+<span><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Importar dados por cidade</button></span>
+
+
+<span><a href="{% url 'GIA_ENTRADAS_SAIDAS_lista_valor_adicionado' %} "><button type="button" class="btn btn-danger">
+    Ir para lista de consulta de valores adicionados
+</button></a></span>
+<br>
+<br>
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Importar dados por cidade</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="form-group">
+                {% for remessa in lista %}
+                <br>
+                <a href="{% url 'import_gia_entradas_saidas' pk=remessa.pk %}">
+                    <label>{{remessa.id}} - {{remessa.arquivo}}
+                    </label></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}
+GIA_SEM_MOV
+{% endblock title %}
+{% block content %}
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+        <option value="cod">Pesquisar por código</option>
+          <option value="contribuinte">Pesquisar por contribuinte</option>
+          <option value="inscricao">Pesquisar por inscrição</option>
+          <option value="municipio">Pesquisar por município</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>COD</th>
+                    <th>MUNICÍPIO</th>
+                    <th>ANO BASE</th>
+                    <th>INSCRIÇÃO</th>
+                    <th>CONTRIBUINTE</th>
+                    <th>SIT GIA</th>
+                    <th>INF MOV</th>
+                    <th>MÊS INICIAL</th>
+                    <th>MÊS FINAL</th>
+                    <th>REMESSA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>ANO EXERCÍCIO</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for gia_sem_mov in order %}
+                <tr>
+                    <td>{{ gia_sem_mov.cod }}</td>
+                    <td>{{ gia_sem_mov.municipio }}</td>
+                    <td>{{ gia_sem_mov.ano_base }}</td>
+                    <td>{{ gia_sem_mov.inscricao }}</td>
+                    <td>{{ gia_sem_mov.contribuinte }}</td>
+                    <td>{{ gia_sem_mov.sit_gia }}</td>
+                    <td>{{ gia_sem_mov.inf_mov }}</td>
+                    <td>{{ gia_sem_mov.mes_inicial }}</td>
+                    <td>{{ gia_sem_mov.mes_final }}</td>
+                    <td>{{ gia_sem_mov.remessa }}</td>
+                    <td>{{ gia_sem_mov.descricao }}</td>
+                    <td>{{ gia_sem_mov.ano_exercicio }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+</div>
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Importar dados
+</button>
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    {% for remessa in lista %}
+                    <a href="{% url 'import_gia_sem_mov' pk=remessa.pk %}">
+                        <label>{{remessa.id}} - {{remessa.arquivo}}
+                        </label></a>
+                    {% endfor %}
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

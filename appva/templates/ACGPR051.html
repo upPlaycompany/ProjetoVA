@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}
+ACGPR051
+{% endblock title %}
+{% block content %}
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Dados</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for acgpr051 in order %}
+                <tr>
+                    <td>{{ acgpr051.d }}</td>
+
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+ </div>
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Importar dados
+</button>
+</div>
+<!-- /.container-fluid -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    {% for remessa in lista %}
+                    <a href="{% url 'import_acgpr051' pk=remessa.pk %}">
+                    <label>{{remessa.id}} - {{remessa.arquivo}}
+                    </label></a>
+                    {% endfor %}
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+
+{% endblock %}

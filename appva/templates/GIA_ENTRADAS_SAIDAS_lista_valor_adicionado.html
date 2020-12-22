@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}
+Listagem do valor adicionado da tabela Gia ou 296
+{% endblock title %}
+{% block content %}
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+          <option value="contribuinte">Pesquisar por contribuinte</option>
+          <option value="inscricao">Pesquisar por inscrição</option>
+
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>INSCRICAO</th>
+                    <th>CONTRIBUINTE</th>
+                    <th>MUNICÍPIO</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for lista in lista %}
+                <tr>
+                    <td>{{ lista.inscricao }}</td>
+                    <td>{{ lista.contribuinte }}</td>
+                    <td>{{ lista.municipio }}</td>
+                    <td>
+                        <span><a href="{% url 'VALOR_ADICIONADO_gia_296' inscricao=lista.inscricao %} "><button type="button" class="btn btn-sm btn-danger">
+    Ir para lista de consulta de valores adicionados
+</button></a></span>
+                        <span><a href="{% url 'VALOR_ADICIONADO_gia_296_POR_MUNICIPIO' municipio=lista.municipio %} "><button type="button" class="btn btn-sm btn-success">
+    Ir para lista de consulta de valores adicionados do município
+</button></a></span>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="pagination">
+    <span class="step-links">
+        {% if lista.has_previous %}
+           <a href="?page={{ lista.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ lista.number }} de {{ lista.paginator.num_pages }}.
+        </span>
+         {% if lista.has_next %}
+            <a href="?page={{ lista.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+ </div>
+<br>
+</div>
+
+
+{% endblock %}

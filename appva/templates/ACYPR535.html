@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block title %}
+ACYPR535
+{% endblock title %}
+{% block content %}
+<!-- DataTales Example -->
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+          <option value="ano_base">Pesquisar por ano base</option>
+          <option value="populacao">Pesquisar por população</option>
+          <option value="municipio">Pesquisar por município</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>MUNICIPIO</th>
+                    <th>IVA_ANT</th>
+                    <th>IVA_ATUAL</th>
+                    <th>IVA_MED</th>
+                    <th>IVA_75</th>
+                    <th>UCTI</th>
+                    <th>TRIB_PROPR</th>
+                    <th>POPULACAO</th>
+                    <th>AREA</th>
+                    <th>COEF_SOC</th>
+                    <th>IND_FINAL</th>
+                    <th>REMESSA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>ANO EXERCÍCIO</th>
+                    <th>ANO BASE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for acypr535 in order %}
+                <tr>
+                    <td>{{ acypr535.municipio }}</td>
+                    <td>{{ acypr535.iva_ant }}</td>
+                    <td>{{ acypr535.iva_atual }}</td>
+                    <td>{{ acypr535.iva_med }}</td>
+                    <td>{{ acypr535.iva_75 }}</td>
+                    <td>{{ acypr535.ucti }}</td>
+                    <td>{{ acypr535.trib_propr }}</td>
+                    <td>{{ acypr535.populacao }}</td>
+                    <td>{{ acypr535.area }}</td>
+                    <td>{{ acypr535.coef_soc }}</td>
+                    <td>{{ acypr535.ind_final }}</td>
+                    <td>{{ acypr535.remessa }}</td>
+                    <td>{{ acypr535.descricao }}</td>
+                    <td>{{ acypr535.ano_exercicio }}</td>
+                    <td>{{ acypr535.ano_base }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+ </div>
+<br>
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Importar dados
+</button>
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    {% for remessa in lista %}
+                    <a href="{% url 'import_acypr535' pk=remessa.pk %}">
+                    <label>{{remessa.id}} - {{remessa.arquivo}}
+                    </label></a>
+                    {% endfor %}
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block title %}
+ACYPR555
+{% endblock title %}
+{% block content %}
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+          <option value="ano_base">Pesquisar por ano base</option>
+          <option value="contribuinte">Pesquisar por contribuinte</option>
+          <option value="inscricao">Pesquisar por inscrição</option>
+          <option value="cnae">Pesquisar por CNAE</option>
+          <option value="municipio">Pesquisar por município</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>TIPO_CONTRIB</th>
+                    <th>COD</th>
+                    <th>INSCRICAO</th>
+                    <th>CNAE</th>
+                    <th>MUNICIPIO</th>
+                    <th>CONTRIBUINTE</th>
+                    <th>VR_ADICIONADO</th>
+                    <th>ENTRADAS</th>
+                    <th>SAIDAS</th>
+                    <th>ST_ENTRADAS</th>
+                    <th>ST_SAIDAS</th>
+                    <th>IPI_ENTRADAS</th>
+                    <th>IPI_SAIDAS</th>
+                    <th>REMESSA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>ANO EXERCÍCIO</th>
+                    <th>ANO BASE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for acypr555 in order %}
+                <tr>
+                    <td>{{ acypr555.tipo_contrib }}</td>
+                    <td>{{ acypr555.cod }}</td>
+                    <td>{{ acypr555.inscricao }}</td>
+                    <td>{{ acypr555.cnae }}</td>
+                    <td>{{ acypr555.municipio }}</td>
+                    <td>{{ acypr555.contribuinte }}</td>
+                    <td>{{ acypr555.vr_adicionado }}</td>
+                    <td>{{ acypr555.entradas }}</td>
+                    <td>{{ acypr555.saidas }}</td>
+                    <td>{{ acypr555.st_entradas }}</td>
+                    <td>{{ acypr555.st_saidas }}</td>
+                    <td>{{ acypr555.ipi_entradas }}</td>
+                    <td>{{ acypr555.ipi_saidas }}</td>
+                    <td>{{ acypr555.remessa }}</td>
+                    <td>{{ acypr555.descricao }}</td>
+                    <td>{{ acypr555.ano_exercicio }}</td>
+                    <td>{{ acypr555.ano_base }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+ </div>
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Importar dados
+</button>
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    {% for remessa in lista %}
+                    <a href="{% url 'import_acypr555' pk=remessa.pk %}">
+                        <label>{{remessa.id}} - {{remessa.arquivo}}
+                        </label></a>
+                        {% endfor %}
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

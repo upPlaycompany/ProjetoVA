@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% block title %}
+CCI
+{% endblock title %}
+{% block content %}
+<!-- DataTales Example -->
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+        <option value="nome_inscrito">Pesquisar por nome inscrito</option>
+          <option value="ano_base">Pesquisar por ano base</option>
+          <option value="nome_pessoa">Pesquisar por nome da pessoa</option>
+          <option value="numr_inscricao_estadual">Pesquisar por inscrição</option>
+          <option value="cnae">Pesquisar por CNAE</option>
+          <option value="nome_municipio">Pesquisar por município</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>NUMR_INSCRICAO_ESTADUAL</th>
+                    <th>NOME_PESSOA</th>
+                    <th>NOME_INSCRITO</th>
+                    <th>NUMR_DOCUMENTO</th>
+                    <th>DESC_DOCUMENTO</th>
+                    <th>STATUS</th>
+                    <th>TIPO_INSCRITO</th>
+                    <th>SIMPLES_NACIONAL</th>
+                    <th>FLAG_MEI</th>
+                    <th>DATA_INICIO_ATIVIDADE_SEFAZ</th>
+                    <th>CODG_CNAE</th>
+                    <th>DESC_CNAE</th>
+                    <th>DESC_SEGMENTO</th>
+                    <th>CODG_MUNICIPIO</th>
+                    <th>NOME_MUNICIPIO</th>
+                    <th>TIPO_LOGRADOURO_CONTRIBUINTE</th>
+                    <th>NOME_LOGRADOURO_CONTRIBUINTE</th>
+                    <th>NUMR_LOGRADOURO_CONTRIBUINTE</th>
+                    <th>COMPLEMENTO_CONTRIBUINTE</th>
+                    <th>BAIRRO_CONTRIBUINTE</th>
+                    <th>DDD_TELEFONE_CONTRIBUINTE</th>
+                    <th>TELEFONE_CONTRIBUINTE</th>
+                    <th>DDD_CELULAR_CONTRIBUINTE</th>
+                    <th>CELULAR_CONTRIBUINTE</th>
+                    <th>EMAIL_CONTRIBUINTE</th>
+                    <th>CODG_CRC</th>
+                    <th>NOME_CONTABILISTA</th>
+                    <th>MUNICIPIO_CONTABILISTA</th>
+                    <th>TIPO_LOGRADOURO_CONTABILISTA</th>
+                    <th>NOME_LOGRADOURO_CONTABILISTA</th>
+                    <th>NUMR_LOGRADOURO_CONTABILISTA</th>
+                    <th>COMPLEMENTO_CONTABILISTA</th>
+                    <th>BAIRRO_CONTABILISTA</th>
+                    <th>DDD_TELEFONE_CONTABILISTA</th>
+                    <th>TELEFONE_CONTABILISTA</th>
+                    <th>DDD_CELULAR_CONTABILISTA</th>
+                    <th>CELULAR_CONTABILISTA</th>
+                    <th>EMAIL_CONTABILISTA</th>
+                    <th>REMESSA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>ANO EXERCÍCIO</th>
+                    <th>ANO BASE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for cci in order %}
+                <tr>
+                    <td>{{ cci.numr_inscricao_estadual }}</td>
+                    <td>{{ cci.nome_pessoa }}</td>
+                    <td>{{ cci.nome_inscrito }}</td>
+                    <td>{{ cci.numr_documento }}</td>
+                    <td>{{ cci.desc_documento }}</td>
+                    <td>{{ cci.status }}</td>
+                    <td>{{ cci.tipo_inscrito }}</td>
+                    <td>{{ cci.simples_nacional }}</td>
+                    <td>{{ cci.flag_mei }}</td>
+                    <td>{{ cci.data_inicio_atividade_sefaz }}</td>
+                    <td>{{ cci.codg_cnae }}</td>
+                    <td>{{ cci.desc_cnae }}</td>
+                    <td>{{ cci.desc_segmento }}</td>
+                    <td>{{ cci.codg_municipio }}</td>
+                    <td>{{ cci.nome_municipio }}</td>
+                    <td>{{ cci.tipo_logradouro_contribuinte }}</td>
+                    <td>{{ cci.nome_logradouro_contribuinte }}</td>
+                    <td>{{ cci.numr_logradouro_contribuinte }}</td>
+                    <td>{{ cci.complemento_contribuinte }}</td>
+                    <td>{{ cci.bairro_contribuinte }}</td>
+                    <td>{{ cci.ddd_telefone_contribuinte }}</td>
+                    <td>{{ cci.telefone_contribuinte }}</td>
+                    <td>{{ cci.ddd_celular_contribuinte }}</td>
+                    <td>{{ cci.celular_contribuinte }}</td>
+                    <td>{{ cci.email_contribuinte }}</td>
+                    <td>{{ cci.codg_crc }}</td>
+                    <td>{{ cci.nome_contabilista }}</td>
+                    <td>{{ cci.municipio_contabilista }}</td>
+                    <td>{{ cci.tipo_logradouro_contabilista }}</td>
+                    <td>{{ cci.nome_logradouro_contabilista }}</td>
+                    <td>{{ cci.numr_logradouro_contabilista }}</td>
+                    <td>{{ cci.complemento_contabilista }}</td>
+                    <td>{{ cci.bairro_contabilista }}</td>
+                    <td>{{ cci.ddd_telefone_contabilista }}</td>
+                    <td>{{ cci.telefone_contabilista }}</td>
+                    <td>{{ cci.ddd_celular_contabilista }}</td>
+                    <td>{{ cci.celular_contabilista }}</td>
+                    <td>{{ cci.email_contabilista }}</td>
+                    <td>{{ cci.remessa }}</td>
+                    <td>{{ cci.descricao }}</td>
+                    <td>{{ cci.ano_exercicio }}</td>
+                    <td>{{ cci.ano_base }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+</div>
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Importar dados
+</button>
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    {% for remessa in lista %}
+                    <a href="{% url 'import_cci' pk=remessa.pk %}">
+                        <label>{{remessa.id}} - {{remessa.arquivo}}
+                        </label></a>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+
+{% endblock %}

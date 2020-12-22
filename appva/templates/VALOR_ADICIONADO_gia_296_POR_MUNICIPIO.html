@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}
+Relatório de valor adicionado da tabela 296 por município
+{% endblock title %}
+{% block content %}
+<form method="get" >
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <input type="text" class="form-control col-md-30" name="q_inicio" placeholder="Número do mês inicial">
+    </div>
+    </span>
+            <span>
+            <input type="text" class="form-control col-md-30" name="q_final" placeholder="Número do mês final">
+            </span>
+            <span>
+            <input type="text" class="form-control col-md-30" name="q_ano" placeholder="Digite o ano das remessas">
+            </span>
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Valor adicionado por município</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for inscricoes in lista %}
+                <tr>
+
+                    <td>R$ {{ inscricoes.valor_adicionado|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<br>
+
+<br>
+
+<h2>Tabela para uso opcional de comparação</h2>
+<br>
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <input type="text" class="form-control col-md-30" name="q_inicio2" placeholder="Número do mês inicial">
+    </div>
+    </span>
+            <span>
+            <input type="text" class="form-control col-md-30" name="q_final2" placeholder="Número do mês final">
+            </span>
+            <span>
+            <input type="text" class="form-control col-md-30" name="q_ano2" placeholder="Digite o ano das remessas">
+            </span>
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Valor adicionado</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for inscricoes2 in order %}
+                <tr>
+
+                    <td>R$ {{ inscricoes2.valor_adicionado|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+{% endblock %}

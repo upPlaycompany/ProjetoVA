@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+{% if request.user.is_authenticated == True %}
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>GESTAWEB - Gestão do Valor Adicionado</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+    {% if request.user.is_superuser == True %}
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar"
+        style="background-color: black;">
+<br>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'index' %}">
+
+            <div class="sidebar-brand-text mx-8">GESTAWEB -<br>
+		Gestão do Valor Adicionado
+				<sup></sup></div>
+	  
+        </a>
+<br>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-paper-plane"></i>
+                <span>Importação</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Funções para importação: </h6>
+                    <a class="collapse-item" href="{% url 'remessas_novo' %}">Criar envio de tabelas</a>
+                    <a class="collapse-item" href="{% url 'tabela_listagem' %}">Tabelas enviadas</a>
+                </div>
+            </div>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Usuários</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Funções para usuários: </h6>
+                    <a class="collapse-item" href="{% url 'usuario_novo' %}">Cadastrar usuários</a>
+                    <a class="collapse-item" href="{% url 'usuario_listar' %}">Listar usuários</a>
+                </div>
+            </div>
+
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Tabelas
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>NF-e</span>
+            </a>
+            <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">NF-e: </h6>
+                    <a class="collapse-item" href="{% url 'NFE_e' %}">NFE-e(109)</a>
+                    <a class="collapse-item" href="{% url 'NFE_EFD' %}">NF-e EFD(415)</a>
+                    <a class="collapse-item" href="{% url 'ACGPT812' %}">NF-e(812)</a>
+                    <a class="collapse-item" href="{% url 'ACGPR051' %}">Exportação(051)</a>
+                </div>
+            </div>
+        </li>
+
+<hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>GIA-ICMS</span>
+            </a>
+            <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Gia-ICMS: </h6>
+                    <a class="collapse-item" href="{% url 'GIA_ENTRADAS_SAIDAS' %}">GIA(DHRPR296)</a>
+                    <a class="collapse-item" href="{% url 'GIA_OMISSO' %}">Gia Omisso</a>
+                    <a class="collapse-item" href="{% url 'GIA_SEM_MOV' %}">Gia sem movimento</a>
+                     <a class="collapse-item" href="{% url 'GIA_ENTRADAS_SAIDAS_lista_valor_adicionado' %}">Valor adicionado 296</a>
+                </div>
+            </div>
+        </li>
+<hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages3"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>EFD</span>
+            </a>
+            <div id="collapsePages3" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">EFD: </h6>
+                    <a class="collapse-item" href="{% url 'EFD' %}">EFD Lançamento(418)</a>
+                    <a class="collapse-item" href="{% url 'EFD_OMISSO' %}">EFD Omisso</a>
+                    <a class="collapse-item" href="{% url 'EFD_SEM_MOV' %}">EFD Sem movimento</a>
+                    <a class="collapse-item" href="{% url 'EFD_lista_valor_adicionado' %}">Valor adicionado 418</a>
+                </div>
+            </div>
+        </li>
+<hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages4"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>DASN</span>
+            </a>
+            <div id="collapsePages4" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">DASN: </h6>
+                    <a class="collapse-item" href="{% url 'PGDAS_D' %}">PGDAS CONTRIB</a>
+                </div>
+            </div>
+        </li>
+<hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages5"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>CONTRIBUINTES</span>
+            </a>
+            <div id="collapsePages5" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Contribuintes: </h6>
+                    <a class="collapse-item" href="{% url 'CAP' %}">Cadastro agropecuário</a>
+                    <a class="collapse-item" href="{% url 'CCI' %}">Cadastro COM IND</a>
+                    <a class="collapse-item" href="{% url 'IE' %}">Cadastro Simples Nacional</a>
+                </div>
+            </div>
+        </li>
+        <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages6"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Prestadores de Ser. Trans.</span>
+            </a>
+            <div id="collapsePages6" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Prestadores Ser. Trans.: </h6>
+                    <a class="collapse-item" href="{% url 'REG_1400_EFD' %}">REG_1400_EFD</a>
+                    <a class="collapse-item" href="{% url 'GIA_COP3' %}">COP3</a>
+                </div>
+            </div>
+        </li>
+         <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages7"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Valor Adicionado</span>
+            </a>
+            <div id="collapsePages7" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Valor Adicionado: </h6>
+                    <a class="collapse-item" href="{% url 'ACYPR555' %}">ACYPR555</a>
+                    <a class="collapse-item" href="{% url 'ACYPR557' %}">ACYPR557</a>
+                </div>
+            </div>
+        </li>
+          <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages8"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Códigos Operacionais</span>
+            </a>
+            <div id="collapsePages8" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Códigos Operacionais: </h6>
+                    <a class="collapse-item" href="{% url 'CFOP' %}">CFOP</a>
+                    <a class="collapse-item" href="{% url 'CNAE' %}">CNAE</a>
+                </div>
+            </div>
+        </li>
+           <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages9"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Publicações D.O.E.</span>
+            </a>
+            <div id="collapsePages9" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Publicações D.O.E.: </h6>
+                    <a class="collapse-item" href="{% url 'ACYPR535' %}">I - ACYPR535</a>
+                    <a class="collapse-item" href="{% url 'ACYPR540' %}">II - ACYPR540</a>
+                    <a class="collapse-item" href="{% url 'ACYPR556' %}">III - ACYPR556</a>
+                    <a class="collapse-item" href="{% url 'ACYPR600' %}">IV - ACYPR600</a>
+                </div>
+            </div>
+        </li>
+<hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages10"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>FINANÇAS PÚBLICAS F.P.M</span>
+            </a>
+            <div id="collapsePages10" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Finanças Públicas F.P.M.: </h6>
+                    <a class="collapse-item" href="{% url 'FPM' %}">Tabela F.P.M.</a>
+                 </div>
+            </div>
+        </li>
+        <hr class="sidebar-divider d-none d-md-block">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages11"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Créditos e Débitos base</span>
+            </a>
+            <div id="collapsePages11" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Base: </h6>
+                    <a class="collapse-item" href="{% url 'CRED' %}">Crédito base</a>
+                    <a class="collapse-item" href="{% url 'DEB' %}">Débito base</a>
+                 </div>
+            </div>
+        </li>
+    </ul>
+    {% endif %}
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+                 style="background-color: #4b6aab;">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Search -->
+
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - Messages -->
+
+                    </li>
+
+                    <!-- Nav Item - Alerts -->
+
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-grey-600 small">{{ user.username }}</span>
+                            <img class="img-profile rounded-circle"
+                                 src="{% static 'img/undraw_profile.svg' %}">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+
+
+                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                    <!-- Sidebar Toggler (Sidebar) -->
+
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+            <div class="container-fluid">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">
+                        {% block title %}
+
+                        {% endblock title %}
+                    </h1>
+
+                </div>
+
+                {% block content %}
+                {% endblock %}
+            </div>
+
+
+            <!-- Footer -->
+
+            <!-- End of Footer -->
+
+        </div>
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deseja mesmo sair?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Clique em "Logout" para sair!</div>
+            <div class="modal-footer">
+                <button class="btn btn-success" type="button" data-dismiss="modal">Cancelar</button>
+
+                <a href="{% url 'deslogar' %}">
+                    <button type="button" class="btn btn-danger">Logout</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+<!-- Page level plugins -->
+<script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+
+</body>
+{% endif %}
+</html>

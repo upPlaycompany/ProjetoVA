@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block title %}
+EFD_SEM_MOV
+{% endblock title %}
+{% block content %}
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+        <option value="num_efd">Pesquisar por número do EFD</option>
+          <option value="cod">Pesquisar por código</option>
+          <option value="contribuinte">Pesquisar por contribuinte</option>
+          <option value="inscricao">Pesquisar por inscrição</option>
+          <option value="municipio">Pesquisar por município</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>NUM_EFD</th>
+                    <th>INSCRIÇÃO</th>
+                    <th>CPF_CNPJ</th>
+                    <th>CONTRIBUINTE</th>
+                    <th>COD</th>
+                    <th>MUNICIPIO</th>
+                    <th>MES</th>
+                    <th>REMESSA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>ANO EXERCÍCIO</th>
+                    <th>ANO BASE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for efd_sem_mov in order %}
+                <tr>
+                    <td>{{ efd_sem_mov.num_efd }}</td>
+                    <td>{{ efd_sem_mov.inscricao}}</td>
+                    <td>{{ efd_sem_mov.cpf_cnpj }}</td>
+                    <td>{{ efd_sem_mov.contribuinte }}</td>
+                    <td>{{ efd_sem_mov.cod }}</td>
+                    <td>{{ efd_sem_mov.municipio }}</td>
+                    <td>{{ efd_sem_mov.mes }}</td>
+                    <td>{{ efd_sem_mov.remessa }}</td>
+                    <td>{{ efd_sem_mov.descricao }}</td>
+                    <td>{{ efd_sem_mov.ano_exercicio }}</td>
+                    <td>{{ efd_sem_mov.ano_base }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+ </div>
+<br>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Importar dados
+</button>
+
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    {% for remessa in lista %}
+                    <a href="{% url 'import_efd_sem_mov' pk=remessa.pk %}">
+                    <label>{{remessa.id}} - {{remessa.arquivo}}
+                    </label></a>
+                    {% endfor %}
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block title %}
+EFD
+{% endblock title %}
+{% block content %}
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+          <option value="dt_inicial">Pesquisar por data_inicial</option>
+          <option value="contribuinte">Pesquisar por contribuinte</option>
+          <option value="inscricao">Pesquisar por inscrição</option>
+          <option value="cnae">Pesquisar por CNAE</option>
+          <option value="municipio">Pesquisar por município</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>COD</th>
+                    <th>MUNICIPIO</th>
+                    <th>INSCRICAO</th>
+                    <th>CNAE</th>
+                    <th>CONTRIBUINTE</th>
+                    <th>DT_INICIAL</th>
+                    <th>DT_FINAL</th>
+                    <th>CFOP</th>
+                    <th>VR_CONTABIL</th>
+                    <th>IPI</th>
+                    <th>ICMS_ST</th>
+                    <th>CRC</th>
+                    <th>REMESSA</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>ANO EXERCÍCIO</th>
+                    <th>ANO BASE</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for efd in order %}
+                <tr>
+                    <td>{{ efd.cod }}</td>
+                    <td>{{ efd.municipio }}</td>
+                    <td>{{ efd.inscricao }}</td>
+                    <td>{{ efd.cnae }}</td>
+                    <td>{{ efd.contribuinte }}</td>
+                    <td>{{ efd.dt_inicial }}</td>
+                    <td>{{ efd.dt_final }}</td>
+                    <td>{{ efd.cfop }}</td>
+                    <td>{{ efd.vr_contabil }}</td>
+                    <td>{{ efd.ipi }}</td>
+                    <td>{{ efd.icms_st }}</td>
+                    <td>{{ efd.crc }}</td>
+                    <td>{{ efd.remessa }}</td>
+                    <td>{{ efd.descricao }}</td>
+                    <td>{{ efd.ano_exercicio }}</td>
+                    <td>{{ efd.ano_base }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+ </div>
+<br>
+<span><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Importar dados</button></span>
+
+
+<span><a href="{% url 'EFD_lista_valor_adicionado' %} "><button type="button" class="btn btn-danger">
+    Ir para lista de consulta de valores adicionados
+</button></a></span>
+<br>
+<br>
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myLargeModalLabel">Importar dados</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="form-group">
+                {% for remessa in lista %}
+                <br>
+                <a href="{% url 'import_efd' pk=remessa.pk %}">
+                    <label>{{remessa.id}} - {{remessa.arquivo}}
+                    </label></a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+<!-- /.container-fluid -->
+
+{% endblock %}
