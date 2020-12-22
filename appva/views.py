@@ -239,7 +239,7 @@ def GIA_OMISSO(request):
 def import_gia_omisso(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -289,7 +289,7 @@ def CCI(request):
 def import_cci(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -342,7 +342,7 @@ def IE(request):
 def import_ie(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -393,7 +393,7 @@ def NFE_EFD(request):
 def import_nfe_efd(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -440,7 +440,7 @@ def REG_1400_EFD(request):
 def import_reg_1400_efd(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -490,7 +490,7 @@ def CAP(request):
 def import_cap(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -545,7 +545,7 @@ def GIA_COP3(request):
 def import_gia_cop3(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -593,7 +593,7 @@ def GIA_ENTRADAS_SAIDAS(request):
 def import_gia_entradas_saidas(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -1903,7 +1903,7 @@ def NFE_e(request):
 def import_nfe_e(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -1948,7 +1948,7 @@ def ACYPR535(request):
 def import_acypr535(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -1994,7 +1994,7 @@ def ACYPR540(request):
 def import_acypr540(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2041,7 +2041,7 @@ def ACYPR555(request):
 def import_acypr555(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2087,7 +2087,7 @@ def ACYPR556(request):
 def import_acypr556(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2134,7 +2134,7 @@ def ACYPR557(request):
 def import_acypr557(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2176,7 +2176,7 @@ def ACYPR600(request):
 def import_acypr600(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2222,7 +2222,7 @@ def CRED(request):
 def import_cred(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2256,7 +2256,7 @@ def CNAE(request):
 def import_cnae(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2303,7 +2303,7 @@ def DEB(request):
 def import_deb(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2337,7 +2337,7 @@ def FPM(request):
 def import_fpm(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -2381,7 +2381,7 @@ def GIA_SEM_MOV(request):
 def import_gia_sem_mov(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -3081,7 +3081,7 @@ def EFD_lista_valor_adicionado(request):
 def import_efd(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -3747,7 +3747,7 @@ def EFD_OMISSO(request):
 def import_efd_omisso(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -3794,7 +3794,7 @@ def EFD_SEM_MOV(request):
 def import_efd_sem_mov(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -3843,7 +3843,7 @@ def ACGPT812(request):
 def import_acgpt812(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -3890,7 +3890,7 @@ def PGDAS_D(request):
 def import_pgdas_d(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -3925,7 +3925,7 @@ def ACGPR051(request):
 def import_acgpr051(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
@@ -3956,7 +3956,7 @@ def CFOP(request):
 def import_cfop(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/appva/tabela/{arquivo}'
+    filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
