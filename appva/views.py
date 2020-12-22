@@ -1,6 +1,7 @@
 from collections import namedtuple
 import csv
 import psycopg2
+from django.contrib import auth as autent
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -196,7 +197,7 @@ def logar(request):
 
 @login_required
 def deslogar(request):
-    logout(request)
+    autent.logout(request)
     return HttpRequest('/')
 
 
