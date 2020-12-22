@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Fazer logout
+{% endblock %}
+
+{% block content %}
+<h4>Obrigado por usar o GESTAWEB, caso queira logar novamente, clique no botão abaixo!</h4>
+<br/>
+<a href="{% url'login' %}">
+<button type="submit" class="btn btn-success">
+    Ir para o login
+</button>
+</a>
+
+{% endblock content %}
