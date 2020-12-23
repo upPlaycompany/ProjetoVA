@@ -127,5 +127,5 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 # media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'ProjetoVA/ProjetoVA/tabela')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'tabela')
 MEDIA_URL = '/tabela/'
