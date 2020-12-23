@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'ProjetoVA.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'NAME': 'dbbamg8id3opk0',
+        'USER': 'uomyebbdiqtggf',
+        'PASSWORD': 'aaf19ebbc67a2dd9d52e5433639a9745165d3e42b4c834b6bd073d769b78873d',
+        'HOST': 'ec2-34-195-169-25.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -127,5 +127,5 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 # media
-MEDIA_ROOT = os.path.join(BASE_DIR, 'ProjetoVA/tabela')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'ProjetoVA/ProjetoVA/tabela')
 MEDIA_URL = '/tabela/'
