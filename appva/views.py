@@ -41,6 +41,7 @@ def REMESSAS_APAGAR_EFD_418(request):
             return redirect("REMESSAS_APGAR_EFD_418_sucesso")
     return render(request,"REMESSAS_APAGAR_EFD_418.html")
 
+@login_required
 def REMESSAS_APAGAR_GIA_296(request):
     if request.method == 'POST':
         remessa = request.POST["remessa"]
@@ -51,7 +52,7 @@ def REMESSAS_APAGAR_GIA_296(request):
             cursor.execute("DELETE FROM appva_gia_entradas_saidas WHERE ano_base = %s AND remessa = %s",[ano_base, remessa])
             cursor.close()
             return redirect("REMESSAS_APGAR_GIA_296_sucesso")
-    return render(request,"REMESSAS_APAGAR_EFD_296.html")
+    return render(request,"REMESSAS_APAGAR_GIA_296.html")
 
 #
 # VIEWS RELACIONADAS A REMESSAS
