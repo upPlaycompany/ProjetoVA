@@ -57,7 +57,7 @@ def REMESSAS_APAGAR_GIA_296(request):
             ano_base = str(ano_base)
             cursor.execute("DELETE FROM appva_gia_entradas_saidas WHERE ano_base = %s AND remessa = %s",[ano_base, remessa])
             cursor.close()
-            return redirect("REMESSAS_APGAR_GIA_296_sucesso")
+            return redirect("REMESSAS_APAGAR_GIA_296_sucesso")
     return render(request,"REMESSAS_APAGAR_GIA_296.html")
 
 @login_required
