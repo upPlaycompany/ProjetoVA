@@ -510,7 +510,7 @@ class Pgdas_d(models.Model):
 
 class REMESSAS(models.Model):
     id = models.IntegerField(primary_key=True, null=False)
-    arquivo = models.FileField(upload_to='arquivos/')
+    arquivo = models.FileField(upload_to='.')
     descricao_arquivo = models.CharField(max_length=255)
     tabela = models.CharField(max_length=255)
     ano_base = models.IntegerField(null=True)
