@@ -28,6 +28,18 @@ def namedtuplefetchall(cursor):
 def index(request):
     return render(request, 'index.html')
 
+@login_required
+def REMESSAS_APAGAR_EFD_418(request):
+    if request.method == 'POST':
+        remessa = request.POST["remessa"]
+        ano_base = request.POST["ano_base"]
+        with connections['default'].cursor() as cursor:
+            remessa = str(remessa)
+            ano_base = str(ano_base)
+            cursor.execute("DELETE FROM appva_efd WHERE ano_base = %s AND remessa = %s",[ano_base, remessa])
+            cursor.close()
+            return redirect("REMESSAS_APGAR_EFD_418_SUCESSO")
+    return render(request,"REMESSAS_APAGAR_EFD_418.html")
 
 #
 # VIEWS RELACIONADAS A REMESSAS

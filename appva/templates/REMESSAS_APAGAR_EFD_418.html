@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Apagar registros de determinada remessa
+{% endblock title %}
+
+{% block content %}
+<form method="post"> {% csrf_token %}
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label>Nome da remessa</label>
+      <input type="text" class="form-control"  placeholder="Digite o nome da remessa" name="remessa">
+    </div>
+     <div class="form-group col-md-3">
+      <label>Ano base da remessa</label>
+      <input type="text" class="form-control"  placeholder="Digite o ano base da remessa" name="ano_base">
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Deletar</button>
+</form>
+
+{% endblock %}

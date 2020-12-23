@@ -17,6 +17,7 @@ urlpatterns = [
     path('remessas_novo/', views.remessas_novo, name='remessas_novo'),
     path('tabela_listagem/', views.tabela_listagem, name='tabela_listagem'),
     path('remessas_remover/<int:pk>', views.remessas_remover, name='remessas_remover'),
+    path('REMESSAS_APAGAR_EFD_418/', views.REMESSAS_APAGAR_EFD_418, name='REMESSAS_APAGAR_EFD_418'),
 
 
     path('GIA_OMISSO/', views.GIA_OMISSO, name='GIA_OMISSO'),
