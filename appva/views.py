@@ -38,8 +38,20 @@ def REMESSAS_APAGAR_EFD_418(request):
             ano_base = str(ano_base)
             cursor.execute("DELETE FROM appva_efd WHERE ano_base = %s AND remessa = %s",[ano_base, remessa])
             cursor.close()
-            return redirect("REMESSAS_APGAR_EFD_418_SUCESSO")
+            return redirect("REMESSAS_APGAR_EFD_418_sucesso")
     return render(request,"REMESSAS_APAGAR_EFD_418.html")
+
+def REMESSAS_APAGAR_GIA_296(request):
+    if request.method == 'POST':
+        remessa = request.POST["remessa"]
+        ano_base = request.POST["ano_base"]
+        with connections['default'].cursor() as cursor:
+            remessa = str(remessa)
+            ano_base = str(ano_base)
+            cursor.execute("DELETE FROM appva_gia_entradas_saidas WHERE ano_base = %s AND remessa = %s",[ano_base, remessa])
+            cursor.close()
+            return redirect("REMESSAS_APGAR_GIA_296_sucesso")
+    return render(request,"REMESSAS_APAGAR_EFD_296.html")
 
 #
 # VIEWS RELACIONADAS A REMESSAS
