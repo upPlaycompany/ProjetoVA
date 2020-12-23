@@ -28,6 +28,8 @@ def namedtuplefetchall(cursor):
 def index(request):
     return render(request, 'index.html')
 
+
+
 @login_required
 def REMESSAS_APAGAR_EFD_418(request):
     if request.method == 'POST':
@@ -38,8 +40,12 @@ def REMESSAS_APAGAR_EFD_418(request):
             ano_base = str(ano_base)
             cursor.execute("DELETE FROM appva_efd WHERE ano_base = %s AND remessa = %s",[ano_base, remessa])
             cursor.close()
-            return redirect("REMESSAS_APGAR_EFD_418_sucesso")
+            return redirect("REMESSAS_APAGAR_EFD_418_sucesso")
     return render(request,"REMESSAS_APAGAR_EFD_418.html")
+
+@login_required
+def REMESSAS_APAGAR_EFD_418_sucesso(request):
+    return render(request, "REMESSAS_APAGAR_EFD_418_sucesso.html")
 
 @login_required
 def REMESSAS_APAGAR_GIA_296(request):
@@ -53,6 +59,10 @@ def REMESSAS_APAGAR_GIA_296(request):
             cursor.close()
             return redirect("REMESSAS_APGAR_GIA_296_sucesso")
     return render(request,"REMESSAS_APAGAR_GIA_296.html")
+
+@login_required
+def REMESSAS_APAGAR_GIA_296_sucesso(request):
+    return render(request, "REMESSAS_APAGAR_GIA_296_sucesso.html")
 
 #
 # VIEWS RELACIONADAS A REMESSAS

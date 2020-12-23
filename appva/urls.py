@@ -18,8 +18,11 @@ urlpatterns = [
     path('tabela_listagem/', views.tabela_listagem, name='tabela_listagem'),
     path('remessas_remover/<int:pk>', views.remessas_remover, name='remessas_remover'),
     path('REMESSAS_APAGAR_EFD_418/', views.REMESSAS_APAGAR_EFD_418, name='REMESSAS_APAGAR_EFD_418'),
+    path('REMESSAS_APAGAR_EFD_418_sucesso/', views.REMESSAS_APAGAR_EFD_418_sucesso,
+         name='REMESSAS_APAGAR_EFD_418_sucesso'),
     path('REMESSAS_APAGAR_GIA_296/', views.REMESSAS_APAGAR_GIA_296, name='REMESSAS_APAGAR_GIA_296'),
-
+    path('REMESSAS_APAGAR_GIA_296_sucesso/', views.REMESSAS_APAGAR_GIA_296_sucesso,
+         name='REMESSAS_APAGAR_GIA_296_sucesso'),
 
     path('GIA_OMISSO/', views.GIA_OMISSO, name='GIA_OMISSO'),
     path('import_gia_omisso/<int:pk>', views.import_gia_omisso, name='import_gia_omisso'),
@@ -44,9 +47,11 @@ urlpatterns = [
 
     path('GIA_ENTRADAS_SAIDAS/', views.GIA_ENTRADAS_SAIDAS, name='GIA_ENTRADAS_SAIDAS'),
     path('import_gia_entradas_saidas/<int:pk>', views.import_gia_entradas_saidas, name='import_gia_entradas_saidas'),
-    path('GIA_ENTRADAS_SAIDAS_lista_valor_adicionado/', views.GIA_ENTRADAS_SAIDAS_lista_valor_adicionado, name='GIA_ENTRADAS_SAIDAS_lista_valor_adicionado'),
+    path('GIA_ENTRADAS_SAIDAS_lista_valor_adicionado/', views.GIA_ENTRADAS_SAIDAS_lista_valor_adicionado,
+         name='GIA_ENTRADAS_SAIDAS_lista_valor_adicionado'),
     path('VALOR_ADICIONADO_gia_296/<str:inscricao>', views.VALOR_ADICIONADO_gia_296, name='VALOR_ADICIONADO_gia_296'),
-    path('VALOR_ADICIONADO_gia_296_POR_MUNICIPIO/<str:municipio>', views.VALOR_ADICIONADO_gia_296_POR_MUNICIPIO, name='VALOR_ADICIONADO_gia_296_POR_MUNICIPIO'),
+    path('VALOR_ADICIONADO_gia_296_POR_MUNICIPIO/<str:municipio>', views.VALOR_ADICIONADO_gia_296_POR_MUNICIPIO,
+         name='VALOR_ADICIONADO_gia_296_POR_MUNICIPIO'),
 
     path('NFE_e/', views.NFE_e, name='NFE_e'),
     path('import_nfe_e/<int:pk>', views.import_nfe_e, name='import_nfe_e'),
@@ -88,7 +93,8 @@ urlpatterns = [
     path('import_efd/<int:pk>', views.import_efd, name='import_efd'),
     path('EFD_lista_valor_adicionado/', views.EFD_lista_valor_adicionado, name='EFD_lista_valor_adicionado'),
     path('VALOR_ADICIONADO_efd_418/<str:inscricao>', views.VALOR_ADICIONADO_efd_418, name='VALOR_ADICIONADO_efd_418'),
-    path('VALOR_ADICIONADO_efd_418_POR_MUNICIPIO/<str:municipio>', views.VALOR_ADICIONADO_efd_418_POR_MUNICIPIO, name='VALOR_ADICIONADO_efd_418_POR_MUNICIPIO'),
+    path('VALOR_ADICIONADO_efd_418_POR_MUNICIPIO/<str:municipio>', views.VALOR_ADICIONADO_efd_418_POR_MUNICIPIO,
+         name='VALOR_ADICIONADO_efd_418_POR_MUNICIPIO'),
 
     path('EFD_OMISSO/', views.EFD_OMISSO, name='EFD_OMISSO'),
     path('import_efd_omisso/<int:pk>', views.import_efd_omisso, name='import_efd_omisso'),
