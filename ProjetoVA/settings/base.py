@@ -78,10 +78,10 @@ WSGI_APPLICATION = 'ProjetoVA.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'df5p6930isrrg3',
-        'USER': 'kfmkzchgdfpnya',
-        'PASSWORD': '37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc',
-        'HOST': 'ec2-75-101-212-64.compute-1.amazonaws.com',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': '191.252.223.169',
         'PORT': '5432',
     }
 }
