@@ -276,7 +276,7 @@ def import_gia_omisso(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_gia_omisso', sep=';', columns=(
@@ -326,7 +326,7 @@ def import_cci(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cci', sep=';', columns=(
@@ -379,7 +379,7 @@ def import_ie(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_ie', sep=';', columns=(
@@ -430,7 +430,7 @@ def import_nfe_efd(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_nfe_efd', sep=';', columns=(
@@ -477,7 +477,7 @@ def import_reg_1400_efd(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_reg_1400_efd', sep=';', columns=(
@@ -527,7 +527,7 @@ def import_cap(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cap', sep=';', columns=(
@@ -582,7 +582,7 @@ def import_gia_cop3(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_gia_cop3', sep=';', columns=(
@@ -630,7 +630,7 @@ def import_gia_entradas_saidas(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_gia_entradas_saidas', sep=';', columns=(
@@ -1940,7 +1940,7 @@ def import_nfe_e(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_nfe_e', sep=';', columns=(
@@ -1985,7 +1985,7 @@ def import_acypr535(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr535', sep=';', columns=(
@@ -2031,7 +2031,7 @@ def import_acypr540(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr540', sep=';',
@@ -2078,7 +2078,7 @@ def import_acypr555(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr555', sep=';', columns=(
@@ -2124,7 +2124,7 @@ def import_acypr556(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr556', sep=';', columns=(
@@ -2171,7 +2171,7 @@ def import_acypr557(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr557', sep=';', columns=(
@@ -2213,7 +2213,7 @@ def import_acypr600(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr600', sep=';', columns=(
@@ -2259,7 +2259,7 @@ def import_cred(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cred', sep=';',
@@ -2293,7 +2293,7 @@ def import_cnae(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cnae', sep=';',
@@ -2340,7 +2340,7 @@ def import_deb(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_deb', sep=';',
@@ -2374,7 +2374,7 @@ def import_fpm(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_fpm', sep=',', columns=('MUNICIPIO', 'TOTAL'))
@@ -2418,7 +2418,7 @@ def import_gia_sem_mov(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_gia_sem_mov', sep=';', columns=(
@@ -3118,7 +3118,7 @@ def import_efd(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_efd', sep=';', columns=(
@@ -3784,7 +3784,7 @@ def import_efd_omisso(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_efd_omisso', sep=';',
@@ -3831,7 +3831,7 @@ def import_efd_sem_mov(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_efd_sem_mov', sep=';',
@@ -3880,7 +3880,7 @@ def import_acgpt812(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acgpt812', sep=';', columns=(
@@ -3927,7 +3927,7 @@ def import_pgdas_d(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_pgdas_d', sep=';', columns=(
@@ -3962,7 +3962,7 @@ def import_acgpr051(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acgpr051', sep=';', columns=('D'))
@@ -3993,7 +3993,7 @@ def import_cfop(request, pk):
     arquivo = remessa.arquivo
     filx = f'/app/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
-    constr = "dbname='df5p6930isrrg3' user='kfmkzchgdfpnya' password='37912568af27e19a35210a793e172cafc50f7eb8ed41a28ab0f73eca54cf1bbc' host='ec2-75-101-212-64.compute-1.amazonaws.com'" 
+    constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cfop', sep=',', columns=('CFOP', 'PORTARIA', 'TIPO_CFOP', 'STATUS_CFOP'))
