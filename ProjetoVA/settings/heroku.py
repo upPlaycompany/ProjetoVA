@@ -15,3 +15,5 @@ ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 DATABASES = {
     "default": env.db(),
 }
+
+DATABASE_URL = env("DATABASE_URL")
