@@ -3991,7 +3991,7 @@ def CFOP(request):
 def import_cfop(request, pk):
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
-    filx = f'/app/ProjetoVA/tabela/{arquivo}'
+    filx = f'/code/ProjetoVA/tabela/{arquivo}'
     f = open(filx, 'r+', encoding='utf-8')
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
