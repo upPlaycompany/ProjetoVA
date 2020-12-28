@@ -16,4 +16,3 @@ DATABASES = {
     "default": env.db(),
 }
 
-DATABASE_URL = env("DATABASE_URL")
