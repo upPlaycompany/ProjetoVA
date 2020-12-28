@@ -281,7 +281,7 @@ def import_gia_omisso(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_gia_omisso', sep=';', columns=(
         'COD', 'MUNICIPIO', 'CNAE', 'CAD', 'INSCRICAO', 'CONTRIBUINTE', 'MES', 'PERIODICIDADE', 'CRC', 'CONTABILISTA',
-        'REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -338,7 +338,7 @@ def import_cci(request, pk):
         'NOME_CONTABILISTA', 'MUNICIPIO_CONTABILISTA', 'TIPO_LOGRADOURO_CONTABILISTA', 'NOME_LOGRADOURO_CONTABILISTA',
         'NUMR_LOGRADOURO_CONTABILISTA', 'COMPLEMENTO_CONTABILISTA', 'BAIRRO_CONTABILISTA', 'DDD_TELEFONE_CONTABILISTA',
         'TELEFONE_CONTABILISTA', 'DDD_CELULAR_CONTABILISTA', 'CELULAR_CONTABILISTA', 'EMAIL_CONTABILISTA',
-        'PORTE_EMPRESA', 'REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'PORTE_EMPRESA', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -383,7 +383,7 @@ def import_ie(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_ie', sep=';', columns=(
-    'NUMR_INSCRICAO_ESTADUAL', 'NOME_PESSOA', 'FLAG_MEI', 'REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+    'NUMR_INSCRICAO_ESTADUAL', 'NOME_PESSOA', 'FLAG_MEI', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -436,7 +436,7 @@ def import_nfe_efd(request, pk):
     st.copy_from(file=f, table='appva_nfe_efd', sep=';', columns=(
         'IE_REMETENTE', 'NOME_REMETENTE', 'COD', 'MUNICIPIO_REMETENTE', 'IE_ADQUIRENTE', 'NOME_ADQUIRENTE', 'CODG',
         'MUNICIPIO_ADQUIRENTE', 'NRO_NF', 'TIPO_DOC', 'MOD', 'EMISSAO', 'CFOP', 'VALOR_NF', 'REMESSA', 'DESCRICAO',
-        'ANO_BASE', 'ANO_EXERCICIO'))
+        'ANO_EXERCICIO','ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -482,7 +482,7 @@ def import_reg_1400_efd(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_reg_1400_efd', sep=';', columns=(
         'INSCRICAO', 'CONTRIBUINTE', 'COD', 'MUNICIPIO', 'DT_INICIAL', 'DT_FINAL', 'CODG', 'MUNICIPIO_REG_1400',
-        'VR_REG_1400', 'REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'VR_REG_1400', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -539,7 +539,7 @@ def import_cap(request, pk):
         'MUNICIPIO_CONTABILISTA', 'TIPO_LOGRADOURO_CONTABILISTA', 'NOME_LOGRADOURO_CONTABILISTA',
         'NUMR_LOGRADOURO_CONTABILISTA', 'COMPLEMENTO_CONTABILISTA', 'BAIRRO_CONTABILISTA', 'DDD_TELEFONE_CONTABILISTA',
         'TELEFONE_CONTABILISTA', 'DDD_CELULAR_CONTABILISTA', 'CELULAR_CONTABILISTA', 'EMAIL_CONTABILISTA', 'REMESSA',
-        'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'DESCRICAO','ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -636,7 +636,7 @@ def import_gia_entradas_saidas(request, pk):
     st.copy_from(file=f, table='appva_gia_entradas_saidas', sep=';', columns=(
         'COD', 'MUNICIPIO', 'INSCRICAO', 'CAD', 'CNAE', 'CONTRIBUINTE', 'DT_INICIAL', 'DT_FINAL', 'TIPO', 'DT_PROCESS',
         'CFOP', 'VR_CONTABIL', 'CRC', 'IE_ANTERIOR', 'BASE_CALCULO', 'ICMS', 'ISENTAS', 'OUTRAS', 'IPI', 'ICMS_ST',
-        'REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -1945,8 +1945,8 @@ def import_nfe_e(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_nfe_e', sep=';', columns=(
         'IE_REMETENTE', 'NOME_DO_PRODUTOR', 'COD', 'MUNICIPIO_DO_PRODUTOR', 'IE_ADQUIRENTE', 'NOME_ADQUIRENTE',
-        'MUN_ADQUIRENTE', 'N_NF_e', 'EMISSAO_NF_e', 'CFOP', 'VR_NF_e', 'REMESSA', 'DESCRICAO', 'ANO_BASE',
-        'ANO_EXERCICIO'))
+        'MUN_ADQUIRENTE', 'N_NF_e', 'EMISSAO_NF_e', 'CFOP', 'VR_NF_e', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE',
+        ))
     db.commit()
     st.close()
     db.close()
@@ -1990,7 +1990,7 @@ def import_acypr535(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr535', sep=';', columns=(
         'MUNICIPIO', 'IVA_ANT', 'IVA_ATUAL', 'IVA_MED', 'IVA_75', 'UCTI', 'TRIB_PROPR', 'POPULACAO', 'AREA', 'COEF_SOC',
-        'IND_FINAL','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'IND_FINAL','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2035,7 +2035,7 @@ def import_acypr540(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr540', sep=';',
-                 columns=('COD', 'MUNICIPIO', 'IPM_ANO_BASE', 'IPM_ANO_EXERCICIO', 'PORCENTAGEM','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+                 columns=('COD', 'MUNICIPIO', 'IPM_ANO_BASE', 'IPM_ANO_EXERCICIO', 'PORCENTAGEM','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2083,7 +2083,7 @@ def import_acypr555(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr555', sep=';', columns=(
         'TIPO_CONTRIB', 'COD', 'MUNICIPIO', 'INSCRICAO', 'CNAE', 'CONTRIBUINTE', 'VR_ADICIONADO', 'ENTRADAS', 'SAIDAS',
-        'ST_ENTRADAS', 'ST_SAIDAS', 'IPI_ENTRADAS', 'IPI_SAIDAS','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'ST_ENTRADAS', 'ST_SAIDAS', 'IPI_ENTRADAS', 'IPI_SAIDAS','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2128,7 +2128,7 @@ def import_acypr556(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr556', sep=';', columns=(
-        'CODIGO', 'MUNICIPIO', 'VR_ADIC_ANO_BASE', 'VR_ADIC_ANO_EXERCICIO', 'RECEITA_PROPRIA', 'POPULACAO', 'AREA','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'CODIGO', 'MUNICIPIO', 'VR_ADIC_ANO_BASE', 'VR_ADIC_ANO_EXERCICIO', 'RECEITA_PROPRIA', 'POPULACAO', 'AREA','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2176,7 +2176,7 @@ def import_acypr557(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr557', sep=';', columns=(
         'TIPO_CONTRIB', 'COD', 'MUNICIPIO', 'INSCRICAO', 'CNAE', 'CONTRIBUINTE', 'VR_ADICIONADO', 'ENTRADAS', 'SAIDAS',
-        'ST_ENTRADAS', 'ST_SAIDAS', 'IPI_ENTRADAS', 'IPI_SAIDAS','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'ST_ENTRADAS', 'ST_SAIDAS', 'IPI_ENTRADAS', 'IPI_SAIDAS','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2218,7 +2218,7 @@ def import_acypr600(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr600', sep=';', columns=(
         'MUNICIPIO', 'COM_IND', 'PROD_RURAL', 'PREST_SERV', 'DAR_1_AUT', 'NAI', 'CREDITO_EX_OFF', 'DEBITO_EX_OFF',
-        'TOTAL','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'TOTAL','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2263,7 +2263,7 @@ def import_cred(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cred', sep=';',
-                 columns=('COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_CREDITAR', 'ESPECIFICACAO','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+                 columns=('COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_CREDITAR', 'ESPECIFICACAO','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2344,7 +2344,7 @@ def import_deb(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_deb', sep=';',
-                 columns=('COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_DEBITAR', 'ESPECIFICACAO','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+                 columns=('COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_DEBITAR', 'ESPECIFICACAO','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2423,7 +2423,7 @@ def import_gia_sem_mov(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_gia_sem_mov', sep=';', columns=(
         'COD', 'MUNICIPIO', 'ANO_BASE', 'INSCRICAO', 'CONTRIBUINTE', 'CAD', 'SIT_GIA', 'INF_MOV', 'MES_INICIAL',
-        'MES_FINAL'))
+        'MES_FINAL', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO'))
     db.commit()
     st.close()
     db.close()
@@ -3123,7 +3123,7 @@ def import_efd(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_efd', sep=';', columns=(
         'COD', 'MUNICIPIO', 'CAD', 'INSCRICAO', 'CNAE', 'CONTRIBUINTE', 'DT_INICIAL', 'DT_FINAL', 'CFOP', 'VR_CONTABIL',
-        'IPI', 'ICMS_ST', 'CRC','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'IPI', 'ICMS_ST', 'CRC','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -3788,7 +3788,7 @@ def import_efd_omisso(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_efd_omisso', sep=';',
-                 columns=('COD', 'MUNICIPIO', 'INSCRICAO', 'CNPJ', 'CONTRIBUINTE', 'MES','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+                 columns=('COD', 'MUNICIPIO', 'INSCRICAO', 'CNPJ', 'CONTRIBUINTE', 'MES','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -3835,7 +3835,7 @@ def import_efd_sem_mov(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_efd_sem_mov', sep=';',
-                 columns=('NUM_EFD', 'INSCRICAO', 'CPF_CNPJ', 'CONTRIBUINTE', 'COD', 'MUNICIPIO', 'MES','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+                 columns=('NUM_EFD', 'INSCRICAO', 'CPF_CNPJ', 'CONTRIBUINTE', 'COD', 'MUNICIPIO', 'MES','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -3886,7 +3886,7 @@ def import_acgpt812(request, pk):
     st.copy_from(file=f, table='appva_acgpt812', sep=';', columns=(
         'IE_REMETENTE', 'IE_SIMPLIFICADA', 'NOME_REMETENTE', 'COD', 'MUN_REMETENTE', 'IE_DESTINATARIO',
         'NOME_DESTINATARIO',
-        'CODG', 'MUN_DESTINATARIO', 'NRO_NFPA', 'EMISSAO', 'CFOP', 'VR_NFPA','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'CODG', 'MUN_DESTINATARIO', 'NRO_NFPA', 'EMISSAO', 'CFOP', 'VR_NFPA','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -3932,7 +3932,7 @@ def import_pgdas_d(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_pgdas_d', sep=';', columns=(
         'TIPO', 'INSCRICAO', 'CNPJ', 'CONTRIBUINTE', 'CNAE', 'COD', 'MUNICIPIO', 'MES', 'RB_TOTAL', 'RB_OUTROS',
-        'RB_ICMS','REMESSA', 'DESCRICAO', 'ANO_BASE', 'ANO_EXERCICIO'))
+        'RB_ICMS','REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
