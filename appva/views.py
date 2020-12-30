@@ -586,7 +586,7 @@ def import_gia_cop3(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_gia_cop3', sep=';', columns=(
-        'INSCRICAO', 'CONTRIBUINTE', 'ANOBASE', 'COP', 'SIT', 'MES', 'TIPO', 'CODG', 'MUNICIPIO', 'VR_COP3', 'REMESSA',
+        'INSCRICAO', 'CONTRIBUINTE', 'ANO_BASE', 'COP', 'SIT', 'MES', 'TIPO', 'CODG', 'MUNICIPIO', 'VR_COP3', 'REMESSA',
         'DESCRICAO', 'ANO_EXERCICIO'))
     db.commit()
     st.close()
@@ -3965,7 +3965,7 @@ def import_acgpr051(request, pk):
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
-    st.copy_from(file=f, table='appva_acgpr051', sep=';', columns=('D'))
+    st.copy_from(file=f, table='appva_acgpr051', sep=';', columns=('INSCRICAO, RAZAO_SOCIAL, NUMERO_NF, DATA, CFOP, VALOR, COD_MUN'))
     db.commit()
     st.close()
     db.close()

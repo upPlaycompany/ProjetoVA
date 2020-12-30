@@ -202,7 +202,13 @@ class Cci(models.Model):
 
 # Relatório de notas ficais de estradas eletrônicas EXPORTAÇÃO #ARQUIVO INPOSSIVEL DE IMPORTAR
 class Acgpr051(models.Model):
-    d = models.CharField(max_length=255, null=True)
+    inscricao = models.CharField(max_length=255, null=True)
+    razao_social = models.CharField(max_length=255, null=True)
+    numero_nf = models.CharField(max_length=255, null=True)
+    data = models.CharField(max_length=255, null=True)
+    cfop = models.CharField(max_length=255, null=True)
+    valor = models.CharField(max_length=255, null=True)
+    cod_mun = models.CharField(max_length=255, null=True)
 
 
 # CREDITO #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
