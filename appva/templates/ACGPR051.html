@@ -32,16 +32,26 @@ ACGPR051
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Dados</th>
-
+                    <th>INSCRIÇÃO</th>
+                    <th>RAZÃO SOCIAL</th>
+                    <th>NÚMERO NF</th>
+                    <th>DATA</th>
+                    <th>CFOP</th>
+                    <th>VALOR</th>
+                    <th>COD MUN</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 {% for acgpr051 in order %}
                 <tr>
-                    <td>{{ acgpr051.d }}</td>
-
+                    <td>{{ acgpr051.inscricao }}</td>
+                    <td>{{ acgpr051.razao_social }}</td>
+                    <td>{{ acgpr051.numero_nf }}</td>
+                    <td>{{ acgpr051.data }}</td>
+                    <td>{{ acgpr051.cfop }}</td>
+                    <td>{{ acgpr051.valor }}</td>
+                    <td>{{ acgpr051.cod_mun }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
