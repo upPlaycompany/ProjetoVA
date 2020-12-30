@@ -256,6 +256,8 @@ def GIA_OMISSO(request):
             gia_omisso = Gia_omisso.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             gia_omisso = Gia_omisso.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            gia_omisso = Gia_omisso.objects.filter(remessa__contains=q)
         else:
             gia_omisso = Gia_omisso.objects.all()
         remessa = REMESSAS.objects.all()
@@ -306,6 +308,8 @@ def CCI(request):
             cci = Cci.objects.filter(nome_municipio__contains=q)
         elif q and t == "ano_base":
             cci = Cci.objects.filter(ano_base__contains=q)
+        elif q and t == "remessa":
+            cci = Cci.objects.filter(remessa__contains=q)
         else:
             cci = Cci.objects.all()
         remessa = REMESSAS.objects.all()
@@ -359,6 +363,8 @@ def IE(request):
             ie = Ie.objects.filter(numr_inscricao_estadual__contains=q)
         elif q and t == "flag_mei":
             ie = Ie.objects.filter(flag_mei__contains=q)
+        elif q and t == "remessa":
+            ie = Ie.objects.filter(remessa__contains=q)
         else:
             ie = Ie.objects.all()
         remessa = REMESSAS.objects.all()
@@ -405,11 +411,13 @@ def NFE_EFD(request):
         elif q and t == "municipio_remetente":
             nfe_efd = Nfe_efd.objects.filter(municipio_remetente__contains=q)
         elif q and t == "inscricao_adquirente":
-                nfe_efd = Nfe_efd.objects.filter(ie_adquirente__contains=q)
+            nfe_efd = Nfe_efd.objects.filter(ie_adquirente__contains=q)
         elif q and t == "nome_adquirente":
-                nfe_efd = Nfe_efd.objects.filter(nome_adquirente__contains=q)
+            nfe_efd = Nfe_efd.objects.filter(nome_adquirente__contains=q)
         elif q and t == "municipio_adquirente":
-                nfe_efd = Nfe_efd.objects.filter(municipio_adquirente__contains=q)
+            nfe_efd = Nfe_efd.objects.filter(municipio_adquirente__contains=q)
+        elif q and t == "remessa":
+            nfe_efd = Nfe_efd.objects.filter(remessa__contains=q)
         else:
             nfe_efd = Nfe_efd.objects.all()
         remessa = REMESSAS.objects.all()
@@ -457,6 +465,8 @@ def REG_1400_EFD(request):
             reg_1400_efd = Reg_1400_efd.objects.filter(contribuinte__contains=q)
         elif q and t == "municipio":
             reg_1400_efd = Reg_1400_efd.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            reg_1400_efd = Reg_1400_efd.objects.filter(remessa__contains=q)
         else:
             reg_1400_efd = Reg_1400_efd.objects.all()
         remessa = REMESSAS.objects.all()
@@ -507,6 +517,8 @@ def CAP(request):
             cap = Cap.objects.filter(nome_municipio__contains=q)
         elif q and t == "ano_base":
             cap = Cap.objects.filter(ano_base__contains=q)
+        elif q and t == "remessa":
+            cap = Cap.objects.filter(remessa__contains=q)
         else:
             cap = Cap.objects.all()
         remessa = REMESSAS.objects.all()
@@ -562,6 +574,8 @@ def GIA_COP3(request):
             gia_cop3 = Gia_cop3.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             gia_cop3 = Gia_cop3.objects.filter(municipio__contains=q)
+        elif q and t == "municipio":
+            gia_cop3 = Gia_cop3.objects.filter(remessa__contains=q)
         else:
             gia_cop3 = Gia_cop3.objects.all()
         remessa = REMESSAS.objects.all()
@@ -610,6 +624,8 @@ def GIA_ENTRADAS_SAIDAS(request):
             gia_entradas_saidas = Gia_entradas_saidas.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             gia_entradas_saidas = Gia_entradas_saidas.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            gia_entradas_saidas = Gia_entradas_saidas.objects.filter(remessa__contains=q)
         else:
             gia_entradas_saidas = Gia_entradas_saidas.objects.all()
         remessa = REMESSAS.objects.all()
@@ -1920,6 +1936,8 @@ def NFE_e(request):
             nfe_e = Nfe_e.objects.filter(nome_adquirente__contains=q)
         elif q and t == "mun_adquirente":
             nfe_e = Nfe_e.objects.filter(mun_adquirente__contains=q)
+        elif q and t == "remessa":
+            nfe_e = Nfe_e.objects.filter(remessa__contains=q)
         else:
             nfe_e = Nfe_e.objects.all()
         remessa = REMESSAS.objects.all()
@@ -1965,6 +1983,8 @@ def ACYPR535(request):
             acypr535 = Acypr535.objects.filter(ano_base__contains=q)
         elif q and t == "populacao":
             acypr535 = Acypr535.objects.filter(populacao__contains=q)
+        elif q and t == "remessa":
+            acypr535 = Acypr535.objects.filter(remessa__contains=q)
         else:
             acypr535 = Acypr535.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2011,6 +2031,8 @@ def ACYPR540(request):
             acypr540 = Acypr540.objects.filter(ipm_ano_base__contains=q)
         elif q and t == "ipm_ano_exercicio":
             acypr540 = Acypr540.objects.filter(ipm_ano_exercicio__contains=q)
+        elif q and t == "remessa":
+            acypr540 = Acypr540.objects.filter(remessa__contains=q)
         else:
             acypr540 = Acypr540.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2058,6 +2080,8 @@ def ACYPR555(request):
             acypr555 = Acypr555.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             acypr555 = Acypr555.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            acypr555 = Acypr555.objects.filter(remessa__contains=q)
         else:
             acypr555 = Acypr555.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2104,6 +2128,8 @@ def ACYPR556(request):
             acypr556 = Acypr556.objects.filter(ano_base__contains=q)
         elif q and t == "municipio":
             acypr556 = Acypr556.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            acypr556 = Acypr556.objects.filter(remessa__contains=q)
         else:
             acypr556 = Acypr556.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2151,6 +2177,8 @@ def ACYPR557(request):
             acypr557 = Acypr557.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             acypr557 = Acypr557.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            acypr557 = Acypr557.objects.filter(remessa__contains=q)
         else:
             acypr557 = Acypr557.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2193,6 +2221,8 @@ def ACYPR600(request):
             acypr600 = Acypr600.objects.filter(municipio__contains=q)
         elif q and t == "ano_base":
             acypr600 = Acypr600.objects.filter(ano_base__contains=q)
+        elif q and t == "remessa":
+            acypr600 = Acypr600.objects.filter(remessa__contains=q)
         else:
             acypr600 = Acypr600.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2239,6 +2269,8 @@ def CRED(request):
             cred = Cred.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             cred = Cred.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            cred = Cred.objects.filter(remessa__contains=q)
         else:
             cred = Gia_omisso.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2320,6 +2352,8 @@ def DEB(request):
             deb = Deb.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             deb = Deb.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            deb = Deb.objects.filter(remessa__contains=q)
         else:
             deb = Deb.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2398,6 +2432,8 @@ def GIA_SEM_MOV(request):
             gia_sem_mov = Gia_sem_mov.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             gia_sem_mov = Gia_sem_mov.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            gia_sem_mov = Gia_sem_mov.objects.filter(remessa__contains=q)
         else:
             gia_sem_mov = Gia_sem_mov.objects.all()
         remessa = REMESSAS.objects.all()
@@ -2446,6 +2482,8 @@ def EFD(request):
             efd = Efd.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             efd = Efd.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            efd = Efd.objects.filter(remessa__contains=q)
         else:
             efd = Efd.objects.all()
         remessa = REMESSAS.objects.all()
@@ -3764,6 +3802,8 @@ def EFD_OMISSO(request):
             efd_omisso = Efd_omisso.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             efd_omisso = Efd_omisso.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            efd_omisso = Efd_omisso.objects.filter(remessa__contains=q)
         else:
             efd_omisso = Efd_omisso.objects.all()
         remessa = REMESSAS.objects.all()
@@ -3811,6 +3851,8 @@ def EFD_SEM_MOV(request):
             efd_sem_mov = Efd_sem_mov.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             efd_sem_mov = Efd_sem_mov.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            efd_sem_mov = Efd_sem_mov.objects.filter(remessa__contains=q)
         else:
             efd_sem_mov = Efd_sem_mov.objects.all()
         remessa = REMESSAS.objects.all()
@@ -3860,6 +3902,8 @@ def ACGPT812(request):
             acgpt812 = Acgpt812.objects.filter(nome_destinatario__contains=q)
         elif q and t == "mun_destinatario":
             acgpt812 = Acgpt812.objects.filter(mun_destinatario__contains=q)
+        elif q and t == "remessa":
+            acgpt812 = Acgpt812.objects.filter(remessa__contains=q)
         else:
             acgpt812 = Acgpt812.objects.all()
         remessa = REMESSAS.objects.all()
@@ -3907,6 +3951,8 @@ def PGDAS_D(request):
             pgdas_d = Pgdas_d.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             pgdas_d = Pgdas_d.objects.filter(municipio__contains=q)
+        elif q and t == "remessa":
+            pgdas_d = Pgdas_d.objects.filter(remessa__contains=q)
         else:
             pgdas_d = Pgdas_d.objects.all()
         remessa = REMESSAS.objects.all()
@@ -3942,8 +3988,21 @@ def import_pgdas_d(request, pk):
 @login_required
 def ACGPR051(request):
     page = request.GET.get('page', '')
+    t = request.GET.get("t")
+    q = request.GET.get("q")
     try:
-        acgpr051 = Acgpr051.objects.all()
+        if q and t == "inscricao":
+            acgpr051 = Acgpr051.objects.filter(inscricao__contains=q)
+        elif q and t == "data":
+            acgpr051 = Acgpr051.objects.filter(data__contains=q)
+        elif q and t == "numero_nf":
+            acgpr051 = Acgpr051.objects.filter(numero_nf__contains=q)
+        elif q and t == "cod_mun":
+            acgpr051 = Acgpr051.objects.filter(cod_mun__contains=q)
+        elif q and t == "remessa":
+            acgpr051 = Acgpr051.objects.filter(cfop__contains=q)
+        else:
+            acgpr051 = Acgpr051.objects.all()
         remessa = REMESSAS.objects.all()
         acgpr051 = Paginator(acgpr051, 20)
         acgpr051 = acgpr051.page(page)

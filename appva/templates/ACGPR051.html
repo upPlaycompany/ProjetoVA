@@ -3,7 +3,28 @@
 ACGPR051
 {% endblock title %}
 {% block content %}
-<!-- DataTales Example -->
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+          <option value="inscricao">Pesquisar por inscrição</option>
+          <option value="numero_nf">Pesquisar por número de NF</option>
+          <option value="data">Pesquisar por data</option>
+          <option value="cod_mun">Pesquisar por código de município</option>
+          <option value="remessa">Pesquisar por remessa</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
 <div class="card shadow mb-4">
 
     <div class="card-body">
