@@ -46,7 +46,7 @@ FPM
                     <td>{{ fpm.novembro }}</td>
                     <td>{{ fpm.dezembro }}</td>
                     <td>{{ fpm.total }}</td>
-                    <td>{{ fpm.variacao }}</td>
+                    <td>{{ fpm.variacao|floatformat:2 }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
