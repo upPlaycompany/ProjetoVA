@@ -2425,7 +2425,7 @@ def import_fpm(request, pk):
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
-    st.copy_from(file=f, table='appva_fpm', sep=',', columns=(
+    st.copy_from(file=f, table='appva_fpm', sep=';', columns=(
     'ANO', 'JANEIRO', 'FEVEREIRO', 'MARCO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO',
     'NOVEMBRO', 'DEZEMBRO', 'TOTAL', 'VARIACAO'))
     db.commit()
