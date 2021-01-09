@@ -64,7 +64,7 @@ class Acypr556(models.Model):
     vr_adic_ano_base = models.FloatField(null=True)
     vr_adic_ano_exercicio = models.FloatField(null=True)
     receita_propria = models.FloatField(null=True)
-    populacao = models.models.FloatField(null=True)
+    populacao = models.FloatField(null=True)
     area = models.models.FloatField(null=True)
     remessa = models.CharField(max_length=100, null=True)
     descricao = models.CharField(max_length=500, null=True)
