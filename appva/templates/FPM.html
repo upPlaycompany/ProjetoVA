@@ -11,16 +11,42 @@ FPM
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>MUNICIPIO</th>
+                    <th>ANO</th>
+                    <th>JANEIRO</th>
+                    <th>FEVEREIRO</th>
+                    <th>MARÇO</th>
+                    <th>ABRIL</th>
+                    <th>MAIO</th>
+                    <th>JUNHO</th>
+                    <th>JULHO</th>
+                    <th>AGOSTO</th>
+                    <th>SETEMBRO</th>
+                    <th>OUTUBRO</th>
+                    <th>NOVEMBRO</th>
+                    <th>DEZEMBRO</th>
                     <th>TOTAL</th>
+                    <th>VARIAÇÃO</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 {% for fpm in order %}
                 <tr>
-                    <td>{{ fpm.municipio }}</td>
+                    <td>{{ fpm.ano }}</td>
+                    <td>{{ fpm.janeiro }}</td>
+                    <td>{{ fpm.fevereiro }}</td>
+                    <td>{{ fpm.marco }}</td>
+                    <td>{{ fpm.abril }}</td>
+                    <td>{{ fpm.maio }}</td>
+                    <td>{{ fpm.junho }}</td>
+                    <td>{{ fpm.julho }}</td>
+                    <td>{{ fpm.agosto }}</td>
+                    <td>{{ fpm.setembro }}</td>
+                    <td>{{ fpm.outubro }}</td>
+                    <td>{{ fpm.novembro }}</td>
+                    <td>{{ fpm.dezembro }}</td>
                     <td>{{ fpm.total }}</td>
+                    <td>{{ fpm.variacao }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
