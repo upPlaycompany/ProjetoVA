@@ -240,6 +240,9 @@ def deslogar(request):
     return HttpResponseRedirect('/')
 
 
+
+
+
 #
 @login_required
 # VIEWS DE TABELAS
