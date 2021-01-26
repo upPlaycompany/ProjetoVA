@@ -2285,7 +2285,7 @@ def CRED(request):
         elif q and t == "remessa":
             cred = Cred.objects.filter(remessa__contains=q)
         else:
-            cred = Gia_omisso.objects.all()
+            cred = Cred.objects.all()
         remessa = REMESSAS.objects.all()
         cred = Paginator(cred, 20)
         cred = cred.page(page)
