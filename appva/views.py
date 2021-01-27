@@ -4089,3 +4089,18 @@ def import_cfop(request, pk):
     st.close()
     db.close()
     return render(request, 'cfop_sucesso.html')
+
+@login_required
+def pre_simulacao(request):
+    if request.method == 'POST':
+        municipio = request.POST['municipio']
+        ano_exercicio = request.POST['ano_exercicio']
+        dicio = {'municipio': f'{municipio}', 'ano':f'{ano_exercicio}'}
+        dicio = [dicio]
+        return redirect('insercao_dados_simulacao')
+    return render(request, 'pre_simulacao.html', {'lista': dicio})
+
+@login_required
+def insercao_dados_simulacao(request, municipio, ano):
+    mun = m
+    return render(request, 'insercao_dados_simulacao.html')
