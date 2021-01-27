@@ -4102,5 +4102,6 @@ def pre_simulacao(request):
 
 @login_required
 def insercao_dados_simulacao(request, municipio, ano):
-    mun = m
+    mun = f'{municipio}'
+    ano = f'{ano}'
     return render(request, 'insercao_dados_simulacao.html')
