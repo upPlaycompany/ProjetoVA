@@ -240,9 +240,6 @@ def deslogar(request):
     return HttpResponseRedirect('/')
 
 
-
-
-
 #
 @login_required
 # VIEWS DE TABELAS
@@ -2068,8 +2065,8 @@ def import_acypr540(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr540', sep=';',
                  columns=(
-                 'COD', 'MUNICIPIO', 'IPM_ANO_BASE', 'IPM_ANO_EXERCICIO', 'PORCENTAGEM', 'REMESSA', 'DESCRICAO',
-                 'ANO_EXERCICIO', 'ANO_BASE'))
+                     'COD', 'MUNICIPIO', 'IPM_ANO_BASE', 'IPM_ANO_EXERCICIO', 'PORCENTAGEM', 'REMESSA', 'DESCRICAO',
+                     'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2309,8 +2306,9 @@ def import_cred(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_cred', sep=';',
                  columns=(
-                 'COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_CREDITAR', 'ESPECIFICACAO', 'REMESSA', 'DESCRICAO',
-                 'ANO_EXERCICIO', 'ANO_BASE'))
+                     'COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_CREDITAR', 'ESPECIFICACAO', 'REMESSA',
+                     'DESCRICAO',
+                     'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2394,8 +2392,9 @@ def import_deb(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_deb', sep=';',
                  columns=(
-                 'COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_DEBITAR', 'ESPECIFICACAO', 'REMESSA', 'DESCRICAO',
-                 'ANO_EXERCICIO', 'ANO_BASE'))
+                     'COD', 'MUNICIPIO', 'INSCRICAO', 'CONTRIBUINTE', 'A_DEBITAR', 'ESPECIFICACAO', 'REMESSA',
+                     'DESCRICAO',
+                     'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -2429,8 +2428,8 @@ def import_fpm(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_fpm', sep=';', columns=(
-    'ANO', 'JANEIRO', 'FEVEREIRO', 'MARCO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO',
-    'NOVEMBRO', 'DEZEMBRO', 'TOTAL', 'VARIACAO'))
+        'ANO', 'JANEIRO', 'FEVEREIRO', 'MARCO', 'ABRIL', 'MAIO', 'JUNHO', 'JULHO', 'AGOSTO', 'SETEMBRO', 'OUTUBRO',
+        'NOVEMBRO', 'DEZEMBRO', 'TOTAL', 'VARIACAO'))
     db.commit()
     st.close()
     db.close()
@@ -3901,8 +3900,9 @@ def import_efd_sem_mov(request, pk):
     st = db.cursor()
     st.copy_from(file=f, table='appva_efd_sem_mov', sep=';',
                  columns=(
-                 'NUM_EFD', 'INSCRICAO', 'CPF_CNPJ', 'CONTRIBUINTE', 'COD', 'MUNICIPIO', 'MES', 'REMESSA', 'DESCRICAO',
-                 'ANO_EXERCICIO', 'ANO_BASE'))
+                     'NUM_EFD', 'INSCRICAO', 'CPF_CNPJ', 'CONTRIBUINTE', 'COD', 'MUNICIPIO', 'MES', 'REMESSA',
+                     'DESCRICAO',
+                     'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
     db.close()
@@ -4090,15 +4090,19 @@ def import_cfop(request, pk):
     db.close()
     return render(request, 'cfop_sucesso.html')
 
+
 @login_required
 def pre_simulacao(request):
     if request.method == 'POST':
         municipio = request.POST['municipio']
         ano_exercicio = request.POST['ano_exercicio']
-        dicio = {'municipio': f'{municipio}', 'ano':f'{ano_exercicio}'}
-        dicio = [dicio]
+        dicio = {'municipio': f'{municipio}'}
+        dicio2 = {'ano':f'{ano_exercicio}'}
+        dicio.update(dicio2)
+        abc = [dicio]
         return redirect('insercao_dados_simulacao')
-    return render(request, 'pre_simulacao.html', {'lista': dicio})
+    return render(request, 'pre_simulacao.html', {'lista': abc})
+
 
 @login_required
 def insercao_dados_simulacao(request, municipio, ano):

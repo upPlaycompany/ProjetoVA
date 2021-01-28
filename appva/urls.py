@@ -114,4 +114,7 @@ urlpatterns = [
     path('CFOP/', views.CFOP, name='CFOP'),
     path('import_cfop/<int:pk>', views.import_cfop, name='import_cfop'),
 
+    path('pre_simulacao/', views.pre_simulacao, name='pre_simulacao'),
+    path('insercao_dados_simulacao/<str:municipio>/<str:ano>/', views.insercao_dados_simulacao, name='insercao_dados_simulacao')
+
 ]
