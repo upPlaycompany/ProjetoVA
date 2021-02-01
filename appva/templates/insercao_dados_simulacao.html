@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Inserir dados opcionais de simulação de índices
+{% endblock title %}
+
+{% block content %}
+<form method="get"> {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-3">
+
+            <label>VA do contribuinte atual em porcentagem</label>
+            <input type="text" class="form-control" name="va_contribuinte_atual" placeholder="Digite a porcentagem do VA">
+        </div>
+        <div class="form-group col-md-3">
+            <label>VA do contribuinte anterior em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA" name="va_contribuinte_anterior">
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do município atual em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_municipio_atual">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do município anterior em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_municipio_anterior">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do estado atual em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_estado_atual">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do estado anterior em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_estado_anterior">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do Comércio e Indústria em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_comercio">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do produção rural em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_producao_rural">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do PTS em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_pts">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar VA DAR-1/AUT em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_dar1aut">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Selecionar VA do NAI em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_nai">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar VA CREDITO EXOFF em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_creditoexoff">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Selecionar VA DÉBITO EXOFF em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="va_debitoexoff">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Fazer cálculo</button>
+</form>
+
+
+
+<br>
+
+
+
+<form method="post"> {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control" name="resultado_va_contribuinte_atual">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control" name="resultado_va_contribuinte_anterior">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control" name="resultado_va_municipio_atual">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_municipio_anterior">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control" name="resultado_va_estado_atual">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_estado_anterior">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control" name="resultado_va_comercio">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_producao_rural">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_pts">
+        </div>
+
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_dar1aut">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_nai">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_creditoexoff">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            <input type="text" class="form-control"  name="resultado_va_debitoexoff">
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-primary">Fazer cálculo</button>
+</form>
+{% endblock %}

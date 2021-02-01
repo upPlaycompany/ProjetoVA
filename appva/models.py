@@ -96,11 +96,11 @@ class Acypr557(models.Model):
 # RELATORIO DE VALORES ADICIONADOS #vvvvvvvvvvvvvvvvvvvvvvvvvv
 class Acypr600(models.Model):
     municipio = models.CharField(max_length=255, null=True)
-    com_ind = models.CharField(max_length=255, null=True)
-    prod_rural = models.CharField(max_length=255, null=True)
-    prest_serv = models.CharField(max_length=255, null=True)
-    dar_1_aut = models.CharField(max_length=255, null=True)
-    nai = models.CharField(max_length=255, null=True)
+    com_ind = models.FloatField( null=True)
+    prod_rural = models.FloatField( null=True)
+    prest_serv = models.FloatField( null=True)
+    dar_1_aut = models.FloatField( null=True)
+    nai = models.FloatField( null=True)
     credito_ex_off = models.FloatField(null=True)
     debito_ex_off = models.FloatField(null=True)
     total = models.FloatField(null=True)
