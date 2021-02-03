@@ -4798,7 +4798,7 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
             """SELECT vr_adic_ano_base FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_municipio_ant = namedtuplefetchall(cursor)
-        va_mun_ant = float(str(va_municipio_ant[0]))
+        va_mun_ant = float(str(va_municipio_ant[0][0]))
 
         cursor.execute(
             """SELECT vr_adic_ano_exercicio FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
