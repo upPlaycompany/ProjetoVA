@@ -9,12 +9,24 @@ Inserir dados opcionais de simulação de índices
     <div class="form-row">
         <div class="form-group col-md-3">
 
-            <label>VA do contribuinte atual em porcentagem</label>
-            <input type="text" class="form-control" name="va_contribuinte_atual" placeholder="Digite a porcentagem do VA">
+            <label>Digite a inscrição sem pontos do contribuinte desejado</label>
+            <input type="text" class="form-control" name="inscricao" placeholder="Digite a inscrição">
         </div>
         <div class="form-group col-md-3">
-            <label>VA do contribuinte anterior em porcentagem</label>
-            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA" name="va_contribuinte_anterior">
+            <label>Selecione a tabela de onde deseja consultar</label>
+            <select>
+                <option selected>Selecione...</option>
+                <option value="GIA">GIA</option>
+                <option value="EFD">EFD</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecione a tabela de onde deseja consultar</label>
+            <select>
+                <option selected>Selecione...</option>
+                <option value="GIA">GIA</option>
+                <option value="EFD">EFD</option>
+            </select>
         </div>
     </div>
 
@@ -80,9 +92,14 @@ Inserir dados opcionais de simulação de índices
     </div>
     <div class="row">
         <div class="form-group col-md-3">
-            <label>Selecionar VA DÉBITO EXOFF em porcentagem</label>
+            <label>Selecionar VA Total em porcentagem</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
-                   name="va_debitoexoff">
+                   name="va_total">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar Variação e distribuição em porcentagem</label>
+            <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
+                   name="variacao_distribuicao_estado">
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Fazer cálculo</button>
@@ -98,72 +115,102 @@ Inserir dados opcionais de simulação de índices
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
-            <input type="text" class="form-control" name="resultado_va_contribuinte_atual">
+            {% for x in inscricoes %}
+            <input type="text" class="form-control" name="resultado_va_contribuinte_atual" value="{{ x }}">
+            {% endfor %}
         </div>
-
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in inscricoes2 %}
             <input type="text" class="form-control" name="resultado_va_contribuinte_anterior">
+            {% endfor %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_mun_atual_total %}
             <input type="text" class="form-control" name="resultado_va_municipio_atual">
+            {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_mun_anterior_total %}
             <input type="text" class="form-control"  name="resultado_va_municipio_anterior">
+            {% endfor %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_estado_atual_total %}
             <input type="text" class="form-control" name="resultado_va_estado_atual">
+            {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_estado_anterior_total %}
             <input type="text" class="form-control"  name="resultado_va_estado_anterior">
+            {% endfor %}
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_comercio_total %}
             <input type="text" class="form-control" name="resultado_va_comercio">
+            {% endfor %}
         </div>
 
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_producao_rural_total %}
             <input type="text" class="form-control"  name="resultado_va_producao_rural">
+            {% endfor %}
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_pts_total %}
             <input type="text" class="form-control"  name="resultado_va_pts">
+            {% endfor %}
         </div>
 
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_dar1aut_total %}
             <input type="text" class="form-control"  name="resultado_va_dar1aut">
+            {% endfor %}
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_nai_total %}
             <input type="text" class="form-control"  name="resultado_va_nai">
+            {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_creditoexoff_total %}
             <input type="text" class="form-control"  name="resultado_va_creditoexoff">
+            {% endfor %}
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
+            {% for x in va_debitoexoff_total %}
             <input type="text" class="form-control"  name="resultado_va_debitoexoff">
+            {% endfor %}
         </div>
-
+        <div class="form-group col-md-3">
+            <label>Resultado em dinheiro</label>
+            {% for x in va_total_final %}
+            <input type="text" class="form-control"  name="resultado_va_total">
+            {% endfor %}
+        </div>
     </div>
     <button type="submit" class="btn btn-primary">Fazer cálculo</button>
 </form>
