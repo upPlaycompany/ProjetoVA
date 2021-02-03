@@ -4801,16 +4801,16 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         va_mun_ant = float(str(va_municipio_ant[0][0]))
 
         cursor.execute(
-            """SELECT SUM(vr_adic_ano_exercicio) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
-            [municipio, ano]
+            """SELECT SUM(vr_adic_ano_exercicio) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s;""",
+            [ano]
         )
         
         va_estado_atu = namedtuplefetchall(cursor)
         va_est_atu = float(str(va_estado_atu[0][0]))
 
         cursor.execute(
-            """SELECT SUM(vr_adic_ano_base) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
-            [municipio, ano]
+            """SELECT SUM(vr_adic_ano_base) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s;""",
+            [ano]
         )
         va_estado_ant = namedtuplefetchall(cursor)
         va_est_ant = float(str(va_estado_ant[0][0]))
