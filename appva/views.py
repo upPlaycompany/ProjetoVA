@@ -4788,20 +4788,20 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
                         debitoexoff, total, variacao_distribuicao_estado):
     with connections['default'].cursor() as cursor:
         cursor.execute(
-            """SELECT vr_adic_ano_exercicio AS valor FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
+            """SELECT SUM(vr_adic_ano_exercicio) FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
             [municipio, ano]
         )
         va_municipio_atu = namedtuplefetchall(cursor)
         va_mun_atu = float(str(va_municipio_atu[0][0]))
 
         cursor.execute(
-            """SELECT vr_adic_ano_base FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(vr_adic_ano_base) FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_municipio_ant = namedtuplefetchall(cursor)
         va_mun_ant = float(str(va_municipio_ant[0][0]))
 
         cursor.execute(
-            """SELECT vr_adic_ano_exercicio FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
+            """SELECT SUM(vr_adic_ano_exercicio) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
             [municipio, ano]
         )
         
@@ -4809,42 +4809,42 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         va_est_atu = float(str(va_estado_atu[0][0]))
 
         cursor.execute(
-            """SELECT vr_adic_ano_base FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
+            """SELECT SUM(vr_adic_ano_base) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
             [municipio, ano]
         )
         va_estado_ant = namedtuplefetchall(cursor)
         va_est_ant = float(str(va_estado_ant[0][0]))
 
         cursor.execute(
-            """SELECT com_ind FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(com_ind) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_comercio = namedtuplefetchall(cursor)
         va_com = float(str(va_comercio[0][0]))
         va_comercio_final = comercio + va_com
 
         cursor.execute(
-            """SELECT prod_rural FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(prod_rural) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_prod_rural = namedtuplefetchall(cursor)
         va_prod = float(str(va_prod_rural[0][0]))
         va_prod_rural_final = va_prod + prod_rural
 
         cursor.execute(
-            """SELECT prest_serv FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(prest_serv) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_pts = namedtuplefetchall(cursor)
         va_p = float(str(va_pts[0][0]))
         va_pts_final = va_p + pts
 
         cursor.execute(
-            """SELECT dar_1_aut FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(dar_1_aut) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_dar1aut = namedtuplefetchall(cursor)
         va_dar = float(str(va_dar1aut[0][0]))
         va_dar1aut_final = dar1aut + va_dar
 
         cursor.execute(
-            """SELECT nai FROM appva_acypr600 FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+            """SELECT SUM(nai) FROM appva_acypr600 FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
             [municipio, ano]
         )
         va_nai = namedtuplefetchall(cursor)
@@ -4852,21 +4852,21 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         va_nai_final = va_n + nai
 
         cursor.execute(
-            """SELECT credito_ex_off FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(credito_ex_off) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_creditoexoff = namedtuplefetchall(cursor)
         va_credito = float(str(va_creditoexoff[0][0]))
         va_creditoexoff_final = va_credito + creditoexoff
 
         cursor.execute(
-            """SELECT debito_ex_off FROM appva_acyor600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(debito_ex_off) FROM appva_acyor600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_debitoexoff = namedtuplefetchall(cursor)
         va_debito = float(str(va_debitoexoff[0][0]))
         va_debitoexoff_final = va_debito + debitoexoff
 
         cursor.execute(
-            """SELECT total FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(total) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_total = namedtuplefetchall(cursor)
         va_t = float(str(va_total[0][0]))
@@ -4898,31 +4898,31 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         indice_va_medio_75 = indice_va_medio * 0.75
 
         cursor.execute(
-            """SELECT ucti FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(ucti) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         lista_ucti = namedtuplefetchall(cursor)
         ucti = float(lista_ucti[0][0])
 
         cursor.execute(
-            """SELECT trib_propr FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(trib_propr) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         lista_trib = namedtuplefetchall(cursor)
         trib = float(str(lista_trib[0][0]))
 
         cursor.execute(
-            """SELECT populacao FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(populacao) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         lista_populacao = namedtuplefetchall(cursor)
         populacao = float(str(lista_populacao[0][0]))
 
         cursor.execute(
-            """SELECT area FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(area) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         lista_area = namedtuplefetchall(cursor)
         area = float(str(lista_area[0][0]))
 
         cursor.execute(
-            """SELECT coef_soc FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(coef_soc) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         lista_coef = namedtuplefetchall(cursor)
         coef = float(str(lista_coef[0][0]))
@@ -4930,7 +4930,7 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         indice_simulado = indice_va_medio_75 + coef
 
         cursor.execute(
-            """SELECT ind_final FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(ind_final) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         lista_ind = namedtuplefetchall(cursor)
         ind_final = float(str(lista_ind[0][0]))
