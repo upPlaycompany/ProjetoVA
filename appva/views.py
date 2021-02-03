@@ -4119,6 +4119,22 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
     va_debitoexoff = request.GET.get('va_debitoexoff')
     va_total = request.GET.get('va_total')
     variacao_distribuicao_estado = request.GET.get('variacao_distribuicao_estado')
+    inscricoes = None
+    inscricoes2 = None
+    va_mun_atual_total = None
+    va_mun_anterior_total = None
+    va_estado_atual_total = None
+    va_estado_anterior_total = None
+    va_comercio_total = None
+    va_producao_rural_total = None
+    va_pts_total = None
+    va_dar1aut_total = None
+    va_nai_total = None
+    va_creditoexoff_total = None
+    va_debitoexoff_total = None
+    va_total_final = None
+    variacao_distribuicao_estado_total = None
+
     with connections['default'].cursor() as cursor:
         if inscricao and tabela == 'GIA' and ano_atual:
             mes1 = int(1)
@@ -4567,116 +4583,144 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
                         f"SELECT (SELECT SUM(vr_contabil)-(SUM(icms_st)+SUM(ipi)) FROM appva_efd WHERE cfop IN('5101','5102','5103','5104','5105','5106','5109','5110','5111','5112','5113','5114','5115','5116','5117','5118','5119','5120','5122','5123','5124','5125','5129','5132', '5151', '5152', '5153', '5155', '5156', '5159', '5160', '5201', '5202', '5205', '5206', '5207', '5208', '5209', '5210', '5214', '5215', '5216', '5251', '5252', '5253', '5254', '5255', '5256', '5257', '5258', '5301', '5302', '5303', '5304', '5305', '5306', '5307', '5351', '5352', '5353', '5354', '5355', '5356', '5357', '5359', '5401', '5402', '5403', '5405', '5408', '5409', '5410', '5411', '5456', '5501', '5502', '5503', '5651', '5652', '5653', '5654', '5655', '5656', '5658', '5659', '5660', '5661', '5662', '5667', '5910', '5927', '5928', '6101', '6102','6103', '6104', '6105', '6106', '6107', '6108', '6109', '6110', '6111', '6112', '6113', '6114', '6115', '6116', '6117', '6118', '6119', '6120', '6122', '6123', '6124', '6125', '6129', '6132', '6151', '6152', '6153', '6155', '6156', '6159', '6160', '6201', '6202', '6205', '6206', '6207', '6208', '6209', '6210', '6214', '6215','6216', '6251', '6252', '6253', '6254', '6255', '6256', '6257', '6258', '6301', '6302', '6303', '6304', '6305', '6306', '6307', '6351', '6352', '6353', '6354', '6355', '6356', '6357', '6359', '6401', '6402', '6403', '6404','6408', '6409', '6410', '6411', '6456', '6501', '6502', '6503', '6651','6652','6653','6654','6655','6656','6658','6659','6660','6661','6662','6667','6910','7101','7102','7105','7106','7127','7129','7201','7202','7205','7206','7207', '7210', '7211', '7212', '7251', '7301', '7358', '7501', '7504', '7651', '7654', '7667') AND inscricao = %s AND dt_inicial IN %s) - (SELECT SUM(vr_contabil)-(SUM(icms_st)+SUM(ipi)) FROM appva_efd WHERE cfop IN ('1101','1102','1111','1113','1116','1117','1118','1120','1121','1122','1124', '1125', '1126', '1132', '1135', '1151', '1152', '1153', '1159', '1201', '1202', '1203', '1204', '1205', '1206', '1207', '1208', '1209', '1212', '1214', '1215', '1216', '1251', '1252', '1257', '1301', '1351', '1352', '1353', '1356', '1401', '1403', '1408', '1409', '1410', '1411', '1456', '1501', '1503', '1504', '1651', '1652', '1653', '1658', '1659', '1660', '1661', '1662', '2101', '2102', '2111', '2113', '2116', '2117', '2118', '2120', '2121', '2122', '2124', '2125', '2126', '2132', '2135', '2151', '2152', '2153', '2159', '2201', '2202', '2203', '2204', '2205', '2206', '2207', '2208', '2209', '2212', '2214', '2215', '2216', '2251', '2252', '2257', '2301', '2351', '2352', '2353', '2356', '2401', '2403', '2408', '2409', '2410', '2411', '2456', '2501', '2503', '2504', '2651', '2652', '2653', '2658', '2659', '2660', '2661', '2662', '3101', '3102', '3126', '3127', '3129', '3201', '3202', '3205', '3206', '3207', '3211', '3212', '3251', '3301', '3351', '3352', '3353', '3356', '3503', '3651', '3652', '3653') AND inscricao =  %s AND dt_inicial IN %s) AS valor_adicionado;",
                         [i, (datas1), i, (datas1)])
                     inscricoes2 = namedtuplefetchall(cursor)
-    if va_municipio_atual:
-        va_municipio_atual = float(va_municipio_atual / 100)
-        cursor.execute(
-            """SELECT (SUM(vr_adic_ano_exercicio) * %f) FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_municipio_atual, municipio, ano_atual])
-        va_mun_atual_total = namedtuplefetchall(cursor)
+        if va_municipio_atual:
+            va_municipio_atual = float(float(va_municipio_atual) / 100)
+            cursor.execute(
+                """SELECT (SUM(vr_adic_ano_exercicio) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_municipio_atual, municipio, ano_atual])
+            va_mun_atual_total = namedtuplefetchall(cursor)
+        else:
+            va_mun_atual_total = [0.0]
 
-    if va_municipio_anterior:
-        va_municipio_anterior = float(va_municipio_anterior / 100)
-        cursor.execute(
-            """SELECT (SUM(vr_adic_ano_base) * %f)  FROM appva_acypr556 WHERE municipio=%s AND ano_base=%s;""",
-            [va_municipio_anterior, municipio, ano_anterior])
-        va_mun_anterior_total = namedtuplefetchall(cursor)
+        if va_municipio_anterior:
+            va_municipio_anterior = float(float(va_municipio_anterior) / 100)
+            cursor.execute(
+                """SELECT (SUM(vr_adic_ano_base) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio=%s AND ano_base=%s;""",
+                [va_municipio_anterior, municipio, ano_anterior])
+            va_mun_anterior_total = namedtuplefetchall(cursor)
+        else:
+            va_mun_anterior_total = [0.0]
 
-    if va_estado_atual:
-        va_estado_atual = float(va_estado_atual / 100)
-        cursor.execute(
-            """SELECT (SUM(vr_adic_ano_exercicio) * %f) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s;""",
-            [va_estado_atual, ano_atual])
-        va_estado_atual_total = namedtuplefetchall(cursor)
+        if va_estado_atual:
+            va_estado_atual = float(float(va_estado_atual) / 100)
+            cursor.execute(
+                """SELECT (SUM(vr_adic_ano_exercicio) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s;""",
+                [va_estado_atual, ano_atual])
+            va_estado_atual_total = namedtuplefetchall(cursor)
+        else:
+            va_estado_atual_total = [0.0]
 
-    if va_estado_anterior:
-        va_estado_anterior = float(va_estado_anterior / 100)
-        cursor.execute(
-            """SELECT (SUM(vr_adic_ano_exercicio) * %f) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_base=%s;""",
-            [va_estado_anterior, ano_anterior])
-        va_estado_anterior_total = namedtuplefetchall(cursor)
+        if va_estado_anterior:
+            va_estado_anterior = float(float(va_estado_anterior) / 100)
+            cursor.execute(
+                """SELECT (SUM(vr_adic_ano_base) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_base=%s;""",
+                [va_estado_anterior, ano_anterior])
+            va_estado_anterior_total = namedtuplefetchall(cursor)
+        else:
+            va_estado_anterior_total = [0.0]
 
-    if va_comercio:
-        va_comercio = float(va_comercio / 100)
-        cursor.execute(
-            """SELECT (SUM(com_ind) * %f) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;"""
-            , [va_comercio, municipio, ano_atual]
-        )
-        va_comercio_total = namedtuplefetchall(cursor)
+        if va_comercio:
+            va_comercio = float(float(va_comercio) / 100)
+            cursor.execute(
+                """SELECT (SUM(com_ind) * %s) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;"""
+                , [va_comercio, municipio, ano_atual]
+            )
+            va_comercio_total = namedtuplefetchall(cursor)
+        else:
+            va_comercio_total = [0.0]
 
-    if va_producao_rural:
-        va_producao_rural = float(va_producao_rural / 100)
-        cursor.execute(
-            """SELECT (SUM(prod_rural) * %f) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_producao_rural, municipio, ano_atual]
-        )
-        va_producao_rural_total = namedtuplefetchall(cursor)
+        if va_producao_rural:
+            va_producao_rural = float(float(va_producao_rural) / 100)
+            cursor.execute(
+                """SELECT (SUM(prod_rural) * %s) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_producao_rural, municipio, ano_atual]
+            )
+            va_producao_rural_total = namedtuplefetchall(cursor)
+        else:
+            va_producao_rural_total = [0.0]
 
-    if va_pts:
-        va_pts = float(va_pts / 100)
-        cursor.execute(
-            """SELECT (SUM(prest_serv) * %f) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_pts, municipio, ano_atual]
+        if va_pts:
+            va_pts = float(float(va_pts) / 100)
+            cursor.execute(
+                """SELECT (SUM(prest_serv) * %s) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_pts, municipio, ano_atual]
 
-        )
-        va_pts_total = namedtuplefetchall(cursor)
+            )
+            va_pts_total = namedtuplefetchall(cursor)
+        else:
+            va_pts_total = [0.0]
 
-    if va_dar1aut:
-        va_dar1aut = float(va_dar1aut / 100)
-        cursor.execute(
-            """SELECT (SUM(dar_1_aut) * %f) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_dar1aut, municipio, ano_atual]
-        )
-        va_dar1aut_total = namedtuplefetchall(cursor)
+        if va_dar1aut:
+            va_dar1aut = float(float(va_dar1aut) / 100)
+            cursor.execute(
+                """SELECT (SUM(dar_1_aut) * %s) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_dar1aut, municipio, ano_atual]
+            )
+            va_dar1aut_total = namedtuplefetchall(cursor)
+        else:
+            va_dar1aut_total = [0.0]
 
-    if va_nai:
-        va_nai = float(va_nai / 100)
-        cursor.execute(
-            """SELECT (SUM(nai) * %f) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_nai, municipio, ano_atual]
-        )
-        va_nai_total = namedtuplefetchall(cursor)
+        if va_nai:
+            va_nai = float(float(va_nai) / 100)
+            cursor.execute(
+                """SELECT (SUM(nai) * %s) FROM AS resultado_final appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_nai, municipio, ano_atual]
+            )
+            va_nai_total = namedtuplefetchall(cursor)
+        else:
+            va_nai_total = [0.0]
 
-    if va_creditoexoff:
-        va_creditoexoff = float(va_creditoexoff / 100)
-        cursor.execute(
-            """SELECT (SUM(credito_ex_off) * %f) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_creditoexoff, municipio, ano_atual]
-        )
-        va_creditoexoff_total = namedtuplefetchall(cursor)
+        if va_creditoexoff:
+            va_creditoexoff = float(float(va_creditoexoff) / 100)
+            cursor.execute(
+                """SELECT (SUM(credito_ex_off) * %s) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_creditoexoff, municipio, ano_atual]
+            )
+            va_creditoexoff_total = namedtuplefetchall(cursor)
+        else:
+            va_creditoexoff_total = [0.0]
 
-    if va_debitoexoff:
-        va_debitoexoff = float(va_debitoexoff / 100)
-        cursor.execute(
-            """SELECT (SUM(debito_ex_off) * %f)) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_debitoexoff, municipio, ano_atual]
-        )
-        va_debitoexoff_total = namedtuplefetchall(cursor)
+        if va_debitoexoff:
+            va_debitoexoff = float(float(va_debitoexoff) / 100)
+            cursor.execute(
+                """SELECT (SUM(debito_ex_off) * %s)) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_debitoexoff, municipio, ano_atual]
+            )
+            va_debitoexoff_total = namedtuplefetchall(cursor)
+        else:
+            va_debitoexoff_total = [0.0]
 
-    if va_total:
-        va_total = float(va_total / 100)
-        cursor.execute(
-            """SELECT (SUM(total) * %f) + SUM(total) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
-            [va_total, municipio, ano_atual]
-        )
-        va_total_final = namedtuplefetchall(cursor)
+        if va_total:
+            va_total = float(float(va_total) / 100)
+            cursor.execute(
+                """SELECT (SUM(total) * %s) + SUM(total) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+                [va_total, municipio, ano_atual]
+            )
+            va_total_final = namedtuplefetchall(cursor)
+        else:
+            va_total_final = [0.0]
 
-    if variacao_distribuicao_estado:
-        variacao_distribuicao_estado = float(variacao_distribuicao_estado / 100)
-        cursor.execute(
-            """SELECT ((janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) * %f) + janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12 FROM appva_fpm WHERE ano=%s;""",
-            [variacao_distribuicao_estado, ano_atual]
-        )
-        variacao_distribuicao_estado_total = namedtuplefetchall(cursor)
+        if variacao_distribuicao_estado:
+            variacao_distribuicao_estado = float(float(variacao_distribuicao_estado) / 100)
+            cursor.execute(
+                """SELECT ((janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) * %s) + janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12 FROM appva_fpm WHERE ano=%s;""",
+                [variacao_distribuicao_estado, ano_atual]
+            )
+            variacao_distribuicao_estado_total = namedtuplefetchall(cursor)
+        else:
+            variacao_distribuicao_estado_total = [0.0]
 
     if request.method == 'POST':
-        resultado_va_contribuinte_atual = request.POST['resultado_va_contribuinte_atual']
-        resultado_va_contribuinte_anterior = request.POST['resultado_va_contribuinte_anterior']
+        if inscricao and ano_atual:
+            resultado_va_contribuinte_atual = request.POST['resultado_va_contribuinte_atual']
+        if inscricao and ano_anterior:
+            resultado_va_contribuinte_anterior = request.POST['resultado_va_contribuinte_anterior']
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
         resultado_va_municipio_anterior = request.POST['resultado_va_municipio_anterior']
         resultado_va_estado_atual = request.POST['resultado_va_estado_atual']
         resultado_va_estado_anterior = request.POST['resultado_va_estado_anterior']
         resultado_va_comercio = request.POST['resultado_va_comercio']
-        resultado_va_producao_rural = request.POST['resultado_va_prducao_rural']
+        resultado_va_producao_rural = request.POST['resultado_va_producao_rural']
         resultado_va_pts = request.POST['resultado_va_pts']
         resultado_va_dar1aut = request.POST['resultado_va_dar1aut']
         resultado_va_nai = request.POST['resultado_va_nai']
@@ -4684,31 +4728,39 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         resultado_va_debitoexoff = request.POST['resultado_va_debitoexoff']
         resultado_va_total = request.POST['resultado_va_total']
         resultado_variacao_distribuicao_estado = request.POST['resultado_variacao_distribuicao_estado']
-
-        resultado_va_contribuinte_atual = float(resultado_va_contribuinte_atual)
-        resultado_va_contribuinte_anterior = float(resultado_va_contribuinte_anterior)
-        resultado_va_municipio_atual = float(resultado_va_municipio_atual)
-        resultado_va_municipio_anterior = float(resultado_va_municipio_anterior)
-        resultado_va_estado_atual = float(resultado_va_estado_atual)
-        resultado_va_estado_anterior = float(resultado_va_estado_anterior)
-        resultado_va_comercio = float(resultado_va_comercio)
-        resultado_va_producao_rural = float(resultado_va_producao_rural)
-        resultado_va_pts = float(resultado_va_pts)
-        resultado_va_dar1aut = float(resultado_va_dar1aut)
-        resultado_va_nai = float(resultado_va_nai)
-        resultado_va_creditoexoff = float(resultado_va_creditoexoff)
-        resultado_va_debitoexoff = float(resultado_va_debitoexoff)
-        resultado_va_total = float(resultado_va_total)
-
+        if resultado_va_municipio_atual == '':
+            resultado_va_municipio_atual = 0.0
+        if resultado_va_municipio_anterior == '':
+            resultado_va_municipio_anterior = 0.0
+        if resultado_va_estado_atual == '':
+            resultado_va_estado_atual = 0.0
+        if resultado_va_estado_anterior == '':
+            resultado_va_estado_anterior = 0.0
+        if resultado_va_comercio == '':
+            resultado_va_comercio = 0.0
+        if resultado_va_producao_rural == '':
+            resultado_va_producao_rural = 0.0
+        if resultado_va_pts == '':
+            resultado_va_pts = 0.0
+        if resultado_va_dar1aut == '':
+            resultado_va_dar1aut = 0.0
+        if resultado_va_nai == '':
+            resultado_va_nai = 0.0
+        if resultado_va_creditoexoff == '':
+            resultado_va_creditoexoff = 0.0
+        if resultado_va_debitoexoff == '':
+            resultado_va_debitoexoff = 0.0
+        if resultado_va_total == '':
+            resultado_va_total = 0.0
+        if resultado_variacao_distribuicao_estado == '':
+            resultado_variacao_distribuicao_estado = 0.0
         return redirect('resultado_simulacao', municipio=municipio, ano=ano_atual,
-                        contribuinte_atual=resultado_va_contribuinte_atual,
-                        contribuinte_anterior=resultado_va_contribuinte_anterior,
                         municipio_atual=resultado_va_municipio_atual,
                         municipio_anterior=resultado_va_municipio_anterior,
                         estado_atual=resultado_va_estado_atual,
                         estado_anterior=resultado_va_estado_anterior,
                         comercio=resultado_va_comercio,
-                        producao_rural=resultado_va_producao_rural,
+                        prod_rural=resultado_va_producao_rural,
                         pts=resultado_va_pts,
                         dar1aut=resultado_va_dar1aut,
                         nai=resultado_va_nai,
@@ -4717,6 +4769,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
                         total=resultado_va_total,
                         variacao_distribuicao_estado=resultado_variacao_distribuicao_estado
                         )
+
     return render(request, 'insercao_dados_simulacao.html',
                   {'contribuinte_atual': inscricoes, 'contribuinte_anterior': inscricoes2,
                    'municipio_atual': va_mun_atual_total, 'municipio_anterior': va_mun_anterior_total,
@@ -4729,17 +4782,17 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
 
 
 @login_required
-def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuinte_anterior, municipio_atual,
+def resultado_simulacao(request, municipio, ano, municipio_atual,
                         municipio_anterior,
                         estado_atual, estado_anterior, comercio, prod_rural, pts, dar1aut, nai, creditoexoff,
                         debitoexoff, total, variacao_distribuicao_estado):
     with connections['default'].cursor() as cursor:
         cursor.execute(
-            """SELECT vr_adic_ano_exercicio FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
+            """SELECT vr_adic_ano_exercicio AS valor FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
             [municipio, ano]
         )
         va_municipio_atu = namedtuplefetchall(cursor)
-        va_mun_atu = float(str(va_municipio_atu[0]))
+        va_mun_atu = str(va_municipio_atu[0].valor)
 
         cursor.execute(
             """SELECT vr_adic_ano_base FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
@@ -4751,6 +4804,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
             """SELECT vr_adic_ano_exercicio FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s""",
             [municipio, ano]
         )
+        
         va_estado_atu = namedtuplefetchall(cursor)
         va_est_atu = float(str(va_estado_atu[0]))
 
@@ -4818,10 +4872,10 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_t = float(str(va_total[0]))
         va_total_final = va_t + total
 
-        va_do_municipio_atual = (contribuinte_atual + municipio_atual + (
+        va_do_municipio_atual = (contribuinte + municipio_atual + (
                 va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final)) + va_mun_atu
 
-        va_do_municipio_anterior = (contribuinte_anterior + municipio_anterior) + va_mun_ant
+        va_do_municipio_anterior = (contribuinte + municipio_anterior) + va_mun_ant
 
         va_do_estado_atual = estado_atual + va_est_atu
 
@@ -4881,4 +4935,6 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         lista_ind = namedtuplefetchall(cursor)
         ind_final = float(lista_ind[0])
         variacao_indice = indice_simulado - ind_final
+
+        variacao_estimada = (variacao_distribuicao_estado * indice_simulado) / 100
     return render(request, 'resultado_simulacao.html')
