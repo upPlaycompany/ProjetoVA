@@ -4871,12 +4871,12 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         va_t = float(str(va_total[0][0]))
         va_total_final = va_t + float(total)
 
-        va_do_municipio_atual = (municipio_atual + (
+        va_do_municipio_atual = (float(municipio_atual) + (
                 va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final)) + va_mun_atu
 
-        va_do_municipio_anterior = (municipio_anterior) + va_mun_ant
+        va_do_municipio_anterior = (float(municipio_anterior)) + va_mun_ant
 
-        va_do_estado_atual = estado_atual + va_est_atu
+        va_do_estado_atual = float(estado_atual) + va_est_atu
 
         va_do_estado_anterior = estado_anterior + va_est_ant
 
