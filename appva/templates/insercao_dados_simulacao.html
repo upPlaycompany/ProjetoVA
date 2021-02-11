@@ -19,6 +19,14 @@ Inserir dados opcionais de simulação de índices
                 <option value="EFD">EFD</option>
             </select>
         </div>
+        div class="form-group col-md-3">
+            <label>Selecione o ano:</label>
+            <select name="tabela">
+                <option selected>Selecione...</option>
+                <option value="ano_anterior">Ano anterior</option>
+                <option value="ano_atual">Ano atual</option>
+            </select>
+        </div>
     </div>
 
     <div class="form-row">
@@ -107,13 +115,13 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for inscricoes in contribuinte_anual %}
-            <input type="text" class="form-control" name="resultado_va_contribuinte_atual" value="{{ inscricoes.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_contribuinte_atual" value="{{ inscricoes.valor_adicionado }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for inscricoes2 in contribuinte_anterior %}
-            <input type="text" class="form-control" name="resultado_va_contribuinte_anterior" value="{{ inscricoes2.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_contribuinte_anterior" value="{{ inscricoes2.valor_adicionado }}">
             {% endfor %}
         </div>
     </div>
