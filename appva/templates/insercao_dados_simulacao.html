@@ -28,6 +28,28 @@ Inserir dados opcionais de simulação de índices
             </select>
         </div>
     </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Digite a inscrição sem pontos do contribuinte desejado</label>
+            <input type="text" class="form-control" name="inscricao2" placeholder="Digite a inscrição">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecione a tabela de onde deseja consultar</label>
+            <select name="tabela2">
+                <option selected>Selecione...</option>
+                <option value="GIA">GIA</option>
+                <option value="EFD">EFD</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecione o ano:</label>
+            <select name="ano2">
+                <option selected>Selecione...</option>
+                <option value="ano_anterior">Ano anterior</option>
+                <option value="ano_atual">Ano atual</option>
+            </select>
+        </div>
+    </div>
 
     <div class="form-row">
         <div class="form-group col-md-3">
@@ -105,9 +127,7 @@ Inserir dados opcionais de simulação de índices
 </form>
 
 
-
 <br>
-
 
 
 <form method="post"> {% csrf_token %}
@@ -115,13 +135,15 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for inscricoes in contribuinte_anual %}
-            <input type="text" class="form-control" name="resultado_va_contribuinte_atual" value="{{ inscricoes.valor_adicionado }}">
+            <input type="text" class="form-control" name="resultado_va_contribuinte_atual"
+                   value="{{ inscricoes.valor_adicionado }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for inscricoes2 in contribuinte_anterior %}
-            <input type="text" class="form-control" name="resultado_va_contribuinte_anterior" value="{{ inscricoes2.valor_adicionado }}">
+            <input type="text" class="form-control" name="resultado_va_contribuinte_anterior"
+                   value="{{ inscricoes2.valor_adicionado }}">
             {% endfor %}
         </div>
     </div>
@@ -129,13 +151,15 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_mun_atual_total in municipio_atual %}
-            <input type="text" class="form-control" name="resultado_va_municipio_atual" value="{{ va_mun_atual_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_municipio_atual"
+                   value="{{ va_mun_atual_total.resultado_final }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_mun_anterior_total in municipio_anterior%}
-            <input type="text" class="form-control"  name="resultado_va_municipio_anterior" value="{{ va_mun_anterior_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_municipio_anterior"
+                   value="{{ va_mun_anterior_total.resultado_final }}">
             {% endfor %}
         </div>
     </div>
@@ -143,13 +167,15 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_estado_atual_total in estado_atual %}
-            <input type="text" class="form-control" name="resultado_va_estado_atual" value="{{ va_estado_atual_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_estado_atual"
+                   value="{{ va_estado_atual_total.resultado_final }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_estado_anterior_total in estado_anterior %}
-            <input type="text" class="form-control"  name="resultado_va_estado_anterior" value="{{ va_estado_anterior_total.resultado_final}}">
+            <input type="text" class="form-control" name="resultado_va_estado_anterior"
+                   value="{{ va_estado_anterior_total.resultado_final}}">
             {% endfor %}
         </div>
     </div>
@@ -157,14 +183,16 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_comercio_total in comercio %}
-            <input type="text" class="form-control" name="resultado_va_comercio" value="{{ va_comercio_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_comercio"
+                   value="{{ va_comercio_total.resultado_final }}">
             {% endfor %}
         </div>
 
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_producao_rural_total in prod_rural %}
-            <input type="text" class="form-control"  name="resultado_va_producao_rural" value="{{ va_producao_rural_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_producao_rural"
+                   value="{{ va_producao_rural_total.resultado_final }}">
             {% endfor %}
         </div>
     </div>
@@ -172,14 +200,15 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_pts_total in pts %}
-            <input type="text" class="form-control"  name="resultado_va_pts" value="{{ va_pts_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_pts" value="{{ va_pts_total.resultado_final }}">
             {% endfor %}
         </div>
 
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_dar1aut_total in dar1aut %}
-            <input type="text" class="form-control"  name="resultado_va_dar1aut" value="{{ va_dar1aut_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_dar1aut"
+                   value="{{ va_dar1aut_total.resultado_final }}">
             {% endfor %}
         </div>
     </div>
@@ -187,13 +216,14 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_nai_total in nai %}
-            <input type="text" class="form-control"  name="resultado_va_nai" value="{{ va_nai_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_nai" value="{{ va_nai_total.resultado_final }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_creditoexoff_total in creditoexoff %}
-            <input type="text" class="form-control"  name="resultado_va_creditoexoff" value="{{ va_creditoexoff_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_creditoexoff"
+                   value="{{ va_creditoexoff_total.resultado_final }}">
             {% endfor %}
         </div>
     </div>
@@ -201,19 +231,22 @@ Inserir dados opcionais de simulação de índices
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_debitoexoff_total in debitoexoff %}
-            <input type="text" class="form-control"  name="resultado_va_debitoexoff" value="{{ va_debitoexoff_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_debitoexoff"
+                   value="{{ va_debitoexoff_total.resultado_final }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for va_total_final in total%}
-            <input type="text" class="form-control"  name="resultado_va_total" value="{{ va_total_final.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_total"
+                   value="{{ va_total_final.resultado_final }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for variacao_distribuicao_estado_total in variacao_distribuicao_estado %}
-            <input type="text" class="form-control"  name="resultado_variacao_distribuicao_estado" value="{{ variacao_distribuicao_estado_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_variacao_distribuicao_estado"
+                   value="{{ variacao_distribuicao_estado_total.resultado_final }}">
             {% endfor %}
         </div>
     </div>
