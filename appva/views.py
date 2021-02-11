@@ -5002,7 +5002,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         variacao_estimada = (float(variacao_distribuicao_estado) * indice_simulado) / 100
 
         numeros = [
-            {'va_do_municipio_atual': va_do_municipio_atual, 'va_do_municipio_anterior': va_do_municipio_anterior,
+            {'municipio': municipio, 'va_do_municipio_atual': va_do_municipio_atual, 'va_do_municipio_anterior': va_do_municipio_anterior,
              'va_do_estado_atual': va_do_estado_atual, 'va_do_estado_anterior': va_do_estado_anterior,
              'va_municipio_media': va_municipio_media, 'va_estado_media': va_estado_media,
              'va_municipio_75': va_municipio_75, 'va_estado_75': va_estado_75, 'indice_va_anterior': indice_va_anterior,
