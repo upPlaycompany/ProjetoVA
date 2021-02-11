@@ -4806,8 +4806,8 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
             resultado_variacao_distribuicao_estado = float(resultado_variacao_distribuicao_estado)
 
         return redirect('resultado_simulacao', municipio=municipio, ano=ano_atual,
-                        contribuinte_atual=str(inscricoes[0].valor_adicionado),
-                        contribuinte_anterior=str(inscricoes2[0].valor_adicionado),
+                        contribuinte_atual=inscricoes,
+                        contribuinte_anterior=inscricoes2,
                         municipio_atual=resultado_va_municipio_atual,
                         municipio_anterior=resultado_va_municipio_anterior,
                         estado_atual=resultado_va_estado_atual,
