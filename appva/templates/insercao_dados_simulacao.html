@@ -30,29 +30,6 @@ Inserir dados opcionais de simulação de índices
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label>Digite a inscrição sem pontos do contribuinte desejado</label>
-            <input type="text" class="form-control" name="inscricao2" placeholder="Digite a inscrição">
-        </div>
-        <div class="form-group col-md-3">
-            <label>Selecione a tabela de onde deseja consultar</label>
-            <select name="tabela2">
-                <option selected>Selecione...</option>
-                <option value="GIA">GIA</option>
-                <option value="EFD">EFD</option>
-            </select>
-        </div>
-        <div class="form-group col-md-3">
-            <label>Selecione o ano:</label>
-            <select name="ano2">
-                <option selected>Selecione...</option>
-                <option value="ano_anterior">Ano anterior</option>
-                <option value="ano_atual">Ano atual</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col-md-3">
             <label>Selecionar VA do município atual em porcentagem</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_municipio_atual">
@@ -131,22 +108,6 @@ Inserir dados opcionais de simulação de índices
 
 
 <form method="post"> {% csrf_token %}
-    <div class="form-row">
-        <div class="form-group col-md-3">
-            <label>Resultado em dinheiro</label>
-            {% for inscricoes in contribuinte_anual %}
-            <input type="text" class="form-control" name="resultado_va_contribuinte_atual"
-                   value="{{ inscricoes.valor_adicionado }}">
-            {% endfor %}
-        </div>
-        <div class="form-group col-md-3">
-            <label>Resultado em dinheiro</label>
-            {% for inscricoes2 in contribuinte_anterior %}
-            <input type="text" class="form-control" name="resultado_va_contribuinte_anterior"
-                   value="{{ inscricoes2.valor_adicionado }}">
-            {% endfor %}
-        </div>
-    </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
