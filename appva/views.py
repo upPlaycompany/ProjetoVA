@@ -4700,76 +4700,111 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
             variacao_distribuicao_estado_total = [0.0]
 
     if request.method == 'POST':
-        
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
-        resultado_va_municipio_atual = resultado_va_municipio_atual.replace(',','.')
-        resultado_va_municipio_atual = float(resultado_va_municipio_atual)
-        resultado_va_municipio_anterior = request.POST['resultado_va_municipio_anterior']
-        resultado_va_municipio_anterior = resultado_va_municipio_anterior.replace(',', '.')
-        resultado_va_municipio_anterior = float(resultado_va_municipio_anterior)
-        resultado_va_estado_atual = request.POST['resultado_va_estado_atual']
-        resultado_va_estado_atual = resultado_va_estado_atual.replace(',', '.')
-        resultado_va_estado_atual = float(resultado_va_estado_atual)
-        resultado_va_estado_anterior = request.POST['resultado_va_estado_anterior']
-        resultado_va_estado_anterior = resultado_va_estado_anterior.replace(',', '.')
-        resultado_va_estado_anterior = float(resultado_va_estado_anterior)
-        resultado_va_comercio = request.POST['resultado_va_comercio']
-        resultado_va_comercio = resultado_va_comercio.replace(',', '.')
-        resultado_va_comercio = float(resultado_va_comercio)
-        resultado_va_producao_rural = request.POST['resultado_va_producao_rural']
-        resultado_va_producao_rural = resultado_va_producao_rural.replace(',', '.')
-        resultado_va_producao_rural = float(resultado_va_producao_rural)
-        resultado_va_pts = request.POST['resultado_va_pts']
-        resultado_va_pts = resultado_va_pts.replace(',', '.')
-        resultado_va_pts = float(resultado_va_pts)
-        resultado_va_dar1aut = request.POST['resultado_va_dar1aut']
-        resultado_va_dar1aut = resultado_va_dar1aut.replace(',', '.')
-        resultado_va_dar1aut = float(resultado_va_dar1aut)
-        resultado_va_nai = request.POST['resultado_va_nai']
-        resultado_va_nai = resultado_va_nai.replace(',', '.')
-        resultado_va_nai = float(resultado_va_nai)
-        resultado_va_creditoexoff = request.POST['resultado_va_creditoexoff']
-        resultado_va_creditoexoff = resultado_va_creditoexoff.replace(',', '.')
-        resultado_va_creditoexoff = float(resultado_va_creditoexoff)
-        resultado_va_debitoexoff = request.POST['resultado_va_debitoexoff']
-        resultado_va_debitoexoff = resultado_va_debitoexoff.replace(',', '.')
-        resultado_va_debitoexoff = float(resultado_va_debitoexoff)
-        resultado_va_total = request.POST['resultado_va_total']
-        resultado_va_total = resultado_va_total.replace(',', '.')
-        resultado_va_total = float(resultado_va_total)
-        resultado_variacao_distribuicao_estado = request.POST['resultado_variacao_distribuicao_estado']
-        resultado_variacao_distribuicao_estado = resultado_variacao_distribuicao_estado.replace(',', '.')
-        resultado_variacao_distribuicao_estado = float(resultado_variacao_distribuicao_estado)
-        if resultado_va_contribuinte_atual == '':
-            resultado_va_contribuinte_atual = 0.0
-        if resultado_va_contribuinte_anterior == '':
-            resultado_va_contribuinte_anterior = 0.0
         if resultado_va_municipio_atual == '':
             resultado_va_municipio_atual = 0.0
+            resultado_va_municipio_atual = resultado_va_municipio_atual.replace(',', '.')
+            resultado_va_municipio_atual = float(resultado_va_municipio_atual)
+        else:
+            resultado_va_municipio_atual = resultado_va_municipio_atual.replace(',', '.')
+            resultado_va_municipio_atual = float(resultado_va_municipio_atual)
+        resultado_va_municipio_anterior = request.POST['resultado_va_municipio_anterior']
         if resultado_va_municipio_anterior == '':
             resultado_va_municipio_anterior = 0.0
+            resultado_va_municipio_anterior = resultado_va_municipio_anterior.replace(',', '.')
+            resultado_va_municipio_anterior = float(resultado_va_municipio_anterior)
+        else:
+            resultado_va_municipio_anterior = resultado_va_municipio_anterior.replace(',', '.')
+            resultado_va_municipio_anterior = float(resultado_va_municipio_anterior)
+        resultado_va_estado_atual = request.POST['resultado_va_estado_atual']
         if resultado_va_estado_atual == '':
             resultado_va_estado_atual = 0.0
+            resultado_va_estado_atual = resultado_va_estado_atual.replace(',', '.')
+            resultado_va_estado_atual = float(resultado_va_estado_atual)
+        else:
+            resultado_va_estado_atual = resultado_va_estado_atual.replace(',', '.')
+            resultado_va_estado_atual = float(resultado_va_estado_atual)
+        resultado_va_estado_anterior = request.POST['resultado_va_estado_anterior']
         if resultado_va_estado_anterior == '':
             resultado_va_estado_anterior = 0.0
+            resultado_va_estado_anterior = resultado_va_estado_anterior.replace(',', '.')
+            resultado_va_estado_anterior = float(resultado_va_estado_anterior)
+        else:
+            resultado_va_estado_anterior = resultado_va_estado_anterior.replace(',', '.')
+            resultado_va_estado_anterior = float(resultado_va_estado_anterior)
+        resultado_va_comercio = request.POST['resultado_va_comercio']
         if resultado_va_comercio == '':
             resultado_va_comercio = 0.0
+            resultado_va_comercio = resultado_va_comercio.replace(',', '.')
+            resultado_va_comercio = float(resultado_va_comercio)
+        else:
+            resultado_va_comercio = resultado_va_comercio.replace(',', '.')
+            resultado_va_comercio = float(resultado_va_comercio)
+        resultado_va_producao_rural = request.POST['resultado_va_producao_rural']
         if resultado_va_producao_rural == '':
             resultado_va_producao_rural = 0.0
+            resultado_va_producao_rural = resultado_va_producao_rural.replace(',', '.')
+            resultado_va_producao_rural = float(resultado_va_producao_rural)
+        else:
+            resultado_va_producao_rural = resultado_va_producao_rural.replace(',', '.')
+            resultado_va_producao_rural = float(resultado_va_producao_rural)
+        resultado_va_pts = request.POST['resultado_va_pts']
         if resultado_va_pts == '':
             resultado_va_pts = 0.0
+            resultado_va_pts = resultado_va_pts.replace(',', '.')
+            resultado_va_pts = float(resultado_va_pts)
+        else:
+            resultado_va_pts = resultado_va_pts.replace(',', '.')
+            resultado_va_pts = float(resultado_va_pts)
+        resultado_va_dar1aut = request.POST['resultado_va_dar1aut']
         if resultado_va_dar1aut == '':
             resultado_va_dar1aut = 0.0
+            resultado_va_dar1aut = resultado_va_dar1aut.replace(',', '.')
+            resultado_va_dar1aut = float(resultado_va_dar1aut)
+        else:
+            resultado_va_dar1aut = resultado_va_dar1aut.replace(',', '.')
+            resultado_va_dar1aut = float(resultado_va_dar1aut)
+        resultado_va_nai = request.POST['resultado_va_nai']
         if resultado_va_nai == '':
             resultado_va_nai = 0.0
+            resultado_va_nai = resultado_va_nai.replace(',', '.')
+            resultado_va_nai = float(resultado_va_nai)
+        else:
+            resultado_va_nai = resultado_va_nai.replace(',', '.')
+            resultado_va_nai = float(resultado_va_nai)
+        resultado_va_creditoexoff = request.POST['resultado_va_creditoexoff']
         if resultado_va_creditoexoff == '':
             resultado_va_creditoexoff = 0.0
+            resultado_va_creditoexoff = resultado_va_creditoexoff.replace(',', '.')
+            resultado_va_creditoexoff = float(resultado_va_creditoexoff)
+        else:
+            resultado_va_creditoexoff = resultado_va_creditoexoff.replace(',', '.')
+            resultado_va_creditoexoff = float(resultado_va_creditoexoff)
+        resultado_va_debitoexoff = request.POST['resultado_va_debitoexoff']
         if resultado_va_debitoexoff == '':
             resultado_va_debitoexoff = 0.0
+            resultado_va_debitoexoff = resultado_va_debitoexoff.replace(',', '.')
+            resultado_va_debitoexoff = float(resultado_va_debitoexoff)
+        else:
+            resultado_va_debitoexoff = resultado_va_debitoexoff.replace(',', '.')
+            resultado_va_debitoexoff = float(resultado_va_debitoexoff)
+        resultado_va_total = request.POST['resultado_va_total']
         if resultado_va_total == '':
             resultado_va_total = 0.0
+            resultado_va_total = resultado_va_total.replace(',', '.')
+            resultado_va_total = float(resultado_va_total)
+        else:
+            resultado_va_total = resultado_va_total.replace(',', '.')
+            resultado_va_total = float(resultado_va_total)
+        resultado_variacao_distribuicao_estado = request.POST['resultado_variacao_distribuicao_estado']
         if resultado_variacao_distribuicao_estado == '':
             resultado_variacao_distribuicao_estado = 0.0
+            resultado_variacao_distribuicao_estado = resultado_variacao_distribuicao_estado.replace(',', '.')
+            resultado_variacao_distribuicao_estado = float(resultado_variacao_distribuicao_estado)
+        else:
+            resultado_variacao_distribuicao_estado = resultado_variacao_distribuicao_estado.replace(',', '.')
+            resultado_variacao_distribuicao_estado = float(resultado_variacao_distribuicao_estado)
+
         return redirect('resultado_simulacao', municipio=municipio, ano=ano_atual,
                         contribuinte_atual=inscricoes[0].valor_adicionado,
                         contribuinte_anterior=inscricoes2[0].valor_adicionado,
@@ -4813,7 +4848,8 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_mun_atu = float(str(va_municipio_atu[0][0]))
 
         cursor.execute(
-            """SELECT SUM(vr_adic_ano_base) FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(vr_adic_ano_base) FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
+            [municipio, ano]
         )
         va_municipio_ant = namedtuplefetchall(cursor)
         va_mun_ant = float(str(va_municipio_ant[0][0]))
@@ -4822,7 +4858,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
             """SELECT SUM(vr_adic_ano_exercicio) FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s;""",
             [ano]
         )
-        
+
         va_estado_atu = namedtuplefetchall(cursor)
         va_est_atu = float(str(va_estado_atu[0][0]))
 
@@ -4869,14 +4905,16 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_nai_final = va_n + float(nai)
 
         cursor.execute(
-            """SELECT SUM(credito_ex_off) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(credito_ex_off) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+            [municipio, ano]
         )
         va_creditoexoff = namedtuplefetchall(cursor)
         va_credito = float(str(va_creditoexoff[0][0]))
         va_creditoexoff_final = va_credito + float(creditoexoff)
 
         cursor.execute(
-            """SELECT SUM(debito_ex_off) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(debito_ex_off) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+            [municipio, ano]
         )
         va_debitoexoff = namedtuplefetchall(cursor)
         va_debito = float(str(va_debitoexoff[0][0]))
