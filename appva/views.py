@@ -4121,6 +4121,8 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
     va_debitoexoff = request.GET.get('va_debitoexoff')
     va_total = request.GET.get('va_total')
     variacao_distribuicao_estado = request.GET.get('variacao_distribuicao_estado')
+    inscricoes = 0.0
+    inscricoes2 = 0.0
 
     with connections['default'].cursor() as cursor:
         if inscricao and tabela == 'GIA' and ano == 'ano_atual':
