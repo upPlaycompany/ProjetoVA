@@ -4926,7 +4926,10 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_total = namedtuplefetchall(cursor)
         va_t = float(str(va_total[0][0]))
         va_total_final = va_t + float(total)
-
+        if contribuinte_atual == '[Lista(valor_adicionado=None)]':
+            contribuinte_atual = '0.0'
+        if contribuinte_anterior == '[Lista(valor_adicionado=None)]':
+            contribuinte_anterior = '0.0'
         va_do_municipio_atual = (float(contribuinte_atual) + float(municipio_atual) + (
                 va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final)) + va_mun_atu
 
