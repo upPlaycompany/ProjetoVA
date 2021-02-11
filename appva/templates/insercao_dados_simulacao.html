@@ -7,6 +7,7 @@ Inserir dados opcionais de simulação de índices
 {% block content %}
 <form method="get"> {% csrf_token %}
     <div class="form-row">
+        <h2>Selecionar VA do contribuinte</h2>
         <div class="form-group col-md-3">
             <label>Digite a inscrição sem pontos do contribuinte desejado</label>
             <input type="text" class="form-control" name="inscricao" placeholder="Digite a inscrição">
@@ -28,7 +29,10 @@ Inserir dados opcionais de simulação de índices
             </select>
         </div>
     </div>
+    <br>
+    <br>
     <div class="form-row">
+        <h2>Selecionar VA do município</h2>
         <div class="form-group col-md-3">
             <label>Selecionar VA do município atual em porcentagem</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
@@ -40,7 +44,10 @@ Inserir dados opcionais de simulação de índices
                    name="va_municipio_anterior">
         </div>
     </div>
+    <br>
+    <br>
     <div class="form-row">
+        <h2>Selecionar VA do Estado</h2>
         <div class="form-group col-md-3">
             <label>Selecionar VA do estado atual em porcentagem</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
@@ -52,48 +59,57 @@ Inserir dados opcionais de simulação de índices
                    name="va_estado_anterior">
         </div>
     </div>
+    <br>
+    <br>
     <div class="form-row">
+        <h2>4 - Atividades econômicas</h2>
         <div class="form-group col-md-3">
-            <label>Selecionar VA do Comércio e Indústria em porcentagem</label>
+            <label>Comércio e Indústria</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_comercio">
         </div>
         <div class="form-group col-md-3">
-            <label>Selecionar VA do produção rural em porcentagem</label>
+            <label>Produção rural</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_producao_rural">
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-3">
-            <label>Selecionar VA do PTS em porcentagem</label>
+            <label>PTS</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_pts">
         </div>
         <div class="form-group col-md-3">
-            <label>Selecionar VA DAR-1/AUT em porcentagem</label>
+            <label>DAR-1/AUT</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_dar1aut">
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-3">
-            <label>Selecionar VA do NAI em porcentagem</label>
+            <label>NAI</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_nai">
         </div>
         <div class="form-group col-md-3">
-            <label>Selecionar VA CREDITO EXOFF em porcentagem</label>
+            <label>CREDITO EXOFF</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_creditoexoff">
         </div>
     </div>
     <div class="row">
         <div class="form-group col-md-3">
-            <label>Selecionar VA Total em porcentagem</label>
+            <label>Total</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
                    name="va_total">
         </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <h2>VARIAÇÃO % DISTRIBUIÇÃO DO ICMS ESTADO DO MATO GROSSO</h2>
         <div class="form-group col-md-3">
             <label>Selecionar Variação e distribuição em porcentagem</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
