@@ -4820,7 +4820,7 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         )
         va_comercio = namedtuplefetchall(cursor)
         va_com = float(str(va_comercio[0][0]))
-        va_comercio_final = comercio + va_com
+        va_comercio_final = float(comercio) + va_com
 
         cursor.execute(
             """SELECT SUM(prod_rural) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
