@@ -6,9 +6,9 @@ Inserir dados opcionais de simulação de índices
 
 {% block content %}
 <form method="get"> {% csrf_token %}
+    <h2>1 - Selecionar VA do contribuinte</h2>
     <div class="form-row">
-        <h2>1 - Selecionar VA do contribuinte</h2>
-        <br>
+
         <div class="form-group col-md-3">
             <label>Digite a inscrição sem pontos do contribuinte desejado</label>
             <input type="text" class="form-control" name="inscricao" placeholder="Digite a inscrição">
@@ -32,9 +32,9 @@ Inserir dados opcionais de simulação de índices
     </div>
     <br>
     <br>
+    <h2>2 - Selecionar VA do município</h2>
     <div class="form-row">
-        <h2>2 - Selecionar VA do município</h2>
-        <br>
+
         <div class="form-group col-md-3">
             <label>Selecionar VA do município atual em porcentagem</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
@@ -48,9 +48,9 @@ Inserir dados opcionais de simulação de índices
     </div>
     <br>
     <br>
+    <h2>3 - Selecionar VA do Estado</h2>
     <div class="form-row">
-        <h2>3 - Selecionar VA do Estado</h2>
-        <br>
+
         <div class="form-group col-md-3">
             <label>Selecionar VA do estado atual em porcentagem</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
@@ -64,8 +64,8 @@ Inserir dados opcionais de simulação de índices
     </div>
     <br>
     <br>
+    <h2>4 - Atividades econômicas</h2>
     <div class="form-row">
-        <h2>4 - Atividades econômicas</h2>
         <div class="form-group col-md-3">
             <label>Comércio e Indústria</label>
             <input type="text" class="form-control" placeholder="Digite a porcentagem do VA"
