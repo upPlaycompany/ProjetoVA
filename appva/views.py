@@ -4143,7 +4143,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
             mes2 = mes2 + 1
             ano = str(ano_atual)
             filtro = list(range(mes1, mes2))
-            datas = [f'{ano}-' + '0' + str(x) + f'-01' if x < 10 else f'{ano}-' + str(x) + f'-01' for x in
+            datas = [f'01/' + '0' + str(x) + f'/{ano}' if x < 10 else f'01/' + str(x) + f'/{ano}' for x in
                      filtro]
             datas1 = tuple(datas)
             ins = Gia_entradas_saidas.objects.all()
@@ -4254,7 +4254,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
             mes2 = mes2 + 1
             ano = str(ano_anterior)
             filtro = list(range(mes1, mes2))
-            datas = [f'{ano}-' + '0' + str(x) + f'-01' if x < 10 else f'{ano}-' + str(x) + f'-01' for x in
+            datas = [f'01/' + '0' + str(x) + f'/{ano}' if x < 10 else f'01/' + str(x) + f'/{ano}' for x in
                      filtro]
             datas1 = tuple(datas)
             ins = Gia_entradas_saidas.objects.all()
@@ -4366,7 +4366,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
             mes2 = mes2 + 1
             ano = str(ano_atual)
             filtro = list(range(mes1, mes2))
-            datas = [f'{ano}-' + '0' + str(x) + f'-01' if x < 10 else f'{ano}-' + str(x) + f'-01' for x in
+            datas = [f'01/' + '0' + str(x) + f'/{ano}' if x < 10 else f'01/' + str(x) + f'/{ano}' for x in
                      filtro]
             datas1 = tuple(datas)
             ins = Efd.objects.all()
@@ -4478,7 +4478,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
             mes2 = mes2 + 1
             ano = str(ano_anterior)
             filtro = list(range(mes1, mes2))
-            datas = [f'{ano}-' + '0' + str(x) + f'-01' if x < 10 else f'{ano}-' + str(x) + f'-01' for x in
+            datas = [f'01/' + '0' + str(x) + f'/{ano}' if x < 10 else f'01/' + str(x) + f'/{ano}' for x in
                      filtro]
             datas1 = tuple(datas)
             ins = Efd.objects.all()
