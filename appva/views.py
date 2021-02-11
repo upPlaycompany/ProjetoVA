@@ -4702,107 +4702,107 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
     if request.method == 'POST':
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
         if resultado_va_municipio_atual == '':
-            resultado_va_municipio_atual = 0.0
-            resultado_va_municipio_atual = resultado_va_municipio_atual.replace(',', '.')
+            resultado_va_municipio_atual = '0.0'
+            resultado_va_municipio_atual = str(resultado_va_municipio_atual).replace(',', '.')
             resultado_va_municipio_atual = float(resultado_va_municipio_atual)
         else:
-            resultado_va_municipio_atual = resultado_va_municipio_atual.replace(',', '.')
+            resultado_va_municipio_atual = str(resultado_va_municipio_atual).replace(',', '.')
             resultado_va_municipio_atual = float(resultado_va_municipio_atual)
         resultado_va_municipio_anterior = request.POST['resultado_va_municipio_anterior']
         if resultado_va_municipio_anterior == '':
-            resultado_va_municipio_anterior = 0.0
+            resultado_va_municipio_anterior = '0.0'
             resultado_va_municipio_anterior = resultado_va_municipio_anterior.replace(',', '.')
             resultado_va_municipio_anterior = float(resultado_va_municipio_anterior)
         else:
-            resultado_va_municipio_anterior = resultado_va_municipio_anterior.replace(',', '.')
+            resultado_va_municipio_anterior = str(resultado_va_municipio_anterior).replace(',', '.')
             resultado_va_municipio_anterior = float(resultado_va_municipio_anterior)
         resultado_va_estado_atual = request.POST['resultado_va_estado_atual']
         if resultado_va_estado_atual == '':
-            resultado_va_estado_atual = 0.0
+            resultado_va_estado_atual = '0.0'
             resultado_va_estado_atual = resultado_va_estado_atual.replace(',', '.')
             resultado_va_estado_atual = float(resultado_va_estado_atual)
         else:
-            resultado_va_estado_atual = resultado_va_estado_atual.replace(',', '.')
+            resultado_va_estado_atual = str(resultado_va_estado_atual).replace(',', '.')
             resultado_va_estado_atual = float(resultado_va_estado_atual)
         resultado_va_estado_anterior = request.POST['resultado_va_estado_anterior']
         if resultado_va_estado_anterior == '':
-            resultado_va_estado_anterior = 0.0
+            resultado_va_estado_anterior = '0.0'
             resultado_va_estado_anterior = resultado_va_estado_anterior.replace(',', '.')
             resultado_va_estado_anterior = float(resultado_va_estado_anterior)
         else:
-            resultado_va_estado_anterior = resultado_va_estado_anterior.replace(',', '.')
+            resultado_va_estado_anterior = str(resultado_va_estado_anterior).replace(',', '.')
             resultado_va_estado_anterior = float(resultado_va_estado_anterior)
         resultado_va_comercio = request.POST['resultado_va_comercio']
         if resultado_va_comercio == '':
-            resultado_va_comercio = 0.0
+            resultado_va_comercio = '0.0'
             resultado_va_comercio = resultado_va_comercio.replace(',', '.')
             resultado_va_comercio = float(resultado_va_comercio)
         else:
-            resultado_va_comercio = resultado_va_comercio.replace(',', '.')
+            resultado_va_comercio = str(resultado_va_comercio).replace(',', '.')
             resultado_va_comercio = float(resultado_va_comercio)
         resultado_va_producao_rural = request.POST['resultado_va_producao_rural']
         if resultado_va_producao_rural == '':
-            resultado_va_producao_rural = 0.0
+            resultado_va_producao_rural = '0.0'
             resultado_va_producao_rural = resultado_va_producao_rural.replace(',', '.')
             resultado_va_producao_rural = float(resultado_va_producao_rural)
         else:
-            resultado_va_producao_rural = resultado_va_producao_rural.replace(',', '.')
+            resultado_va_producao_rural = str(resultado_va_producao_rural).replace(',', '.')
             resultado_va_producao_rural = float(resultado_va_producao_rural)
         resultado_va_pts = request.POST['resultado_va_pts']
         if resultado_va_pts == '':
-            resultado_va_pts = 0.0
+            resultado_va_pts = '0.0'
             resultado_va_pts = resultado_va_pts.replace(',', '.')
             resultado_va_pts = float(resultado_va_pts)
         else:
-            resultado_va_pts = resultado_va_pts.replace(',', '.')
+            resultado_va_pts = str(resultado_va_pts).replace(',', '.')
             resultado_va_pts = float(resultado_va_pts)
         resultado_va_dar1aut = request.POST['resultado_va_dar1aut']
         if resultado_va_dar1aut == '':
-            resultado_va_dar1aut = 0.0
+            resultado_va_dar1aut = '0.0'
             resultado_va_dar1aut = resultado_va_dar1aut.replace(',', '.')
             resultado_va_dar1aut = float(resultado_va_dar1aut)
         else:
-            resultado_va_dar1aut = resultado_va_dar1aut.replace(',', '.')
+            resultado_va_dar1aut = str(resultado_va_dar1aut).replace(',', '.')
             resultado_va_dar1aut = float(resultado_va_dar1aut)
         resultado_va_nai = request.POST['resultado_va_nai']
         if resultado_va_nai == '':
-            resultado_va_nai = 0.0
+            resultado_va_nai = '0.0'
             resultado_va_nai = resultado_va_nai.replace(',', '.')
             resultado_va_nai = float(resultado_va_nai)
         else:
-            resultado_va_nai = resultado_va_nai.replace(',', '.')
+            resultado_va_nai = str(resultado_va_nai).replace(',', '.')
             resultado_va_nai = float(resultado_va_nai)
         resultado_va_creditoexoff = request.POST['resultado_va_creditoexoff']
         if resultado_va_creditoexoff == '':
-            resultado_va_creditoexoff = 0.0
+            resultado_va_creditoexoff = '0.0'
             resultado_va_creditoexoff = resultado_va_creditoexoff.replace(',', '.')
             resultado_va_creditoexoff = float(resultado_va_creditoexoff)
         else:
-            resultado_va_creditoexoff = resultado_va_creditoexoff.replace(',', '.')
+            resultado_va_creditoexoff = str(resultado_va_creditoexoff).replace(',', '.')
             resultado_va_creditoexoff = float(resultado_va_creditoexoff)
         resultado_va_debitoexoff = request.POST['resultado_va_debitoexoff']
         if resultado_va_debitoexoff == '':
-            resultado_va_debitoexoff = 0.0
+            resultado_va_debitoexoff = '0.0'
             resultado_va_debitoexoff = resultado_va_debitoexoff.replace(',', '.')
             resultado_va_debitoexoff = float(resultado_va_debitoexoff)
         else:
-            resultado_va_debitoexoff = resultado_va_debitoexoff.replace(',', '.')
+            resultado_va_debitoexoff = str(resultado_va_debitoexoff).replace(',', '.')
             resultado_va_debitoexoff = float(resultado_va_debitoexoff)
         resultado_va_total = request.POST['resultado_va_total']
         if resultado_va_total == '':
-            resultado_va_total = 0.0
+            resultado_va_total = '0.0'
             resultado_va_total = resultado_va_total.replace(',', '.')
             resultado_va_total = float(resultado_va_total)
         else:
-            resultado_va_total = resultado_va_total.replace(',', '.')
+            resultado_va_total = str(resultado_va_total).replace(',', '.')
             resultado_va_total = float(resultado_va_total)
         resultado_variacao_distribuicao_estado = request.POST['resultado_variacao_distribuicao_estado']
         if resultado_variacao_distribuicao_estado == '':
-            resultado_variacao_distribuicao_estado = 0.0
+            resultado_variacao_distribuicao_estado = '0.0'
             resultado_variacao_distribuicao_estado = resultado_variacao_distribuicao_estado.replace(',', '.')
             resultado_variacao_distribuicao_estado = float(resultado_variacao_distribuicao_estado)
         else:
-            resultado_variacao_distribuicao_estado = resultado_variacao_distribuicao_estado.replace(',', '.')
+            resultado_variacao_distribuicao_estado = str(resultado_variacao_distribuicao_estado).replace(',', '.')
             resultado_variacao_distribuicao_estado = float(resultado_variacao_distribuicao_estado)
 
         return redirect('resultado_simulacao', municipio=municipio, ano=ano_atual,
