@@ -4827,21 +4827,21 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         )
         va_prod_rural = namedtuplefetchall(cursor)
         va_prod = float(str(va_prod_rural[0][0]))
-        va_prod_rural_final = va_prod + prod_rural
+        va_prod_rural_final = va_prod + float(prod_rural)
 
         cursor.execute(
             """SELECT SUM(prest_serv) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_pts = namedtuplefetchall(cursor)
         va_p = float(str(va_pts[0][0]))
-        va_pts_final = va_p + pts
+        va_pts_final = va_p + float(pts)
 
         cursor.execute(
             """SELECT SUM(dar_1_aut) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_dar1aut = namedtuplefetchall(cursor)
         va_dar = float(str(va_dar1aut[0][0]))
-        va_dar1aut_final = dar1aut + va_dar
+        va_dar1aut_final = dar1aut + float(va_dar)
 
         cursor.execute(
             """SELECT SUM(nai) FROM appva_acypr600 FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
@@ -4849,28 +4849,28 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         )
         va_nai = namedtuplefetchall(cursor)
         va_n = float(str(va_nai[0][0]))
-        va_nai_final = va_n + nai
+        va_nai_final = va_n + float(nai)
 
         cursor.execute(
             """SELECT SUM(credito_ex_off) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_creditoexoff = namedtuplefetchall(cursor)
         va_credito = float(str(va_creditoexoff[0][0]))
-        va_creditoexoff_final = va_credito + creditoexoff
+        va_creditoexoff_final = va_credito + float(creditoexoff)
 
         cursor.execute(
             """SELECT SUM(debito_ex_off) FROM appva_acyor600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_debitoexoff = namedtuplefetchall(cursor)
         va_debito = float(str(va_debitoexoff[0][0]))
-        va_debitoexoff_final = va_debito + debitoexoff
+        va_debitoexoff_final = va_debito + float(debitoexoff)
 
         cursor.execute(
             """SELECT SUM(total) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_total = namedtuplefetchall(cursor)
         va_t = float(str(va_total[0][0]))
-        va_total_final = va_t + total
+        va_total_final = va_t + float(total)
 
         va_do_municipio_atual = (contribuinte + municipio_atual + (
                 va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final)) + va_mun_atu
