@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-
-
 {% block content %}
 <form method="get"> {% csrf_token %}
     <h1><strong>Inserção de porcentagens</strong></h1>
@@ -129,7 +127,9 @@
 
 <form method="post"> {% csrf_token %}
 
-    <h2><strong>Valores após acréscimo de porcentagem</strong></h2>
+    <h1><strong>Valores após acréscimo de porcentagem</strong></h1>
+    <br>
+    <br>
     <h2>2 - Selecionar VA do município</h2>
     <div class="form-row">
         <div class="form-group col-md-3">
