@@ -4928,13 +4928,13 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         if contribuinte_atual == '[Lista(valor_adicionado=None)]':
             contribuinte_atual = '0.0'
         else:
-            contribuinte_atual = contribuinte_atual.replace('[Lista(valor_adicionado=','')
-            contribuinte_atual = contribuinte_atual.replace(")]",'')
+            contribuinte_atual = contribuinte_atual.replace('[Lista(valor_adicionado=', '')
+            contribuinte_atual = contribuinte_atual.replace(")]", '')
         if contribuinte_anterior == '[Lista(valor_adicionado=None)]':
             contribuinte_anterior = '0.0'
         else:
-            contribuinte_anterior = contribuinte_anterior.replace('[Lista(valor_adicionado=','')
-            contribuinte_anterior = contribuinte_anterior.replace(")]",'')
+            contribuinte_anterior = contribuinte_anterior.replace('[Lista(valor_adicionado=', '')
+            contribuinte_anterior = contribuinte_anterior.replace(")]", '')
         va_do_municipio_atual = (float(contribuinte_atual) + float(municipio_atual) + (
                 va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final)) + va_mun_atu
 
@@ -5000,4 +5000,13 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         variacao_indice = indice_simulado - ind_final
 
         variacao_estimada = (float(variacao_distribuicao_estado) * indice_simulado) / 100
-    return render(request, 'resultado_simulacao.html')
+
+        numeros = [
+            {'va_do_municipio_atual': va_do_municipio_atual, 'va_do_municipio_anterior': va_do_municipio_anterior,
+             'va_do_estado_atual': va_do_estado_atual, 'va_do_estado_anterior': va_do_estado_anterior,
+             'va_municipio_media': va_municipio_media, 'va_estado_media': va_estado_media,
+             'va_municipio_75': va_municipio_75, 'va_estado_75': va_estado_75, 'indice_va_anterior': indice_va_anterior,
+             'indice_va_atual': indice_va_atual, 'indice_va_medio': indice_va_medio, 'indice_va_medio_75': indice_va_medio_75,
+             'ucti': ucti, 'trib': trib, 'populacao': populacao, 'area': area, 'coef': coef, 'indice_simulado': indice_simulado,
+             'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada}]
+    return render(request, 'resultado_simulacao.html', {'lista': numeros})
