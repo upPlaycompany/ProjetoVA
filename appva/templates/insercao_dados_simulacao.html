@@ -127,6 +127,7 @@ Inserir dados opcionais de simulação de índices
 
 
 <form method="post"> {% csrf_token %}
+    <h2>2 - Selecionar VA do município</h2>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
@@ -143,6 +144,9 @@ Inserir dados opcionais de simulação de índices
             {% endfor %}
         </div>
     </div>
+    <br>
+    <br>
+    <h2>3 - Selecionar VA do estado</h2>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
@@ -159,6 +163,9 @@ Inserir dados opcionais de simulação de índices
             {% endfor %}
         </div>
     </div>
+    <br>
+    <br>
+    <h2>4 - Atividades econômicas</h2>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
@@ -222,6 +229,12 @@ Inserir dados opcionais de simulação de índices
                    value="{{ va_total_final.resultado_final }}">
             {% endfor %}
         </div>
+
+    </div>
+    <br>
+    <br>
+    <h2>VARIAÇÃO % DISTRIBUIÇÃO ESTADO DO MATO GROSSO</h2>
+    <div class="row">
         <div class="form-group col-md-3">
             <label>Resultado em dinheiro</label>
             {% for variacao_distribuicao_estado_total in variacao_distribuicao_estado %}
