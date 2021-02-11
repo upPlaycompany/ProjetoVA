@@ -3,12 +3,24 @@
 Resultado da simulação
 {% endblock title %}
 {% block content %}
+{% for numeros in lista %}
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Dados da simulação</h6>
     </div>
     <div class="card-body">
-        <p>teste</p>
+        <p> VA do munícipio atual: {{ numeros.va_do_municipio_atual }}, VA do estado atual: {{ numeros.va_do_estado_atual }}</p>
+        <p>VA do munícipio anterior: {{ numeros.va_do_municipio_anterior }}, VA do estado anterior: {{ numeros.va_do_estado_anterior }}</p>
+        <p>Média do VA do município: {{ numeros.va_municipio_media }}, Média do VA do estado: {{ numeros.va_estado_media }}</p>
+        <p>75% da média do VA do município: {{ numeros.va_municipio_75 }}, 75% da média do VA do estado: {{ numeros.va_estado_75 }}</p>
+        <p>Índice do VA atual: {{ numeros.indice_va_atual }}, Índice do VA anterior: {{ numeros.indice_va_anterior}}</p>
+        <p>Índicde do VA médio{{ numeros.indice_va_medio }}, 75% do índice do VA médio: {{ numeros.indice_va_medio_75 }}</p>
+        <p>UCTI: {{ numeros.ucti }}, Trib: {{ numeros.trib }}</p>
+        <p>População: {{ numeros.populacao }}, Área: {{ numeros.area }}</p>
+        <p>Coef: {{ numeros.coef }}</p>
+        <p>Índice simulado: {{ numeros.ind_final }}, Variação do índice simulado: {{ numeros.variacao_indice }}</p>
+        <p>Variação estimada: {{ numeros.variacao_estimada }}</p>
     </div>
 </div>
+{% endfor %}
 {% endblock %}
