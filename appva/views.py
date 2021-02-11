@@ -4935,5 +4935,5 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         ind_final = float(str(lista_ind[0][0]))
         variacao_indice = indice_simulado - ind_final
 
-        variacao_estimada = (variacao_distribuicao_estado * indice_simulado) / 100
+        variacao_estimada = (float(variacao_distribuicao_estado) * indice_simulado) / 100
     return render(request, 'resultado_simulacao.html')
