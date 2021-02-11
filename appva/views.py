@@ -4843,7 +4843,7 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         va_dar = float(str(va_dar1aut[0][0]))
         va_dar1aut_final = float(dar1aut) + va_dar
         cursor.execute(
-            """SELECT SUM(nai) FROM appva_acypr600 FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
+            """SELECT SUM(nai) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""",
             [municipio, ano]
         )
         va_nai = namedtuplefetchall(cursor)
