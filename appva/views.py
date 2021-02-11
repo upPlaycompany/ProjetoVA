@@ -4784,8 +4784,8 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         if resultado_variacao_distribuicao_estado == '':
             resultado_variacao_distribuicao_estado = 0.0
         return redirect('resultado_simulacao', municipio=municipio, ano=ano_atual,
-                        contribuinte_atual = resultado_va_contribuinte_atual,
-                        contribuinte_anterior = resultado_va_contribuinte_anterior,
+                        contribuinte_atual=resultado_va_contribuinte_atual,
+                        contribuinte_anterior=resultado_va_contribuinte_anterior,
                         municipio_atual=resultado_va_municipio_atual,
                         municipio_anterior=resultado_va_municipio_anterior,
                         estado_atual=resultado_va_estado_atual,
