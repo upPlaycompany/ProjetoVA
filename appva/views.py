@@ -4700,8 +4700,12 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
             variacao_distribuicao_estado_total = [0.0]
 
     if request.method == 'POST':
-        resultado_va_contribuinte_atual = float(str(inscricoes[0].valor_adicionado))
-        resultado_va_contribuinte_anterior = float(str(inscricoes[2].valor_adicionado))
+        resultado_va_contribuinte_atual = str(inscricoes[0].valor_adicionado)
+        if resultado_va_contribuinte_atual == 'None':
+            resultado_va_contribuinte_atual = 0.0
+        resultado_va_contribuinte_anterior = str(inscricoes[2].valor_adicionado)
+        if resultado_va_contribuinte_anterior == 'None':
+            resultado_va_contribuinte_atual = 0.0
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
         resultado_va_municipio_atual = resultado_va_municipio_atual.replace(',','.')
         resultado_va_municipio_atual = float(resultado_va_municipio_atual)
