@@ -4123,7 +4123,6 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
     variacao_distribuicao_estado = request.GET.get('variacao_distribuicao_estado')
     inscricoes = 0.0
     inscricoes2 = 0.0
-
     with connections['default'].cursor() as cursor:
         if inscricao and tabela == 'GIA' and ano == 'ano_atual':
             mes1 = int(1)
@@ -4928,8 +4927,12 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_total_final = va_t + float(total)
         if contribuinte_atual == '[Lista(valor_adicionado=None)]':
             contribuinte_atual = '0.0'
+        else:
+            contribuinte_atual = float(str(contribuinte_atual[0].valor_adicionado))
         if contribuinte_anterior == '[Lista(valor_adicionado=None)]':
             contribuinte_anterior = '0.0'
+        else:
+            contribuinte_anterior = float(str(contribuinte_anterior[0].valor_adicionado))
         va_do_municipio_atual = (float(contribuinte_atual) + float(municipio_atual) + (
                 va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final)) + va_mun_atu
 
