@@ -4858,7 +4858,7 @@ def resultado_simulacao(request, municipio, ano, municipio_atual,
         va_creditoexoff_final = va_credito + float(creditoexoff)
 
         cursor.execute(
-            """SELECT SUM(debito_ex_off) FROM appva_acyor600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
+            """SELECT SUM(debito_ex_off) FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s;""", [municipio, ano]
         )
         va_debitoexoff = namedtuplefetchall(cursor)
         va_debito = float(str(va_debitoexoff[0][0]))
