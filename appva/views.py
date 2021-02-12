@@ -4691,7 +4691,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         if variacao_distribuicao_estado:
             variacao_distribuicao_estado = float(float(variacao_distribuicao_estado) / 100)
             cursor.execute(
-                """SELECT ((janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) * %s) + janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12 FROM appva_fpm WHERE ano=%s;""",
+                """SELECT ((janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) * %s) FROM appva_fpm WHERE ano=%s;""",
                 [variacao_distribuicao_estado, ano_atual]
             )
             variacao_distribuicao_estado_total = namedtuplefetchall(cursor)
@@ -4925,6 +4925,13 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_total = namedtuplefetchall(cursor)
         va_t = float(str(va_total[0][0]))
         va_total_final = va_t + float(total)
+
+        cursor.execute(
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) / 12 FROM appva_fpm WHERE ano=%s;""",[ano]
+        )
+        va_variacao_estado = namedtuplefetchall(cursor)
+        va_v = float(str(va_variacao_estado[0][0]))
+        va_variacao_estado_total = va_v + float(variacao_distribuicao_estado)
         if contribuinte_atual == '[Lista(valor_adicionado=None)]':
             contribuinte_atual = '0.0'
         else:
@@ -4999,7 +5006,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         ind_final = float(str(lista_ind[0][0]))
         variacao_indice = indice_simulado - ind_final
 
-        variacao_estimada = (float(variacao_distribuicao_estado) * indice_simulado) / 100
+        variacao_estimada = (float(va_variacao_estado_total) * indice_simulado) / 100
 
         numeros = [
             {'municipio': municipio, 'va_do_municipio_atual': va_do_municipio_atual, 'va_do_municipio_anterior': va_do_municipio_anterior,
