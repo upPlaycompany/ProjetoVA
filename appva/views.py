@@ -298,7 +298,7 @@ def import_gia_omisso(request, pk):
 def CCI(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
-    q = request.GET.get("t")
+    q = request.GET.get("q")
     try:
         if q and t == "cnae":
             cci = Cci.objects.filter(codg_cnae__contains=q)
