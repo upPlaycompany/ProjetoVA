@@ -337,7 +337,7 @@ def CCI(request):
         else:
             cci = Cci.objects.all()
         cci = Paginator(cci, 50)
-        cci = cci.page(page)
+        cci = cci.page(page, cci)
 
     except PageNotAnInteger:
         cci = cci.page(1)
