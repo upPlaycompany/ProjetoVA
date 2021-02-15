@@ -196,10 +196,9 @@ def usuario_editar(request, pk):
             usuario.is_active = True
         else:
             usuario.is_active = False
+        usuario.set_password(f"{password}")
         usuario.save(
             update_fields=['first_name', 'username', 'email', 'is_superuser', 'is_staff', 'is_active'])
-        usuario.set_password(f"{password}")
-        usuario.save()
         return redirect('/usuario_listar/')
 
     return render(request, 'usuario_editar.html', {'usuario': usuario})
