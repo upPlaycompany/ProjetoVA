@@ -297,7 +297,7 @@ def import_gia_omisso(request, pk):
 
 @login_required
 def CCI(request):
-    page = request.GET.get('page', '')
+    page = request.GET.get('page')
     t = request.GET.get("t")
     q = request.GET.get("q")
     e = request.GET.get('e')
@@ -337,7 +337,7 @@ def CCI(request):
         else:
             cci = Cci.objects.all()
         cci = Paginator(cci, 50)
-        cci = cci.page(page, cci)
+        cci = cci.page(page)
 
     except PageNotAnInteger:
         cci = cci.page(1)
@@ -525,7 +525,7 @@ def import_reg_1400_efd(request, pk):
 
 @login_required
 def CAP(request):
-    page = request.GET.get('page', '')
+    page = request.GET.get('page')
     t = request.GET.get("t")
     q = request.GET.get("q")
     e = request.GET.get('e')
