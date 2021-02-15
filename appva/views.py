@@ -528,6 +528,9 @@ def CAP(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
+    e = request.GET.get('e')
+    r = request.GET.get('r')
+    remessa = REMESSAS.objects.all()
     try:
         if q and t == "cnae":
             cap = Cap.objects.filter(codg_cnae__contains=q)
@@ -537,19 +540,33 @@ def CAP(request):
             cap = Cap.objects.filter(nome_pessoa__contains=q)
         elif q and t == "numr_inscricao_estadual":
             cap = Cap.objects.filter(numr_inscricao_estadual__contains=q)
-        elif q and t == "nome_municipio":
+        elif q and t == "municipio":
             cap = Cap.objects.filter(nome_municipio__contains=q)
         elif q and t == "ano_base":
             cap = Cap.objects.filter(ano_base__contains=q)
-        elif q and t == "remessa":
-            cap = Cap.objects.filter(remessa__contains=q)
-        elif q and t == "ano_exercicio":
-            cap = Cap.objects.filter(ano_exercicio__contains=q)
+        elif e:
+            cap = Cap.objects.filter(ano_exercicio__contains=e)
+        elif r:
+            cap = Cap.objects.filter(remessa__contains=r)
+        elif e and r:
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r)
+        elif q and e and r and t == "cnae":
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, codg_cnae__contains=q)
+        elif q and e and r and t == "nome_inscrito":
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_inscrito__contains=q)
+        elif q and e and r and t == "nome_pessoa":
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_pessoa__contains=q)
+        elif q and e and r and t == "numr_inscricao_estadual":
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, numr_inscricao_estadual__contains=q)
+        elif q and e and r and t == "municipio":
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_municipio__contains=q)
+        elif q and e and r and t == "ano_base":
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r,ano_base__contains=q)
         else:
             cap = Cap.objects.all()
             cap = Paginator(cap, 20)
             cap = cap.page(page)
-        remessa = REMESSAS.objects.all()
+
     except PageNotAnInteger:
         cap = cap.page(1)
     except EmptyPage:
