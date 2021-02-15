@@ -306,70 +306,36 @@ def CCI(request):
     try:
         if q and t == "cnae":
             cci = Cci.objects.filter(codg_cnae__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and t == "nome_inscrito":
             cci = Cci.objects.filter(nome_inscrito__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and t == "nome_pessoa":
             cci = Cci.objects.filter(nome_pessoa__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and t == "numr_inscricao_estadual":
             cci = Cci.objects.filter(numr_inscricao_estadual__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and t == "municipio":
             cci = Cci.objects.filter(nome_municipio__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and t == "ano_base":
             cci = Cci.objects.filter(ano_base__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif e:
             cci = Cci.objects.filter(ano_exercicio__contains=e)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif r:
             cci = Cci.objects.filter(remessa__contains=r)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif e and r:
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and e and r and t == "cnae":
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, cnae__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and e and r and t == "nome_inscrito":
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_inscrito__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and e and r and t == "nome_pessoa":
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_pessoa__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and e and r and t == "numr_inscricao_estadual":
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, numr_inscricao_estadual__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and e and r and t == "municipio":
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_municipio__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         elif q and e and r and t == "ano_base":
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,ano_base__contains=q)
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         else:
             cci = Cci.objects.all()
-            cci = Paginator(cci, 50)
-            cci = cci.page(page)
         cci = Paginator(cci, 50)
         cci = cci.page(page)
 
@@ -568,83 +534,36 @@ def CAP(request):
     try:
         if q and t == "cnae":
             cap = Cap.objects.filter(codg_cnae__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and t == "nome_inscrito":
             cap = Cap.objects.filter(nome_inscrito__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and t == "nome_pessoa":
             cap = Cap.objects.filter(nome_pessoa__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and t == "numr_inscricao_estadual":
             cap = Cap.objects.filter(numr_inscricao_estadual__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and t == "municipio":
             cap = Cap.objects.filter(nome_municipio__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and t == "ano_base":
             cap = Cap.objects.filter(ano_base__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif e:
             cap = Cap.objects.filter(ano_exercicio__contains=e)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif r:
             cap = Cap.objects.filter(remessa__contains=r)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif e and r:
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and e and r and t == "cnae":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, codg_cnae__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and e and r and t == "nome_inscrito":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_inscrito__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and e and r and t == "nome_pessoa":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_pessoa__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and e and r and t == "numr_inscricao_estadual":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, numr_inscricao_estadual__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and e and r and t == "municipio":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_municipio__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         elif q and e and r and t == "ano_base":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, ano_base__contains=q)
-            cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         else:
             cap = Cap.objects.all()
-            cap = Paginator(cap, 50)
-            cap = cap.page(page)
         cap = Paginator(cap, 50)
         cap = cap.page(page)
 
