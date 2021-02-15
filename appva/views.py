@@ -315,11 +315,13 @@ def CCI(request):
             cci = Cci.objects.filter(ano_base__contains=q)
         elif q and t == "remessa":
             cci = Cci.objects.filter(remessa__contains=q)
+        elif q and t == "ano_exercicio":
+            cci = Cci.objects.filter(ano_exercicio__contains=q)
         else:
             cci = Cci.objects.all()
+            cci = Paginator(cci, 20)
+            cci = cci.page(page)
         remessa = REMESSAS.objects.all()
-        cci = Paginator(cci, 20)
-        cci = cci.page(page)
     except PageNotAnInteger:
         cci = cci.page(1)
     except EmptyPage:
@@ -524,11 +526,13 @@ def CAP(request):
             cap = Cap.objects.filter(ano_base__contains=q)
         elif q and t == "remessa":
             cap = Cap.objects.filter(remessa__contains=q)
+        elif q and t == "ano_exercicio":
+            cap = Cap.objects.filter(ano_exercicio__contains=q)
         else:
             cap = Cap.objects.all()
+            cap = Paginator(cap, 20)
+            cap = cap.page(page)
         remessa = REMESSAS.objects.all()
-        cap = Paginator(cap, 20)
-        cap = cap.page(page)
     except PageNotAnInteger:
         cap = cap.page(1)
     except EmptyPage:
