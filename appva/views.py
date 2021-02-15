@@ -645,6 +645,8 @@ def CAP(request):
             cap = Cap.objects.all()
             cap = Paginator(cap, 50)
             cap = cap.page(page)
+        cap = Paginator(cap, 50)
+        cap = cap.page(page)
 
     except PageNotAnInteger:
         cap = cap.page(1)
