@@ -302,6 +302,7 @@ def CCI(request):
     q = request.GET.get("q")
     e = request.GET.get('e')
     r = request.GET.get('r')
+    remessa = REMESSAS.objects.all()
     try:
         if q and t == "cnae":
             cci = Cci.objects.filter(codg_cnae__contains=q)
@@ -337,7 +338,7 @@ def CCI(request):
             cci = Cci.objects.all()
             cci = Paginator(cci, 20)
             cci = cci.page(page)
-        remessa = REMESSAS.objects.all()
+
     except PageNotAnInteger:
         cci = cci.page(1)
     except EmptyPage:
