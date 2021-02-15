@@ -370,6 +370,8 @@ def CCI(request):
             cci = Cci.objects.all()
             cci = Paginator(cci, 50)
             cci = cci.page(page)
+        cci = Paginator(cci, 50)
+        cci = cci.page(page)
 
     except PageNotAnInteger:
         cci = cci.page(1)
