@@ -198,6 +198,7 @@ def usuario_editar(request, pk):
             usuario.is_active = False
         usuario.save(
             update_fields=['first_name', 'username', 'email', 'password', 'is_superuser', 'is_staff', 'is_active'])
+        update_session_auth_hash(request, usuario)
         return redirect('/usuario_listar/')
 
     return render(request, 'usuario_editar.html', {'usuario': usuario})
@@ -4932,6 +4933,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_variacao_estado = namedtuplefetchall(cursor)
         va_v = float(str(va_variacao_estado[0][0]))
         va_variacao_estado_total = va_v + float(variacao_distribuicao_estado)
+
         if contribuinte_atual == '[Lista(valor_adicionado=None)]':
             contribuinte_atual = '0.0'
         else:
