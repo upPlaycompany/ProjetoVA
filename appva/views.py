@@ -4618,7 +4618,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         if va_municipio_atual:
             va_municipio_atual = float(float(va_municipio_atual) / 100)
             cursor.execute(
-                """SELECT (SUM(vr_adic_ano_exercicio) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
+                """SELECT (SUM(vr_adic_ano_exercicio) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
                 [va_municipio_atual, municipio, ano_atual])
             va_mun_atual_total = namedtuplefetchall(cursor)
         else:
@@ -4627,7 +4627,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         if va_municipio_anterior:
             va_municipio_anterior = float(float(va_municipio_anterior) / 100)
             cursor.execute(
-                """SELECT (SUM(vr_adic_ano_base) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio=%s AND ano_base=%s;""",
+                """SELECT (SUM(vr_adic_ano_base) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio=%s AND ano_base=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
                 [va_municipio_anterior, municipio, ano_anterior])
             va_mun_anterior_total = namedtuplefetchall(cursor)
         else:
@@ -4636,7 +4636,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         if va_estado_atual:
             va_estado_atual = float(float(va_estado_atual) / 100)
             cursor.execute(
-                """SELECT (SUM(vr_adic_ano_exercicio) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s;""",
+                """SELECT (SUM(vr_adic_ano_exercicio) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
                 [va_estado_atual, ano_atual])
             va_estado_atual_total = namedtuplefetchall(cursor)
         else:
@@ -4645,7 +4645,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         if va_estado_anterior:
             va_estado_anterior = float(float(va_estado_anterior) / 100)
             cursor.execute(
-                """SELECT (SUM(vr_adic_ano_base) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_base=%s;""",
+                """SELECT (SUM(vr_adic_ano_base) * %s) AS resultado_final FROM appva_acypr556 WHERE municipio='TOTAL DO ESTADO' AND ano_base=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
                 [va_estado_anterior, ano_anterior])
             va_estado_anterior_total = namedtuplefetchall(cursor)
         else:
