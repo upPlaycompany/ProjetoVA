@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1><strong>Inserção de porcentagens</strong></h1>
+
 <br>
 <div class="card shadow mb-4">
     <div class="card-body">
@@ -8,6 +8,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
+                    <th>MUNICÍPIO</th>
                     <th>IVA ANT</th>
                     <th>IVA ATUAL</th>
                     <th>IVA MED</th>
@@ -25,6 +26,7 @@
                 <tbody>
                 {% for dados_indice in lista %}
                 <tr>
+                    <td>{{ dados_indice.municipio }}</td>
                     <td>{{ dados_indice.iva_ant }}</td>
                     <td>{{ dados_indice.iva_atual }}</td>
                     <td>{{ dados_indice.iva_med }}</td>
@@ -44,7 +46,7 @@
     </div>
 </div>
 <form method="get"> {% csrf_token %}
-
+<h1><strong>Inserção de porcentagens</strong></h1>
     <h2>1 - Selecionar VA do contribuinte</h2>
     <div class="form-row">
 
