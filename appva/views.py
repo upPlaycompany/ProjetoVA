@@ -4138,14 +4138,14 @@ def pre_simulacao(request):
         ano_atual = request.POST['ano_atual']
         municipio = request.POST['municipio']
         ano_anterior = int(ano_atual) - 1
-        return redirect('insercao_dados_simulacao', municipio=municipio, ano_atual=ano_atual, ano_anterior=ano_anterior)
+        return redirect('insercao_dados_simulacao', municipio=municipio, ano_atu=ano_atual, ano_ant=ano_anterior)
     return render(request, 'pre_simulacao.html')
 
 
 @login_required
-def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
-    ano_atual = int(ano_atual)-1
-    ano_anterior = int(ano_anterior)-1
+def insercao_dados_simulacao(request, municipio, ano_atu, ano_ante):
+    ano_atual = int(ano_atu)-1
+    ano_anterior = int(ano_ant)-1
     inscricao = request.GET.get("inscricao")
     tabela = request.GET.get("tabela")
     ano = request.GET.get('ano')
