@@ -4136,8 +4136,8 @@ def import_cfop(request, pk):
 def pre_simulacao(request):
     if request.method == 'POST':
         ano_atual = request.POST['ano_atual']
-        ano_anterior = request.POST['ano_anterior']
         municipio = request.POST['municipio']
+        ano_anterior = int(ano_atual) - 1
         return redirect('insercao_dados_simulacao', municipio=municipio, ano_atual=ano_atual, ano_anterior=ano_anterior)
     return render(request, 'pre_simulacao.html')
 
@@ -4147,7 +4147,6 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
     inscricao = request.GET.get("inscricao")
     tabela = request.GET.get("tabela")
     ano = request.GET.get('ano')
-
     va_municipio_atual = request.GET.get("va_municipio_atual")
     va_municipio_anterior = request.GET.get("va_municipio_anterior")
     va_estado_atual = request.GET.get('va_estado_atual')
