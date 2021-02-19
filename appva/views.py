@@ -4695,7 +4695,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
         if va_nai:
             va_nai = float(float(va_nai) / 100)
             cursor.execute(
-                """SELECT (SUM(nai) * %s) FROM AS resultado_final appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
+                """SELECT (SUM(nai) * %s) AS resultado_final FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
                 [va_nai, municipio, ano_atual]
             )
             va_nai_total = namedtuplefetchall(cursor)
