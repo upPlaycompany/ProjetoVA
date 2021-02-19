@@ -3,12 +3,16 @@
 
 <br>
 <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        {% for dados_indice in lista %}
+        <h6 class="m-0 font-weight-bold text-primary"><strong>MUNICÍPIO:</strong>{{ dados_indice.municipio }} - <strong>DESCRIÇÃO:</strong> {{ dados_indice.descricao }}</h6>
+        {% endfor %}
+    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>MUNICÍPIO</th>
                     <th>IVA ANT</th>
                     <th>IVA ATUAL</th>
                     <th>IVA MED</th>
@@ -19,14 +23,12 @@
                     <th>ÁREA</th>
                     <th>COEF SOC</th>
                     <th>IND FINAL</th>
-                    <th>DESCRIÇÃO</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 {% for dados_indice in lista %}
                 <tr>
-                    <td>{{ dados_indice.municipio }}</td>
                     <td>{{ dados_indice.iva_ant }}</td>
                     <td>{{ dados_indice.iva_atual }}</td>
                     <td>{{ dados_indice.iva_med }}</td>
@@ -37,7 +39,6 @@
                     <td>{{ dados_indice.area }}</td>
                     <td>{{ dados_indice.coef_soc }}</td>
                     <td>{{ dados_indice.ind_final }}</td>
-                    <td>{{ dados_indice.descricao }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
