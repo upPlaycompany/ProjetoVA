@@ -1,5 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>IVA ANT</th>
+                    <th>IVA ATUAL</th>
+                    <th>IVA MED</th>
+                    <th>IVA 75%</th>
+                    <th>UCTI</th>
+                    <th>TRIB PROPR</th>
+                    <th>POPULAÇÃO</th>
+                    <th>ÁREA</th>
+                    <th>COEF SOC</th>
+                    <th>IND FINAL</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for dados_indice in lista %}
+                <tr>
+                    <td>{{ dados_indice.iva_ant }}</td>
+                    <td>{{ dados_indice.iva_atual }}</td>
+                    <td>{{ dados_indice.iva_med }}</td>
+                    <td>{{ dados_indice.iva_75 }}</td>
+                    <td>{{ dados_indice.ucti }}</td>
+                    <td>{{ dados_indice.populacao }}</td>
+                    <td>{{ dados_indice.area }}</td>
+                    <td>{{ dados_indice.coef_soc }}</td>
+                    <td>{{ dados_indice.ind_final }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 <form method="get"> {% csrf_token %}
     <h1><strong>Inserção de porcentagens</strong></h1>
     <h2>1 - Selecionar VA do contribuinte</h2>

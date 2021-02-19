@@ -325,15 +325,16 @@ def CCI(request):
         elif q and e and r and t == "cnae":
             cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, cnae__contains=q)
         elif q and e and r and t == "nome_inscrito":
-            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_inscrito__contains=q)
+            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_inscrito__contains=q)
         elif q and e and r and t == "nome_pessoa":
-            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_pessoa__contains=q)
+            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_pessoa__contains=q)
         elif q and e and r and t == "numr_inscricao_estadual":
-            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, numr_inscricao_estadual__contains=q)
+            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,
+                                     numr_inscricao_estadual__contains=q)
         elif q and e and r and t == "municipio":
-            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,nome_municipio__contains=q)
+            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_municipio__contains=q)
         elif q and e and r and t == "ano_base":
-            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r,ano_base__contains=q)
+            cci = Cci.objects.filter(ano_exercicio__contains=e, remessa__contains=r, ano_base__contains=q)
         else:
             cci = Cci.objects.all()
         cci = Paginator(cci, 50)
@@ -557,7 +558,8 @@ def CAP(request):
         elif q and e and r and t == "nome_pessoa":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_pessoa__contains=q)
         elif q and e and r and t == "numr_inscricao_estadual":
-            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, numr_inscricao_estadual__contains=q)
+            cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r,
+                                     numr_inscricao_estadual__contains=q)
         elif q and e and r and t == "municipio":
             cap = Cap.objects.filter(ano_exercicio__contains=e, remessa__contains=r, nome_municipio__contains=q)
         elif q and e and r and t == "ano_base":
@@ -4162,6 +4164,11 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
     inscricoes = 0.0
     inscricoes2 = 0.0
     with connections['default'].cursor() as cursor:
+        cursor.execute(
+            """SELECT iva_ant, iva_atual, iva_med, iva_75, ucti, trib_propr, populacao, area, coef_soc, ind_final FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s;""",
+            [municipio, ano_atual]
+        )
+        dados_indice = namedtuplefetchall(cursor)
         if inscricao and tabela == 'GIA' and ano == 'ano_atual':
             mes1 = int(1)
             mes2 = int(12)
@@ -4868,7 +4875,7 @@ def insercao_dados_simulacao(request, municipio, ano_atual, ano_anterior):
                    'pts': va_pts_total, 'dar1aut': va_dar1aut_total,
                    'nai': va_nai_total, 'creditoexoff': va_creditoexoff_total,
                    'debitoexoff': va_debitoexoff_total, 'total': va_total_final,
-                   'variacao_distribuicao_estado': variacao_distribuicao_estado_total})
+                   'variacao_distribuicao_estado': variacao_distribuicao_estado_total, 'lista': dados_indice})
 
 
 @login_required
@@ -4965,7 +4972,8 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_total_final = va_t + float(total)
 
         cursor.execute(
-            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) / 12 AS variacao FROM appva_fpm WHERE ano=%s;""",[ano]
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) / 12 AS variacao FROM appva_fpm WHERE ano=%s;""",
+            [ano]
         )
         va_variacao_estado = namedtuplefetchall(cursor)
         va_v = float(str(va_variacao_estado[0].variacao))
@@ -5048,11 +5056,14 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         variacao_estimada = (float(va_variacao_estado_total) * indice_simulado) / 100
 
         numeros = [
-            {'municipio': municipio, 'va_do_municipio_atual': va_do_municipio_atual, 'va_do_municipio_anterior': va_do_municipio_anterior,
+            {'municipio': municipio, 'va_do_municipio_atual': va_do_municipio_atual,
+             'va_do_municipio_anterior': va_do_municipio_anterior,
              'va_do_estado_atual': va_do_estado_atual, 'va_do_estado_anterior': va_do_estado_anterior,
              'va_municipio_media': va_municipio_media, 'va_estado_media': va_estado_media,
              'va_municipio_75': va_municipio_75, 'va_estado_75': va_estado_75, 'indice_va_anterior': indice_va_anterior,
-             'indice_va_atual': indice_va_atual, 'indice_va_medio': indice_va_medio, 'indice_va_medio_75': indice_va_medio_75,
-             'ucti': ucti, 'trib': trib, 'populacao': populacao, 'area': area, 'coef': coef, 'indice_simulado': indice_simulado,
+             'indice_va_atual': indice_va_atual, 'indice_va_medio': indice_va_medio,
+             'indice_va_medio_75': indice_va_medio_75,
+             'ucti': ucti, 'trib': trib, 'populacao': populacao, 'area': area, 'coef': coef,
+             'indice_simulado': indice_simulado,
              'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada}]
     return render(request, 'resultado_simulacao.html', {'lista': numeros})
