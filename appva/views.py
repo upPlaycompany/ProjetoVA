@@ -4738,7 +4738,7 @@ def insercao_dados_simulacao(request, municipio, ano_atu, ano_ant):
         if variacao_distribuicao_estado:
             variacao_distribuicao_estado = float(float(variacao_distribuicao_estado) / 100)
             cursor.execute(
-                """SELECT ((janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) * %s) FROM appva_fpm WHERE ano=%s;""",
+                """SELECT ((janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) * %s) AS resultado_final FROM appva_fpm WHERE ano=%s;""",
                 [variacao_distribuicao_estado, ano_icms]
             )
             variacao_distribuicao_estado_total = namedtuplefetchall(cursor)
@@ -4887,7 +4887,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
                         debitoexoff, total, variacao_distribuicao_estado):
     with connections['default'].cursor() as cursor:
         cursor.execute(
-            """SELECT SUM(vr_adic_ano_exercicio) FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s;""",
+            """SELECT SUM(vr_adic_ano_exercicio) FROM appva_acypr556 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
             [municipio, ano]
         )
         va_municipio_atu = namedtuplefetchall(cursor)
