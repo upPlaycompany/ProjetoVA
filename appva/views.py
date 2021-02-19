@@ -4144,8 +4144,8 @@ def pre_simulacao(request):
 
 @login_required
 def insercao_dados_simulacao(request, municipio, ano_atu, ano_ant):
-    ano_atual = int(ano_atu)-1
-    ano_anterior = int(ano_ant)-1
+    ano_atual = str(int(ano_atu)-1)
+    ano_anterior = str(int(ano_ant)-1)
     inscricao = request.GET.get("inscricao")
     tabela = request.GET.get("tabela")
     ano = request.GET.get('ano')
