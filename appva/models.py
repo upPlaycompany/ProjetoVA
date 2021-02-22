@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 
-# RELAÇÃO DOS ÍNDICES APURADOS #VVVVVVVVVVVVVVVVVVVVVVVVV
+# RELAÇÃO DOS ÍNDICES APURADOS
 
 class Acypr535(models.Model):
     municipio = models.CharField(max_length=255, null=True)
@@ -23,7 +23,7 @@ class Acypr535(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# RELAÇÃO DAS VARIAÇÕES DOS INDICES #VVVVVVVVVVVVVVVVVVVVVVVV
+# RELAÇÃO DAS VARIAÇÕES DOS INDICES
 class Acypr540(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -36,7 +36,7 @@ class Acypr540(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# VALORES ADICIONADOS POR CONTRIBUINTE POSITIVO #VVVVVVVVVVVVVVVVVVVV
+# VALORES ADICIONADOS POR CONTRIBUINTE POSITIVO
 class Acypr555(models.Model):
     tipo_contrib = models.CharField(max_length=255, null=True)
     cod = models.CharField(max_length=255, null=True)
@@ -57,7 +57,7 @@ class Acypr555(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# VALORES  UTILIZADOS PARA CÁLCULOS DE INDICE #VVVVVVVVVVVVVVVVV
+# VALORES  UTILIZADOS PARA CÁLCULOS DE INDICE
 class Acypr556(models.Model):
     codigo = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -72,7 +72,7 @@ class Acypr556(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# VALORES ADICIONADOS POR CONTRIBUINTE NEGATIVOS E NULOS #vvvvvvvvvvvvvvvv
+# VALORES ADICIONADOS POR CONTRIBUINTE NEGATIVOS E NULOS
 class Acypr557(models.Model):
     tipo_contrib = models.CharField(max_length=255, null=True)
     cod = models.CharField(max_length=255, null=True)
@@ -93,7 +93,7 @@ class Acypr557(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# RELATORIO DE VALORES ADICIONADOS #vvvvvvvvvvvvvvvvvvvvvvvvvv
+# RELATORIO DE VALORES ADICIONADOS
 class Acypr600(models.Model):
     municipio = models.CharField(max_length=255, null=True)
     com_ind = models.FloatField( null=True)
@@ -110,7 +110,7 @@ class Acypr600(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# Catálogo alfábetico de contribuintes(CAP) #FALHA NA IMPORTAÇÃO
+# Catálogo alfábetico de contribuintes(CAP)
 class Cap(models.Model):
     numr_inscricao_estadual = models.CharField(max_length=255, null=True)
     nome_pessoa = models.CharField(max_length=255, null=True)
@@ -154,7 +154,7 @@ class Cap(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# Catálogo alfabético de contribuintes(CCI) #VVVVVVVVVVVVVVVVVVVVVVVV
+# Catálogo alfabético de contribuintes(CCI)
 class Cci(models.Model):
     numr_inscricao_estadual = models.CharField(max_length=255, null=True)
     nome_pessoa = models.CharField(max_length=255, null=True)
@@ -211,7 +211,7 @@ class Acgpr051(models.Model):
     cod_mun = models.CharField(max_length=255, null=True)
 
 
-# CREDITO #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# CREDITO
 class Cred(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -225,7 +225,7 @@ class Cred(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# CÓDIGO FISCAL DE OPERAÇÕES #XXXXXXXXXXXXXXXXXXXXX
+# CÓDIGO FISCAL DE OPERAÇÕES
 class Cfop(models.Model):
     cfop = models.IntegerField(primary_key=True, null=False)
     portaria = models.CharField(max_length=255, null=True)
@@ -234,7 +234,7 @@ class Cfop(models.Model):
 
 
 
-# CODIGO NACIONAL DE ATIVIDADES ECONÔMICAS #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV LIMITAR NUMERO DE VIRGULAS E COLOCAR DADOS DA DENOMINAÇÃO EM APENAS UMA LINHA
+# CODIGO NACIONAL DE ATIVIDADES ECONÔMICAS
 class Cnae(models.Model):
     secao = models.CharField(max_length=255, null=True)
     divisao = models.CharField(max_length=100, null=True)
@@ -244,7 +244,7 @@ class Cnae(models.Model):
     denominacao = models.CharField(max_length=255, null=True)
 
 
-# DEBITO #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# DEBITO
 class Deb(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -258,7 +258,7 @@ class Deb(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# REG 14000 EFD REGISTROS VALROES PRESTADOS POR MUNICIPIO #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# REG 14000 EFD REGISTROS VALROES PRESTADOS POR MUNICIPIO
 class Reg_1400_efd(models.Model):
     inscricao = models.CharField(max_length=255, null=True)
     contribuinte = models.CharField(max_length=255, null=True)
@@ -275,7 +275,7 @@ class Reg_1400_efd(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# ESCRITURACAO FISCAL DIGITAL #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# ESCRITURACAO FISCAL DIGITAL
 class Efd(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -296,7 +296,7 @@ class Efd(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# SEM MOVIMENTO #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# SEM MOVIMENTO
 class Efd_sem_mov(models.Model):
     num_efd = models.CharField(max_length=255, null=True)
     inscricao = models.CharField(max_length=255, null=True)
@@ -310,7 +310,7 @@ class Efd_sem_mov(models.Model):
     ano_exercicio = models.CharField(max_length=100, null=True)
     ano_base = models.CharField(max_length=100, null=True)
 
-# OMISSO #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# OMISSO
 class Efd_omisso(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -325,7 +325,7 @@ class Efd_omisso(models.Model):
 
 
 # FUNDO DE PARTICIPAÇÃO DOS MUNICÍPIOS
-# FAZER CLASSE FPM #VVVVVVVVVVVVVVVVVVVVVV
+# FAZER CLASSE FPM
 class Fpm(models.Model):
     ano = models.CharField(max_length=255, null=True)
     janeiro = models.FloatField(null=True)
@@ -343,7 +343,7 @@ class Fpm(models.Model):
     total = models.FloatField(null=True)
     variacao = models.FloatField(null=True)
 
-# COP3 MENSAL: GIA-ICMS #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# COP3 MENSAL: GIA-ICMS
 class Gia_cop3(models.Model):
     inscricao = models.CharField(max_length=255, null=True)
     contribuinte = models.CharField(max_length=255, null=True)
@@ -360,7 +360,7 @@ class Gia_cop3(models.Model):
     ano_exercicio = models.CharField(max_length=100, null=True)
 
 
-# DHRPR296 REGISTROS GIA POR CFOP #VVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# DHRPR296 REGISTROS GIA POR CFOP
 class Gia_entradas_saidas(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -390,7 +390,7 @@ class Gia_entradas_saidas(models.Model):
 
 
 
-# DHRPR278: GIA-ICMS RELATORIO DE OMISSOS NA GIA-ICMS POR MUNICIPIOS E CONTABILISTAS #VVVVVVVVVVVVVVVVVVVVVVVVVV
+# DHRPR278: GIA-ICMS RELATORIO DE OMISSOS NA GIA-ICMS POR MUNICIPIOS E CONTABILISTAS
 class Gia_omisso(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -412,7 +412,7 @@ class Gia_omisso(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# DHRPR098 GIA-ICMS DECLARADAS SEM MOVIMENTO(ENTRADAS E SAIDAS ZERADAS) #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# DHRPR098 GIA-ICMS DECLARADAS SEM MOVIMENTO(ENTRADAS E SAIDAS ZERADAS)
 class Gia_sem_mov(models.Model):
     cod = models.CharField(max_length=255, null=True)
     municipio = models.CharField(max_length=255, null=True)
@@ -432,7 +432,7 @@ class Gia_sem_mov(models.Model):
     ano_exercicio = models.CharField(max_length=100, null=True)
 
 
-# IE SIMPLES NACIONAL #VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+# IE SIMPLES NACIONAL
 class Ie(models.Model):
     numr_inscricao_estadual = models.CharField(max_length=255)
     nome_pessoa = models.CharField(max_length=255, null=True)
@@ -443,7 +443,7 @@ class Ie(models.Model):
     ano_base = models.CharField(max_length=100, null=True)
 
 
-# NOTAS FISCAIS DE PRODUTOR E AVULSA NFPA #vvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+# NOTAS FISCAIS DE PRODUTOR E AVULSA NFPA
 class Acgpt812(models.Model):
     ie_remetente = models.CharField(max_length=255, null=True)
     ie_simplificada = models.CharField(max_length=255, null=True)
@@ -465,7 +465,7 @@ class Acgpt812(models.Model):
 
 
 
-# Relatorio de notas fiscais de entradas eletronicas #VVVVVVVVVVVVVVVVVVVVVVVV
+# Relatorio de notas fiscais de entradas eletronicas
 class Nfe_e(models.Model):
     ie_remetente = models.CharField(max_length=255, null=True)
     nome_do_produtor = models.CharField(max_length=255, null=True)
@@ -485,7 +485,7 @@ class Nfe_e(models.Model):
 
 
 
-# RELATORIO DE NOTAS FISCAIS DE ENTRADA ELETRONICAS EFD #VVVVVVVVVVVVVVVVVVVVVVVVVVV
+# RELATORIO DE NOTAS FISCAIS DE ENTRADA ELETRONICAS EFD
 class Nfe_efd(models.Model):
     ie_remetente = models.CharField(max_length=255, null=True)
     nome_remetente = models.CharField(max_length=255, null=True)
