@@ -4171,6 +4171,10 @@ def insercao_dados_simulacao(request, municipio, ano_atu, ano_ant):
             [municipio, ano_atual]
         )
         dados_indice = namedtuplefetchall(cursor)
+        cursor.execute(
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) AS resultado_final FROM appva_fpm WHERE ano=%s;"""
+        )
+        dados_icms = namedtuplefetchall(cursor)
         if inscricao and tabela == 'GIA' and ano == 'ano_atual':
             mes1 = int(1)
             mes2 = int(12)
@@ -4877,7 +4881,7 @@ def insercao_dados_simulacao(request, municipio, ano_atu, ano_ant):
                    'pts': va_pts_total, 'dar1aut': va_dar1aut_total,
                    'nai': va_nai_total, 'creditoexoff': va_creditoexoff_total,
                    'debitoexoff': va_debitoexoff_total, 'total': va_total_final,
-                   'variacao_distribuicao_estado': variacao_distribuicao_estado_total, 'lista': dados_indice})
+                   'variacao_distribuicao_estado': variacao_distribuicao_estado_total, 'lista': dados_indice, 'lista2': dados_icms})
 
 
 @login_required
