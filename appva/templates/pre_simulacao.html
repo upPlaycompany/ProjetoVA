@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Selecionar ano e munícipio para simulação
+Simulador do Índice de Participação no ICMS*
 {% endblock title %}
 
 {% block content %}
 <form method="post"> {% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-3">
-            <label>Selecione o ano atual</label>
+            <label>Selecione o exercício do último índice publicado no DOE:</label>
             <select name="ano_atual" class="form-control" required>
                 <option selected>Selecione...</option>
                 <option value="2021">2021</option>
@@ -25,7 +25,7 @@ Selecionar ano e munícipio para simulação
             </select>
         </div>
         <div class="form-group col-md-6">
-            <label>Munícipio alvo da simulação</label>
+            <label>Selecione o município</label>
             <select name="municipio" class="form-control" required>
                 <option selected>Selecione...</option>
                 <option value="ACORIZAL">ACORIZAL</option>
@@ -37,7 +37,6 @@ Selecionar ano e munícipio para simulação
                 <option value="ALTO PARAGUAI">ALTO PARAGUAI</option>
                 <option value="ALTO TAQUARI">ALTO TAQUARI</option>
                 <option value="APIACAS">APIACAS</option>
-                <option value="ARAGUAIANA">ARAGUAIANA</option>
                 <option value="ARAGUAINHA">ARAGUAINHA</option>
                 <option value="ARAPUTANGA">ARAPUTANGA</option>
                 <option value="ARENAPOLIS">ARENAPOLIS</option>
@@ -172,7 +171,7 @@ Selecionar ano e munícipio para simulação
         </div>
     </div>
     <div class="form-group col-md-3">
-            <label>Selecione a remessa desejada</label>
+            <label>Selecione o tipo de publicação no DOE (preliminar ou definitivo):</label>
             <select name="remessa" class="form-control" required>
                 <option selected>Selecione...</option>
                 <option value="R1 - PRELIMINAR">R1 - PRELIMINAR</option>
@@ -193,5 +192,7 @@ Selecionar ano e munícipio para simulação
         </div>
         <button type="submit" class="btn btn-primary">Enviar</button></a>
 </form>
+<br>
+<h3>* a manutenção dos valores demonstrados na simulação não implica na garantia e obtenção de resultados econômicos pois trata-se de uma ferramenta de análise de cenários e estimativa de resultados na distribuição do ICMS.</h3>
 
 {% endblock %}
