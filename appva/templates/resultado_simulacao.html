@@ -14,11 +14,11 @@ Resultado da simulação
         <p><strong>Média do VA do município:</strong> {{ numeros.va_municipio_media }}, <strong>Média do VA do estado:</strong> {{ numeros.va_estado_media }}</p>
         <p><strong>75% da média do VA do município:</strong> {{ numeros.va_municipio_75 }}, <strong>75% da média do VA do estado:</strong> {{ numeros.va_estado_75 }}</p>
         <p><strong>Índice do VA atual:</strong> {{ numeros.indice_va_atual|floatformat:6 }}, <strong>Índice do VA anterior:</strong> {{ numeros.indice_va_anterior|floatformat:6 }}</p>
-        <p><strong>Índice do VA médio:</strong> {{ numeros.indice_va_medio|floatformat:6 }}, <strong>75% do índice do VA médio:</strong> {{ numeros.indice_va_medio_75|floatformat:3 }}</p>
+        <p><strong>Índice do VA médio:</strong> {{ numeros.indice_va_medio|floatformat:6 }}, <strong>75% do índice do VA médio:</strong> {{ numeros.indice_va_medio_75|floatformat:6 }}</p>
         <p><strong>5% UCTI:</strong> {{ numeros.ucti }}, <strong>4% índice tributação própria:</strong> {{ numeros.trib }}</p>
         <p><strong>4% índice população:</strong> {{ numeros.populacao }}, <strong>1% índice área:</strong> {{ numeros.area }}</p>
         <p><strong>11% índice coef. social:</strong> {{ numeros.coef }}</p>
-        <p><strong>Índice simulado:</strong> {{ numeros.ind_final|floatformat:3 }}, <strong>Variação do índice simulado:</strong> {{ numeros.variacao_indice }}</p>
+        <p><strong>Índice simulado:</strong> {{ numeros.ind_final|floatformat:6 }}, <strong>Variação do índice simulado:</strong> {{ numeros.variacao_indice }}</p>
         <p><strong>Variação estimada:</strong> {{ numeros.variacao_estimada }}</p>
     </div>
 </div>
