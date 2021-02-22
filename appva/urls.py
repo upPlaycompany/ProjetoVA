@@ -115,7 +115,7 @@ urlpatterns = [
     path('import_cfop/<int:pk>', views.import_cfop, name='import_cfop'),
 
     path('pre_simulacao/', views.pre_simulacao, name='pre_simulacao'),
-    path('insercao_dados_simulacao/<str:municipio>/<str:ano_atu>/<str:ano_ant>', views.insercao_dados_simulacao,
+    path('insercao_dados_simulacao/<str:remessa>/<str:municipio>/<str:ano_atu>/<str:ano_ant>', views.insercao_dados_simulacao,
          name='insercao_dados_simulacao'),
     path(
         'resultado_simulacao/<str:municipio>/<str:ano>/<str:contribuinte_atual>/<str:contribuinte_anterior>/<str:municipio_atual>/<str:municipio_anterior>/<str:estado_atual>/<str:estado_anterior>/<str:comercio>/<str:prod_rural>/<str:pts>/<str:dar1aut>/<str:nai>/<str:creditoexoff>/<str:debitoexoff>/<str:total>/<str:variacao_distribuicao_estado>/',
