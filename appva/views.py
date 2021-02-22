@@ -4159,7 +4159,20 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
         remessas = ('R6 - DEFINITIVO', 'R6-DEFINITIVO', 'R6- DEFINITIVO','R6 -DEFINITIVO')
     elif remessa == 'R7 - DEFINITIVO':
         remessas = ('R7 - DEFINITIVO', 'R7-DEFINITIVO', 'R7- DEFINITIVO','R7 -DEFINITIVO')
-
+    elif remessa == 'R1 - PRELIMINAR':
+        remessas = ('R1 - PRELIMINAR', 'R1-PRELIMINAR', 'R1- PRELIMINAR','R1 -PRELIMINAR')
+    elif remessa == 'R2 - PRELIMINAR':
+        remessas = ('R2 - PRELIMINAR', 'R2-PRELIMINAR', 'R2- PRELIMINAR','R2 -PRELIMINAR')
+    elif remessa == 'R3 - PRELIMINAR':
+        remessas = ('R3 - PRELIMINAR', 'R3-PRELIMINAR', 'R3- PRELIMINAR', 'R3 -PRELIMINAR')
+    elif remessa == 'R4 - PRELIMINAR':
+        remessas = ('R4 - PRELIMINAR', 'R4-PRELIMINAR', 'R4- PRELIMINAR','R4 -PRELIMINAR')
+    elif remessa == 'R5 - PRELIMINAR':
+        remessas = ('R5 - PRELIMINAR', 'R5-PRELIMINAR', 'R5- PRELIMINAR','R5 -PRELIMINAR')
+    elif remessa == 'R6 - PRELIMINAR':
+        remessas = ('R6 - PRELIMINAR', 'R6-PRELIMINAR', 'R6- PRELIMINAR','R6 -PRELIMINAR')
+    elif remessa == 'R7 - PRELIMINAR':
+        remessas = ('R7 - PRELIMINAR', 'R7-PRELIMINAR', 'R7- PRELIMINAR','R7 -PRELIMINAR')
     ano_atual = str(int(ano_atu)-1)
     ano_anterior = str(int(ano_ant)-1)
     inscricao = request.GET.get("inscricao")
