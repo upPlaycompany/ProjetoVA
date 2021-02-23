@@ -5120,7 +5120,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         lista_coef = namedtuplefetchall(cursor)
         coef = float(str(lista_coef[0][0]))
 
-        indice_simulado = indice_va_medio_75 + coef
+        indice_simulado = indice_va_medio_75 + ucti + trib + populacao + area + coef
 
         cursor.execute(
             """SELECT SUM(ind_final) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
