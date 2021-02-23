@@ -5010,7 +5010,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
         cursor.execute(
             """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) / 12 AS variacao FROM appva_fpm WHERE ano=%s;""",
-            [ano, abc]
+            [ano]
         )
         va_variacao_estado = namedtuplefetchall(cursor)
         va_v = float(str(va_variacao_estado[0].variacao))
@@ -5087,7 +5087,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
         cursor.execute(
             """SELECT SUM(ind_final) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""", [municipio, ano]
-        )
+        ,[abc])
         lista_ind = namedtuplefetchall(cursor)
         ind_final = float(str(lista_ind[0][0]))
         variacao_indice = indice_simulado - ind_final
