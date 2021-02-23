@@ -5061,7 +5061,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
             contribuinte_anterior = contribuinte_anterior.replace(")]", '')
 
 
-        va_do_municipio_atual = float(contribuinte_atual) + float(municipio_atual) + va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final + va_mun_atu
+        va_do_municipio_atual = float(contribuinte_atual) + float(municipio_atual) + float(va_comercio_final) + float(va_prod_rural_final) + float(va_pts_final) + float(va_dar1aut_final) + float(va_nai_final) + float(va_creditoexoff_final) + float(va_debitoexoff_final) + float(va_total_final) + va_mun_atu
 
         va_do_municipio_anterior = (float(contribuinte_anterior) + float(municipio_anterior)) + va_mun_ant
 
