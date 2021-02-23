@@ -5077,9 +5077,9 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
         va_estado_75 = va_estado_media * 0.75
 
-        indice_va_anterior = (va_do_municipio_anterior + va_do_estado_anterior) / 100
+        indice_va_anterior = (va_do_municipio_anterior + va_do_estado_anterior) * 100
 
-        indice_va_atual = (va_do_municipio_atual + va_do_estado_atual) / 100
+        indice_va_atual = (va_do_municipio_atual + va_do_estado_atual) * 100
 
         indice_va_medio = (indice_va_anterior + indice_va_atual) / 2
 
