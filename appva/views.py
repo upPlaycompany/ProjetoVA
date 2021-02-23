@@ -5010,7 +5010,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
         cursor.execute(
             """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) / 12 AS variacao FROM appva_fpm WHERE ano=%s;""",
-            [ano]
+            [ano, abc]
         )
         va_variacao_estado = namedtuplefetchall(cursor)
         va_v = float(str(va_variacao_estado[0].variacao))
@@ -5026,6 +5026,8 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         else:
             contribuinte_anterior = contribuinte_anterior.replace('[Lista(valor_adicionado=', '')
             contribuinte_anterior = contribuinte_anterior.replace(")]", '')
+
+
         va_do_municipio_atual = (float(contribuinte_atual) + float(municipio_atual) + (
                 va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final)) + va_mun_atu
 
