@@ -5037,86 +5037,86 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
         va_do_municipio_atual = float(contribuinte_atual) + float(municipio_atual) + va_comercio_final + va_prod_rural_final + va_pts_final + va_dar1aut_final + va_nai_final + va_creditoexoff_final + va_debitoexoff_final + va_total_final + va_mun_atu
 
-    va_do_municipio_anterior = (float(contribuinte_anterior) + float(municipio_anterior)) + va_mun_ant
+        va_do_municipio_anterior = (float(contribuinte_anterior) + float(municipio_anterior)) + va_mun_ant
 
-    va_do_estado_atual = float(estado_atual) + va_est_atu
+        va_do_estado_atual = float(estado_atual) + va_est_atu
 
-    va_do_estado_anterior = float(estado_anterior) + va_est_ant
+        va_do_estado_anterior = float(estado_anterior) + va_est_ant
 
-    va_municipio_media = (va_do_municipio_atual + va_do_municipio_anterior) / 2
+        va_municipio_media = (va_do_municipio_atual + va_do_municipio_anterior) / 2
 
-    va_estado_media = (va_do_estado_atual + va_do_estado_anterior) / 2
+        va_estado_media = (va_do_estado_atual + va_do_estado_anterior) / 2
 
-    va_municipio_75 = va_municipio_media * 0.75
+        va_municipio_75 = va_municipio_media * 0.75
 
-    va_estado_75 = va_estado_media * 0.75
+        va_estado_75 = va_estado_media * 0.75
 
-    indice_va_anterior = (va_do_municipio_anterior / va_do_estado_anterior) / 100
+        indice_va_anterior = (va_do_municipio_anterior / va_do_estado_anterior) / 100
 
-    indice_va_atual = (va_do_municipio_atual / va_do_estado_atual) / 100
+        indice_va_atual = (va_do_municipio_atual / va_do_estado_atual) / 100
 
-    indice_va_medio = (indice_va_anterior / indice_va_atual) / 2
+        indice_va_medio = (indice_va_anterior / indice_va_atual) / 2
 
-    indice_va_medio_75 = indice_va_medio * 0.75
+        indice_va_medio_75 = indice_va_medio * 0.75
 
-    cursor.execute(
-        """SELECT SUM(ucti) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
-        [municipio, ano]
-    )
-    lista_ucti = namedtuplefetchall(cursor)
-    ucti = float(lista_ucti[0][0])
+        cursor.execute(
+            """SELECT SUM(ucti) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
+            [municipio, ano]
+        )
+        lista_ucti = namedtuplefetchall(cursor)
+        ucti = float(lista_ucti[0][0])
 
-    cursor.execute(
-        """SELECT SUM(trib_propr) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
-        [municipio, ano]
-    )
-    lista_trib = namedtuplefetchall(cursor)
-    trib = float(str(lista_trib[0][0]))
+        cursor.execute(
+            """SELECT SUM(trib_propr) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
+            [municipio, ano]
+        )
+        lista_trib = namedtuplefetchall(cursor)
+        trib = float(str(lista_trib[0][0]))
 
-    cursor.execute(
-        """SELECT SUM(populacao) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
-        [municipio, ano]
-    )
-    lista_populacao = namedtuplefetchall(cursor)
-    populacao = float(str(lista_populacao[0][0]))
+        cursor.execute(
+            """SELECT SUM(populacao) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
+            [municipio, ano]
+        )
+        lista_populacao = namedtuplefetchall(cursor)
+        populacao = float(str(lista_populacao[0][0]))
 
-    cursor.execute(
-        """SELECT SUM(area) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
-        [municipio, ano]
-    )
-    lista_area = namedtuplefetchall(cursor)
-    area = float(str(lista_area[0][0]))
+        cursor.execute(
+            """SELECT SUM(area) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
+            [municipio, ano]
+        )
+        lista_area = namedtuplefetchall(cursor)
+        area = float(str(lista_area[0][0]))
 
-    cursor.execute(
-        """SELECT SUM(coef_soc) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
-        [municipio, ano]
-    )
-    lista_coef = namedtuplefetchall(cursor)
-    coef = float(str(lista_coef[0][0]))
+        cursor.execute(
+            """SELECT SUM(coef_soc) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
+            [municipio, ano]
+        )
+        lista_coef = namedtuplefetchall(cursor)
+        coef = float(str(lista_coef[0][0]))
 
-    indice_simulado = indice_va_medio_75 + coef
+        indice_simulado = indice_va_medio_75 + coef
 
-    cursor.execute(
-        """SELECT SUM(ind_final) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
-        [municipio, ano]
-    )
-    lista_ind = namedtuplefetchall(cursor)
-    ind_final = float(str(lista_ind[0][0]))
-    variacao_indice = indice_simulado - ind_final
+        cursor.execute(
+            """SELECT SUM(ind_final) FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
+            [municipio, ano]
+        )
+        lista_ind = namedtuplefetchall(cursor)
+        ind_final = float(str(lista_ind[0][0]))
+        variacao_indice = indice_simulado - ind_final
 
-    variacao_estimada = (float(va_variacao_estado_total) * indice_simulado) / 100
+        variacao_estimada = (float(va_variacao_estado_total) * indice_simulado) / 100
 
-    numeros = [
-        {'municipio': municipio, 'va_do_municipio_atual': va_do_municipio_atual,
-         'va_do_municipio_anterior': va_do_municipio_anterior,
-         'va_do_estado_atual': va_do_estado_atual, 'va_do_estado_anterior': va_do_estado_anterior,
-         'va_municipio_media': va_municipio_media, 'va_estado_media': va_estado_media,
-         'va_municipio_75': va_municipio_75, 'va_estado_75': va_estado_75, 'indice_va_anterior': indice_va_anterior,
-         'indice_va_atual': indice_va_atual, 'indice_va_medio': indice_va_medio,
-         'indice_va_medio_75': indice_va_medio_75,
-         'ucti': ucti, 'trib': trib, 'populacao': populacao, 'area': area, 'coef': coef,
-         'indice_simulado': indice_simulado,
-         'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada}]
+        numeros = [
+            {'municipio': municipio, 'va_do_municipio_atual': va_do_municipio_atual,
+             'va_do_municipio_anterior': va_do_municipio_anterior,
+             'va_do_estado_atual': va_do_estado_atual, 'va_do_estado_anterior': va_do_estado_anterior,
+             'va_municipio_media': va_municipio_media, 'va_estado_media': va_estado_media,
+             'va_municipio_75': va_municipio_75, 'va_estado_75': va_estado_75, 'indice_va_anterior': indice_va_anterior,
+             'indice_va_atual': indice_va_atual, 'indice_va_medio': indice_va_medio,
+             'indice_va_medio_75': indice_va_medio_75,
+             'ucti': ucti, 'trib': trib, 'populacao': populacao, 'area': area, 'coef': coef,
+             'indice_simulado': indice_simulado,
+             'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada}]
 
 
     return render(request, 'resultado_simulacao.html', {'lista': numeros})
