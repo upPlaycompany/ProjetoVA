@@ -5129,7 +5129,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         lista_ind = namedtuplefetchall(cursor)
         ind_final = float(str(lista_ind[0][0]))
 
-        variacao_indice = ind_final - indice_simulado
+        variacao_indice = indice_simulado - ind_final
 
         variacao_estimada = (float(va_variacao_estado_total) * indice_simulado) / 100
 
