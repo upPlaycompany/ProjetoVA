@@ -4660,7 +4660,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
                 [va_municipio_atual, municipio, ano_atual_final])
             va_mun_atual_total = namedtuplefetchall(cursor)
         else:
-            va_mun_atual_total = [0.0]
+            va_mun_atual_total = 0.0
 
         if va_municipio_anterior:
             va_municipio_anterior = float(float(va_municipio_anterior) / 100)
@@ -4669,7 +4669,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
                 [va_municipio_anterior, municipio, ano_anterior_final])
             va_mun_anterior_total = namedtuplefetchall(cursor)
         else:
-            va_mun_anterior_total = [0.0]
+            va_mun_anterior_total = 0.0
 
         if va_estado_atual:
             va_estado_atual = float(float(va_estado_atual) / 100)
@@ -4678,7 +4678,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
                 [va_estado_atual, ano_atual_final])
             va_estado_atual_total = namedtuplefetchall(cursor)
         else:
-            va_estado_atual_total = [0.0]
+            va_estado_atual_total = 0.0
 
         if va_estado_anterior:
             va_estado_anterior = float(float(va_estado_anterior) / 100)
@@ -4687,7 +4687,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
                 [va_estado_anterior, ano_anterior_final])
             va_estado_anterior_total = namedtuplefetchall(cursor)
         else:
-            va_estado_anterior_total = [0.0]
+            va_estado_anterior_total = 0.0
 
         if va_comercio:
             va_comercio = float(float(va_comercio) / 100)
@@ -4697,7 +4697,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_comercio_total = namedtuplefetchall(cursor)
         else:
-            va_comercio_total = [0.0]
+            va_comercio_total = 0.0
 
         if va_producao_rural:
             va_producao_rural = float(float(va_producao_rural) / 100)
@@ -4707,7 +4707,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_producao_rural_total = namedtuplefetchall(cursor)
         else:
-            va_producao_rural_total = [0.0]
+            va_producao_rural_total = 0.0
 
         if va_pts:
             va_pts = float(float(va_pts) / 100)
@@ -4718,7 +4718,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_pts_total = namedtuplefetchall(cursor)
         else:
-            va_pts_total = [0.0]
+            va_pts_total = 0.0
 
         if va_dar1aut:
             va_dar1aut = float(float(va_dar1aut) / 100)
@@ -4728,7 +4728,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_dar1aut_total = namedtuplefetchall(cursor)
         else:
-            va_dar1aut_total = [0.0]
+            va_dar1aut_total = 0.0
 
         if va_nai:
             va_nai = float(float(va_nai) / 100)
@@ -4738,7 +4738,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_nai_total = namedtuplefetchall(cursor)
         else:
-            va_nai_total = [0.0]
+            va_nai_total = 0.0
 
         if va_creditoexoff:
             va_creditoexoff = float(float(va_creditoexoff) / 100)
@@ -4748,7 +4748,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_creditoexoff_total = namedtuplefetchall(cursor)
         else:
-            va_creditoexoff_total = [0.0]
+            va_creditoexoff_total = 0.0
 
         if va_debitoexoff:
             va_debitoexoff = float(float(va_debitoexoff) / 100)
@@ -4758,7 +4758,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_debitoexoff_total = namedtuplefetchall(cursor)
         else:
-            va_debitoexoff_total = [0.0]
+            va_debitoexoff_total = 0.0
 
         if va_total:
             va_total = float(float(va_total) / 100)
@@ -4768,7 +4768,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             va_total_final = namedtuplefetchall(cursor)
         else:
-            va_total_final = [0.0]
+            va_total_final = 0.0
 
         if variacao_distribuicao_estado:
             variacao_distribuicao_estado = float(float(variacao_distribuicao_estado) / 100)
@@ -4778,7 +4778,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             )
             variacao_distribuicao_estado_total = namedtuplefetchall(cursor)
         else:
-            variacao_distribuicao_estado_total = [0.0]
+            variacao_distribuicao_estado_total = 0.0
 
     if request.method == 'POST':
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
