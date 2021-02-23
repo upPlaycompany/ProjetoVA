@@ -4200,7 +4200,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
     with connections['default'].cursor() as cursor:
         cursor.execute(
             """SELECT municipio, iva_ant, iva_atual, iva_med, iva_75, ucti, trib_propr, populacao, area, coef_soc, ind_final, descricao FROM appva_acypr535 WHERE municipio=%s AND ano_exercicio=%s AND remessa IN ('DOE-DEFINITIVO', 'DOE DEFINITIVO', 'D.O.E. DEFINITIVO', 'D.O.E DEFINITIVO', 'D.O.E-DEFINITIVO', 'D.O.E.-DEFINITIVO','DEFINITIVO');""",
-            [municipio, ano_atual]
+            [municipio, ano_atual_final]
         )
         dados_indice = namedtuplefetchall(cursor)
         cursor.execute(
