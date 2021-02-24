@@ -5152,4 +5152,5 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
 @login_required
 def RELATORIO_SIMULACAO(n):
+    n = [n]
     return rendering.render_to_pdf('RELATORIO_SIMULACAO.html', {'lista': n})
