@@ -5155,4 +5155,4 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 @login_required
 def RELATORIO_SIMULACAO(request, n):
     nam = [n]
-    return rendering.render_to_pdf_response(request=request, template='RELATORIO_SIMULACAO.html', context={'lista': nam}, using='django', filename='resultado_simulacao_icms', encoding='utf-8')
+    return rendering.render_to_pdf_response(request=request, template='RELATORIO_SIMULACAO.html', context={'lista': nam}, using='django', filename='resultado_simulacao_icms.pdf', encoding='utf-8')
