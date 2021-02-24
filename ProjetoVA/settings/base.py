@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'appva',
     'rest_framework',
     'whitenoise',
-    'easy_pdf',
     'django.utils.six',
     'django.contrib.admin',
     'django.contrib.auth',
