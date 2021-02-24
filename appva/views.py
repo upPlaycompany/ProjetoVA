@@ -5160,4 +5160,4 @@ class TESTE(PDFTemplateView):
 @login_required
 def RELATORIO_SIMULACAO(request, n):
     nam = [n]
-    return TESTE.get()
+    return TESTE.get_pdf_response()
