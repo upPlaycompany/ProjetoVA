@@ -5153,4 +5153,4 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 @login_required
 def RELATORIO_SIMULACAO(request, n):
     nam = [n]
-    return rendering.render_to_pdf_response(request, 'RELATORIO_SIMULACAO.html', {'lista': nam})
+    return rendering.render_to_pdf_response(request, 'RELATORIO_SIMULACAO.html', {'lista': nam}, using='django')
