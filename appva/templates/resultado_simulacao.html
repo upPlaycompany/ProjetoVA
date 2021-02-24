@@ -26,6 +26,6 @@ Resultado da simulação
 <br>
 <br>
 {% for numeros in lista %}
-<a href="{% url 'RELATORIO_SIMULACAO' numeros=numeros.coef %}"><button type="button" class="btn btn-success">Imprimir relatório</button></a>
+<a href="{% url 'RELATORIO_SIMULACAO' n=numeros.coef %}"><button type="button" class="btn btn-success">Imprimir relatório</button></a>
 {% endfor %}
 {% endblock %}
