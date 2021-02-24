@@ -5153,11 +5153,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
     return render(request, 'resultado_simulacao.html', {'lista': numeros})
 
-
-class TESTE(PDFTemplateView):
-    template_name = 'RELATORIO_SIMULACAO.html'
-
 @login_required
 def RELATORIO_SIMULACAO(request, n):
     nam = [n]
-    return TESTE.get_pdf_response(self=RELATORIO_SIMULACAO, context={'lista': nam}, request)
+    return rendering.render_to_pdf_response(request=request, template='RELATORIO_SIMULACAO.html', context={'lista': nam}, using='django', filename='resultado_simulacao_icms', encoding='utf-8')
