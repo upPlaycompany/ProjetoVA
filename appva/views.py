@@ -3,7 +3,6 @@ import csv
 from easy_pdf import rendering
 import psycopg2
 import weasyprint
-from easy_pdf.views import PDFTemplateView
 from django.utils.six import BytesIO
 from django.contrib import auth as autent
 from django.contrib.auth import authenticate, login, logout
