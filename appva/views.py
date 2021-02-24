@@ -2,6 +2,7 @@ from collections import namedtuple
 import csv
 from easy_pdf import rendering
 import psycopg2
+from django.utils.six import BytesIO
 from django.contrib import auth as autent
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
