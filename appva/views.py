@@ -1,5 +1,6 @@
 from collections import namedtuple
 import csv
+from easy_pdf import rendering
 import psycopg2
 from django.contrib import auth as autent
 from django.contrib.auth import authenticate, login, logout
@@ -5147,3 +5148,6 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
 
     return render(request, 'resultado_simulacao.html', {'lista': numeros})
+
+def RELATORIO_SIMULACAO(request, numeros):
+    return rendering.render_to_pdf('RELATORIO_SIMULACAO.html', {'lista': numeros}, request=request)
