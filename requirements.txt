@@ -22,6 +22,7 @@ django-easy-pdf==0.1.1
 django-excel-base==1.0.4
 django-excel-response2==3.0.2
 django-six==1.0.4
+django-utils-six==2.0
 djangorestframework==3.12.2
 entrypoints==0.3
 future==0.18.2
