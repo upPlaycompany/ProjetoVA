@@ -3,6 +3,7 @@ import csv
 from easy_pdf import rendering
 import psycopg2
 import weasyprint
+from easy_pdf.views import PDFTemplateView
 from django.utils.six import BytesIO
 from django.contrib import auth as autent
 from django.contrib.auth import authenticate, login, logout
@@ -15,6 +16,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 import pandas as pd
 from .models import *
+
 
 
 # VIEWS RELACIONADAS A FUNCIONALIDADES
@@ -5151,7 +5153,11 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
     return render(request, 'resultado_simulacao.html', {'lista': numeros})
 
+
+class TESTE(PDFTemplateView):
+    template_name = 'RELATORIO_SIMULACAO.html'
+
 @login_required
 def RELATORIO_SIMULACAO(request, n):
     nam = [n]
-    return rendering.render_to_pdf_response(request, 'RELATORIO_SIMULACAO.html', {'lista': nam}, using='django')
+    return TESTE.get(request)
