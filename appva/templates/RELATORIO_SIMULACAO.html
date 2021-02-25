@@ -44,7 +44,8 @@ strong {
 }
     </style>
 </head>
-<body>
+{% for nam in lista %}
+<body style="background-color: grey;">
 
     <h1>simulação de resultado x receita do icms do municipio</h1>
 
@@ -181,4 +182,5 @@ strong {
     </table>
 
 </body>
+{% endfor %}
 </html>
