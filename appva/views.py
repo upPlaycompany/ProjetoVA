@@ -5069,9 +5069,9 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
 
         va_do_municipio_anterior = (float(contribuinte_anterior) + float(municipio_anterior)) + va_mun_ant
 
-        va_do_estado_atual = float(estado_atual) + va_est_atu
+        va_do_estado_atual = float(estado_atual) + va_est_atu + va_do_municipio_atual
 
-        va_do_estado_anterior = float(estado_anterior) + va_est_ant
+        va_do_estado_anterior = float(estado_anterior) + va_est_ant + va_do_municipio_anterior
 
         va_municipio_media = (va_do_municipio_atual + va_do_municipio_anterior) / 2
 
