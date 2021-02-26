@@ -5147,7 +5147,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
              'indice_va_medio_75': indice_va_medio_75,
              'ucti': ucti, 'trib': trib, 'populacao': populacao, 'area': area, 'coef': coef,
              'indice_simulado': indice_simulado,
-             'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada, 'icms': va_variacao_estado}]
+             'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada, 'icms': va_v}]
 
 
     return render(request, 'resultado_simulacao.html', {'lista': numeros})
