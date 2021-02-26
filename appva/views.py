@@ -4209,7 +4209,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
         dados_indice = namedtuplefetchall(cursor)
         cursor.execute(
             """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) AS resultado_final FROM appva_fpm WHERE ano=%s;""",
-            [ano_atual]
+            [ano_icms]
         )
         dados_icms = namedtuplefetchall(cursor)
         if inscricao and tabela == 'GIA' and ano == 'ano_atual':
