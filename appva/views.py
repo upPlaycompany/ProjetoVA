@@ -4786,6 +4786,11 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
         else:
             variacao_distribuicao_estado_total = [0.0]
 
+    cursor.execute(
+        """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) AS icms FROM appva_fpm WHERE ano=%s;""",
+        [ano_icms]
+    )
+    variacao_icms = namedtuplefetchall(cursor)
     if request.method == 'POST':
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
         if resultado_va_municipio_atual == '':
@@ -4919,7 +4924,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
                    'nai': va_nai_total, 'creditoexoff': va_creditoexoff_total,
                    'debitoexoff': va_debitoexoff_total, 'total': va_total_final,
                    'variacao_distribuicao_estado': variacao_distribuicao_estado_total, 'lista': dados_indice,
-                   'lista2': dados_icms})
+                   'lista2': dados_icms, 'icms': variacao_icms})
 
 
 @login_required
