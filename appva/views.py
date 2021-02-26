@@ -5068,16 +5068,12 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
         va_v = float(str(va_variacao_estado[0].variacao))
         va_variacao_estado_total = va_v + float(variacao_distribuicao_estado)
 
-        if contribuinte_atual == '[Lista(valor_adicionado=None)]':
+        if contribuinte_atual == 'None':
             contribuinte_atual = '0.0'
-        else:
-            contribuinte_atual = contribuinte_atual.replace('[Lista(valor_adicionado=', '')
-            contribuinte_atual = contribuinte_atual.replace(")]", '')
-        if contribuinte_anterior == '[Lista(valor_adicionado=None)]':
+        
+        if contribuinte_anterior == 'None':
             contribuinte_anterior = '0.0'
-        else:
-            contribuinte_anterior = contribuinte_anterior.replace('[Lista(valor_adicionado=', '')
-            contribuinte_anterior = contribuinte_anterior.replace(")]", '')
+        
 
 
         va_do_municipio_atual = float(contribuinte_atual) + float(municipio_atual) + float(va_comercio_final) + float(va_prod_rural_final) + float(va_pts_final) + float(va_dar1aut_final) + float(va_nai_final) + float(va_creditoexoff_final) + float(va_debitoexoff_final) + float(va_total_final) + va_mun_atu
