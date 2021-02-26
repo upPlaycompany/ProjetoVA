@@ -4785,12 +4785,6 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             variacao_distribuicao_estado_total = namedtuplefetchall(cursor)
         else:
             variacao_distribuicao_estado_total = [0.0]
-
-        cursor.execute(
-            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) AS calculado FROM appva_fpm WHERE ano=%s;""",
-            [ano_icms]
-        )
-        variacao_icms = namedtuplefetchall(cursor)
     if request.method == 'POST':
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
         if resultado_va_municipio_atual == '':
@@ -4924,7 +4918,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
                    'nai': va_nai_total, 'creditoexoff': va_creditoexoff_total,
                    'debitoexoff': va_debitoexoff_total, 'total': va_total_final,
                    'variacao_distribuicao_estado': variacao_distribuicao_estado_total, 'lista': dados_indice,
-                   'lista2': dados_icms, 'xamp': variacao_icms})
+                   'lista2': dados_icms})
 
 
 @login_required
@@ -5152,7 +5146,7 @@ def resultado_simulacao(request, municipio, ano, contribuinte_atual, contribuint
              'indice_va_medio_75': indice_va_medio_75,
              'ucti': ucti, 'trib': trib, 'populacao': populacao, 'area': area, 'coef': coef,
              'indice_simulado': indice_simulado,
-             'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada, 'icms': va_v}]
+             'ind_final': ind_final, 'variacao_indice': variacao_indice, 'variacao_estimada': variacao_estimada}]
 
 
     return render(request, 'resultado_simulacao.html', {'lista': numeros})
