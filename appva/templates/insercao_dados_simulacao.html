@@ -190,6 +190,24 @@
 <form method="post"> {% csrf_token %}
 
     <h1><strong>Valores após acréscimo de porcentagem</strong></h1>
+    <h2>2 - Selecionar VA do município</h2>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Resultado VA do contribuinte</label>
+            {% for inscricoes in contribuinte_atual %}
+            {% if inscricoes.valor_adicionado == 0.0 %}
+            <h6 hidden>{{ inscricoes.valor_adicionado }}</h6>
+            {% else %}
+            <h6>{{ inscricoes.valor_adicionado }}</h6>
+            {% endfor %}
+            {% for inscricoes2 in contribuinte_anterior %}
+            {% if inscricoes2.valor_adicionado == 0.0 %}
+            <h6 hidden>{{ inscricoes.valor_adicionado }}</h6>
+            {% else %}
+            <h6>{{ inscricoes.valor_adicionado }}</h6>
+            {% endfor %}
+        </div>
+    </div>
     <br>
     <br>
     <h2>2 - Selecionar VA do município</h2>
