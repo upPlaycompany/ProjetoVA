@@ -202,7 +202,7 @@
                    value="0.0">
             {% else %}
             <input type="text" class="form-control" name="resultado_contribuinte_atual"
-                   value="{{ inscricoes.valor_adicionado }}">
+                   value="{{ inscricoes.valor_adicionado|floatformat:2 }}">
             {% endif %}
             {% endfor %}
         </div>
@@ -214,7 +214,7 @@
                    value="0.0">
             {% else %}
             <input type="text" class="form-control" name="resultado_contribuinte_anterior"
-                   value="{{ inscricoes2.valor_adicionado }}">
+                   value="{{ inscricoes2.valor_adicionado|floatformat:2 }}">
             {% endif %}
             {% endfor %}
         </div>
@@ -227,14 +227,14 @@
             <label>Resultado VA do municipio atual</label>
             {% for va_mun_atual_total in municipio_atual %}
             <input type="text" class="form-control" name="resultado_va_municipio_atual"
-                   value="{{ va_mun_atual_total.resultado_final }}">
+                   value="{{ va_mun_atual_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado do VA do município anterior</label>
             {% for va_mun_anterior_total in municipio_anterior%}
             <input type="text" class="form-control" name="resultado_va_municipio_anterior"
-                   value="{{ va_mun_anterior_total.resultado_final }}">
+                   value="{{ va_mun_anterior_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
     </div>
@@ -246,14 +246,14 @@
             <label>Resultado do VA do estado atual</label>
             {% for va_estado_atual_total in estado_atual %}
             <input type="text" class="form-control" name="resultado_va_estado_atual"
-                   value="{{ va_estado_atual_total.resultado_final }}">
+                   value="{{ va_estado_atual_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado do VA do estado anterior</label>
             {% for va_estado_anterior_total in estado_anterior %}
             <input type="text" class="form-control" name="resultado_va_estado_anterior"
-                   value="{{ va_estado_anterior_total.resultado_final}}">
+                   value="{{ va_estado_anterior_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
     </div>
@@ -265,7 +265,7 @@
             <label>Resultado do Comércio e Indústria</label>
             {% for va_comercio_total in comercio %}
             <input type="text" class="form-control" name="resultado_va_comercio"
-                   value="{{ va_comercio_total.resultado_final }}">
+                   value="{{ va_comercio_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
 
@@ -273,7 +273,7 @@
             <label>Resultado da Produção rural</label>
             {% for va_producao_rural_total in prod_rural %}
             <input type="text" class="form-control" name="resultado_va_producao_rural"
-                   value="{{ va_producao_rural_total.resultado_final }}">
+                   value="{{ va_producao_rural_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
     </div>
@@ -281,7 +281,7 @@
         <div class="form-group col-md-3">
             <label>Resultado do PTS</label>
             {% for va_pts_total in pts %}
-            <input type="text" class="form-control" name="resultado_va_pts" value="{{ va_pts_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_pts" value="{{ va_pts_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
 
@@ -289,7 +289,7 @@
             <label>Resultado do DAR-1/AUT</label>
             {% for va_dar1aut_total in dar1aut %}
             <input type="text" class="form-control" name="resultado_va_dar1aut"
-                   value="{{ va_dar1aut_total.resultado_final }}">
+                   value="{{ va_dar1aut_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
     </div>
@@ -297,14 +297,14 @@
         <div class="form-group col-md-3">
             <label>Resultado do NAI</label>
             {% for va_nai_total in nai %}
-            <input type="text" class="form-control" name="resultado_va_nai" value="{{ va_nai_total.resultado_final }}">
+            <input type="text" class="form-control" name="resultado_va_nai" value="{{ va_nai_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado do Crédito Ex Off</label>
             {% for va_creditoexoff_total in creditoexoff %}
             <input type="text" class="form-control" name="resultado_va_creditoexoff"
-                   value="{{ va_creditoexoff_total.resultado_final }}">
+                   value="{{ va_creditoexoff_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
     </div>
@@ -313,14 +313,14 @@
             <label>Resultado do Débito Ex Off</label>
             {% for va_debitoexoff_total in debitoexoff %}
             <input type="text" class="form-control" name="resultado_va_debitoexoff"
-                   value="{{ va_debitoexoff_total.resultado_final }}">
+                   value="{{ va_debitoexoff_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
         <div class="form-group col-md-3">
             <label>Resultado do VA Total</label>
             {% for va_total_final in total%}
             <input type="text" class="form-control" name="resultado_va_total"
-                   value="{{ va_total_final.resultado_final }}">
+                   value="{{ va_total_final.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
 
@@ -333,7 +333,7 @@
             <label>Resultado da VARIAÇÃO % DISTRIBUIÇÃO DO ESTADO</label>
             {% for variacao_distribuicao_estado_total in variacao_distribuicao_estado %}
             <input type="text" class="form-control" name="resultado_variacao_distribuicao_estado"
-                   value="{{ variacao_distribuicao_estado_total.resultado_final }}">
+                   value="{{ variacao_distribuicao_estado_total.resultado_final|floatformat:2 }}">
             {% endfor %}
         </div>
     </div>
