@@ -4787,7 +4787,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             variacao_distribuicao_estado_total = [0.0]
 
         cursor.execute(
-            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) AS icms FROM appva_fpm WHERE ano=%s;""",
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro / 12) AS calculado FROM appva_fpm WHERE ano=%s;""",
             [ano_icms]
         )
         variacao_icms = namedtuplefetchall(cursor)
