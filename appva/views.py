@@ -4909,7 +4909,7 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
 
         return redirect('resultado_simulacao', municipio=municipio, ano=ano_atu,
                         contribuinte_atual=resultado_contribuinte_atual,
-                        contribuinte_anterior=resultado_contribuinte_atual,
+                        contribuinte_anterior=resultado_contribuinte_anterior,
                         municipio_atual=resultado_va_municipio_atual,
                         municipio_anterior=resultado_va_municipio_anterior,
                         estado_atual=resultado_va_estado_atual,
