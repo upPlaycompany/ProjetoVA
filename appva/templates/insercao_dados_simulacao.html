@@ -195,10 +195,10 @@
         <div class="form-group col-md-3">
             <label>Resultado VA do contribuinte</label>
             {% for inscricoes in contribuinte_atual %}
-            <h6>{{ inscricoes.valor_adicionado }}</h6>
+            <h6>{{ inscricoes }}</h6>
             {% endfor %}
             {% for inscricoes2 in contribuinte_anterior %}
-            <h6 >{{ inscricoes.valor_adicionado }}</h6>
+            <h6 >{{ inscricoes2 }}</h6>
             {% endfor %}
         </div>
     </div>
