@@ -4786,6 +4786,22 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
         else:
             variacao_distribuicao_estado_total = [0.0]
     if request.method == 'POST':
+        resultado_contribuinte_atual = request.POST['resultado_contribuinte_atual']
+        if resultado_contribuinte_atual == '':
+            resultado_contribuinte_atual = '0.0'
+            resultado_contribuinte_atual = str(resultado_contribuinte_atual).replace(',', '.')
+            resultado_contribuinte_atual = float(resultado_contribuinte_atual)
+        else:
+            resultado_contribuinte_atual = str(resultado_contribuinte_atual).replace(',', '.')
+            resultado_contribuinte_atual = float(resultado_contribuinte_atual)
+        resultado_contribuinte_anterior = request.POST['resultado_contribuinte_anterior']
+        if resultado_contribuinte_anterior == '':
+            resultado_contribuinte_anterior = '0.0'
+            resultado_contribuinte_anterior = str(resultado_contribuinte_anterior).replace(',', '.')
+            resultado_contribuinte_anterior = float(resultado_contribuinte_anterior)
+        else:
+            resultado_contribuinte_anterior = str(resultado_contribuinte_anterior).replace(',', '.')
+            resultado_contribuinte_anterior = float(resultado_contribuinte_anterior)
         resultado_va_municipio_atual = request.POST['resultado_va_municipio_atual']
         if resultado_va_municipio_atual == '':
             resultado_va_municipio_atual = '0.0'
@@ -4892,8 +4908,8 @@ def insercao_dados_simulacao(request, remessa, municipio, ano_atu, ano_ant):
             resultado_variacao_distribuicao_estado = float(resultado_variacao_distribuicao_estado)
 
         return redirect('resultado_simulacao', municipio=municipio, ano=ano_atu,
-                        contribuinte_atual=inscricoes,
-                        contribuinte_anterior=inscricoes2,
+                        contribuinte_atual=resultado_contribuinte_atual,
+                        contribuinte_anterior=resultado_contribuinte_atual,
                         municipio_atual=resultado_va_municipio_atual,
                         municipio_anterior=resultado_va_municipio_anterior,
                         estado_atual=resultado_va_estado_atual,
