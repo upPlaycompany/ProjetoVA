@@ -199,7 +199,7 @@
             {% for inscricoes in contribuinte_atual %}
             {% if inscricoes == 0.0 %}
             <input type="text" class="form-control" name="resultado_contribuinte_atual"
-                   value="{{ inscricoes }}">
+                   value="0.0">
             {% else %}
             <input type="text" class="form-control" name="resultado_contribuinte_atual"
                    value="{{ inscricoes.valor_adicionado }}">
