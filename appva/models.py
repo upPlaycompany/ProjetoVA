@@ -167,6 +167,7 @@ class Cci(models.Model):
     flag_mei = models.CharField(max_length=255, null=True)
     data_inicio_atividade_sefaz = models.CharField(max_length=255, null=True)
     codg_cnae = models.CharField(max_length=255, null=True)
+    desc_cnae = models.CharField(max_length=255, null=True)
     desc_segmento = models.CharField(max_length=255, null=True)
     codg_municipio = models.CharField(max_length=255, null=True)
     nome_municipio = models.CharField(max_length=255, null=True)
