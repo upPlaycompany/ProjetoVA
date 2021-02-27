@@ -129,7 +129,7 @@ def usuario_novo(request):
         tipo = request.POST['tipo_usuario']
         status = request.POST['status']
         if tipo == "administrador":
-            user = User.objects.create_user(username, email, password)
+            user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
             user.first_name = first_name
             user.is_superuser = True
             if status == 'ativo':
@@ -138,7 +138,7 @@ def usuario_novo(request):
                 user.is_active = False
             user.save()
         elif tipo == "contabilista":
-            user = User.objects.create_user(username, email, password)
+            user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
             user.first_name = first_name
             user.is_superuser = False
             user.is_staff = True
@@ -148,7 +148,7 @@ def usuario_novo(request):
                 user.is_active = False
             user.save()
         else:
-            user = User.objects.create_user(username, email, password)
+            user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
             user.first_name = first_name
             user.is_superuser = False
             user.is_staff = False
