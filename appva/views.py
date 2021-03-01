@@ -127,13 +127,12 @@ def criar_usuario(request):
         user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
         user.first_name = nome
         user.is_superuser = False
-        user.is_staff = False
+        user.is_staff = True
         user.is_active = False
         user.save()
         return redirect('criar_usuario_sucesso')
     return render(request, 'criar_usuario.html')
 
-@login_required
 def criar_usuario_sucesso(request):
     return render(request, 'criar_usuario_sucesso.html')
 
