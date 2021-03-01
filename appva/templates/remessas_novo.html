@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% if request.user.is_superuser == True %}
+{% if request.user.is_staff == True %}
 
 {% block title %}
 Criar envio

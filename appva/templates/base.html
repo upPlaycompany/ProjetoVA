@@ -43,7 +43,7 @@
 <br>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
-{% if request.user.is_superuser == True %}
+{% if request.user.is_staff == True %}
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                aria-expanded="true" aria-controls="collapsePages">
