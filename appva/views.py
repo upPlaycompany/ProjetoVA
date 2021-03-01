@@ -118,7 +118,6 @@ def remessas_remover(request, pk):
 
 #
 # VIEWS RELACIONADAS AOS USUÁRIOS
-@login_required 
 def criar_usuario(request):
     if request.method == 'POST':
         nome = request.POST['nome']
@@ -247,7 +246,6 @@ def usuario_remover(request, pk):
 #
 # VIEWS RELACIONADAS A LOGIN
 def logar(request):
-
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
