@@ -271,8 +271,6 @@ def deslogar(request):
 @login_required
 # VIEWS DE TABELAS
 def GIA_OMISSO(request):
-    if not request.user.is_staff:
-        return redirect('index')
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
@@ -327,8 +325,7 @@ def import_gia_omisso(request, pk):
 
 @login_required
 def CCI(request):
-    if not request.user.is_staff:
-        return redirect('index')
+
     page = request.GET.get('page')
     t = request.GET.get("t")
     q = request.GET.get("q")
@@ -410,8 +407,6 @@ def import_cci(request, pk):
 
 @login_required
 def IE(request):
-    if not request.user.is_staff:
-        return redirect('index')
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
@@ -442,6 +437,8 @@ def IE(request):
 
 @login_required
 def import_ie(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
     filx = f'/code/ProjetoVA/tabela/{arquivo}'
@@ -495,6 +492,8 @@ def NFE_EFD(request):
 
 @login_required
 def import_nfe_efd(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
     filx = f'/code/ProjetoVA/tabela/{arquivo}'
@@ -544,6 +543,8 @@ def REG_1400_EFD(request):
 
 @login_required
 def import_reg_1400_efd(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
     filx = f'/code/ProjetoVA/tabela/{arquivo}'
@@ -615,6 +616,8 @@ def CAP(request):
 
 @login_required
 def import_cap(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
     filx = f'/code/ProjetoVA/tabela/{arquivo}'
@@ -640,6 +643,7 @@ def import_cap(request, pk):
 
 @login_required
 def GIA_COP3(request):
+
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
@@ -672,6 +676,8 @@ def GIA_COP3(request):
 
 @login_required
 def import_gia_cop3(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
     filx = f'/code/ProjetoVA/tabela/{arquivo}'
