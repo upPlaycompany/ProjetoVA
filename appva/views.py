@@ -262,7 +262,6 @@ def logar(request):
 
 @login_required
 def deslogar(request):
-
     logout(request)
     return HttpResponseRedirect('/')
 
