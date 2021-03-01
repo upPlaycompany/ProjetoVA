@@ -128,7 +128,7 @@ def criar_usuario(request):
         user.first_name = nome
         user.is_superuser = False
         user.is_staff = True
-        user.is_active = False
+        user.is_active = True
         user.save()
         return redirect('criar_usuario_sucesso')
     return render(request, 'criar_usuario.html')
