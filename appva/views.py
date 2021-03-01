@@ -76,6 +76,8 @@ def REMESSAS_APAGAR_GIA_296_sucesso(request):
 # VIEWS RELACIONADAS A REMESSAS
 @login_required
 def remessas_novo(request):
+    if not request.user.is_staff:
+        return redirect('index')
     if request.method == 'POST':
         id = request.POST['id']
         descricao_arquivo = request.POST['descricao_arquivo']
@@ -94,6 +96,8 @@ def remessas_novo(request):
 
 @login_required
 def tabela_listagem(request):
+    if not request.user.is_staff:
+        return redirect('index')
     page = request.GET.get('page', '')
     try:
         remessa = REMESSAS.objects.all().order_by('id')
@@ -109,6 +113,8 @@ def tabela_listagem(request):
 
 @login_required
 def remessas_remover(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     if request.method == "POST":
         remessa.delete()
@@ -138,6 +144,8 @@ def criar_usuario_sucesso(request):
 
 @login_required
 def usuario_novo(request):
+    if not request.user.is_staff:
+        return redirect('index')
     if request.method == "POST":
         first_name = request.POST['first_name']
         username = request.POST['username']
@@ -172,6 +180,8 @@ def usuario_novo(request):
 
 @login_required
 def usuario_listar(request):
+    if not request.user.is_staff:
+        return redirect('index')
     usuarios = User.objects.all()
     usuario = {'lista': usuarios}
     return render(request, 'usuario_listar.html', usuario)
@@ -179,6 +189,8 @@ def usuario_listar(request):
 
 @login_required
 def usuario_editar(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     usuario = get_object_or_404(User, pk=pk)
 
     if request.method == "POST":
@@ -218,6 +230,8 @@ def usuario_editar(request, pk):
 
 @login_required
 def usuario_remover(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     user = request.user
     if user.has_perm('user.delete_user'):
         try:
@@ -248,6 +262,7 @@ def logar(request):
 
 @login_required
 def deslogar(request):
+
     logout(request)
     return HttpResponseRedirect('/')
 
@@ -256,6 +271,8 @@ def deslogar(request):
 @login_required
 # VIEWS DE TABELAS
 def GIA_OMISSO(request):
+    if not request.user.is_staff:
+        return redirect('index')
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
@@ -290,6 +307,8 @@ def GIA_OMISSO(request):
 
 @login_required
 def import_gia_omisso(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
     filx = f'/code/ProjetoVA/tabela/{arquivo}'
@@ -308,6 +327,8 @@ def import_gia_omisso(request, pk):
 
 @login_required
 def CCI(request):
+    if not request.user.is_staff:
+        return redirect('index')
     page = request.GET.get('page')
     t = request.GET.get("t")
     q = request.GET.get("q")
@@ -362,6 +383,8 @@ def CCI(request):
 
 @login_required
 def import_cci(request, pk):
+    if not request.user.is_staff:
+        return redirect('index')
     remessa = REMESSAS.objects.get(pk=pk)
     arquivo = remessa.arquivo
     filx = f'/code/ProjetoVA/tabela/{arquivo}'
@@ -387,6 +410,8 @@ def import_cci(request, pk):
 
 @login_required
 def IE(request):
+    if not request.user.is_staff:
+        return redirect('index')
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
