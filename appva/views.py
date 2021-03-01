@@ -118,6 +118,25 @@ def remessas_remover(request, pk):
 
 #
 # VIEWS RELACIONADAS AOS USUÁRIOS
+@login_required 
+def criar_usuario(request):
+    if request.method == 'POST':
+        nome = request.POST['nome']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
+        user.first_name = nome
+        user.is_superuser = False
+        user.is_staff = False
+        user.is_active = False
+        user.save()
+        return redirect('criar_usuario_sucesso')
+    return render(request, 'criar_usuario.html')
+
+@login_required
+def criar_usuario_sucesso(request):
+    return render(request, 'criar_usuario_sucesso.html')
 
 @login_required
 def usuario_novo(request):
