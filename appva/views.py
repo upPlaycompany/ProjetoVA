@@ -247,15 +247,15 @@ def usuario_remover(request, pk):
 #
 # VIEWS RELACIONADAS A LOGIN
 def logar(request):
-    next = request.GET.get('next', '/index/')
+
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(next)
-    return render(request, 'login.html', {'redirect_to': next})
+            return redirect('index')
+    return render(request, 'login.html')
 
 
 @login_required
