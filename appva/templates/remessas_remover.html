@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% if request.user.is_superuser == True %}
 {% block title %}
 Remoção de remessas
 {% endblock title %}
@@ -12,5 +12,5 @@ Remoção de remessas
     Remover
 </button>
 </form>
-
+{% endif %}
 {% endblock content %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% if request.user.is_superuser == True %}
 {% block title %}
 Editar usuário
 {% endblock title %}
@@ -32,7 +32,7 @@ Editar usuário
         <option selected>Selecione...</option>
         <option value="administrador">Administrador</option>
         <option value="contabilista">Contabilista</option>
-        <option value="usuario">Usuário comum</option>
+        <option value="usuario">Outros usuários</option>
 
       </select>
     </div>
@@ -51,5 +51,5 @@ Editar usuário
 
   <button type="submit" class="btn btn-primary">Atualizar</button>
 </form>
-
+{% endif %}
 {% endblock %}

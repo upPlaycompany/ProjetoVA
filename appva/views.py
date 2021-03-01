@@ -126,8 +126,8 @@ def criar_usuario(request):
         password = request.POST['password']
         user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
         user.first_name = nome
-        user.is_superuser = False
-        user.is_staff = True
+        user.is_superuser = True
+        user.is_staff = False
         user.is_active = True
         user.save()
         return redirect('criar_usuario_sucesso')
@@ -144,35 +144,26 @@ def usuario_novo(request):
         email = request.POST['email']
         password = request.POST['password']
         tipo = request.POST['tipo_usuario']
-        status = request.POST['status']
         if tipo == "administrador":
             user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
             user.first_name = first_name
             user.is_superuser = True
-            if status == 'ativo':
-                user.is_active = True
-            else:
-                user.is_active = False
+            user.is_staff = True
+            user.is_active = True
             user.save()
         elif tipo == "contabilista":
             user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
             user.first_name = first_name
-            user.is_superuser = False
-            user.is_staff = True
-            if status == 'ativo':
-                user.is_active = True
-            else:
-                user.is_active = False
+            user.is_superuser = True
+            user.is_staff = False
+            user.is_active = True
             user.save()
         else:
             user = User.objects.create_user(f"{username}", f"{email}", password=f"{password}")
             user.first_name = first_name
             user.is_superuser = False
             user.is_staff = False
-            if status == 'ativo':
-                user.is_active = True
-            else:
-                user.is_active = False
+            user.is_active = True
             user.save()
         return redirect('/usuario_listar/')
 
@@ -207,8 +198,8 @@ def usuario_editar(request, pk):
             usuario.is_superuser = True
             usuario.is_staff = True
         elif tipo == 'contabilista':
-            usuario.is_superuser = False
-            usuario.is_staff = True
+            usuario.is_superuser = True
+            usuario.is_staff = False
         else:
             usuario.is_superuser = False
             usuario.is_staff = False

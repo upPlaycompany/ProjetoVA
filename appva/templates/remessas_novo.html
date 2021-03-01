@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% if request.user.is_superuser == True %}
 
 {% block title %}
 Criar envio
@@ -49,5 +50,5 @@ Criar envio
         </div>
     <button type="submit" class="btn btn-primary">Importar tabelas</button>
 </form>
-
+{% endif %}
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% if request.user.is_superuser == True %}
 {% block title %}
 Listar usuários
 {% endblock title %}
@@ -34,7 +34,7 @@ Listar usuários
                     <td>{{ usuario.email }}</td>
                     {% if usuario.is_superuser == True %}
                     <td>Administrador</td>
-                    {% elif usuario.is_staff == True and usuario.is_superuser == False %}
+                    {% elif usuario.is_staff == False and usuario.is_superuser == True %}
                     <td>Contabilista</td>
                     {% else %}
                     <td>Usuário comum</td>
@@ -77,5 +77,5 @@ Listar usuários
 
 </div>
 <!-- /.container-fluid -->
-
+{% endif %}
 {% endblock %}
