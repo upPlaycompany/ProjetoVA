@@ -93,10 +93,11 @@ ACGPT812
   </span>
  </div>
 <br>
+{% if request.user.is_staff == True %}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Importar dados
 </button>
-</div>
+
 <!-- /.container-fluid -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -126,4 +127,5 @@ ACGPT812
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}

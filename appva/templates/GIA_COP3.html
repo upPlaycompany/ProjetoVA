@@ -87,10 +87,11 @@ GIA_COP3
   </span>
  </div>
 <br>
+{% if request.user.is_staff == True %}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Importar dados
 </button>
-</div>
+
 <!-- /.container-fluid -->
 <!-- Button trigger modal -->
 
@@ -125,5 +126,5 @@ GIA_COP3
     </div>
 </div>
 <!-- /.container-fluid -->
-
+{% endif %}
 {% endblock %}

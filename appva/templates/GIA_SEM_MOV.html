@@ -85,10 +85,11 @@ GIA_SEM_MOV
   </span>
 </div>
 <br>
+{% if request.user.is_staff == True %}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Importar dados
 </button>
-</div>
+
 <!-- /.container-fluid -->
 <!-- Button trigger modal -->
 
@@ -122,6 +123,5 @@ GIA_SEM_MOV
         </div>
     </div>
 </div>
-
-
+{% endif %}
 {% endblock %}

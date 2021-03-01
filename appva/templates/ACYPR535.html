@@ -90,10 +90,11 @@ ACYPR535
  </div>
 <br>
 
-
+{% if request.user.is_staff == True %}
 <span><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Importar dados
 </button></span>
+{% endif %}
 <span><a href="{% url 'pre_simulacao' %}"><button type="button" class="btn btn-danger">
     Simulação de índice
 </button></a></span>
@@ -101,7 +102,7 @@ ACYPR535
 <!-- /.container-fluid -->
 <!-- Button trigger modal -->
 
-
+{% if request.user.is_staff == True %}
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -131,5 +132,5 @@ ACYPR535
         </div>
     </div>
 </div>
-
+{% endif %}
 {% endblock %}

@@ -94,22 +94,25 @@ EFD
   </span>
  </div>
 <br>
+{% if request.user.is_staff == True %}
 <span><button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Importar dados</button></span>
-
+{% endif %}
 
 <span><a href="{% url 'EFD_lista_valor_adicionado' %} "><button type="button" class="btn btn-danger">
     Ir para lista de consulta de valores adicionados
 </button></a></span>
+{% if request.user.is_staff == True %}
 <span><a href="{% url 'REMESSAS_APAGAR_EFD_418' %} "><button type="button" class="btn btn-warning">
     Deletar dados de alguma remessa incorreta
 </button></a></span>
+{% endif %}
 <br>
 <br>
-</div>
+
 <!-- /.container-fluid -->
 <!-- Button trigger modal -->
 
-
+{% if request.user.is_staff == True %}
 <!-- Modal -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
@@ -132,12 +135,6 @@ EFD
         </div>
     </div>
 </div>
-<!-- /.container-fluid -->
-<!-- Button trigger modal -->
-
-
-<!-- Modal -->
-
-<!-- /.container-fluid -->
+{% endif %}
 
 {% endblock %}

@@ -80,10 +80,11 @@ EFD_OMISSO
   </span>
  </div>
 <br>
+{% if request.user.is_staff == True %}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Importar dados
 </button>
-</div>
+
 <!-- /.container-fluid -->
 <!-- Button trigger modal -->
 
@@ -118,5 +119,5 @@ EFD_OMISSO
     </div>
 </div>
 <!-- /.container-fluid -->
-
+{% endif %}
 {% endblock %}

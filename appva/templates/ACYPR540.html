@@ -77,10 +77,11 @@ ACYPR540
   </span>
  </div>
 <br>
+{% if request.user.is_staff == True %}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Importar dados
 </button>
-</div>
+
 <!-- /.container-fluid -->
 <!-- Button trigger modal -->
 
@@ -115,5 +116,5 @@ ACYPR540
     </div>
 </div>
 <!-- /.container-fluid -->
-
+{% endif %}
 {% endblock %}
