@@ -30,7 +30,13 @@ def namedtuplefetchall(cursor):
 
 @login_required
 def index(request):
-    return render(request, 'index.html')
+    with connections['default'].cursor() as cursor:
+        cursor.execute(
+            """SELECT * FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO' ORDER BY vr_adic_ano_exercicio DESC
+;"""
+        )
+        ranking = namedtuplefetchall(cursor)
+    return render(request, 'index.html', {'lista': ranking})
 
 
 @login_required

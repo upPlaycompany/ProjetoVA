@@ -1,7 +1,38 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<H1>Seja bem-vindo ao IPM-e!</H1>
-<br>
-<h2>No menu a esquerda, estão todas as tabelas e funcionalidades!</h2>
+{% extends 'base.html' %}
+{% block title %}
+ACGPT812
+{% endblock title %}
+{% block content %}
+
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="50%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nome do município</th>
+                    <th>Valor adicionado</th>
+                    <th>Ano de exercício</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for ranking in lista %}
+                <tr>
+                    <td>{{ ranking.municipio }}</td>
+                    <td>{{ ranking.vr_adic_ano_exercicio }}</td>
+                    <td>{{ ranking.ano_exercicio }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
 {% endblock content %}
