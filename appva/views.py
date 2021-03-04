@@ -67,7 +67,7 @@ def index(request):
         )
         icms_indi = namedtuplefetchall(cursor)
         ax = len(indi)
-        finali = [{'arrecad': indi[x].ind_final * icms_indi[x].media, 'ano': icms_indi[x].ano} for x in range(ax)]
+        finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media)/100, 'ano': icms_indi[x].ano} for x in range(ax)]
     return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali})
 
 
@@ -2461,7 +2461,7 @@ def import_cnae(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cnae', sep=';',
-                 columns=('SECAO', 'DIVISAO', 'GRUPO', 'CLASSE', 'SUBCLASSE', 'DENOMINACAO'))
+                 columns=('SECAO', 'DIVISAO', 'GRUPO', 'CLASSE', 'SUBCLASSE', 'DENOMINACAO', 'ARBITRAMENTO'))
     db.commit()
     st.close()
     db.close()
