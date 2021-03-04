@@ -243,6 +243,7 @@ class Cnae(models.Model):
     classe = models.CharField(max_length=100, null=True)
     subclasse = models.CharField(max_length=100, null=True)
     denominacao = models.CharField(max_length=255, null=True)
+    arbitramento = models.CharField(max_length=255, null=True)
 
 
 # DEBITO
