@@ -32,8 +32,8 @@ def namedtuplefetchall(cursor):
 def index(request):
     with connections['default'].cursor() as cursor:
         cursor.execute(
-            """SELECT * FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO' ORDER BY vr_adic_ano_exercicio DESC
-;"""
+            """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO';
+"""
         )
         ranking = namedtuplefetchall(cursor)
 

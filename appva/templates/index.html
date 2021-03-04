@@ -40,7 +40,8 @@ Dashboard
             <table class="table table-bordered" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Posição/Município</th>
+                    <th>Posição</th>
+                    <th>Nome do município</th>
                     <th>Valor adicionado</th>
                     <th>Ano de exercício</th>
                 </tr>
@@ -49,7 +50,8 @@ Dashboard
                 <tbody>
                 {% for ranking in lista %}
                 <tr>
-                    <td>{{ ranking.municipio|linenumbers }}</td>
+                    <td>{{ ranking.posicao }}</td>
+                    <td>{{ ranking.municipio }}</td>
                     <td>{{ ranking.vr_adic_ano_exercicio }}</td>
                     <td>{{ ranking.ano_exercicio }}</td>
                 </tr>
