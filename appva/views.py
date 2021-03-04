@@ -67,7 +67,7 @@ def index(request):
         )
         icms_indi = namedtuplefetchall(cursor)
         ax = len(indi)
-        finali = [indi[x].media * icms_indi[x].media for x in range(ax)]
+        finali = [indi[x].ind_final * icms_indi[x].media for x in range(ax)]
     return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali})
 
 
