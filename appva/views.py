@@ -43,7 +43,7 @@ def index(request):
         indice_par = namedtuplefetchall(cursor)
 
         cursor.execute(
-            """SELECT vr_adic_ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO';
+            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO';
 """
         )
         va_total_estado = namedtuplefetchall(cursor)
