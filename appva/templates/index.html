@@ -6,26 +6,26 @@ Ranking do VA
 {% endblock title %}
 {% block content %}
 
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="30%" cellspacing="0">
-                <thead>
-                <tr>
-                    <th>Nome do município</th>
-                    <th>Valor adicionado</th>
-                    <th>Ano de exercício</th>
-                </tr>
-                </thead>
+<div class="table-responsive">
+    <table class="table table-bordered" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Nome do município</th>
+            <th>Valor adicionado</th>
+            <th>Ano de exercício</th>
+        </tr>
+        </thead>
 
-                <tbody>
-                {% for ranking in lista %}
-                <tr>
-                    <td>{{ ranking.municipio }}</td>
-                    <td>{{ ranking.vr_adic_ano_exercicio }}</td>
-                    <td>{{ ranking.ano_exercicio }}</td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        <tbody>
+        {% for ranking in lista %}
+        <tr>
+            <td>{{ ranking.municipio }}</td>
+            <td>{{ ranking.vr_adic_ano_exercicio }}</td>
+            <td>{{ ranking.ano_exercicio }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}
