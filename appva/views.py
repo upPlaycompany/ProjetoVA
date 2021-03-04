@@ -56,7 +56,19 @@ def index(request):
             """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano DESC;"""
         )
         distribuicao = namedtuplefetchall(cursor)
-    return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao})
+
+        cursor.execute(
+            """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';
+"""
+        )
+        indi = namedtuplefetchall(cursor)
+        cursor.execute(
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano DESC;"""
+        )
+        icms_indi = namedtuplefetchall(cursor)
+        ax = len(indi)
+        finali = [indi[x].media * icms_indi[x].media for x in range(ax)]
+    return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali})
 
 
 @login_required
