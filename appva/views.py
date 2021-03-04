@@ -52,7 +52,11 @@ def index(request):
             """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA';"""
         )
         indice_medio = namedtuplefetchall(cursor)
-    return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio})
+        cursor.execute(
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano DESC;"""
+        )
+        distribuicao = namedtuplefetchall(cursor)
+    return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao})
 
 
 @login_required
