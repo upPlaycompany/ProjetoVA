@@ -35,7 +35,7 @@
         <a class="d-flex align-items-center justify-content-center" href="{% url 'index' %}" style="color: white;">
             <div class="text-center">
                 <img src="{% static 'img/va_logo.jpeg' %}" width="80%">
-                </div>
+            </div>
         </a>
         <br>
         <!-- Divider -->
@@ -76,8 +76,17 @@
         </li>
         {% endif %}
         <!-- Divider -->
+
         <hr class="sidebar-divider">
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'index' %}"
+            >
+                <i class="fas fa-fw fa-house"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider">
         <!-- Heading -->
         <div class="sidebar-heading">
             Tabelas
