@@ -128,6 +128,61 @@ Dashboard
             <!-- Card Header - Dropdown -->
             <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Indice médio de Juína</h6>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="{% static 'img/indice_médio_juina.png' %}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4" >
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Indice médio por ano - Juína</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive" style="width: 100%; height: 330px;">
+                        <table class="table table-bordered" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Valor do indice de participação</th>
+                                <th>Ano</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for indice_medio in lista4 %}
+                            <tr>
+                                <td>{{ indice_medio.ind_med }}</td>
+                                <td>{{ indice_medio.ano_exercicio }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4" style="width: 100%">
+            <!-- Card Header - Dropdown -->
+            <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">VA Total do Estado de Mato Grosso</h6>
             </div>
             <!-- Card Body -->
