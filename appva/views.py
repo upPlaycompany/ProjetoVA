@@ -49,7 +49,7 @@ def index(request):
         va_total_estado = namedtuplefetchall(cursor)
         
         cursor.execute(
-            """SELECT iva_med, ano FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA';"""
+            """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA';"""
         )
         indice_medio = namedtuplefetchall(cursor)
     return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio})
