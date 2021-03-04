@@ -36,7 +36,11 @@ def index(request):
 ;"""
         )
         ranking = namedtuplefetchall(cursor)
-    return render(request, 'index.html', {'lista': ranking})
+        cursor.execute(
+            """SELECT ind_final, ano_exercicio FROM appva_acypr556 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
+        )
+        indice_par = namedtuplefetchall(cursor)
+    return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par})
 
 
 @login_required
