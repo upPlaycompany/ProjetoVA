@@ -58,7 +58,7 @@ def index(request):
         distribuicao = namedtuplefetchall(cursor)
 
         cursor.execute(
-            """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO' AND ano NOT LIKE '2020';
+            """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO' AND ano_exercicio NOT LIKE '2020';
 """
         )
         indi = namedtuplefetchall(cursor)
