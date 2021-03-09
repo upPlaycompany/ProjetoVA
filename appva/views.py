@@ -46,12 +46,12 @@ def index(request):
         ano = [x.ano_exercicio for x in valor_adici]
         valor_adicionado = [x.vr_adic_ano_exercicio for x in valor_adici]
 
-        grafico_evo_mun = pit.figure(figsize=(10, 5))
-        grafico_evo_mun = pit.plot(ano, valor_adicionado)
-        grafico_evo_mun = pit.xlabel('Ano de exercício')
-        grafico_evo_mun = pit.ylabel('Valor adicionado por milhão')
-        grafico_evo_mun = pit.title('Gráfico de valor adicionado individual - Acorizal')
-        grafico_evo_mun = pit.savefig('/code/static/img/va_mun_evo.png', dpi=1200)
+        pit.figure(figsize=(10, 5))
+        pit.plot(ano, valor_adicionado)
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Valor adicionado por milhão')
+        pit.title('Gráfico de valor adicionado individual - Acorizal')
+        pit.savefig('/code/static/img/va_mun_evo.png', dpi=1200)
 
         cursor.execute(
             """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
