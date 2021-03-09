@@ -11,10 +11,11 @@ CFOP
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>CFOP</th>
-                    <th>PORTARIA</th>
-                    <th>TIPO DE CFOP</th>
-                    <th>STATUS DO CFOP</th>
+                    <th>CÓDIGO</th>
+                    <th>APLICAÇÃO</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>INICIO VIGÊNCIA</th>
+                    <th>FIM VIGÊNCIA</th>
 
                 </tr>
                 </thead>
@@ -22,10 +23,11 @@ CFOP
                 <tbody>
                 {% for cfop in order %}
                 <tr>
-                    <td>{{ cfop.cfop }}</td>
-                    <td>{{ cfop.portaria }}</td>
-                    <td>{{ cfop.tipo_cfop }}</td>
-                    <td>{{ cfop.status_cfop}}</td>
+                    <td>{{ cfop.codigo }}</td>
+                    <td>{{ cfop.aplicacao }}</td>
+                    <td>{{ cfop.descricao }}</td>
+                    <td>{{ cfop.inicio_vigencia}}</td>
+                    <td>{{ cfop.fim_vigencia}}</td>
 
                 </tr>
                 {% endfor %}
