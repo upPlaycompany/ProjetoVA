@@ -228,10 +228,11 @@ class Cred(models.Model):
 
 # CÓDIGO FISCAL DE OPERAÇÕES
 class Cfop(models.Model):
-    cfop = models.IntegerField(primary_key=True, null=False)
-    portaria = models.CharField(max_length=255, null=True)
-    tipo_cfop = models.CharField(max_length=255, null=True)
-    status_cfop = models.CharField(max_length=255, null=True)
+    codigo = models.CharField(max_length=255, null=False)
+    descricao = models.CharField(max_length=255, null=True)
+    aplicacao = models.CharField(max_length=255, null=True)
+    inicio_vigencia = models.CharField(max_length=255, null=True)
+    fim_vigencia = models.CharField(max_length=255, null=True)
 
 
 
