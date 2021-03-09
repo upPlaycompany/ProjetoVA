@@ -51,7 +51,7 @@ def index(request):
         pit.xlabel('Ano de exercício')
         pit.ylabel('Valor adicionado por milhão')
         pit.title('Gráfico de valor adicionado individual - Juína')
-        pit.savefig('code/static/va_evolucao.png')
+        pit.savefig('/code/static/va_evolucao.png')
 
         cursor.execute(
             """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
