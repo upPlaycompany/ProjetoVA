@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'appva',
     'rest_framework',
     'whitenoise',
+    'matplotlib',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
