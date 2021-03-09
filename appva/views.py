@@ -39,12 +39,15 @@ def index(request):
         )
         ranking = namedtuplefetchall(cursor)
 
-        valor_adicionado = ACYPR556.objects.filter(municipio__icontains='ACORIZAL').filter(remessa__icontains='DOE DEFINITIVO').order_by(
-                'ano_exercicio')
-        ano = ACYPR556.objects.filter(municipio__icontains='ACORIZAL').filter(remessa__icontains='DOE DEFINITIVO').order_by(
-                'ano_exercicio')
+        cursor.execute(
+            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio DESC"""
+        )
+        valor_adici = namedtuplefetchall(cursor)
+        ano = [x.ano_exercicio for x in valor_adici]
+        valor_adicionado = [x.vr_adic_ano_exercicio for x in valor_adici]
+
         pit.figure(figsize=(10, 5))
-        pit.plot(ano.columns.name('ano_exercicio'), valor_adicionado.columns.name('vr_adic_ano_exercicio'))
+        pit.plot(ano, valor_adicionado)
         pit.xlabel('Ano de exercício')
         pit.ylabel('Valor adicionado por milhão')
         pit.title('Gráfico de valor adicionado individual - Juína')
