@@ -69,7 +69,7 @@ def index(request):
         ax = len(indi)
         finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media)/100, 'ano': icms_indi[x].ano} for x in range(ax)]
         cursor.execute(
-            """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';'"""
+            """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
         )
         indices = namedtuplefetchall(cursor)
     return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
