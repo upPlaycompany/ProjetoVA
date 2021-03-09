@@ -47,7 +47,7 @@ def index(request):
         valor_adicionado = [x.vr_adic_ano_exercicio for x in valor_adici]
 
         pit.figure(figsize=(10, 5))
-        pit.plot(ano, valor_adicionado)
+        pit.plot([2020,2021,2022], [1,2.2,3])
         pit.xlabel('Ano de exercício')
         pit.ylabel('Valor adicionado por milhão')
         pit.title('Gráfico de valor adicionado individual - Juína')
