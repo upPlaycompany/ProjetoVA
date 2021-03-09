@@ -39,12 +39,10 @@ def index(request):
         )
         ranking = namedtuplefetchall(cursor)
 
-        valor_adicionado = pd.DataFrame(
-            ACYPR556.objects.filter(municipio__icontains='ACORIZAL').filter(remessa__icontains='DOE DEFINITIVO').order_by(
-                'ano_exercicio'))
-        ano = pd.DataFrame(
-            ACYPR556.objects.filter(municipio__icontains='ACORIZAL').filter(remessa__icontains='DOE DEFINITIVO').order_by(
-                'ano_exercicio'))
+        valor_adicionado = ACYPR556.objects.filter(municipio__icontains='ACORIZAL').filter(remessa__icontains='DOE DEFINITIVO').order_by(
+                'ano_exercicio')
+        ano = ACYPR556.objects.filter(municipio__icontains='ACORIZAL').filter(remessa__icontains='DOE DEFINITIVO').order_by(
+                'ano_exercicio')
         pit.figure(figsize=(10, 5))
         pit.plot(ano.columns.name('ano_exercicio'), valor_adicionado.columns.name('vr_adic_ano_exercicio'))
         pit.xlabel('Ano de exercício')
