@@ -1,8 +1,10 @@
 from collections import namedtuple
+from matplotlib import pyplot as pit
 import csv
 from easy_pdf import rendering
 import psycopg2
 import weasyprint
+import pandas as pd
 from django.utils.six import BytesIO
 from django.contrib import auth as autent
 from django.contrib.auth import authenticate, login, logout
@@ -36,6 +38,15 @@ def index(request):
 """
         )
         ranking = namedtuplefetchall(cursor)
+
+        valor_adicionado = pd.DataFrame(ACYPR556.objects.all().filter(municipio='ACORIZAL').filter(remessa='DOE DEFINITIVO').order_by('ano_exercicio'))
+        ano = pd.DataFrame(ACYPR556.objects.all().filter(municipio='ACORIZAL').filter(remessa='DOE DEFINITIVO').order_by('ano_exercicio'))
+        pit.figure(figsize=(10, 5))
+        pit.plot(ano.columns.name('ano_exercicio'), valor_adicionado.columns.name('vr_adic_ano_exercicio'))
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Valor adicionado por milhão')
+        pit.title('Gráfico de valor adicionado individual - Juína')
+        pit.savefig('code/static/va_evolucao.png')
 
         cursor.execute(
             """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
