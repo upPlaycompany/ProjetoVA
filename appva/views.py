@@ -77,7 +77,7 @@ def index(request):
         ####### GRAFICO DO VA TOTAL DO ESTADO
 
         cursor.execute(
-            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO';
+            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO' ORDER BY ano_exercicio ASC;
 """
         )
         va_total_estado = namedtuplefetchall(cursor)
