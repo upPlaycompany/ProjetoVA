@@ -114,7 +114,7 @@ def index(request):
             ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' ORDER BY ano ASC UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
             )
             distribuicao = namedtuplefetchall(cursor)
 
@@ -136,7 +136,7 @@ def index(request):
             )
             indi = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' ORDER BY ano ASC UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
             )
             icms_indi = namedtuplefetchall(cursor)
             ax = len(indi)
@@ -263,7 +263,7 @@ def index(request):
             ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' ORDER BY ano ASC UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
             )
             distribuicao = namedtuplefetchall(cursor)
 
@@ -285,7 +285,7 @@ def index(request):
             )
             indi = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' ORDER BY ano ASC UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
             )
             icms_indi = namedtuplefetchall(cursor)
             ax = len(indi)
