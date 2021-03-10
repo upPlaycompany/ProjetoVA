@@ -181,6 +181,7 @@ def index(request):
             pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
                         'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+            municipio = [{'nome': municipio}]
         else:
             cursor.execute(
                 """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO';
