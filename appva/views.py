@@ -82,7 +82,7 @@ def index(request):
         )
         va_total_estado = namedtuplefetchall(cursor)
 
-        vr_adic_estado = [x.vr_adic.ano_exercicio for x in va_total_estado]
+        vr_adic_estado = [x.vr_adic_ano_exercicio for x in va_total_estado]
         ano_estado = [x.ano_exercicio for x in va_total_estado]
 
         pit.figure(figsize=(10, 5))
