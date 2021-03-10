@@ -39,6 +39,7 @@ def index(request):
         )
         ranking = namedtuplefetchall(cursor)
 
+        ## GRAFICO VALOR ADICIONADO MUNICIPIO
         cursor.execute(
             """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
         )
@@ -91,19 +92,36 @@ def index(request):
         pit.ylabel('Valor adicionado por 100 bilhões')
         pit.title('Gráfico de valor adicionado do Estado do Mato Grosso')
         pit.savefig('/code/ProjetoVA/static/img/va_estado_graf.png')
+
+        ### GRÁFICO DE INDICE MÉDIO
         
         cursor.execute(
-            """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA';"""
+            """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA' ORDER BY ano_exercicio ASC;"""
         )
         indice_medio = namedtuplefetchall(cursor)
+        
+        ind_medi = [x.iva_med for x in indice_medio]
+        ano_medi = [x.ano_exercicio for x in indice_medio]
+
+        pit.figure(figsize=(10, 5))
+        pit.plot(ano_estado, vr_adic_estado)
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Índice médio por ano')
+        pit.title('Gráfico de índice médio - Acorizal ')
+        pit.savefig('/code/ProjetoVA/static/img/va_indice_med.png')
+
+        ### GRÁFICO DE DISTRIBUIÇÃO
+
         cursor.execute(
             """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano DESC;"""
         )
         distribuicao = namedtuplefetchall(cursor)
 
+        ### ARRECADACAO ICMS
+
         cursor.execute(
-            """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO' AND ano_exercicio NOT LIKE '2020';
-"""
+            """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' AND ano_exercicio NOT LIKE '2020';
+        """
         )
         indi = namedtuplefetchall(cursor)
         cursor.execute(
@@ -112,6 +130,9 @@ def index(request):
         icms_indi = namedtuplefetchall(cursor)
         ax = len(indi)
         finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media)/100, 'ano': icms_indi[x].ano} for x in range(ax)]
+
+        ### VARIOS INDICES
+
         cursor.execute(
             """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
         )
