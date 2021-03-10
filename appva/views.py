@@ -110,12 +110,22 @@ def index(request):
         pit.title('Gráfico de índice médio - Acorizal ')
         pit.savefig('/code/ProjetoVA/static/img/va_indice_med.png')
 
-        ### GRÁFICO DE DISTRIBUIÇÃO
+        ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
         cursor.execute(
-            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano DESC;"""
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
         )
         distribuicao = namedtuplefetchall(cursor)
+        
+        distri = [x.distrib for x in distribuicao]
+        ano_distri = [x.ano for x in distribuicao]
+
+        pit.figure(figsize=(10, 5))
+        pit.plot(ano_distri, distri)
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Distribuição por 100 milhões')
+        pit.title('Gráfico de distribuição ICMS do Estado ')
+        pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
 
         ### ARRECADACAO ICMS
 
