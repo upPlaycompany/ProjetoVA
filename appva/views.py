@@ -104,7 +104,7 @@ def index(request):
         ano_medi = [x.ano_exercicio for x in indice_medio]
 
         pit.figure(figsize=(10, 5))
-        pit.plot(ano_estado, vr_adic_estado)
+        pit.plot(ano_medi, ind_medi)
         pit.xlabel('Ano de exercício')
         pit.ylabel('Índice médio por ano')
         pit.title('Gráfico de índice médio - Acorizal ')
