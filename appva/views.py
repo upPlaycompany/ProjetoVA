@@ -32,155 +32,304 @@ def namedtuplefetchall(cursor):
 
 @login_required
 def index(request):
+    municipio = request.GET.get('municipio')
     with connections['default'].cursor() as cursor:
-        cursor.execute(
-            """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO';
-"""
-        )
-        ranking = namedtuplefetchall(cursor)
+        if municipio:
+            cursor.execute(
+                """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO';
+    """
+            )
+            ranking = namedtuplefetchall(cursor)
 
-        ## GRAFICO VALOR ADICIONADO MUNICIPIO
-        cursor.execute(
-            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
-        )
-        valor_adici = namedtuplefetchall(cursor)
-        ano = [x.ano_exercicio for x in valor_adici]
-        valor_adicionado = [x.vr_adic_ano_exercicio for x in valor_adici]
+            ## GRAFICO VALOR ADICIONADO MUNICIPIO
+            cursor.execute(
+                """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO=%s ORDER BY ano_exercicio ASC""", [municipio]
+            )
+            valor_adici = namedtuplefetchall(cursor)
+            ano = [x.ano_exercicio for x in valor_adici]
+            valor_adicionado = [x.vr_adic_ano_exercicio for x in valor_adici]
 
-        pit.figure(figsize=(10, 5))
-        pit.plot(ano, valor_adicionado)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Valor adicionado por milhão')
-        pit.title('Gráfico de valor adicionado individual - Acorizal')
-        pit.savefig('/code/ProjetoVA/static/img/va_mun_evo.png')
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano, valor_adicionado)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valor adicionado por milhão')
+            pit.title(f'Gráfico de valor adicionado individual - {municipio}')
+            pit.savefig('/code/ProjetoVA/static/img/va_mun_evo.png')
+
+            ###### GRÁFICO INDICE DE PARTICIPAÇÃO
+            cursor.execute(
+                """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio=%s AND remessa='DOE DEFINITIVO';""", [municipio]
+            )
+            indice_par = namedtuplefetchall(cursor)
+
+            cursor.execute(
+                """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO=%s ORDER BY ano_exercicio ASC""", [municipio]
+            )
+            indice_par_grafico = namedtuplefetchall(cursor)
+            ano_indice = [x.ano_exercicio for x in indice_par_grafico]
+            indice_parti = [x.ind_final for x in indice_par_grafico]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_indice, indice_parti)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Índice de participação por ano')
+            pit.title(f'Gráfico de índice de participação - {municipio}')
+            pit.savefig('/code/ProjetoVA/static/img/va_ind_par.png')
+
+            ####### GRAFICO DO VA TOTAL DO ESTADO
+
+            cursor.execute(
+                """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO' ORDER BY ano_exercicio ASC;
+    """
+            )
+            va_total_estado = namedtuplefetchall(cursor)
+
+            vr_adic_estado = [x.vr_adic_ano_exercicio for x in va_total_estado]
+            ano_estado = [x.ano_exercicio for x in va_total_estado]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_estado, vr_adic_estado)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valor adicionado por 100 bilhões')
+            pit.title('Gráfico de valor adicionado do Estado do Mato Grosso')
+            pit.savefig('/code/ProjetoVA/static/img/va_estado_graf.png')
+
+            ### GRÁFICO DE INDICE MÉDIO
+
+            cursor.execute(
+                """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA' ORDER BY ano_exercicio ASC;"""
+            )
+            indice_medio = namedtuplefetchall(cursor)
+
+            ind_medi = [x.iva_med for x in indice_medio]
+            ano_medi = [x.ano_exercicio for x in indice_medio]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_medi, ind_medi)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Índice médio por ano')
+            pit.title(f'Gráfico de índice médio - {municipio} ')
+            pit.savefig('/code/ProjetoVA/static/img/va_indice_med.png')
+
+            ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
+
+            cursor.execute(
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+            )
+            distribuicao = namedtuplefetchall(cursor)
+
+            distri = [x.distrib for x in distribuicao]
+            ano_distri = [x.ano for x in distribuicao]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_distri, distri)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Distribuição por 100 milhões')
+            pit.title('Gráfico de distribuição ICMS do Estado ')
+            pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
+
+            ### ARRECADACAO ICMS
+
+            cursor.execute(
+                """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio=%s AND remessa='DOE DEFINITIVO' AND ano_exercicio NOT LIKE '2020';
+            """, [municipio]
+            )
+            indi = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
+            )
+            icms_indi = namedtuplefetchall(cursor)
+            ax = len(indi)
+            finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media) / 100, 'ano': icms_indi[x].ano} for x in
+                      range(ax)]
+
+            arre = [x['arrecad'] for x in finali]
+            ano_arre = [x['ano'] for x in finali]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_arre, arre)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Arrecadação por 100 mil')
+            pit.title(f'Gráfico de arrecadação média ICMS de {municipio} por ano ')
+            pit.savefig('/code/ProjetoVA/static/img/va_arre_ano.png')
+
+            ### VARIOS INDICES
+
+            cursor.execute(
+                """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio=%s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""", [municipio]
+            )
+            indices = namedtuplefetchall(cursor)
+            f_med = [x.iva_med for x in indices]
+            f_75 = [x.iva_75 for x in indices]
+            f_popu = [x.populacao for x in indices]
+            f_trib = [x.trib_propr for x in indices]
+            f_area = [x.area for x in indices]
+            f_coef = [x.coef_soc for x in indices]
+            f_ucti = [x.ucti for x in indices]
+            f_ano = [x.ano_exercicio for x in indices]
+            pit.figure(figsize=(10, 5))
+            pit.plot(f_ano, f_med)
+            pit.plot(f_ano, f_75)
+            pit.plot(f_ano, f_popu)
+            pit.plot(f_ano, f_ucti)
+            pit.plot(f_ano, f_trib)
+            pit.plot(f_ano, f_area)
+            pit.plot(f_ano, f_coef)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valores em padrão de índice')
+            pit.title(f'Indices do município de {municipio}')
+            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
+                        'Indice área', 'Indice Coef. Social'))
+            pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+        elif municipio == 'ACORIZAL' or municipio == '':
+            cursor.execute(
+                """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO';
+    """
+            )
+            ranking = namedtuplefetchall(cursor)
+
+            ## GRAFICO VALOR ADICIONADO MUNICIPIO
+            cursor.execute(
+                """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
+            )
+            valor_adici = namedtuplefetchall(cursor)
+            ano = [x.ano_exercicio for x in valor_adici]
+            valor_adicionado = [x.vr_adic_ano_exercicio for x in valor_adici]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano, valor_adicionado)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valor adicionado por milhão')
+            pit.title('Gráfico de valor adicionado individual - Acorizal')
+            pit.savefig('/code/ProjetoVA/static/img/va_mun_evo.png')
 
 
-        ###### GRÁFICO INDICE DE PARTICIPAÇÃO
-        cursor.execute(
-            """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO';"""
-        )
-        indice_par = namedtuplefetchall(cursor)
+            ###### GRÁFICO INDICE DE PARTICIPAÇÃO
+            cursor.execute(
+                """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO';"""
+            )
+            indice_par = namedtuplefetchall(cursor)
 
-        cursor.execute(
-            """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
-        )
-        indice_par_grafico = namedtuplefetchall(cursor)
-        ano_indice = [x.ano_exercicio for x in indice_par_grafico]
-        indice_parti = [x.ind_final for x in indice_par_grafico]
+            cursor.execute(
+                """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
+            )
+            indice_par_grafico = namedtuplefetchall(cursor)
+            ano_indice = [x.ano_exercicio for x in indice_par_grafico]
+            indice_parti = [x.ind_final for x in indice_par_grafico]
 
-        pit.figure(figsize=(10, 5))
-        pit.plot(ano_indice, indice_parti)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Índice de participação por ano')
-        pit.title('Gráfico de índice de participação - Acorizal')
-        pit.savefig('/code/ProjetoVA/static/img/va_ind_par.png')
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_indice, indice_parti)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Índice de participação por ano')
+            pit.title('Gráfico de índice de participação - Acorizal')
+            pit.savefig('/code/ProjetoVA/static/img/va_ind_par.png')
 
-        ####### GRAFICO DO VA TOTAL DO ESTADO
+            ####### GRAFICO DO VA TOTAL DO ESTADO
 
-        cursor.execute(
-            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO' ORDER BY ano_exercicio ASC;
-"""
-        )
-        va_total_estado = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO' ORDER BY ano_exercicio ASC;
+    """
+            )
+            va_total_estado = namedtuplefetchall(cursor)
 
-        vr_adic_estado = [x.vr_adic_ano_exercicio for x in va_total_estado]
-        ano_estado = [x.ano_exercicio for x in va_total_estado]
+            vr_adic_estado = [x.vr_adic_ano_exercicio for x in va_total_estado]
+            ano_estado = [x.ano_exercicio for x in va_total_estado]
 
-        pit.figure(figsize=(10, 5))
-        pit.plot(ano_estado, vr_adic_estado)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Valor adicionado por 100 bilhões')
-        pit.title('Gráfico de valor adicionado do Estado do Mato Grosso')
-        pit.savefig('/code/ProjetoVA/static/img/va_estado_graf.png')
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_estado, vr_adic_estado)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valor adicionado por 100 bilhões')
+            pit.title('Gráfico de valor adicionado do Estado do Mato Grosso')
+            pit.savefig('/code/ProjetoVA/static/img/va_estado_graf.png')
 
-        ### GRÁFICO DE INDICE MÉDIO
-        
-        cursor.execute(
-            """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA' ORDER BY ano_exercicio ASC;"""
-        )
-        indice_medio = namedtuplefetchall(cursor)
-        
-        ind_medi = [x.iva_med for x in indice_medio]
-        ano_medi = [x.ano_exercicio for x in indice_medio]
+            ### GRÁFICO DE INDICE MÉDIO
 
-        pit.figure(figsize=(10, 5))
-        pit.plot(ano_medi, ind_medi)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Índice médio por ano')
-        pit.title('Gráfico de índice médio - Acorizal ')
-        pit.savefig('/code/ProjetoVA/static/img/va_indice_med.png')
+            cursor.execute(
+                """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA' ORDER BY ano_exercicio ASC;"""
+            )
+            indice_medio = namedtuplefetchall(cursor)
 
-        ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
+            ind_medi = [x.iva_med for x in indice_medio]
+            ano_medi = [x.ano_exercicio for x in indice_medio]
 
-        cursor.execute(
-            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
-        )
-        distribuicao = namedtuplefetchall(cursor)
-        
-        distri = [x.distrib for x in distribuicao]
-        ano_distri = [x.ano for x in distribuicao]
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_medi, ind_medi)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Índice médio por ano')
+            pit.title('Gráfico de índice médio - Acorizal ')
+            pit.savefig('/code/ProjetoVA/static/img/va_indice_med.png')
 
-        pit.figure(figsize=(10, 5))
-        pit.plot(ano_distri, distri)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Distribuição por 100 milhões')
-        pit.title('Gráfico de distribuição ICMS do Estado ')
-        pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
+            ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
-        ### ARRECADACAO ICMS
+            cursor.execute(
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+            )
+            distribuicao = namedtuplefetchall(cursor)
 
-        cursor.execute(
-            """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' AND ano_exercicio NOT LIKE '2020';
-        """
-        )
-        indi = namedtuplefetchall(cursor)
-        cursor.execute(
-            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
-        )
-        icms_indi = namedtuplefetchall(cursor)
-        ax = len(indi)
-        finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media)/100, 'ano': icms_indi[x].ano} for x in range(ax)]
+            distri = [x.distrib for x in distribuicao]
+            ano_distri = [x.ano for x in distribuicao]
 
-        arre = [x['arrecad'] for x in finali]
-        ano_arre = [x['ano'] for x in finali]
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_distri, distri)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Distribuição por 100 milhões')
+            pit.title('Gráfico de distribuição ICMS do Estado ')
+            pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
 
-        pit.figure(figsize=(10, 5))
-        pit.plot(ano_arre, arre)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Arrecadação por 100 mil')
-        pit.title('Gráfico de arrecadação média ICMS de Acorizal por ano ')
-        pit.savefig('/code/ProjetoVA/static/img/va_arre_ano.png')
+            ### ARRECADACAO ICMS
 
-        ### VARIOS INDICES
+            cursor.execute(
+                """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' AND ano_exercicio NOT LIKE '2020';
+            """
+            )
+            indi = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
+            )
+            icms_indi = namedtuplefetchall(cursor)
+            ax = len(indi)
+            finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media)/100, 'ano': icms_indi[x].ano} for x in range(ax)]
 
-        cursor.execute(
-            """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
-        )
-        indices = namedtuplefetchall(cursor)
-        f_med = [x.iva_med for x in indices]
-        f_75 = [x.iva_75 for x in indices]
-        f_popu = [x.populacao for x in indices]
-        f_trib = [x.trib_propr for x in indices]
-        f_area = [x.area for x in indices]
-        f_coef = [x.coef_soc for x in indices]
-        f_ucti = [x.ucti for x in indices]
-        f_ano = [x.ano_exercicio for x in indices]
-        pit.figure(figsize=(10, 5))
-        pit.plot(f_ano, f_med)
-        pit.plot(f_ano, f_75)
-        pit.plot(f_ano, f_popu)
-        pit.plot(f_ano, f_ucti)
-        pit.plot(f_ano, f_trib)
-        pit.plot(f_ano, f_area)
-        pit.plot(f_ano, f_coef)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Valores em padrão de índice')
-        pit.title('Indices do município de Juína')
-        pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
-                    'Indice área', 'Indice Coef. Social'))
-        pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+            arre = [x['arrecad'] for x in finali]
+            ano_arre = [x['ano'] for x in finali]
 
-    return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
+            pit.figure(figsize=(10, 5))
+            pit.plot(ano_arre, arre)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Arrecadação por 100 mil')
+            pit.title('Gráfico de arrecadação média ICMS de Acorizal por ano ')
+            pit.savefig('/code/ProjetoVA/static/img/va_arre_ano.png')
+
+            ### VARIOS INDICES
+
+            cursor.execute(
+                """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
+            )
+            indices = namedtuplefetchall(cursor)
+            f_med = [x.iva_med for x in indices]
+            f_75 = [x.iva_75 for x in indices]
+            f_popu = [x.populacao for x in indices]
+            f_trib = [x.trib_propr for x in indices]
+            f_area = [x.area for x in indices]
+            f_coef = [x.coef_soc for x in indices]
+            f_ucti = [x.ucti for x in indices]
+            f_ano = [x.ano_exercicio for x in indices]
+            pit.figure(figsize=(10, 5))
+            pit.plot(f_ano, f_med)
+            pit.plot(f_ano, f_75)
+            pit.plot(f_ano, f_popu)
+            pit.plot(f_ano, f_ucti)
+            pit.plot(f_ano, f_trib)
+            pit.plot(f_ano, f_area)
+            pit.plot(f_ano, f_coef)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valores em padrão de índice')
+            pit.title('Indices do município de Juína')
+            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
+                        'Indice área', 'Indice Coef. Social'))
+            pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+            municipio = [{'nome': 'ACORIZAL'}]
+    return render(request, 'index.html', {'abc': municipio, 'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
 
 
 @login_required
