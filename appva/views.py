@@ -65,7 +65,7 @@ def index(request):
         )
         indice_par_grafico = namedtuplefetchall(cursor)
         ano = [x.ano_exercicio for x in indice_par_grafico]
-        indice_parti = [x.ind_final for x in valor_adici]
+        indice_parti = [x.ind_final for x in indice_par_grafico]
 
         pit.figure(figsize=(10, 5))
         pit.plot(ano, indice_parti)
