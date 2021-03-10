@@ -58,7 +58,7 @@ def index(request):
 
             ###### GRÁFICO INDICE DE PARTICIPAÇÃO
             cursor.execute(
-                """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio=%s AND remessa='DOE DEFINITIVO';""", [municipio]
+                """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio=%s AND remessa='DOE DEFINITIVO ORDER BY ano_exercicio ASC';""", [municipio]
             )
             indice_par = namedtuplefetchall(cursor)
 
