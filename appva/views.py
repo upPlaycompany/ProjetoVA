@@ -64,23 +64,33 @@ def index(request):
             """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
         )
         indice_par_grafico = namedtuplefetchall(cursor)
-        ano = [x.ano_exercicio for x in indice_par_grafico]
+        ano_indice = [x.ano_exercicio for x in indice_par_grafico]
         indice_parti = [x.ind_final for x in indice_par_grafico]
 
         pit.figure(figsize=(10, 5))
-        pit.plot(ano, indice_parti)
+        pit.plot(ano_indice, indice_parti)
         pit.xlabel('Ano de exercício')
         pit.ylabel('Índice de participação por ano')
         pit.title('Gráfico de índice de participação - Acorizal')
         pit.savefig('/code/ProjetoVA/static/img/va_ind_par.png')
 
-        #######
+        ####### GRAFICO DO VA TOTAL DO ESTADO
 
         cursor.execute(
             """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO';
 """
         )
         va_total_estado = namedtuplefetchall(cursor)
+
+        vr_adic_estado = [x.vr_adic.ano_exercicio for x in va_total_estado]
+        ano_estado = [x.ano_exercicio for x in va_total_estado]
+
+        pit.figure(figsize=(10, 5))
+        pit.plot(ano_estado, vr_adic_estado)
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Valor adicionado por 100 bilhões')
+        pit.title('Gráfico de valor adicionado do Estado do Mato Grosso')
+        pit.savefig('/code/ProjetoVA/static/img/va_estado_graf.png')
         
         cursor.execute(
             """SELECT iva_med, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND municipio='JUINA';"""
