@@ -157,6 +157,29 @@ def index(request):
             """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
         )
         indices = namedtuplefetchall(cursor)
+        f_med = [x.iva_med for x in indices]
+        f_75 = [x.iva_75 for x in indices]
+        f_popu = [x.populacao for x in indices]
+        f_trib = [x.trib_propr for x in indices]
+        f_area = [x.area for x in indices]
+        f_coef = [x.coef_soc for x in indices]
+        f_ucti = [x.ucti for x in indices]
+        f_ano = [x.ano_exercicio for x in indices]
+        pit.figure(figsize=(10, 5))
+        pit.plot(f_ano, f_med)
+        pit.plot(f_ano, f_75)
+        pit.plot(f_ano, f_popu)
+        pit.plot(f_ano, f_ucti)
+        pit.plot(f_ano, f_trib)
+        pit.plot(f_ano, f_area)
+        pit.plot(f_ano, f_coef)
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Valores em padrão de índice')
+        pit.title('Indices do município de Juína')
+        pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
+                    'Indice área', 'Indice Coef. Social'))
+        pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+
     return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
 
 
