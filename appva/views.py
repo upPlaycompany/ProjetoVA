@@ -154,7 +154,7 @@ def index(request):
         ### VARIOS INDICES
 
         cursor.execute(
-            """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
+            """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
         )
         indices = namedtuplefetchall(cursor)
         f_med = [x.iva_med for x in indices]
