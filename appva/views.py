@@ -53,10 +53,28 @@ def index(request):
         pit.title('Gráfico de valor adicionado individual - Acorizal')
         pit.savefig('/code/ProjetoVA/static/img/va_mun_evo.png')
 
+
+        ###### GRÁFICO INDICE DE PARTICIPAÇÃO
         cursor.execute(
-            """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
+            """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO';"""
         )
         indice_par = namedtuplefetchall(cursor)
+
+        cursor.execute(
+            """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
+        )
+        indice_par_grafico = namedtuplefetchall(cursor)
+        ano = [x.ano_exercicio for x in indice_par_grafico]
+        indice_parti = [x.ind_final for x in valor_adici]
+
+        pit.figure(figsize=(10, 5))
+        pit.plot(ano, indice_parti)
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Índice de participação por ano')
+        pit.title('Gráfico de índice de participação - Acorizal')
+        pit.savefig('/code/ProjetoVA/static/img/va_ind_par.png')
+
+        #######
 
         cursor.execute(
             """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO';
