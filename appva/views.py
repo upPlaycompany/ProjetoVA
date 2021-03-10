@@ -40,7 +40,7 @@ def index(request):
         ranking = namedtuplefetchall(cursor)
 
         cursor.execute(
-            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio DESC"""
+            """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO='ACORIZAL' ORDER BY ano_exercicio ASC"""
         )
         valor_adici = namedtuplefetchall(cursor)
         ano = [x.ano_exercicio for x in valor_adici]
