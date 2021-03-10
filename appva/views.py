@@ -46,12 +46,12 @@ def index(request):
         ano = [x.ano_exercicio for x in valor_adici]
         valor_adicionado = [x.vr_adic_ano_exercicio for x in valor_adici]
 
-        pit.figure(figsize=(10, 5))
-        pit.plot(ano, valor_adicionado)
-        pit.xlabel('Ano de exercício')
-        pit.ylabel('Valor adicionado por milhão')
-        pit.title('Gráfico de valor adicionado individual - Acorizal')
-        pit.savefig('/code/appva/va_mun_evo.png')
+        gra = pit.figure(figsize=(10, 5))
+        gra = pit.plot(ano, valor_adicionado)
+        gra = pit.xlabel('Ano de exercício')
+        gra = pit.ylabel('Valor adicionado por milhão')
+        gra = pit.title('Gráfico de valor adicionado individual - Acorizal')
+        gra = pit.savefig('/code/static/img/va_mun_evo.png')
 
         cursor.execute(
             """SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
@@ -88,7 +88,7 @@ def index(request):
             """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO';"""
         )
         indices = namedtuplefetchall(cursor)
-    return render(request, 'index.html', {'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
+    return render(request, 'index.html', {'grafico': gra, 'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado, 'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
 
 
 @login_required
