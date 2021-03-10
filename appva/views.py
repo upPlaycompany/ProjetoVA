@@ -141,6 +141,16 @@ def index(request):
         ax = len(indi)
         finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media)/100, 'ano': icms_indi[x].ano} for x in range(ax)]
 
+        arre = [x.arrecad for x in finali]
+        ano_arre = [x.ano for x in finali]
+
+        pit.figure(figsize=(10, 5))
+        pit.plot(ano_arre, arre)
+        pit.xlabel('Ano de exercício')
+        pit.ylabel('Arrecadação com porcentagem aplicada por 100 milhões')
+        pit.title('Gráfico de arrecadação média ICMS de Acorizal por ano ')
+        pit.savefig('/code/ProjetoVA/static/img/va_arre_ano.png')
+
         ### VARIOS INDICES
 
         cursor.execute(
