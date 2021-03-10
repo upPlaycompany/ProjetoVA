@@ -135,7 +135,7 @@ def index(request):
         )
         indi = namedtuplefetchall(cursor)
         cursor.execute(
-            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano DESC;"""
+            """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS media, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS media, ano FROM appva_fpm WHERE ano NOT LIKE '2020' AND ano IN ('2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011') ORDER BY ano ASC;"""
         )
         icms_indi = namedtuplefetchall(cursor)
         ax = len(indi)
@@ -147,7 +147,7 @@ def index(request):
         pit.figure(figsize=(10, 5))
         pit.plot(ano_arre, arre)
         pit.xlabel('Ano de exercício')
-        pit.ylabel('Arrecadação com porcentagem aplicada por 100 milhões')
+        pit.ylabel('Arrecadação por 100 mil')
         pit.title('Gráfico de arrecadação média ICMS de Acorizal por ano ')
         pit.savefig('/code/ProjetoVA/static/img/va_arre_ano.png')
 
