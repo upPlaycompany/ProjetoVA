@@ -3,7 +3,25 @@
 CFOP
 {% endblock title %}
 {% block content %}
-<!-- DataTales Example -->
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+          <option value="codigo">Pesquisar por código</option>
+          <option value="aplicacao">Pesquisar por aplicação</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
 <div class="card shadow mb-4">
 
     <div class="card-body">
@@ -48,7 +66,7 @@ CFOP
             <a href="?page={{ order.next_page_number }}">Próxima página</a>
         {% endif %}
   </span>
- </div>
+</div>
 <br>
 {% if request.user.is_staff == True %}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -77,8 +95,8 @@ CFOP
                 <div class="form-group">
                     {% for remessa in lista %}
                     <a href="{% url 'import_cfop' pk=remessa.pk %}">
-                    <label>{{remessa.id}} - {{remessa.arquivo}}
-                    </label></a>
+                        <label>{{remessa.id}} - {{remessa.arquivo}}
+                        </label></a>
                     {% endfor %}
 
 

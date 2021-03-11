@@ -4443,8 +4443,15 @@ def import_acgpr051(request, pk):
 @login_required
 def CFOP(request):
     page = request.GET.get('page', '')
+    t = request.GET.get('t')
+    q = request.GET.get('q')
     try:
-        cfop = Cfop.objects.all()
+        if q and t == 'codigo':
+            cfop = Cfop.objects.filter(codigo__contains=q)
+        elif q and t == "data":
+            cfop = Cfop.objects.filter(aplicacao__contains=q)
+        else:
+            cfop = Cfop.objects.all()
         remessa = REMESSAS.objects.all()
         cfop = Paginator(cfop, 20)
         cfop = cfop.page(page)
