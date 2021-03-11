@@ -4466,7 +4466,7 @@ def import_cfop(request, pk):
     constr = "dbname='postgres' user='postgres' password='postgres' host='db'"
     db = psycopg2.connect(constr)
     st = db.cursor()
-    st.copy_from(file=f, table='appva_cfop', sep=';', columns=('CODIGO', 'APLICACAO', 'DESCRICAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA'))
+    st.copy_from(file=f, table='appva_cfop', sep=';', columns=('CODIGO', 'DESCRICAO', 'APLICACAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA'))
     db.commit()
     st.close()
     db.close()
