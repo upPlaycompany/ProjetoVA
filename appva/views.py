@@ -326,7 +326,7 @@ def index(request):
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
             pit.title('Indices do município de Juína')
-            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
+            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
                         'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
             municipio = [{'nome': 'ACORIZAL'}]
