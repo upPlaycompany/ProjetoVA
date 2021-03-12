@@ -274,7 +274,7 @@ def index(request):
             pit.plot(ano_distri, distri)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Distribuição por 100 milhões')
-            pit.title('Gráfico de distribuição ICMS do Estado ')
+            pit.title('Gráfico de distribuição mensal ICMS do Estado ')
             pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
 
             ### ARRECADACAO ICMS
