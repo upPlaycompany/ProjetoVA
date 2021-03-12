@@ -52,7 +52,7 @@ def index(request):
             pit.figure(figsize=(10, 5))
             pit.plot(ano, valor_adicionado)
             pit.xlabel('Ano de exercício')
-            pit.ylabel('Valor adicionado por milhão')
+            pit.ylabel('Valor adicionado por 100 milhões')
             pit.title(f'Gráfico de valor adicionado individual - {municipio}')
             pit.savefig('/code/ProjetoVA/static/img/va_mun_evo.png')
 
