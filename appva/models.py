@@ -528,6 +528,26 @@ class Pgdas_d(models.Model):
     ano_exercicio = models.CharField(max_length=100, null=True)
     ano_base = models.CharField(max_length=100, null=True)
 
+class PTS(models.Model):
+    exercicio = models.CharField(max_length=255, null=True)
+    inscricao = models.CharField(max_length=255, null=True)
+    dtinicio = models.CharField(max_length=255, null=True)
+    dtfinal = models.CharField(max_length=255, null=True)
+    tipo = models.CharField(max_length=255, null=True)
+    dtprocessam = models.CharField(max_length=255, null=True)
+    cfop = models.CharField(max_length=255, null=True)
+    vlcontabil = models.FloatField(null=True)
+    basecalculo = models.FloatField(null=True)
+    icms = models.FloatField(null=True)
+    isentas = models.FloatField(null=True)
+    outras = models.FloatField(null=True)
+    ipi = models.FloatField(null=True)
+    retido = models.FloatField(null=True)
+    situacao = models.CharField(max_length=255, null=True)
+    idatualizacao = models.CharField(max_length=255, null=True)
+    codmunicipio = models.CharField(max_length=255, null=True)
+    efd = models.CharField(max_length=255, null=True)
+
 
 class REMESSAS(models.Model):
     id = models.IntegerField(primary_key=True, null=False)
