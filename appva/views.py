@@ -4489,15 +4489,10 @@ def import_cfop(request, pk):
 @login_required
 def Pts(request):
     page = request.GET.get('page', '')
-    t = request.GET.get('t')
-    q = request.GET.get('q')
+    #t = request.GET.get('t')
+    #q = request.GET.get('q')
     try:
-        if q and t == 'codigo':
-            pts = PTS.objects.filter(codigo__contains=q)
-        elif q and t == "data":
-            pts = PTS.objects.filter(aplicacao__contains=q)
-        else:
-            pts = PTS.objects.all()
+        pts = PTS.objects.all()
         remessa = REMESSAS.objects.all()
         pts = Paginator(pts, 20)
         pts = pts.page(page)
