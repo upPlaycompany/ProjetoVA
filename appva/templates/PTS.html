@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block title %}
+NFE_e
+{% endblock title %}
+{% block content %}
+
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+    <span>
+        <div class="form-group col-md-20">
+      <select id="inputState" class="form-control" name="t">
+        <option selected>Escolha o tipo de filtro</option>
+          <option value="ie_remetente">Pesquisar por inscrição do remetente</option>
+          <option value="nome">Pesquisar por nome do remetente</option>
+          <option value="municipio">Pesquisar por município do adquirente</option>
+          <option value="ie_adquirente">Pesquisar por inscrição do adquirente</option>
+          <option value="nome_adquirente">Pesquisar por nome do adquirente</option>
+          <option value="mun_adquirente">Pesquisar por município do adquirente</option>
+          <option value="remessa">Pesquisar por remessa</option>
+      </select>
+    </div>
+    </span>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<div class="card shadow mb-4">
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                EXERCICIO; INSCRICAO; DTINICIO; DTFINAL; TIPO; DTPROCESSAM; CFOP; VLCONTABIL; BASECALCULO; ICMS; ISENTAS; OUTRAS; IPI; RETIDO; SITUACAO; IDATUALIZACAO; CODMUNICIPIO; EFD
+
+                <tr>
+                    <th>EXERCICIO</th>
+                    <th>INSCRICAO</th>
+                    <th>DTINICIO</th>
+                    <th>DTFINAL</th>
+                    <th>TIPO</th>
+                    <th>DTPROCESSAM</th>
+                    <th>CFOP</th>
+                    <th>VLCONTABIL</th>
+                    <th>BASECALCULO</th>
+                    <th>ICMS</th>
+                    <th>ISENTAS</th>
+                    <th>OUTRAS</th>
+                    <th>IPI</th>
+                    <th>RETIDO</th>
+                    <th>SITUACAO</th>
+                    <th>IDATUALIZACAO</th>
+                    <th>CODMUNICIPIO</th>
+                    <th>EFD</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for pts in order %}
+                <tr>
+                    <td>{{ pts.exercicio }}</td>
+                    <td>{{ pts.inscricao }}</td>
+                    <td>{{ pts.dtinicio }}</td>
+                    <td>{{ pts.dtfinal }}</td>
+                    <td>{{ pts.tipo }}</td>
+                    <td>{{ pts.dtprocessam }}</td>
+                    <td>{{ pts.cfop }}</td>
+                    <td>{{ pts.vlcontabil }}</td>
+                    <td>{{ pts.basecalculo }}</td>
+                    <td>{{ pts.icms }}</td>
+                    <td>{{ pts.isentas }}</td>
+                    <td>{{ pts.outras }}</td>
+                    <td>{{ pts.ipi }}</td>
+                    <td>{{ pts.retido }}</td>
+                    <td>{{ pts.situacao }}</td>
+                    <td>{{ pts.idatualizacao }}</td>
+                    <td>{{ pts.codmunicipio }}</td>
+                    <td>{{ pts.efd }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+ <div class="pagination">
+    <span class="step-links">
+        {% if order.has_previous %}
+           <a href="?page={{ order.previous_page_number }}">Página anterior</a>
+         {% endif %}
+        <span class="current">
+            Página {{ order.number }} de {{ order.paginator.num_pages }}.
+        </span>
+         {% if order.has_next %}
+            <a href="?page={{ order.next_page_number }}">Próxima página</a>
+        {% endif %}
+  </span>
+ </div>
+<br>
+{% if request.user.is_staff == True %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Importar dados
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Importar dados</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    {% for remessa in lista %}
+                    <a href="{% url 'import_pts' pk=remessa.pk %}">
+                        <label>{{remessa.id}} - {{remessa.arquivo}}
+                        </label></a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
