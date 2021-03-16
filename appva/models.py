@@ -547,6 +547,11 @@ class PTS(models.Model):
     idatualizacao = models.CharField(max_length=255, null=True)
     codmunicipio = models.CharField(max_length=255, null=True)
     efd = models.CharField(max_length=255, null=True)
+    remessa = models.CharField(max_length=255, null=True)
+    descricao = models.CharField(max_length=255, null=True)
+    ano_exercicio = models.CharField(max_length=255, null=True)
+    ano_base = models.CharField(max_length=255, null=True)
+
 
 
 class REMESSAS(models.Model):
