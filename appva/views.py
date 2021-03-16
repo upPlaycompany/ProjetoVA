@@ -4585,7 +4585,7 @@ def import_pts(request, pk):
     st.copy_from(file=f, table='appva_pts', sep=';',
                  columns=('EXERCICIO', 'INSCRICAO', 'DTINICIO', 'DTFINAL', 'TIPO', 'DTPROCESSAM', 'CFOP', 'VLCONTABIL',
                           'BASECALCULO', 'ICMS', 'ISENTAS', 'OUTRAS', 'IPI', 'RETIDO', 'SITUACAO', 'IDATUALIZACAO',
-                          'CODMUNICIPIO', 'EFD'
+                          'CODMUNICIPIO', 'EFD', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'
                           ))
     db.commit()
     st.close()
