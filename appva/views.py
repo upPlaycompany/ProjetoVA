@@ -184,6 +184,41 @@ def index(request):
             pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
                         'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+
+
+            ###ACYPR600
+            cursor.execute(
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr535 WHERE municipio=%s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
+                [municipio]
+            )
+            acypr600 = namedtuplefetchall(cursor)
+
+            ci = [x.com_ind for x in acypr600]
+            pr = [x.prod_rural for x in acypr600]
+            ps = [x.prest_serv for x in acypr600]
+            da = [x.dar_1_aut for x in acypr600]
+            na = [x.nai for x in acypr600]
+            co = [x.credito_ex_off for x in acypr600]
+            do = [x.debito_ex_off for x in acypr600]
+            to = [x.total for x in acypr600]
+            ae = [x.ano_exercicio for x in acypr600]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ae, ci)
+            pit.plot(ae, pr)
+            pit.plot(ae, ps)
+            pit.plot(ae, da)
+            pit.plot(ae, na)
+            pit.plot(ae, co)
+            pit.plot(ae, do)
+            pit.plot(ae, to)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valores em padrão de índice')
+            pit.title(f'Indices das atividades econômicas de {municipio}')
+            pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
+                        'Crédito Ex Off', 'Débito Ex Off', 'Total'))
+            pit.savefig('/code/ProjetoVA/static/img/va_600.png')
+
             municipio = [{'nome': municipio}]
         else:
             cursor.execute(
@@ -328,10 +363,44 @@ def index(request):
             pit.plot(f_ano, f_coef)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
-            pit.title('Indices do município de Juína')
+            pit.title('Indices do município de Acorizal')
             pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
                         'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+
+
+            ###ACYPR600
+            cursor.execute(
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
+            )
+            acypr600 = namedtuplefetchall(cursor)
+
+            ci = [x.com_ind for x in acypr600]
+            pr = [x.prod_rural for x in acypr600]
+            ps = [x.prest_serv for x in acypr600]
+            da = [x.dar_1_aut for x in acypr600]
+            na = [x.nai for x in acypr600]
+            co = [x.credito_ex_off for x in acypr600]
+            do = [x.debito_ex_off for x in acypr600]
+            to = [x.total for x in acypr600]
+            ae = [x.ano_exercicio for x in acypr600]
+
+            pit.figure(figsize=(10, 5))
+            pit.plot(ae, ci)
+            pit.plot(ae, pr)
+            pit.plot(ae, ps)
+            pit.plot(ae, da)
+            pit.plot(ae, na)
+            pit.plot(ae, co)
+            pit.plot(ae, do)
+            pit.plot(ae, to)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valores em padrão de índice')
+            pit.title(f'Indices das atividades econômicas de ACORIZAL')
+            pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
+                        'Crédito Ex Off', 'Débito Ex Off', 'Total'))
+            pit.savefig('/code/ProjetoVA/static/img/va_600.png')
+
             municipio = [{'nome': 'ACORIZAL'}]
     return render(request, 'index.html',
                   {'abc': municipio, 'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado,
