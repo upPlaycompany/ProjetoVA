@@ -213,8 +213,8 @@ def index(request):
             pit.plot(ae, do)
             pit.plot(ae, to)
             pit.xlabel('Ano de exercício')
-            pit.ylabel('Valores em padrão de índice')
-            pit.title(f'Indices das atividades econômicas de {municipio}')
+            pit.ylabel('Valores adicionados por 10 milhões')
+            pit.title(f'Valor adicionado de {municipio} - Atividades econômicas e outros')
             pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
                         'Crédito Ex Off', 'Débito Ex Off', 'Total'))
             pit.savefig('/code/ProjetoVA/static/img/va_600.png')
@@ -395,8 +395,8 @@ def index(request):
             pit.plot(ae, do)
             pit.plot(ae, to)
             pit.xlabel('Ano de exercício')
-            pit.ylabel('Valores em padrão de índice')
-            pit.title(f'Indices das atividades econômicas de ACORIZAL')
+            pit.ylabel('Valores adicionados por 10 milhões')
+            pit.title(f'Valor adicionado de ACORIZAL - Atividades econômicas e outros')
             pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
                         'Crédito Ex Off', 'Débito Ex Off', 'Total'))
             pit.savefig('/code/ProjetoVA/static/img/va_600.png')
