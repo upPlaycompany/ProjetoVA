@@ -181,14 +181,14 @@ def index(request):
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
             pit.title(f'Indices do município de {municipio}')
-            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. população',
+            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
                         'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
 
 
             ###ACYPR600
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr535 WHERE municipio=%s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
                 [municipio]
             )
             acypr600 = namedtuplefetchall(cursor)
@@ -342,7 +342,7 @@ def index(request):
             ### VARIOS INDICES
 
             cursor.execute(
-                """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='JUINA' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
+                """SELECT iva_med, iva_75, populacao, ucti, trib_propr, area, coef_soc, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
             )
             indices = namedtuplefetchall(cursor)
             f_med = [x.iva_med for x in indices]
@@ -371,7 +371,7 @@ def index(request):
 
             ###ACYPR600
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
             )
             acypr600 = namedtuplefetchall(cursor)
 
