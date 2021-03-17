@@ -2987,7 +2987,7 @@ def VALOR_ADICIONADO_efd_418_POR_MUNICIPIO(request, municipio):
             mes2 = mes2 + 1
             ano = str(q_ano)
             filtro = list(range(mes1, mes2))
-            datas = [f'{ano}-' + '0' + str(x) + f'-01' if x < 10 else f'{ano}-' + str(x) + f'-01' for x in filtro]
+            datas = [f'01/' + '0' + str(x) + f'{ano}' if x < 10 else f'01/' + str(x) + f'{ano}' for x in filtro]
             datas1 = tuple(datas)
             ins = Efd.objects.all()
             i = str(municipio)
@@ -3088,9 +3088,9 @@ def VALOR_ADICIONADO_efd_418_POR_MUNICIPIO(request, municipio):
             mes1 = int(q_inicio)
             ano = int(q_ano)
             if mes1 < 10:
-                data = f'{ano}-0{mes1}-01'
+                data = f'01/0{mes1}/{ano}'
             else:
-                data = f'{ano}-{mes1}-01'
+                data = f'01/{mes1}/{ano}'
             data = str(data)
             ins = Efd.objects.all()
             i = str(municipio)
@@ -3289,7 +3289,7 @@ def VALOR_ADICIONADO_efd_418_POR_MUNICIPIO(request, municipio):
             mes22 = mes22 + 1
             ano1 = str(q_ano2)
             filtro = list(range(mes11, mes22))
-            datas1 = [f'{ano1}-' + '0' + str(x) + f'-01' if x < 10 else f'{ano1}-' + str(x) + f'-01' for x in filtro]
+            datas1 = [f'01/' + '0' + str(x) + f'{ano1}' if x < 10 else f'01/' + str(x) + f'{ano1}' for x in filtro]
             datas12 = tuple(datas1)
             ins = Efd.objects.all()
             i = str(municipio)
@@ -3390,9 +3390,9 @@ def VALOR_ADICIONADO_efd_418_POR_MUNICIPIO(request, municipio):
             mes12 = int(q_inicio2)
             ano1 = int(q_ano2)
             if mes12 < 10:
-                data1 = f'{ano1}-0{mes12}-01'
+                data1 = f'01/0{mes12}/{ano1}'
             else:
-                data1 = f'{ano1}-{mes12}-01'
+                data1 = f'01/0{mes12}/{ano1}'
             data1 = str(data1)
             ins = Efd.objects.all()
             i = str(municipio)
