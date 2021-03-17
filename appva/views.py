@@ -1784,7 +1784,7 @@ def VALOR_ADICIONADO_gia_296(request, inscricao):
             mes2 = mes2 + 1
             ano = str(q_ano)
             filtro = list(range(mes1, mes2))
-            datas = [f'{ano}-' + '0' + str(x) + f'-01' if x < 10 else f'01/' + str(x) + f'/{ano}' for x in filtro]
+            datas = [f'01/' + '0' + str(x) + f'{ano}' if x < 10 else f'01/' + str(x) + f'/{ano}' for x in filtro]
             datas1 = tuple(datas)
             ins = Gia_entradas_saidas.objects.all()
             i = str(inscricao)
@@ -1884,9 +1884,9 @@ def VALOR_ADICIONADO_gia_296(request, inscricao):
             mes1 = int(q_inicio)
             ano = int(q_ano)
             if mes1 < 10:
-                data = f'{ano}-0{mes1}-01'
+                data = f'01/0{mes1}/{ano}'
             else:
-                data = f'{ano}-{mes1}-01'
+                data = f'01/{mes1}/{ano}'
             data = str(data)
             ins = Gia_entradas_saidas.objects.all()
             i = str(inscricao)
@@ -2084,7 +2084,7 @@ def VALOR_ADICIONADO_gia_296(request, inscricao):
             mes22 = mes22 + 1
             ano2 = str(q_ano2)
             filtro = list(range(mes12, mes22))
-            datas2 = [f'{ano2}-' + '0' + str(x) + f'-01' if x < 10 else f'01/' + str(x) + f'/{ano2}' for x in filtro]
+            datas2 = [f'01/' + '0' + str(x) + f'{ano2}' if x < 10 else f'01/' + str(x) + f'/{ano2}' for x in filtro]
             datas12 = tuple(datas2)
             ins = Gia_entradas_saidas.objects.all()
             i = str(inscricao)
@@ -2184,9 +2184,9 @@ def VALOR_ADICIONADO_gia_296(request, inscricao):
             mes12 = int(q_inicio2)
             ano2 = int(q_ano2)
             if mes12 < 10:
-                data1 = f'{ano2}-0{mes12}-01'
+                data1 = f'01/0{mes12}/{ano2}'
             else:
-                data1 = f'{ano2}-{mes12}-01'
+                data1 = f'01/{mes12}/{ano2}'
             data1 = str(data1)
             ins = Gia_entradas_saidas.objects.all()
             i = str(inscricao)
@@ -4591,6 +4591,10 @@ def import_pts(request, pk):
     st.close()
     db.close()
     return render(request, 'pts_sucesso.html')
+
+#@login_required
+#def VALOR_ADICIONADO_PTS(request, municipio, ano, inscricao):
+
 
 
 @login_required
