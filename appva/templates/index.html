@@ -6,13 +6,8 @@
 Dashboard
 {% endblock title %}
 {% block content %}
-{% for municipio in abc %}
-<div class="row">
-    <div>
-        Município: <img src="{% get_static_prefix %}LOGO_MT/{{ municipio.nome }}.png">
-    </div>
-    {% endfor %}
 
+<div class="row">
     <form method="get">{% csrf_token %}
         <div class="col-xl-8 col-lg-7">
             <div class="form-row">
@@ -169,6 +164,13 @@ Dashboard
             <button type="submit" class="btn btn-primary">Selecionar</button>
         </div>
     </form>
+    <div class="col-xl-4 col-lg-5">
+        {% for municipio in abc %}
+        <div>
+            Município: <img src="{% get_static_prefix %}LOGO_MT/{{ municipio.nome }}.png">
+        </div>
+        {% endfor %}
+    </div>
 </div>
 <br>
 <br>
