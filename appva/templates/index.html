@@ -12,7 +12,7 @@ Dashboard
 </div>
 {% endfor %}
 
-<form method="get">{% csrf_token %}
+<span><form method="get">{% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Selecione o município:</label>
@@ -165,7 +165,7 @@ Dashboard
     </div>
 
     <button type="submit" class="btn btn-primary">Selecionar</button>
-</form>
+</form></span>
 <br>
 <br>
 <div class="row">
