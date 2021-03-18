@@ -9,7 +9,7 @@ Dashboard
 
 <div class="row">
     <form method="get">{% csrf_token %}
-        <div class="col-xl-8 col-lg-7">
+        <div class="col-xl-5 col-lg-7">
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label>Selecione o município:</label>
@@ -164,7 +164,7 @@ Dashboard
             <button type="submit" class="btn btn-primary">Selecionar</button>
         </div>
     </form>
-    <div class="col-xl-4 col-lg-12">
+    <div class="col-xl-8 col-lg-12">
         {% for municipio in abc %}
         <div style="float: right;">
             <img src="{% get_static_prefix %}LOGO_MT/{{ municipio.nome }}.png">
