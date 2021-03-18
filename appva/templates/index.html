@@ -8,7 +8,7 @@ Dashboard
 {% block content %}
 {% for municipio in abc %}
 <div>
-    Município: <img src="code/static/img/LOGO_MT/{{ municipio.nome }}.png">
+    Município: <img src="/code/static/img/LOGO_MT/{{ municipio.nome }}.png">
 </div>
 {% endfor %}
 <form method="get">{% csrf_token %}
