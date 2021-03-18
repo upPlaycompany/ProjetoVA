@@ -164,9 +164,9 @@ Dashboard
             <button type="submit" class="btn btn-primary">Selecionar</button>
         </div>
     </form>
-    <div class="col-xl-4 col-lg-5">
+    <div class="col-xl-4 col-lg-5" style="float: right;">
         {% for municipio in abc %}
-        <div>
+        <div >
             <img src="{% get_static_prefix %}LOGO_MT/{{ municipio.nome }}.png">
         </div>
         {% endfor %}
