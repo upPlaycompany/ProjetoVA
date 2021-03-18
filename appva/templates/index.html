@@ -6,6 +6,11 @@
 Dashboard
 {% endblock title %}
 {% block content %}
+{% for municipio in abc %}
+<div>
+    Município: <img src="{% static 'img/LOGO_MT/{{ municipio.nome }}.png' %}">
+</div>
+{% endfor %}
 <form method="get">{% csrf_token %}
     <div class="form-row">
         <div class="form-group col-md-3">
