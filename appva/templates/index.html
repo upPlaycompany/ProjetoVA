@@ -832,7 +832,7 @@ Dashboard
 
                             <tbody>
                             {% for resultados_variacao in dfc %}
-                            {% for x in resultados_variacao
+                            {% for x in resultados_variacao %}
                             <tr>
                                 <td>{{ x.ano_exercicio }}</td>
                                 <td>{{ x.com_ind.resu_com_ind.anual }}</td>
@@ -844,6 +844,7 @@ Dashboard
                                 <td>{{ x.debito_ex_off.anual }}</td>
                                 <td>{{ x.total.anual }}</td>
                             </tr>
+                            {% endfor %}
                             {% endfor %}
                             </tbody>
                         </table>
