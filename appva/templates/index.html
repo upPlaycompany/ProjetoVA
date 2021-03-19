@@ -801,6 +801,8 @@ Dashboard
     </form>
 
 </div>
+<br>
+<br>
 <div class="row">
 
     <!-- Pie Chart -->
@@ -828,7 +830,7 @@ Dashboard
                             {% for resu_com_ind in aa %}
                             <tr>
                                 <td>{{ resu_com_ind.ano }}</td>
-                                <td>{{ resu_com_ind.anual }}</td>
+                                <td>{{ resu_com_ind.anual|floatformat: 2 }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
