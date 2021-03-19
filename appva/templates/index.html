@@ -801,5 +801,55 @@ Dashboard
     </form>
 
 </div>
+<div class="row">
 
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Variação das atividades econômicas</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive" style="width: 100%; height: 322px;">
+                        <table class="table table-bordered" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Ano</th>
+                                <th>Comércio e Indústria</th>
+                                <th>Prestadores de Serviço</th>
+                                <th>Produção Rural</th>
+                                <th>DAR-1/AUT</th>
+                                <th>N.A.I</th>
+                                <th>Crédito</th>
+                                <th>Débito</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for resultados_variacoes in dfc %}
+                            <tr>
+                                <td>{{ resultados_variacoes.ano_exercicio }}</td>
+                                <td>{{ resultados_variacoes.com_ind }}</td>
+                                <td>{{ resultados_variacoes.prest_serv }}</td>
+                                <td>{{ resultados_variacoes.prod_rural }}</td>
+                                <td>{{ resultados_variacoes.dar_1_aut }}</td>
+                                <td>{{ resultados_variacoes.nai }}</td>
+                                <td>{{ resultados_variacoes.credito_ex_off }}</td>
+                                <td>{{ resultados_variacoes.debito_ex_off }}</td>
+                                <td>{{ resultados_variacoes.total }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
