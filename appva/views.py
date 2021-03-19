@@ -515,8 +515,6 @@ def index(request):
                     {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
-                resu_com_ind_final = [resu_com_ind[x].update({'acumulada': (((variacao[x].com_ind / variacao2[x].com_ind) * 100) + (resu_com_ind[x-1]['anual']))}) for x in range(apx)]
-                float('p')
             except ZeroDivisionError:
                 resu_com_ind = [
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
@@ -552,7 +550,6 @@ def index(request):
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
-
             try:
                 resu_nai = [
                     {'anual': (variacao[x].nai / variacao2[x].nai) * 100, 'ano': variacao2[x].ano_exercicio}
