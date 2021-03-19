@@ -834,14 +834,14 @@ Dashboard
                             {% for resultados_variacoes in dfc %}
                             <tr>
                                 <td>{{ resultados_variacoes.ano_exercicio }}</td>
-                                <td>{{ resultados_variacoes.com_ind }}</td>
-                                <td>{{ resultados_variacoes.prest_serv }}</td>
-                                <td>{{ resultados_variacoes.prod_rural }}</td>
-                                <td>{{ resultados_variacoes.dar_1_aut }}</td>
-                                <td>{{ resultados_variacoes.nai }}</td>
-                                <td>{{ resultados_variacoes.credito_ex_off }}</td>
-                                <td>{{ resultados_variacoes.debito_ex_off }}</td>
-                                <td>{{ resultados_variacoes.total }}</td>
+                                <td>{{ resultados_variacoes.com_ind.anual }}</td>
+                                <td>{{ resultados_variacoes.prest_serv.anual }}</td>
+                                <td>{{ resultados_variacoes.prod_rural.anual }}</td>
+                                <td>{{ resultados_variacoes.dar_1_aut.anual }}</td>
+                                <td>{{ resultados_variacoes.nai.anual }}</td>
+                                <td>{{ resultados_variacoes.credito_ex_off.anual }}</td>
+                                <td>{{ resultados_variacoes.debito_ex_off.anual }}</td>
+                                <td>{{ resultados_variacoes.total.anual }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
