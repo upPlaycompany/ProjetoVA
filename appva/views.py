@@ -452,15 +452,16 @@ def index(request):
                 range(apx)]
         else:
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN 2011 AND 2020 AND ano_exercicio NOT LIKE 2020 ORDER BY ano_exercicio ASC;"""
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2020' ORDER BY ano_exercicio ASC;"""
                 )
             variacao = namedtuplefetchall(cursor)
 
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN 2011 AND 2020 AND ano_exercicio NOT LIKE 2011 ORDER BY ano_exercicio ASC;""",
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2011' ORDER BY ano_exercicio ASC;"""
             )
             variacao2 = namedtuplefetchall(cursor)
             apx = len(variacao2)
+            
             resu_com_ind = [
                 {'anual': (variacao[x].com_ind / variacao2[x].com_ind) - 1, 'ano': variacao2[x].ano_exercicio}
                 for x in
