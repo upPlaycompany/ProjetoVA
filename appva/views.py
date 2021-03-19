@@ -32,11 +32,14 @@ def namedtuplefetchall(cursor):
 @login_required
 def index(request):
     municipio = request.GET.get('municipio')
+    municipio_v = request.GET.get('municipio_v')
+    ano_iv = request.GET.get('ano_iv')
+    ano_fv = request.GET.get('ano_fv')
     with connections['default'].cursor() as cursor:
         if municipio:
             cursor.execute(
                 """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO';
-    """
+            """
             )
             ranking = namedtuplefetchall(cursor)
 
@@ -82,7 +85,7 @@ def index(request):
 
             cursor.execute(
                 """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO' ORDER BY ano_exercicio ASC;
-    """
+            """
             )
             va_total_estado = namedtuplefetchall(cursor)
 
@@ -185,7 +188,6 @@ def index(request):
                         'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
 
-
             ###ACYPR600
             cursor.execute(
                 """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
@@ -223,7 +225,7 @@ def index(request):
         else:
             cursor.execute(
                 """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio NOT LIKE 'TOTAL DO ESTADO';
-    """
+            """
             )
             ranking = namedtuplefetchall(cursor)
 
@@ -266,7 +268,7 @@ def index(request):
 
             cursor.execute(
                 """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND municipio = 'TOTAL DO ESTADO' ORDER BY ano_exercicio ASC;
-    """
+            """
             )
             va_total_estado = namedtuplefetchall(cursor)
 
@@ -368,7 +370,6 @@ def index(request):
                         'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
 
-
             ###ACYPR600
             cursor.execute(
                 """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
@@ -402,6 +403,101 @@ def index(request):
             pit.savefig('/code/ProjetoVA/static/img/va_600.png')
 
             municipio = [{'nome': 'ACORIZAL'}]
+        if municipio_v and ano_iv and ano_fv:
+            cursor.execute(
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;"""
+                , [municipio_v, ano_iv, ano_fv, ano_fv])
+            variacao = namedtuplefetchall(cursor)
+
+            cursor.execute(
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;""",
+                [municipio_v, ano_iv, ano_fv, ano_iv]
+            )
+            variacao2 = namedtuplefetchall(cursor)
+            apx = len(variacao2)
+            resu_com_ind = [
+                {'anual': (variacao[x].com_ind / variacao2[x].com_ind) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_prod_rural = [
+                {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_prest_serv = [
+                {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_dar_1_aut = [
+                {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_nai = [
+                {'anual': (variacao[x].nai / variacao2[x].nai) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_credito_ex_off = [
+                {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) - 1,
+                 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_debito_ex_off = [
+                {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) - 1,
+                 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_total = [
+                {'anual': (variacao[x].total / variacao2[x].total) - 1,
+                 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+        else:
+            cursor.execute(
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN 2011 AND 2020 AND ano_exercicio NOT LIKE 2020 ORDER BY ano_exercicio ASC;"""
+                )
+            variacao = namedtuplefetchall(cursor)
+
+            cursor.execute(
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN 2011 AND 2020 AND ano_exercicio NOT LIKE 2011 ORDER BY ano_exercicio ASC;""",
+            )
+            variacao2 = namedtuplefetchall(cursor)
+            apx = len(variacao2)
+            resu_com_ind = [
+                {'anual': (variacao[x].com_ind / variacao2[x].com_ind) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_prod_rural = [
+                {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_prest_serv = [
+                {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_dar_1_aut = [
+                {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_nai = [
+                {'anual': (variacao[x].nai / variacao2[x].nai) - 1, 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_credito_ex_off = [
+                {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) - 1,
+                 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_debito_ex_off = [
+                {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) - 1,
+                 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            resu_total = [
+                {'anual': (variacao[x].total / variacao2[x].total) - 1,
+                 'ano': variacao2[x].ano_exercicio}
+                for x in
+                range(apx)]
+            float('p')
+
     return render(request, 'index.html',
                   {'abc': municipio, 'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado,
                    'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
@@ -4558,8 +4654,8 @@ def import_cfop(request, pk):
 @login_required
 def Pts(request):
     page = request.GET.get('page', '')
-    #t = request.GET.get('t')
-    #q = request.GET.get('q')
+    # t = request.GET.get('t')
+    # q = request.GET.get('q')
     try:
         pts = PTS.objects.all()
         remessa = REMESSAS.objects.all()
@@ -4592,9 +4688,9 @@ def import_pts(request, pk):
     db.close()
     return render(request, 'pts_sucesso.html')
 
-#@login_required
-#def VALOR_ADICIONADO_PTS(request, municipio, ano, inscricao):
 
+# @login_required
+# def VALOR_ADICIONADO_PTS(request, municipio, ano, inscricao):
 
 
 @login_required
