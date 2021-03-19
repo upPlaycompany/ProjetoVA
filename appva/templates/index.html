@@ -808,7 +808,7 @@ Dashboard
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação das atividades econômicas</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Variação de comércio e indústria</h6>
 
             </div>
             <!-- Card Body -->
@@ -816,15 +816,19 @@ Dashboard
                 <div>
                     <div class="table-responsive" style="width: 100%; height: 322px;">
                         <table class="table table-bordered" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Ano</th>
+                                <th>Variação</th>
+
+                            </tr>
+                            </thead>
+
                             <tbody>
                             {% for resu_com_ind in aa %}
                             <tr>
-                                <td>{{ resu_com_ind.ano }}</td>
-                            </tr>
-                            {% endfor %}
-                            {% for resu_com_ind in aa %}
-                            <tr>
-                                <td>{{ resu_com_ind.atual }}</td>
+                                <td>{{ resu_com_ind.com_ind.ano }}</td>
+                                <td>{{ resu_com_ind.com_ind.anual }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
