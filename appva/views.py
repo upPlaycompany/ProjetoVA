@@ -594,10 +594,9 @@ def index(request):
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
-        resultados_variacao = [{'com_ind': resu_com_ind, 'prod_rural': resu_prod_rural, 'prest_serv': resu_prest_serv, 'dar_1_aut': resu_dar_1_aut, 'nai': resu_nai, 'credito_ex_off': resu_credito_ex_off, 'debito_ex_off': resu_debito_ex_off, 'total': resu_total}]
     return render(request, 'index.html',
                   {'abc': municipio, 'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado,
-                   'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices, 'dfc': resultados_variacao})
+                   'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices, 'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut, 'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total})
 
 
 @login_required

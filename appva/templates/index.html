@@ -816,32 +816,11 @@ Dashboard
                 <div>
                     <div class="table-responsive" style="width: 100%; height: 322px;">
                         <table class="table table-bordered" cellspacing="0">
-                            <thead>
-                            <tr>
-                                <th>Ano</th>
-                                <th>Comércio e Indústria</th>
-                                <th>Prestadores de Serviço</th>
-                                <th>Produção Rural</th>
-                                <th>DAR-1/AUT</th>
-                                <th>N.A.I</th>
-                                <th>Crédito</th>
-                                <th>Débito</th>
-                                <th>Total</th>
-                            </tr>
-                            </thead>
-
                             <tbody>
-                            {% for resultados_variacao in dfc %}
+                            {% for resu_com_ind in dfc %}
                             <tr>
-                                <td>{{ resultados_variacao.com_ind.x.ano }}</td>
-                                <td>{{ resultados_variacao.com_ind }}</td>
-                                <td>{{ resultados_variacao.prest_serv }}</td>
-                                <td>{{ resultados_variacao.prod_rural }}</td>
-                                <td>{{ resultados_variacao.dar_1_aut }}</td>
-                                <td>{{ resultados_variacao.nai }}</td>
-                                <td>{{ resultados_variacao.credito_ex_off }}</td>
-                                <td>{{ resultados_variacao.debito_ex_off }}</td>
-                                <td>{{ resultados_variacao.total }}</td>
+                                <td>Ano</td>
+                                <td>{{ resu_com_ind.ano }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
