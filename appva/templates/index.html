@@ -823,7 +823,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -832,6 +832,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_com_ind.ano }}</td>
                                 <td>{{ resu_com_ind.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_com_ind.acumulada|floatformat:1 }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>

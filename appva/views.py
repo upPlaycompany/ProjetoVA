@@ -512,7 +512,7 @@ def index(request):
             apx = len(variacao2)
             try:
                 resu_com_ind = [
-                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio, 'acumulada': sum((variacao[x].com_ind / variacao2[x].com_ind) * 100)}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
