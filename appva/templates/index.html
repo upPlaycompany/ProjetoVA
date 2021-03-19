@@ -832,16 +832,17 @@ Dashboard
 
                             <tbody>
                             {% for resultados_variacao in dfc %}
+                            {% for x in resultados_variacao
                             <tr>
-                                <td>{{ resultados_variacao.ano_exercicio }}</td>
-                                <td>{{ resultados_variacoes.com_ind.resu_com_ind.anual }}</td>
-                                <td>{{ resultados_variacoes.prest_serv.anual }}</td>
-                                <td>{{ resultados_variacoes.prod_rural.anual }}</td>
-                                <td>{{ resultados_variacoes.dar_1_aut.anual }}</td>
-                                <td>{{ resultados_variacoes.nai.anual }}</td>
-                                <td>{{ resultados_variacoes.credito_ex_off.anual }}</td>
-                                <td>{{ resultados_variacoes.debito_ex_off.anual }}</td>
-                                <td>{{ resultados_variacoes.total.anual }}</td>
+                                <td>{{ x.ano_exercicio }}</td>
+                                <td>{{ x.com_ind.resu_com_ind.anual }}</td>
+                                <td>{{ x.prest_serv.anual }}</td>
+                                <td>{{ x.prod_rural.anual }}</td>
+                                <td>{{ x.dar_1_aut.anual }}</td>
+                                <td>{{ x.nai.anual }}</td>
+                                <td>{{ x.credito_ex_off.anual }}</td>
+                                <td>{{ x.debito_ex_off.anual }}</td>
+                                <td>{{ x.total.anual }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
