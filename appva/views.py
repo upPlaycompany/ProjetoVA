@@ -417,7 +417,7 @@ def index(request):
             apx = len(variacao2)
             try:
                 resu_com_ind = [
-                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -427,7 +427,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_prod_rural = [
-                    {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -437,7 +437,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_prest_serv = [
-                    {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -447,7 +447,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_dar_1_aut = [
-                    {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -458,7 +458,7 @@ def index(request):
 
             try:
                 resu_nai = [
-                    {'anual': (variacao[x].nai / variacao2[x].nai) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].nai / variacao2[x].nai) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -468,7 +468,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_credito_ex_off = [
-                    {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) - 1,
+                    {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) * 100,
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
@@ -479,7 +479,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_debito_ex_off = [
-                    {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) - 1,
+                    {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) * 100,
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
@@ -490,7 +490,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_total = [
-                    {'anual': (variacao[x].total / variacao2[x].total) - 1,
+                    {'anual': (variacao[x].total / variacao2[x].total) * 100,
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
@@ -512,7 +512,7 @@ def index(request):
             apx = len(variacao2)
             try:
                 resu_com_ind = [
-                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -522,7 +522,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_prod_rural = [
-                    {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -532,7 +532,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_prest_serv = [
-                    {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -542,7 +542,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_dar_1_aut = [
-                    {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -553,7 +553,7 @@ def index(request):
 
             try:
                 resu_nai = [
-                    {'anual': (variacao[x].nai / variacao2[x].nai) - 1, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao[x].nai / variacao2[x].nai) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
             except ZeroDivisionError:
@@ -563,7 +563,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_credito_ex_off = [
-                    {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) - 1,
+                    {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) * 100,
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
@@ -574,7 +574,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_debito_ex_off = [
-                    {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) - 1,
+                    {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) * 100,
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
@@ -585,7 +585,7 @@ def index(request):
                     range(apx)]
             try:
                 resu_total = [
-                    {'anual': (variacao[x].total / variacao2[x].total) - 1,
+                    {'anual': (variacao[x].total / variacao2[x].total) * 100,
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
