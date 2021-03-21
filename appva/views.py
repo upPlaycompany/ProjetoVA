@@ -924,9 +924,9 @@ def index_barras(request):
             f_ucti = [x.ucti for x in indices]
             f_ano = [x.ano_exercicio for x in indices]
             pit.figure(figsize=(10, 5))
-            pit.bar(f_ano, f_med)
-            pit.bar(f_ano, f_75)
-            pit.bar(f_ano, f_popu)
+            pit.bar(f_ano, f_med, color='b')
+            pit.bar(f_ano, f_75, color='r')
+            pit.bar(f_ano, f_popu, color='y')
             pit.bar(f_ano, f_ucti)
             pit.bar(f_ano, f_trib)
             pit.bar(f_ano, f_area)
