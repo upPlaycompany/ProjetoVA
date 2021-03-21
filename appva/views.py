@@ -967,7 +967,7 @@ def index_barras(request):
             r7 = [x + barwidth for x in r6]
             r8 = [x + barwidth for x in r7]
 
-            pit.figure(figsize=(10, 5))
+            pit.figure(figsize=(15, 8))
             pit.bar(r1, ci, width=barwidth)
             pit.bar(r2, pr, width=barwidth)
             pit.bar(r3, ps, width=barwidth)
