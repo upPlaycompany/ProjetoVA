@@ -945,28 +945,39 @@ def index_barras(request):
             )
             acypr600 = namedtuplefetchall(cursor)
 
-            barwidth = 0.25
 
-            ci = [x.com_ind + barwidth for x in acypr600]
-            pr = [x.prod_rural + barwidth for x in acypr600]
-            ps = [x.prest_serv + barwidth for x in acypr600]
-            da = [x.dar_1_aut + barwidth for x in acypr600]
-            na = [x.nai + barwidth for x in acypr600]
-            co = [x.credito_ex_off + barwidth for x in acypr600]
-            do = [x.debito_ex_off + barwidth for x in acypr600]
-            to = [x.total + barwidth for x in acypr600]
-            ae = [x.ano_exercicio + barwidth for x in acypr600]
+
+            ci = [x.com_ind for x in acypr600]
+            pr = [x.prod_rural  for x in acypr600]
+            ps = [x.prest_serv  for x in acypr600]
+            da = [x.dar_1_aut  for x in acypr600]
+            na = [x.nai for x in acypr600]
+            co = [x.credito_ex_off for x in acypr600]
+            do = [x.debito_ex_off for x in acypr600]
+            to = [x.total for x in acypr600]
+            ae = [x.ano_exercicio for x in acypr600]
+
+            barwidth = 0.25
+            r1 = np.arange(len(ci))
+            r2 = [x + barwidth for x in r1]
+            r3 = [x + barwidth for x in r2]
+            r4 = [x + barwidth for x in r3]
+            r5 = [x + barwidth for x in r4]
+            r6 = [x + barwidth for x in r5]
+            r7 = [x + barwidth for x in r6]
+            r8 = [x + barwidth for x in r7]
 
             pit.figure(figsize=(10, 5))
-            pit.bar(ae, ci, width=barwidth)
-            pit.bar(ae, pr, width=barwidth)
-            pit.bar(ae, ps, width=barwidth)
-            pit.bar(ae, da, width=barwidth)
-            pit.bar(ae, na, width=barwidth)
-            pit.bar(ae, co, width=barwidth)
-            pit.bar(ae, do, width=barwidth)
-            pit.bar(ae, to, width=barwidth)
+            pit.bar(r1, ci, width=barwidth)
+            pit.bar(r2, pr, width=barwidth)
+            pit.bar(r3, ps, width=barwidth)
+            pit.bar(r4, da, width=barwidth)
+            pit.bar(r5, na, width=barwidth)
+            pit.bar(r6, co, width=barwidth)
+            pit.bar(r7, do, width=barwidth)
+            pit.bar(r8, to, width=barwidth)
             pit.xlabel('Ano de exercício')
+            pit.xticks([r + barwidth for r in range(len(ci))], [x for x in ae])
             pit.ylabel('Valores adicionados por 100 milhões')
             pit.title(f'Valor adicionado de ACORIZAL - Atividades econômicas e outros')
             pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
