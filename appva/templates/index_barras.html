@@ -6,7 +6,9 @@
 Dashboard
 {% endblock title %}
 {% block content %}
-
+<a href="{% url 'index' %}"><button type="button" class="btn btn-warning">Exibir gráficos em linhas</button></a>
+<br>
+<br>
 <div class="row">
     <form method="get">{% csrf_token %}
         <div class="col-xl-8 col-lg-12">

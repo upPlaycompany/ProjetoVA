@@ -6,8 +6,9 @@
 Dashboard
 {% endblock title %}
 {% block content %}
-<br>
+
 <a href="{% url 'index_barras' %}"><button type="button" class="btn btn-warning">Exibir gráficos em barras</button></a>
+<br>
 <br>
 <div class="row">
     <form method="get">{% csrf_token %}
