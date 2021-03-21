@@ -4,6 +4,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('index/', views.index, name='index'),
+    path('index_barras/', views.index_barras, name='index_barras'),
 
     path('', views.logar, name='login'),
     path('deslogar', views.deslogar, name='deslogar'),
@@ -126,6 +127,6 @@ urlpatterns = [
         'resultado_simulacao/<str:municipio>/<str:ano>/<str:contribuinte_atual>/<str:contribuinte_anterior>/<str:municipio_atual>/<str:municipio_anterior>/<str:estado_atual>/<str:estado_anterior>/<str:comercio>/<str:prod_rural>/<str:pts>/<str:dar1aut>/<str:nai>/<str:creditoexoff>/<str:debitoexoff>/<str:total>/<str:variacao_distribuicao_estado>/',
         views.resultado_simulacao, name='resultado_simulacao'),
 
-    path('RELATORIO_SIMULACAO/<str:n>/', views.RELATORIO_SIMULACAO, name='RELATORIO_SIMULACAO')
+    path('RELATORIO_SIMULACAO/<str:n>/', views.RELATORIO_SIMULACAO, name='RELATORIO_SIMULACAO'),
 
 ]
