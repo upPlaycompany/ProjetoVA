@@ -926,7 +926,7 @@ def index_barras(request):
             f_ano = [x.ano_exercicio for x in indices]
 
             barwidth = 0.25
-            rr1 = np.arange(len(f_med))
+            rr1 = np.arange(len(f_ano))
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
             rr4 = [x + barwidth for x in rr3]
@@ -943,7 +943,7 @@ def index_barras(request):
             pit.bar(rr6, f_area, width=0.25)
             pit.bar(rr7, f_coef, width=0.25)
             pit.xlabel('Ano de exercício')
-            pit.xticks([r + barwidth for r in range(len(f_med))], [x for x in f_ano])
+            pit.xticks([r + barwidth for r in range(len(f_ano))], [x for x in f_ano])
             pit.ylabel('Valores em padrão de índice')
             pit.title('Indices do município de Acorizal')
             pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
@@ -969,7 +969,7 @@ def index_barras(request):
             ae = [x.ano_exercicio for x in acypr600]
 
             barwidth = 0.25
-            r1 = np.arange(len(ci))
+            r1 = np.arange(len(ae))
             r2 = [x + barwidth for x in r1]
             r3 = [x + barwidth for x in r2]
             r4 = [x + barwidth for x in r3]
@@ -988,7 +988,7 @@ def index_barras(request):
             pit.bar(r7, do, width=barwidth)
             pit.bar(r8, to, width=barwidth)
             pit.xlabel('Ano de exercício')
-            pit.xticks([r + barwidth for r in range(len(ci))], [x for x in ae])
+            pit.xticks([r + barwidth for r in range(len(ae))], [x for x in ae])
             pit.ylabel('Valores adicionados por 100 milhões')
             pit.title(f'Valor adicionado de ACORIZAL - Atividades econômicas e outros')
             pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
