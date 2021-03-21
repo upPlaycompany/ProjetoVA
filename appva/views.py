@@ -2,6 +2,7 @@ from collections import namedtuple
 import csv
 from easy_pdf import rendering
 from matplotlib import pyplot as pit
+import numpy as np
 import psycopg2
 import weasyprint
 import pandas as pd
@@ -944,25 +945,27 @@ def index_barras(request):
             )
             acypr600 = namedtuplefetchall(cursor)
 
-            ci = [x.com_ind for x in acypr600]
-            pr = [x.prod_rural for x in acypr600]
-            ps = [x.prest_serv for x in acypr600]
-            da = [x.dar_1_aut for x in acypr600]
-            na = [x.nai for x in acypr600]
-            co = [x.credito_ex_off for x in acypr600]
-            do = [x.debito_ex_off for x in acypr600]
-            to = [x.total for x in acypr600]
-            ae = [x.ano_exercicio for x in acypr600]
+            barwidth = 0.25
+
+            ci = [x.com_ind + barwidth for x in acypr600]
+            pr = [x.prod_rural + barwidth for x in acypr600]
+            ps = [x.prest_serv + barwidth for x in acypr600]
+            da = [x.dar_1_aut + barwidth for x in acypr600]
+            na = [x.nai + barwidth for x in acypr600]
+            co = [x.credito_ex_off + barwidth for x in acypr600]
+            do = [x.debito_ex_off + barwidth for x in acypr600]
+            to = [x.total + barwidth for x in acypr600]
+            ae = [x.ano_exercicio + barwidth for x in acypr600]
 
             pit.figure(figsize=(10, 5))
-            pit.bar(ci)
-            pit.bar(pr)
-            pit.bar(ps)
-            pit.bar(da)
-            pit.bar(na)
-            pit.bar(co)
-            pit.bar(do)
-            pit.bar(to)
+            pit.bar(ae, ci)
+            pit.bar(ae, pr)
+            pit.bar(ae, ps)
+            pit.bar(ae, da)
+            pit.bar(ae, na)
+            pit.bar(ae, co)
+            pit.bar(ae, do)
+            pit.bar(ae, to)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores adicionados por 100 milhões')
             pit.title(f'Valor adicionado de ACORIZAL - Atividades econômicas e outros')
