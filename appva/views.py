@@ -1019,13 +1019,13 @@ def index_barras(request):
             municipio = [{'nome': 'ACORIZAL'}]
         if municipio_v and ano_iv and ano_fv:
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s ORDER BY ano_exercicio ASC;"""
-                , [municipio_v, ano_iv, ano_fv])
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;"""
+                , [municipio_v, ano_iv, ano_fv, ano_fv])
             variacao = namedtuplefetchall(cursor)
 
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s ORDER BY ano_exercicio ASC;""",
-                [municipio_v, ano_iv, ano_fv]
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;""",
+                [municipio_v, ano_iv, ano_fv, ano_iv]
             )
             variacao2 = namedtuplefetchall(cursor)
             apx = len(variacao2)
@@ -1040,6 +1040,7 @@ def index_barras(request):
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'anterior': 0.0, 'acumulada': 0.0}
                     for x in
                     range(apx)]
+
             try:
                 resu_prod_rural = [
                     {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) * 100, 'ano': variacao2[x].ano_exercicio, 'anterior': (variacao[x-1].prod_rural / variacao2[x-1].prod_rural) * 100}
