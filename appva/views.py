@@ -1037,17 +1037,22 @@ def index_barras(request):
                 [resu_com_ind[x].update(resu_com_ind_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_com_ind = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'acumulada': 0.0}
                     for x in
                     range(apx)]
+
             try:
                 resu_prod_rural = [
                     {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                resu_prod_rural_acumulada = [{'acumulada': (1 + (resu_prod_rural[x]['anual'] / 100) * resu_prod_rural[x][
+                    'anterior']) + resu_prod_rural[x]['anual']} for x in range(apx)]
+                ai = len(resu_prod_rural)
+                [resu_prod_rural[x].update(resu_prod_rural_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_prod_rural = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'acumulada': 0.0}
                     for x in
                     range(apx)]
             try:
@@ -1055,6 +1060,10 @@ def index_barras(request):
                     {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                resu_prest_serv_acumulada = [{'acumulada': (1 + (resu_prest_serv[x]['anual'] / 100) * resu_prest_serv[x][
+                    'anterior']) + resu_prest_serv[x]['anual']} for x in range(apx)]
+                ai = len(resu_prest_serv)
+                [resu_prest_serv[x].update(resu_prest_serv_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_prest_serv = [
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
@@ -1065,9 +1074,14 @@ def index_barras(request):
                     {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                resu_dar_1_aut_acumulada = [
+                    {'acumulada': (1 + (resu_dar_1_aut[x]['anual'] / 100) * resu_dar_1_aut[x][
+                        'anterior']) + resu_dar_1_aut[x]['anual']} for x in range(apx)]
+                ai = len(resu_dar_1_aut)
+                [resu_dar_1_aut[x].update(resu_dar_1_aut_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_dar_1_aut = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'acumulada': 0.0}
                     for x in
                     range(apx)]
 
@@ -1076,9 +1090,14 @@ def index_barras(request):
                     {'anual': (variacao[x].nai / variacao2[x].nai) * 100, 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                resu_nai_acumulada = [
+                    {'acumulada': (1 + (resu_nai[x]['anual'] / 100) * resu_nai[x][
+                        'anterior']) + resu_nai[x]['anual']} for x in range(apx)]
+                ai = len(resu_nai)
+                [resu_nai[x].update(resu_nai_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_nai = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'acumulada': 0.0}
                     for x in
                     range(apx)]
             try:
@@ -1087,9 +1106,14 @@ def index_barras(request):
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                resu_credito_ex_off_acumulada = [
+                    {'acumulada': (1 + (resu_credito_ex_off[x]['anual'] / 100) * resu_credito_ex_off[x][
+                        'anterior']) + resu_credito_ex_off[x]['anual']} for x in range(apx)]
+                ai = len(resu_credito_ex_off)
+                [resu_credito_ex_off[x].update(resu_credito_ex_off_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_credito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'acumulada': 0.0}
                     for x in
                     range(apx)]
             try:
@@ -1098,9 +1122,15 @@ def index_barras(request):
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                resu_debito_ex_off_acumulada = [
+                    {'acumulada': (1 + (resu_debito_ex_off[x]['anual'] / 100) * resu_debito_ex_off[x][
+                        'anterior']) + resu_debito_ex_off[x]['anual']} for x in range(apx)]
+                ai = len(resu_debito_ex_off)
+                [resu_debito_ex_off[x].update(resu_debito_ex_off_acumulada[x]) for x in range(ai)]
+
             except ZeroDivisionError:
                 resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'acumulada': 0.0}
                     for x in
                     range(apx)]
             try:
@@ -1109,9 +1139,14 @@ def index_barras(request):
                      'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                resu_total_acumulada = [
+                    {'acumulada': (1 + (resu_total[x]['anual'] / 100) * resu_total[x][
+                        'anterior']) + resu_total[x]['anual']} for x in range(apx)]
+                ai = len(resu_total)
+                [resu_total[x].update(resu_total_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_total = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
+                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio, 'acumulada': 0.0}
                     for x in
                     range(apx)]
         else:
