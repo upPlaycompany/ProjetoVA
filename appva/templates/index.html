@@ -7,7 +7,9 @@ Dashboard
 {% endblock title %}
 {% block content %}
 
-<a href="{% url 'index_barras' %}"><button type="button" class="btn btn-warning">Exibir gráficos em barras</button></a>
+<a href="{% url 'index_barras' %}">
+    <button type="button" class="btn btn-warning">Exibir gráficos em barras</button>
+</a>
 <br>
 <br>
 <div class="row">
@@ -861,7 +863,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -870,6 +872,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_prod_rural.ano }}</td>
                                 <td>{{ resu_prod_rural.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_prod_rural.acumulada }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -895,7 +898,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -904,6 +907,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_prest_serv.ano }}</td>
                                 <td>{{ resu_prest_serv.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_prest_serv.acumulada }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -935,7 +939,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -944,6 +948,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_dar_1_aut.ano }}</td>
                                 <td>{{ resu_dar_1_aut.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_dar_1_aut.acumulada }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -969,7 +974,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -978,6 +983,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_nai.ano }}</td>
                                 <td>{{ resu_nai.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_nai.acumulada }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -1003,7 +1009,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -1012,6 +1018,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_credito_ex_off.ano }}</td>
                                 <td>{{ resu_credito_ex_off.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_credito_ex_off.acumulada }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -1043,7 +1050,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -1052,6 +1059,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_debito_ex_off.ano }}</td>
                                 <td>{{ resu_debito_ex_off.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_debito_ex_off.acumulada }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -1077,7 +1085,7 @@ Dashboard
                             <tr>
                                 <th>Ano</th>
                                 <th>Variação</th>
-
+                                <th>Acumulada</th>
                             </tr>
                             </thead>
 
@@ -1086,6 +1094,7 @@ Dashboard
                             <tr>
                                 <td>{{ resu_total.ano }}</td>
                                 <td>{{ resu_total.anual|floatformat:1 }}%</td>
+                                <td>{{ resu_total.acumulada }}%</td>
                             </tr>
                             {% endfor %}
                             </tbody>
