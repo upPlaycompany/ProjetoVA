@@ -1018,6 +1018,7 @@ def index_barras(request):
 
             municipio = [{'nome': 'ACORIZAL'}]
         if municipio_v and ano_iv and ano_fv:
+
             cursor.execute(
                 """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
                 , [municipio_v, ano_iv, ano_fv, ano_fv])
@@ -1034,6 +1035,7 @@ def index_barras(request):
                     {'anual': ((variacao2[x].com_ind / variacao[x].com_ind) * 100), 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
+                float('p')
             except ZeroDivisionError:
                 resu_com_ind = [
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
