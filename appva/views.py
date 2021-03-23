@@ -1032,7 +1032,7 @@ def index_barras(request):
             try:
                 resu_com_ind = [
                     {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio, 'anterior': (variacao[x-1].com_ind / variacao2[x-1].com_ind) * 100} for x in range(apx)]
-                resu_com_ind_acumulada = [{'acumulada': (1 + (resu_com_ind[x]['anual'] / 100) * resu_com_ind[x]['anterior']) + resu_com_ind[x]['atual']} for x in range(apx)]
+                resu_com_ind_acumulada = [{'acumulada': (1 + (resu_com_ind[x]['anual'] / 100) * resu_com_ind[x]['anterior']) + resu_com_ind[x]['anual']} for x in range(apx)]
                 ai = len(resu_com_ind)
                 [resu_com_ind[x].update(resu_com_ind_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
