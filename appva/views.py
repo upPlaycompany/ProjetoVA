@@ -715,8 +715,7 @@ def index_barras(request):
             icms_indi = namedtuplefetchall(cursor)
             ax = len(indi)
             finali = [{'arrecad': (indi[ax].ind_final * icms_indi[ax].media) / 100, 'ano': [icms_indi[x].ano for x in
-                      range(ax)], 'acumulada': [(1 + (indi[x].ind_final * icms_indi[x].media) / 100) * ((indi[x-1].ind_final * icms_indi[x-1].media) / 100) for x in range(0, ax)]}]
-            float('p')
+                      range(ax)]}]
             arre = [x['arrecad'] for x in finali]
             ano_arre = [x['ano'] for x in finali]
 
@@ -1032,9 +1031,10 @@ def index_barras(request):
             apx = len(variacao2)
             try:
                 resu_com_ind = [
-                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
+                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) * 100, 'ano': variacao2[x].ano_exercicio, 'anterior': (variacao[x-1].com_ind / variacao2[x-1].com_ind) * 100} for x in range(apx)]
+                resu_com_ind_acumulada = [{'acumulada': (1 + (resu_com_ind[x].anual / 100) * resu_com_ind[x].anterior) + resu_com_ind[x].anterior} for x in range(apx)]
+                ai = len(resu_com_ind)
+                [resu_com_ind[x].update(resu_com_ind_acumulada[x]) for x in range(ai)]
             except ZeroDivisionError:
                 resu_com_ind = [
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
