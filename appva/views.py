@@ -1035,7 +1035,6 @@ def index_barras(request):
                     {'anual': ((variacao2[x].com_ind / variacao[x].com_ind) * 100), 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
-                float('p')
             except ZeroDivisionError:
                 resu_com_ind = [
                     {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
