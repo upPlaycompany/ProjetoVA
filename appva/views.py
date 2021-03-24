@@ -1023,6 +1023,7 @@ def index_barras(request):
                 """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
                 , [municipio_v, ano_iv, ano_fv, ano_fv])
             variacao = namedtuplefetchall(cursor)
+            variacao[0]['com_ind'] = 0.0
 
             cursor.execute(
                 """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
@@ -1032,7 +1033,7 @@ def index_barras(request):
             apx = len(variacao2)
             try:
                 resu_com_ind = [
-                    {'anual': ((variacao2[x].com_ind / variacao[x].com_ind)), 'ano': variacao2[x].ano_exercicio}
+                    {'anual': (variacao2[x].com_ind / variacao[x].com_ind), 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
                 float('p')
