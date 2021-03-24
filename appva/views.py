@@ -1032,7 +1032,7 @@ def index_barras(request):
             apx = len(variacao2)
             try:
                 resu_com_ind = [
-                    {'anual': ((variacao2[x].com_ind / variacao[x].com_ind) * 100), 'ano': variacao2[x].ano_exercicio}
+                    {'anual': ((variacao2[x].com_ind / variacao[x].com_ind)), 'ano': variacao2[x].ano_exercicio}
                     for x in
                     range(apx)]
                 float('p')
