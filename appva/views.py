@@ -26,7 +26,7 @@ from .models import *
 def namedtuplefetchall(cursor):
     "Return all rows from a cursor as a namedtuple"
     desc = cursor.description
-    nt_result = namedtuple('Lista', [col[0] for col in desc])
+    nt_result = namedtuple([col[0] for col in desc])
     return [nt_result(*row) for row in cursor.fetchall()]
 
 
@@ -1031,7 +1031,7 @@ def index_barras(request):
             )
             variacao2 = namedtuplefetchall(cursor)
 
-            variacao2['com_ind'] = float(0.0)
+            variacao2
             apx = len(variacao2)
             try:
                 resu_com_ind = [
