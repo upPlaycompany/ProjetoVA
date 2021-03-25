@@ -44,8 +44,7 @@ def index(request):
             )
             ranking = namedtuplefetchall(cursor)
 
-            ranking_ind = [x.posicao for x in ranking if x.municipio == f'{municipio}']
-            float('p')
+            ranking_ind = [{'posicao': x.posicao} for x in ranking if x.municipio == f'{municipio}']
             ## GRAFICO VALOR ADICIONADO MUNICIPIO
             cursor.execute(
                 """SELECT vr_adic_ano_exercicio, ano_exercicio FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND MUNICIPIO=%s ORDER BY ano_exercicio ASC""",
@@ -232,11 +231,7 @@ def index(request):
             )
             ranking = namedtuplefetchall(cursor)
 
-            cursor.execute(
-                """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio='ACORIZAL' AND municipio NOT LIKE 'TOTAL DO ESTADO';
-            """
-            )
-            ranking_ind = namedtuplefetchall(cursor)
+            ranking_ind = [{'posicao': x.posicao} for x in ranking if x.municipio == 'ACORIZAL']
 
             ## GRAFICO VALOR ADICIONADO MUNICIPIO
             cursor.execute(
@@ -622,11 +617,7 @@ def index_barras(request):
             )
             ranking = namedtuplefetchall(cursor)
 
-            cursor.execute(
-                """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio=%s AND municipio NOT LIKE 'TOTAL DO ESTADO';
-            """, [municipio]
-            )
-            ranking_ind = namedtuplefetchall(cursor)
+            ranking_ind = [{'posicao': x.posicao} for x in ranking if x.municipio == f'{municipio}']
 
             ## GRAFICO VALOR ADICIONADO MUNICIPIO
             cursor.execute(
@@ -835,11 +826,7 @@ def index_barras(request):
             )
             ranking = namedtuplefetchall(cursor)
 
-            cursor.execute(
-                """SELECT *, rank() OVER (ORDER BY vr_adic_ano_exercicio DESC) posicao  FROM appva_acypr556 WHERE remessa='DOE DEFINITIVO' AND ano_exercicio='2020' AND municipio='ACORIZAL' AND municipio NOT LIKE 'TOTAL DO ESTADO';
-            """
-            )
-            ranking_ind = namedtuplefetchall(cursor)
+            ranking_ind = [{'posicao': x.posicao} for x in ranking if x.municipio == 'ACORIZAL']
 
             ## GRAFICO VALOR ADICIONADO MUNICIPIO
             cursor.execute(
