@@ -604,6 +604,7 @@ def index_barras(request):
     municipio_v = request.GET.get('municipio_v')
     ano_iv = request.GET.get('ano_iv')
     ano_fv = request.GET.get('ano_fv')
+    ano_iv = str(int(ano_iv - 1))
     with connections['default'].cursor() as cursor:
         if municipio:
             cursor.execute(
@@ -1020,24 +1021,24 @@ def index_barras(request):
         if municipio_v and ano_iv and ano_fv:
 
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
-                , [municipio_v, ano_iv, ano_fv])
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
+                , [municipio_v, ano_iv, ano_fv, ano_fv])
             variacao = namedtuplefetchall(cursor)
 
 
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
-                [municipio_v, ano_iv, ano_fv]
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
+                [municipio_v, ano_iv, ano_fv, ano_iv]
             )
             variacao2 = namedtuplefetchall(cursor)
 
-            com_ind_sp = [{'com_ind': float(x.com_ind), 'ano_exercicio': x.ano_exercicio} for x in variacao]
-            com_ind_sp2 = [{'com_ind': float(x.com_ind), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
+            com_ind_sp = [{'com_ind': float(x.com_ind), 'ano_exercicio': float(x.ano_exercicio)} for x in variacao]
+            com_ind_sp2 = [{'com_ind': float(x.com_ind), 'ano_exercicio': float(x.ano_exercicio)} for x in variacao2]
             com_ind_sp2[0]['com_ind'] = float(0.0)
             apx = len(com_ind_sp2)
             try:
                 resu_com_ind = [
-                    {'anual': (com_ind_sp2[x+1]['com_ind'] / com_ind_sp[x]['com_ind']), 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': (com_ind_sp2[x]['com_ind'] / com_ind_sp[x]['com_ind']), 'ano': com_ind_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
                 float('p')
