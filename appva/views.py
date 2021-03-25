@@ -1031,7 +1031,7 @@ def index_barras(request):
             )
             variacao2 = namedtuplefetchall(cursor)
 
-            variacao2[0][0] = 0
+            com_ind_sp = [float(x.com_ind) for x in variacao2]
             apx = len(variacao2)
             try:
                 resu_com_ind = [
