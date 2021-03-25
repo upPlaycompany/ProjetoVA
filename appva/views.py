@@ -1020,8 +1020,8 @@ def index_barras(request):
         if municipio_v and ano_iv and ano_fv:
 
             cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
-                , [municipio_v, ano_iv, ano_fv, ano_fv])
+                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
+                , [municipio_v, ano_iv, ano_fv])
             variacao = namedtuplefetchall(cursor)
 
 
