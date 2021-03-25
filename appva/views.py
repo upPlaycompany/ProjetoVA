@@ -1060,6 +1060,14 @@ def index_barras(request):
             variacao2_sp2[0]['credito_ex_off'] = float(0.0)
             variacao2_sp2[0]['debito_ex_off'] = float(0.0)
             variacao2_sp2[0]['total'] = float(0.0)
+            variacao_sp[0]['com_ind'] = float(0.0)
+            variacao_sp[0]['prod_rural'] = float(0.0)
+            variacao_sp[0]['prest_serv'] = float(0.0)
+            variacao_sp[0]['dar_1_aut'] = float(0.0)
+            variacao_sp[0]['nai'] = float(0.0)
+            variacao_sp[0]['credito_ex_off'] = float(0.0)
+            variacao_sp[0]['debito_ex_off'] = float(0.0)
+            variacao_sp[0]['total'] = float(0.0)
             apx = len(variacao2_sp2)
             try:
                 resu_com_ind = [
