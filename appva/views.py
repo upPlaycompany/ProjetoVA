@@ -1067,8 +1067,9 @@ def index_barras(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                ok = len(resu_com_ind)
+                com_ind_acu = {'acumulada': sum([resu_com_ind[x]['anual'] for x in range(ok)])}
 
-                [resu_com_ind[x].update({'acumulada': sum(resu_com_ind[x]['anual'])}) for x in range(apx)]
                 float('p')
             except ZeroDivisionError:
                 resu_com_ind = [
