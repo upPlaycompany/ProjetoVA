@@ -1068,7 +1068,7 @@ def index_barras(request):
                     for x in
                     range(apx)]
                 ci = len(resu_com_ind)
-                com_ind_acumulada = [sum(resu_com_ind[x]['anual']) for x in range(ci)]
+                com_ind_acumulada = [sum(resu_com_ind['anual']) for x in range(ci)]
                 [resu_com_ind[x].update(com_ind_acumulada[x]['acumulada']) for x in range(ci)]
                 float('p')
             except ZeroDivisionError:
