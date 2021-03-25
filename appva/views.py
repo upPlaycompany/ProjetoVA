@@ -607,7 +607,7 @@ def index(request):
                     for x in
                     range(apx)]
     return render(request, 'index.html',
-                  {'abc': municipio, 'lista': ranking, 'lista2': indice_par, 'lista3': va_total_estado,
+                  {'abc': municipio, 'lista': ranking, 'ind': ranking_ind, 'lista2': indice_par, 'lista3': va_total_estado,
                    'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices, 'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut, 'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total})
 
 @login_required
