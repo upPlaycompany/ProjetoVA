@@ -1047,11 +1047,13 @@ def index_barras(request):
                  'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
                  'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
                  'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao]
+
             variacao2_sp2 = [
                 {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
                  'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
                  'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
                  'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
+
             variacao2_sp2[0]['com_ind'] = float(0.0)
             variacao2_sp2[0]['prod_rural'] = float(0.0)
             variacao2_sp2[0]['prest_serv'] = float(0.0)
@@ -1060,14 +1062,15 @@ def index_barras(request):
             variacao2_sp2[0]['credito_ex_off'] = float(0.0)
             variacao2_sp2[0]['debito_ex_off'] = float(0.0)
             variacao2_sp2[0]['total'] = float(0.0)
-            variacao_sp[0]['com_ind'] = float(0.0)
-            variacao_sp[0]['prod_rural'] = float(0.0)
-            variacao_sp[0]['prest_serv'] = float(0.0)
-            variacao_sp[0]['dar_1_aut'] = float(0.0)
-            variacao_sp[0]['nai'] = float(0.0)
-            variacao_sp[0]['credito_ex_off'] = float(0.0)
-            variacao_sp[0]['debito_ex_off'] = float(0.0)
-            variacao_sp[0]['total'] = float(0.0)
+
+            variacao_sp[0]['com_ind'] = float(0.01)
+            variacao_sp[0]['prod_rural'] = float(0.001)
+            variacao_sp[0]['prest_serv'] = float(0.001)
+            variacao_sp[0]['dar_1_aut'] = float(0.001)
+            variacao_sp[0]['nai'] = float(0.001)
+            variacao_sp[0]['credito_ex_off'] = float(0.001)
+            variacao_sp[0]['debito_ex_off'] = float(0.001)
+            variacao_sp[0]['total'] = float(0.001)
             apx = len(variacao2_sp2)
             try:
                 resu_com_ind = [
@@ -1077,7 +1080,6 @@ def index_barras(request):
                     range(apx)]
                 ok = len(resu_com_ind)
                 com_ind_acu = {'acumulada': sum([resu_com_ind[x]['anual'] for x in range(ok)])}
-
                 float('p')
             except ZeroDivisionError:
                 resu_com_ind = [
