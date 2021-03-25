@@ -604,7 +604,8 @@ def index_barras(request):
     municipio_v = request.GET.get('municipio_v')
     ano_iv = request.GET.get('ano_iv')
     ano_fv = request.GET.get('ano_fv')
-    ano_iv = str(int(ano_iv - 1))
+    ano_iv = int(ano_iv) - 1
+    ano_iv = str(ano_iv)
     with connections['default'].cursor() as cursor:
         if municipio:
             cursor.execute(
