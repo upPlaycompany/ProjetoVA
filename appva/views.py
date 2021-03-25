@@ -1033,8 +1033,8 @@ def index_barras(request):
             )
             variacao2 = namedtuplefetchall(cursor)
 
-            com_ind_sp = [{'com_ind': float(x.com_ind), 'ano_exercicio': float(x.ano_exercicio)} for x in variacao]
-            com_ind_sp2 = [{'com_ind': float(x.com_ind), 'ano_exercicio': float(x.ano_exercicio)} for x in variacao2]
+            com_ind_sp = [{'com_ind': float(x.com_ind), 'ano_exercicio': x.ano_exercicio} for x in variacao]
+            com_ind_sp2 = [{'com_ind': float(x.com_ind), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
             com_ind_sp2[0]['com_ind'] = float(0.0)
             apx = len(com_ind_sp2)
             try:
