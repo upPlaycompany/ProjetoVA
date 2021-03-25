@@ -1069,7 +1069,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_com_ind = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1080,7 +1080,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_prod_rural = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1091,7 +1091,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_prest_serv = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1102,7 +1102,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_dar_1_aut = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1113,7 +1113,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_nai = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1124,7 +1124,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_credito_ex_off = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1135,7 +1135,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1146,7 +1146,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_total = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
         else:
@@ -1186,7 +1186,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_com_ind = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1197,7 +1197,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_prod_rural = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1208,7 +1208,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_prest_serv = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1219,7 +1219,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_dar_1_aut = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1230,7 +1230,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_nai = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1241,7 +1241,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_credito_ex_off = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1252,7 +1252,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
@@ -1263,7 +1263,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_total = [
-                    {'anual': 0.0, 'ano': com_ind_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
     return render(request, 'index_barras.html',
