@@ -1135,8 +1135,7 @@ def index_barras(request):
                     range(apx)]
             except ZeroDivisionError:
                 resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']} if ZeroDivisionError else {'anual': ((variacao2_sp2[x]['debito_ex_off'] / variacao_sp[x]['debito_ex_off']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
+                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
             try:
