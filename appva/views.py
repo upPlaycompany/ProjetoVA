@@ -1034,10 +1034,10 @@ def index_barras(request):
             com_ind_sp = [{'com_ind': float(x.com_ind), 'ano_exercicio': float(x.ano_exercicio)} for x in variacao]
             com_ind_sp2 = [{'com_ind': float(x.com_ind), 'ano_exercicio': float(x.ano_exercicio)} for x in variacao2]
             com_ind_sp2[0]['com_ind'] = float(0.0)
-            apx = len(variacao2)
+            apx = len(com_ind_sp2)
             try:
                 resu_com_ind = [
-                    {'anual': (com_ind_sp2[x]['com_ind'] / com_ind_sp[x]['com_ind']), 'ano': variacao2[x]}
+                    {'anual': (com_ind_sp2[x]['com_ind'] / com_ind_sp[x]['com_ind']), 'ano': variacao2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
                 float('p')
