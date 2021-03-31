@@ -455,7 +455,7 @@ Dashboard
                             <tbody>
                             {% for distribuicao in lista5 %}
                             <tr>
-                                <td>{{ distribuicao.distrib|floatformat: 2 }}</td>
+                                <td>{{ distribuicao.distrib }}</td>
                                 <td>{{ distribuicao.ano }}</td>
                             </tr>
                             {% endfor %}
@@ -512,7 +512,7 @@ Dashboard
                             <tbody>
                             {% for finali in lista6 %}
                             <tr>
-                                <td>{{ finali.arrecad|floatformat: 2 }}</td>
+                                <td>{{ finali.arrecad }}</td>
                                 <td>{{ finali.ano }}</td>
                             </tr>
                             {% endfor %}
@@ -576,13 +576,13 @@ Dashboard
                             {% for indices in lista7 %}
                             <tr>
                                 <td>{{ indices.ano_exercicio }}</td>
-                                <td>{{ indices.iva_med|floatformat: 6 }}</td>
-                                <td>{{ indices.iva_75|floatformat: 6 }}</td>
-                                <td>{{ indices.populacao|floatformat: 6 }}</td>
-                                <td>{{ indices.ucti|floatformat: 6 }}</td>
-                                <td>{{ indices.trib_propr|floatformat: 6 }}</td>
-                                <td>{{ indices.area|floatformat: 6 }}</td>
-                                <td>{{ indices.coef_soc|floatformat: 6 }}</td>
+                                <td>{{ indices.iva_med }}</td>
+                                <td>{{ indices.iva_75 }}</td>
+                                <td>{{ indices.populacao }}</td>
+                                <td>{{ indices.ucti }}</td>
+                                <td>{{ indices.trib_propr }}</td>
+                                <td>{{ indices.area }}</td>
+                                <td>{{ indices.coef_soc }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -616,4 +616,5 @@ Dashboard
     </div>
 
 </div>
+
 {% endblock %}
