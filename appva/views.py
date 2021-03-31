@@ -967,18 +967,23 @@ def index_barras(request):
             rr1 = np.arange(len(f_ano))
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
-            
+            rr4 = [x + barwidth for x in rr3]
+
 
 
             pit.bar(rr1, f_med, width=0.25)
             pit.bar(rr2, f_75, width=0.25)
             pit.bar(rr3, f_popu, width=0.25)
+            pit.bar(rr4, f_ucti, width=0.25)
+
+
             
             pit.xticks([r + barwidth for r in range(len(f_ano))], f_ano)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
             pit.title('Indices do município de Acorizal')
-            pit.legend(('Indice médio', '75% do índice', 'Indice população'))
+            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
+                        'Indice área', 'Indice Coef. Social'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
 
             ###ACYPR600
