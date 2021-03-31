@@ -1532,7 +1532,7 @@ def GIA_OMISSO(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "mes":
             gia_omisso = Gia_omisso.objects.filter(mes__contains=q)
@@ -1590,24 +1590,24 @@ def CCI(request):
     e = request.GET.get('e')
     r = request.GET.get('r')
     if q:
-        q.upper()
+        q = str(q).upper()
     elif e:
-        e.upper()
+        e = str(e).upper()
     elif r:
-        r.upper()
+        r = str(r).upper()
     elif q and r:
-        q.upper()
-        r.upper()
+        q = str(q).upper()
+        r = str(r).upper()
     elif q and e:
-        q.upper()
-        e.upper()
+        q = str(q).upper()
+        e = str(e).upper()
     elif r and e:
-        r.upper()
-        e.upper()
+        r = str(r).upper()
+        e = str(e).upper()
     elif q and r and e:
-        q.upper()
-        r.upper()
-        e.upper()
+        q = str(q).upper()
+        r = str(r).upper()
+        e = str(e).upper()
     else:
         pass
     remessa = REMESSAS.objects.all()
@@ -1691,7 +1691,7 @@ def IE(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "nome":
             ie = Ie.objects.filter(nome_pessoa__contains=q)
@@ -1742,7 +1742,7 @@ def NFE_EFD(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "inscricao_remetente":
             nfe_efd = Nfe_efd.objects.filter(ie_remetente__contains=q)
@@ -1801,7 +1801,7 @@ def REG_1400_EFD(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "inscricao":
             reg_1400_efd = Reg_1400_efd.objects.filter(inscricao__contains=q)
@@ -1855,7 +1855,7 @@ def CAP(request):
     e = request.GET.get('e')
     r = request.GET.get('r')
     if q:
-        q.upper()
+        q = str(q).upper()
     e.upper()
     r.upper()
     remessa = REMESSAS.objects.all()
@@ -1937,7 +1937,7 @@ def GIA_COP3(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "mes":
             gia_cop3 = Gia_cop3.objects.filter(mes__contains=q)
@@ -1991,7 +1991,7 @@ def GIA_ENTRADAS_SAIDAS(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "dt_inicial":
             gia_entradas_saidas = Gia_entradas_saidas.objects.filter(dt_inicial__contains=q)
@@ -2044,7 +2044,7 @@ def GIA_ENTRADAS_SAIDAS_lista_valor_adicionado(request):
     q = request.GET.get("q")
     t = request.GET.get("t")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
@@ -3363,7 +3363,7 @@ def ACYPR535(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "municipio":
             acypr535 = Acypr535.objects.filter(municipio__contains=q)
@@ -3411,7 +3411,7 @@ def ACYPR540(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "cod":
             acypr540 = Acypr540.objects.filter(cod__contains=q)
@@ -3462,7 +3462,7 @@ def ACYPR555(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "ano_base":
             acypr555 = Acypr555.objects.filter(ano_base__contains=q)
@@ -3514,7 +3514,7 @@ def ACYPR556(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "codigo":
             acypr556 = Acypr556.objects.filter(codigo__contains=q)
@@ -3564,7 +3564,7 @@ def ACYPR557(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "cod":
             acypr557 = Acypr557.objects.filter(cod__contains=q)
@@ -3616,7 +3616,7 @@ def ACYPR600(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "municipio":
             acypr600 = Acypr600.objects.filter(municipio__contains=q)
@@ -3662,7 +3662,7 @@ def CRED(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "cod":
             cred = Cred.objects.filter(data__contains=q)
@@ -3748,7 +3748,7 @@ def DEB(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "codigo":
             deb = Deb.objects.filter(cod__contains=q)
@@ -3837,7 +3837,7 @@ def GIA_SEM_MOV(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "cod":
             gia_sem_mov = Gia_sem_mov.objects.filter(cod__contains=q)
@@ -3887,7 +3887,7 @@ def EFD(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "dt_inicial":
             efd = Efd.objects.filter(dt_inicial__contains=q)
@@ -4537,7 +4537,7 @@ def EFD_lista_valor_adicionado(request):
     q = request.GET.get("q")
     t = request.GET.get("t")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
@@ -5214,7 +5214,7 @@ def EFD_OMISSO(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "mes":
             efd_omisso = Efd_omisso.objects.filter(mes__contains=q)
@@ -5266,7 +5266,7 @@ def EFD_SEM_MOV(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "num_efd":
             efd_sem_mov = Efd_sem_mov.objects.filter(num_efd__contains=q)
@@ -5320,7 +5320,7 @@ def ACGPT812(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "ie_remetente":
             acgpt812 = Acgpt812.objects.filter(ie_remetente__contains=q)
@@ -5376,7 +5376,7 @@ def PGDAS_D(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "cnae":
             pgdas_d = Pgdas_d.objects.filter(cnae__contains=q)
@@ -5426,7 +5426,7 @@ def ACGPR051(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == "inscricao":
             acgpr051 = Acgpr051.objects.filter(inscricao__contains=q)
@@ -5475,7 +5475,7 @@ def CFOP(request):
     t = request.GET.get('t')
     q = request.GET.get('q')
     if q:
-        q.upper()
+        q = str(q).upper()
     try:
         if q and t == 'codigo':
             cfop = Cfop.objects.filter(codigo__contains=q)
