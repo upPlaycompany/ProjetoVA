@@ -978,7 +978,6 @@ def index_barras(request):
             pit.bar(rr6, f_area, width=0.25)
             pit.bar(rr7, f_coef, width=0.25)
             pit.xlabel('Ano de exercício')
-            pit.xticks([r + barwidth for r in range(len(f_ano))], [x for x in f_ano])
             pit.ylabel('Valores em padrão de índice')
             pit.title('Indices do município de Acorizal')
             pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
