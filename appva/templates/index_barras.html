@@ -657,7 +657,7 @@ Dashboard
             <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 {% for municipio in abc %}
-                <h6 class="m-0 font-weight-bold text-primary">Valor Adicionado de {{ municipio.nome }} - Atividades
+                <h6 class="m-0 font-weight-bold text-primary">Valor Adicionado de {{ municipio.nome }} - Atividades - Parte 1
                     econômicas e outros</h6>
                 {% endfor %}
             </div>
@@ -665,6 +665,29 @@ Dashboard
             <div class="card-body">
                 <div class="text-center">
                     <img src="{% static 'img/va_600.png' %}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row">
+
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4" style="width: 100%">
+            <!-- Card Header - Dropdown -->
+            <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                {% for municipio in abc %}
+                <h6 class="m-0 font-weight-bold text-primary">Valor Adicionado de {{ municipio.nome }} - Atividades - Parte 2
+                    econômicas e outros</h6>
+                {% endfor %}
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="{% static 'img/va_6002.png' %}" width="100%">
                 </div>
             </div>
         </div>

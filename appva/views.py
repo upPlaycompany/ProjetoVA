@@ -1019,33 +1019,47 @@ def index_barras(request):
             do = [x.debito_ex_off for x in acypr600]
             to = [x.total for x in acypr600]
             ae = [x.ano_exercicio for x in acypr600]
-
+### Parte 1
             barwidth = 0.25
             r1 = np.arange(len(ae))
             r2 = [x + barwidth for x in r1]
             r3 = [x + barwidth for x in r2]
             r4 = [x + barwidth for x in r3]
-            r5 = [x + barwidth for x in r4]
-            r6 = [x + barwidth for x in r5]
-            r7 = [x + barwidth for x in r6]
-            r8 = [x + barwidth for x in r7]
+            
 
             pit.figure(figsize=(10, 5))
             pit.bar(r1, ci, width=barwidth)
             pit.bar(r2, pr, width=barwidth)
             pit.bar(r3, ps, width=barwidth)
             pit.bar(r4, da, width=barwidth)
-            pit.bar(r5, na, width=barwidth)
-            pit.bar(r6, co, width=barwidth)
-            pit.bar(r7, do, width=barwidth)
-            pit.bar(r8, to, width=barwidth)
+
             pit.xlabel('Ano de exercício')
             pit.xticks([r + barwidth for r in range(len(ae))], [x for x in ae])
             pit.ylabel('Valores adicionados por 100 milhões')
             pit.title(f'Valor adicionado de ACORIZAL - Atividades econômicas e outros')
-            pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
-                        'Crédito Ex Off', 'Débito Ex Off', 'Total'))
+            pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT'))
             pit.savefig('/code/ProjetoVA/static/img/va_600.png')
+
+            ### Parte 2
+            barwidth = 0.25
+            r1 = np.arange(len(ae))
+            r2 = [x + barwidth for x in r1]
+            r3 = [x + barwidth for x in r2]
+            r4 = [x + barwidth for x in r3]
+
+            pit.figure(figsize=(10, 5))
+            pit.bar(r1, na, width=barwidth)
+            pit.bar(r2, co, width=barwidth)
+            pit.bar(r3, do, width=barwidth)
+            pit.bar(r4, to, width=barwidth)
+
+
+            pit.xlabel('Ano de exercício')
+            pit.xticks([r + barwidth for r in range(len(ae))], [x for x in ae])
+            pit.ylabel('Valores adicionados por 100 milhões')
+            pit.title(f'Valor adicionado de ACORIZAL - Atividades econômicas e outros')
+            pit.legend(('N.A.I', 'Crédito Ex-off', 'Débito Ex-off', 'Total'))
+            pit.savefig('/code/ProjetoVA/static/img/va_6002.png')
 
             municipio = [{'nome': 'ACORIZAL'}]
         if municipio_v and ano_iv and ano_fv:
