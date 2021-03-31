@@ -968,16 +968,15 @@ def index_barras(request):
             rr5 = [x + barwidth for x in rr4]
             rr6 = [x + barwidth for x in rr5]
             rr7 = [x + barwidth for x in rr6]
-            rr8 = [x + barwidth for x in rr7]
 
             pit.figure(figsize=(10, 5))
-            pit.bar(rr1, f_med, width=0.25)
-            pit.bar(rr2, f_75, width=0.25)
-            pit.bar(rr3, f_popu, width=0.25)
+            pit.bar(rr7, f_med, width=0.25)
+            pit.bar(rr6, f_75, width=0.25)
+            pit.bar(rr5, f_popu, width=0.25)
             pit.bar(rr4, f_ucti, width=0.25)
-            pit.bar(rr5, f_trib, width=0.25)
-            pit.bar(rr6, f_area, width=0.25)
-            pit.bar(rr7, f_coef, width=0.25)
+            pit.bar(rr3, f_trib, width=0.25)
+            pit.bar(rr2, f_area, width=0.25)
+            pit.bar(rr1, f_coef, width=0.25)
             pit.xticks([r + barwidth for r in range(len(f_ano))], f_ano)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
