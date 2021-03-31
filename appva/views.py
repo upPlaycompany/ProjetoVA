@@ -711,7 +711,7 @@ def index_barras(request):
             pit.bar(ano_distri, distri)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Distribuição por 100 milhões')
-            pit.title('Gráfico de distribuição ICMS do Estado ')
+            pit.title('Gráfico de distribuição média mensal do ICMS do Estado aos Municípios ')
             pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
 
             ### ARRECADACAO ICMS
@@ -755,29 +755,44 @@ def index_barras(request):
             f_ano = [x.ano_exercicio for x in indices]
 
             barwidth = 0.25
+            pit.figure(figsize=(10, 7))
+
             rr1 = np.arange(len(f_ano))
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
             rr4 = [x + barwidth for x in rr3]
-            rr5 = [x + barwidth for x in rr4]
-            rr6 = [x + barwidth for x in rr5]
-            rr7 = [x + barwidth for x in rr6]
 
-            pit.figure(figsize=(10, 7))
             pit.bar(rr1, f_med, width=0.25)
             pit.bar(rr2, f_75, width=0.25)
             pit.bar(rr3, f_popu, width=0.25)
             pit.bar(rr4, f_ucti, width=0.25)
-            pit.bar(rr5, f_trib, width=0.25)
-            pit.bar(rr6, f_area, width=0.25)
-            pit.bar(rr7, f_coef, width=0.25)
+
+            pit.xticks([r + barwidth for r in range(len(f_ano))], f_ano)
             pit.xlabel('Ano de exercício')
-            pit.xticks([r + barwidth for r in range(len(f_ano))], [x for x in f_ano])
             pit.ylabel('Valores em padrão de índice')
             pit.title(f'Indices do município de {municipio}')
-            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
-                        'Indice área', 'Indice Coef. Social'))
+            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
+
+            ### Parte 2
+            barwidth = 0.25
+            pit.figure(figsize=(10, 7))
+
+            rr1 = np.arange(len(f_ano))
+            rr2 = [x + barwidth for x in rr1]
+            rr3 = [x + barwidth for x in rr2]
+
+            pit.bar(rr1, f_trib, width=0.25)
+            pit.bar(rr2, f_area, width=0.25)
+            pit.bar(rr3, f_coef, width=0.25)
+
+            pit.xticks([r + barwidth for r in range(len(f_ano))], f_ano)
+            pit.xlabel('Ano de exercício')
+            pit.ylabel('Valores em padrão de índice')
+            pit.title(f'Indices do município de {municipio}')
+            pit.legend(('Indice Trib. própria',
+                        'Indice área', 'Indice Coef. Social'))
+            pit.savefig('/code/ProjetoVA/static/img/va_indices_ano2.png')
 
             ###ACYPR600
             cursor.execute(
@@ -801,27 +816,39 @@ def index_barras(request):
             r2 = [x + barwidth for x in r1]
             r3 = [x + barwidth for x in r2]
             r4 = [x + barwidth for x in r3]
-            r5 = [x + barwidth for x in r4]
-            r6 = [x + barwidth for x in r5]
-            r7 = [x + barwidth for x in r6]
-            r8 = [x + barwidth for x in r7]
 
             pit.figure(figsize=(10, 5))
             pit.bar(r1, ci, width=barwidth)
             pit.bar(r2, pr, width=barwidth)
             pit.bar(r3, ps, width=barwidth)
             pit.bar(r4, da, width=barwidth)
-            pit.bar(r5, na, width=barwidth)
-            pit.bar(r6, co, width=barwidth)
-            pit.bar(r7, do, width=barwidth)
-            pit.bar(r8, to, width=barwidth)
+
             pit.xlabel('Ano de exercício')
             pit.xticks([r + barwidth for r in range(len(ae))], [x for x in ae])
             pit.ylabel('Valores adicionados por 100 milhões')
             pit.title(f'Valor adicionado de {municipio} - Atividades econômicas e outros')
-            pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT', 'N.A.I',
-                        'Crédito Ex Off', 'Débito Ex Off', 'Total'))
+            pit.legend(('Comércio e indústria', 'Produção rural', 'Prestação de serviços', 'DAR-1/AUT'))
             pit.savefig('/code/ProjetoVA/static/img/va_600.png')
+
+            ### Parte 2
+            barwidth = 0.25
+            r1 = np.arange(len(ae))
+            r2 = [x + barwidth for x in r1]
+            r3 = [x + barwidth for x in r2]
+            r4 = [x + barwidth for x in r3]
+
+            pit.figure(figsize=(10, 5))
+            pit.bar(r1, na, width=barwidth)
+            pit.bar(r2, co, width=barwidth)
+            pit.bar(r3, do, width=barwidth)
+            pit.bar(r4, to, width=barwidth)
+
+            pit.xlabel('Ano de exercício')
+            pit.xticks([r + barwidth for r in range(len(ae))], [x for x in ae])
+            pit.ylabel('Valores adicionados por 100 milhões')
+            pit.title(f'Valor adicionado de {municipio} - Atividades econômicas e outros')
+            pit.legend(('N.A.I', 'Crédito Ex-off', 'Débito Ex-off', 'Total'))
+            pit.savefig('/code/ProjetoVA/static/img/va_6002.png')
 
             municipio = [{'nome': municipio}]
         else:
@@ -917,7 +944,7 @@ def index_barras(request):
             pit.bar(ano_distri, distri)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Distribuição por 100 milhões')
-            pit.title('Gráfico de distribuição mensal ICMS do Estado ')
+            pit.title('Gráfico de distribuição média mensal do ICMS do Estado aos Municípios')
             pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
 
             ### ARRECADACAO ICMS
