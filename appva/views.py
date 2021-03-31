@@ -961,7 +961,7 @@ def index_barras(request):
             f_ano = [x.ano_exercicio for x in indices]
 
             barwidth = 0.25
-            rr1 = np.arange(len(f_ano)+1)
+            rr1 = np.arange(len(f_ano) + 1)
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
             rr4 = [x + barwidth for x in rr3]
@@ -969,7 +969,7 @@ def index_barras(request):
             rr6 = [x + barwidth for x in rr5]
             rr7 = [x + barwidth for x in rr6]
 
-            pit.figure(figsize=(10, 7))
+            pit.figure(figsize=(10, 5))
             pit.bar(rr1, f_med, width=0.25)
             pit.bar(rr2, f_75, width=0.25)
             pit.bar(rr3, f_popu, width=0.25)
@@ -978,6 +978,7 @@ def index_barras(request):
             pit.bar(rr6, f_area, width=0.25)
             pit.bar(rr7, f_coef, width=0.25)
             pit.xlabel('Ano de exercício')
+            pit.xticks([r + barwidth for r in range(len(f_ano))], [x for x in f_ano])
             pit.ylabel('Valores em padrão de índice')
             pit.title('Indices do município de Acorizal')
             pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
