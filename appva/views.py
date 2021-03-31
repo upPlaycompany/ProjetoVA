@@ -908,6 +908,9 @@ def index_variacao(request):
     municipio_v = request.GET.get('municipio_v')
     ano_iv = request.GET.get('ano_iv')
     ano_fv = request.GET.get('ano_fv')
+    if ano_iv:
+        ano_iv = int(ano_iv) - 1
+        ano_iv = str(ano_iv)
     with connections['default'].cursor() as cursor:
         if municipio_v and ano_iv and ano_fv:
 
@@ -959,6 +962,9 @@ def index_variacao(request):
                     for x in
                     range(apx)]
                 resu_com_ind[0]['anual'] = float(0.0)
+                ok = len(resu_com_ind)
+                com_ind_acu = {'acumulada': sum([resu_com_ind[x]['anual'] for x in range(ok)])}
+                float('p')
             except ZeroDivisionError:
                 resu_com_ind = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1069,15 +1075,6 @@ def index_variacao(request):
             variacao2_sp2[0]['credito_ex_off'] = float(0.0)
             variacao2_sp2[0]['debito_ex_off'] = float(0.0)
             variacao2_sp2[0]['total'] = float(0.0)
-
-            variacao_sp[0]['com_ind'] = float(0.01)
-            variacao_sp[0]['prod_rural'] = float(0.001)
-            variacao_sp[0]['prest_serv'] = float(0.001)
-            variacao_sp[0]['dar_1_aut'] = float(0.001)
-            variacao_sp[0]['nai'] = float(0.001)
-            variacao_sp[0]['credito_ex_off'] = float(0.001)
-            variacao_sp[0]['debito_ex_off'] = float(0.001)
-            variacao_sp[0]['total'] = float(0.001)
             apx = len(variacao2_sp2)
             try:
                 resu_com_ind = [
