@@ -407,202 +407,11 @@ def index(request):
             pit.savefig('/code/ProjetoVA/static/img/va_600.png')
 
             municipio = [{'nome': 'ACORIZAL'}]
-        if municipio_v and ano_iv and ano_fv:
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;"""
-                , [municipio_v, ano_iv, ano_fv, ano_fv])
-            variacao = namedtuplefetchall(cursor)
 
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;""",
-                [municipio_v, ano_iv, ano_fv, ano_iv]
-            )
-            variacao2 = namedtuplefetchall(cursor)
-            apx = len(variacao2)
-            try:
-                resu_com_ind = [
-                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_com_ind = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prod_rural = [
-                    {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prod_rural = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prest_serv = [
-                    {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prest_serv = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_dar_1_aut = [
-                    {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_dar_1_aut = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-
-            try:
-                resu_nai = [
-                    {'anual': (variacao[x].nai / variacao2[x].nai) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_nai = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_credito_ex_off = [
-                    {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) - 1,
-                     'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_credito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_debito_ex_off = [
-                    {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) - 1,
-                     'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_total = [
-                    {'anual': (variacao[x].total / variacao2[x].total) - 1,
-                     'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_total = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-        else:
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2020' ORDER BY ano_exercicio ASC;"""
-            )
-            variacao = namedtuplefetchall(cursor)
-
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2011' ORDER BY ano_exercicio ASC;"""
-            )
-            variacao2 = namedtuplefetchall(cursor)
-            apx = len(variacao2)
-            try:
-                resu_com_ind = [
-                    {'anual': (variacao[x].com_ind / variacao2[x].com_ind) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_com_ind = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prod_rural = [
-                    {'anual': (variacao[x].prod_rural / variacao2[x].prod_rural) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prod_rural = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prest_serv = [
-                    {'anual': (variacao[x].prest_serv / variacao2[x].prest_serv) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prest_serv = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_dar_1_aut = [
-                    {'anual': (variacao[x].dar_1_aut / variacao2[x].dar_1_aut) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_dar_1_aut = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_nai = [
-                    {'anual': (variacao[x].nai / variacao2[x].nai) - 1, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_nai = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_credito_ex_off = [
-                    {'anual': (variacao[x].credito_ex_off / variacao2[x].credito_ex_off) - 1,
-                     'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_credito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_debito_ex_off = [
-                    {'anual': (variacao[x].debito_ex_off / variacao2[x].debito_ex_off) - 1,
-                     'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            try:
-                resu_total = [
-                    {'anual': (variacao[x].total / variacao2[x].total) - 1,
-                     'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_total = [
-                    {'anual': 0.0, 'ano': variacao2[x].ano_exercicio}
-                    for x in
-                    range(apx)]
     return render(request, 'index.html',
                   {'abc': municipio, 'lista': ranking, 'ind': ranking_ind, 'lista2': indice_par,
                    'lista3': va_total_estado,
-                   'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices,
-                   'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut,
-                   'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total})
+                   'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
 
 
 @login_required
@@ -1089,263 +898,275 @@ def index_barras(request):
             pit.savefig('/code/ProjetoVA/static/img/va_6002.png')
 
             municipio = [{'nome': 'ACORIZAL'}]
-        if municipio_v and ano_iv and ano_fv:
-
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
-                , [municipio_v, ano_iv, ano_fv, ano_fv])
-            variacao = namedtuplefetchall(cursor)
-
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
-                [municipio_v, ano_iv, ano_fv, ano_iv]
-            )
-            variacao2 = namedtuplefetchall(cursor)
-
-            variacao_sp = [
-                {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
-                 'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
-                 'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao]
-
-            variacao2_sp2 = [
-                {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
-                 'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
-                 'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
-
-            variacao2_sp2[0]['com_ind'] = float(0.0)
-            variacao2_sp2[0]['prod_rural'] = float(0.0)
-            variacao2_sp2[0]['prest_serv'] = float(0.0)
-            variacao2_sp2[0]['dar_1_aut'] = float(0.0)
-            variacao2_sp2[0]['nai'] = float(0.0)
-            variacao2_sp2[0]['credito_ex_off'] = float(0.0)
-            variacao2_sp2[0]['debito_ex_off'] = float(0.0)
-            variacao2_sp2[0]['total'] = float(0.0)
-
-            variacao_sp[0]['com_ind'] = float(0.01)
-            variacao_sp[0]['prod_rural'] = float(0.001)
-            variacao_sp[0]['prest_serv'] = float(0.001)
-            variacao_sp[0]['dar_1_aut'] = float(0.001)
-            variacao_sp[0]['nai'] = float(0.001)
-            variacao_sp[0]['credito_ex_off'] = float(0.001)
-            variacao_sp[0]['debito_ex_off'] = float(0.001)
-            variacao_sp[0]['total'] = float(0.001)
-            apx = len(variacao2_sp2)
-            try:
-                resu_com_ind = [
-                    {'anual': ((variacao2_sp2[x]['com_ind'] / variacao_sp[x]['com_ind']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-                resu_com_ind[0]['anual'] = float(0.0)
-                ok = len(resu_com_ind)
-                com_ind_acu = {'acumulada': sum([resu_com_ind[x]['anual'] for x in range(ok)])}
-                float('p')
-            except ZeroDivisionError:
-                resu_com_ind = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prod_rural = [
-                    {'anual': ((variacao2_sp2[x]['prod_rural'] / variacao_sp[x]['prod_rural']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prod_rural = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prest_serv = [
-                    {'anual': ((variacao2_sp2[x]['prest_serv'] / variacao_sp[x]['prest_serv']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prest_serv = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_dar_1_aut = [
-                    {'anual': ((variacao2_sp2[x]['dar_1_aut'] / variacao_sp[x]['dar_1_aut']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_dar_1_aut = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_nai = [
-                    {'anual': ((variacao2_sp2[x]['nai'] / variacao_sp[x]['nai']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_nai = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_credito_ex_off = [
-                    {'anual': ((variacao2_sp2[x]['credito_ex_off'] / variacao_sp[x]['credito_ex_off']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_credito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_debito_ex_off = [
-                    {'anual': ((variacao2_sp2[x]['debito_ex_off'] / variacao_sp[x]['debito_ex_off']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_total = [
-                    {'anual': ((variacao2_sp2[x]['total'] / variacao_sp[x]['total']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_total = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-        else:
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2020' ORDER BY ano_exercicio ASC;"""
-            )
-            variacao = namedtuplefetchall(cursor)
-
-            cursor.execute(
-                """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2011' ORDER BY ano_exercicio ASC;"""
-            )
-            variacao2 = namedtuplefetchall(cursor)
-            variacao_sp = [
-                {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
-                 'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.credito_ex_off),
-                 'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao]
-            variacao2_sp2 = [
-                {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
-                 'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.credito_ex_off),
-                 'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
-            variacao2_sp2[0]['com_ind'] = float(0.0)
-            variacao2_sp2[0]['prod_rural'] = float(0.0)
-            variacao2_sp2[0]['prest_serv'] = float(0.0)
-            variacao2_sp2[0]['dar_1_aut'] = float(0.0)
-            variacao2_sp2[0]['nai'] = float(0.0)
-            variacao2_sp2[0]['credito_ex_off'] = float(0.0)
-            variacao2_sp2[0]['debito_ex_off'] = float(0.0)
-            variacao2_sp2[0]['total'] = float(0.0)
-            apx = len(variacao2_sp2)
-            try:
-                resu_com_ind = [
-                    {'anual': ((variacao2_sp2[x]['com_ind'] / variacao_sp[x]['com_ind']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_com_ind = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prod_rural = [
-                    {'anual': ((variacao2_sp2[x]['prod_rural'] / variacao_sp[x]['prod_rural']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prod_rural = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_prest_serv = [
-                    {'anual': ((variacao2_sp2[x]['prest_serv'] / variacao_sp[x]['prest_serv']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_prest_serv = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_dar_1_aut = [
-                    {'anual': ((variacao2_sp2[x]['dar_1_aut'] / variacao_sp[x]['dar_1_aut']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_dar_1_aut = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_nai = [
-                    {'anual': ((variacao2_sp2[x]['nai'] / variacao_sp[x]['nai']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_nai = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_credito_ex_off = [
-                    {'anual': ((variacao2_sp2[x]['credito_ex_off'] / variacao_sp[x]['credito_ex_off']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_credito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_debito_ex_off = [
-                    {'anual': ((variacao2_sp2[x]['debito_ex_off'] / variacao_sp[x]['debito_ex_off']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_debito_ex_off = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            try:
-                resu_total = [
-                    {'anual': ((variacao2_sp2[x]['total'] / variacao_sp[x]['total']) - 1) * 100,
-                     'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
-            except ZeroDivisionError:
-                resu_total = [
-                    {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
-                    for x in
-                    range(apx)]
     return render(request, 'index_barras.html',
                   {'abc': municipio, 'lista': ranking, 'ind': ranking_ind, 'lista2': indice_par,
                    'lista3': va_total_estado,
-                   'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices,
-                   'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut,
+                   'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
+
+@login_required
+def index_variacao(request):
+    municipio_v = request.GET.get('municipio_v')
+    ano_iv = request.GET.get('ano_iv')
+    ano_fv = request.GET.get('ano_fv')
+    if municipio_v and ano_iv and ano_fv:
+
+        cursor.execute(
+            """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;"""
+            , [municipio_v, ano_iv, ano_fv, ano_fv])
+        variacao = namedtuplefetchall(cursor)
+
+        cursor.execute(
+            """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s AND remessa='DOE DEFINITIVO' ORDER BY ano_exercicio ASC;""",
+            [municipio_v, ano_iv, ano_fv, ano_iv]
+        )
+        variacao2 = namedtuplefetchall(cursor)
+
+        variacao_sp = [
+            {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
+             'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
+             'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
+             'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao]
+
+        variacao2_sp2 = [
+            {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
+             'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
+             'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
+             'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
+
+        variacao2_sp2[0]['com_ind'] = float(0.0)
+        variacao2_sp2[0]['prod_rural'] = float(0.0)
+        variacao2_sp2[0]['prest_serv'] = float(0.0)
+        variacao2_sp2[0]['dar_1_aut'] = float(0.0)
+        variacao2_sp2[0]['nai'] = float(0.0)
+        variacao2_sp2[0]['credito_ex_off'] = float(0.0)
+        variacao2_sp2[0]['debito_ex_off'] = float(0.0)
+        variacao2_sp2[0]['total'] = float(0.0)
+
+        variacao_sp[0]['com_ind'] = float(0.01)
+        variacao_sp[0]['prod_rural'] = float(0.001)
+        variacao_sp[0]['prest_serv'] = float(0.001)
+        variacao_sp[0]['dar_1_aut'] = float(0.001)
+        variacao_sp[0]['nai'] = float(0.001)
+        variacao_sp[0]['credito_ex_off'] = float(0.001)
+        variacao_sp[0]['debito_ex_off'] = float(0.001)
+        variacao_sp[0]['total'] = float(0.001)
+        apx = len(variacao2_sp2)
+        try:
+            resu_com_ind = [
+                {'anual': ((variacao2_sp2[x]['com_ind'] / variacao_sp[x]['com_ind']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+            resu_com_ind[0]['anual'] = float(0.0)
+        except ZeroDivisionError:
+            resu_com_ind = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_prod_rural = [
+                {'anual': ((variacao2_sp2[x]['prod_rural'] / variacao_sp[x]['prod_rural']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_prod_rural = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_prest_serv = [
+                {'anual': ((variacao2_sp2[x]['prest_serv'] / variacao_sp[x]['prest_serv']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_prest_serv = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_dar_1_aut = [
+                {'anual': ((variacao2_sp2[x]['dar_1_aut'] / variacao_sp[x]['dar_1_aut']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_dar_1_aut = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_nai = [
+                {'anual': ((variacao2_sp2[x]['nai'] / variacao_sp[x]['nai']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_nai = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_credito_ex_off = [
+                {'anual': ((variacao2_sp2[x]['credito_ex_off'] / variacao_sp[x]['credito_ex_off']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_credito_ex_off = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_debito_ex_off = [
+                {'anual': ((variacao2_sp2[x]['debito_ex_off'] / variacao_sp[x]['debito_ex_off']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_debito_ex_off = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_total = [
+                {'anual': ((variacao2_sp2[x]['total'] / variacao_sp[x]['total']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_total = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+    else:
+        cursor.execute(
+            """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2020' ORDER BY ano_exercicio ASC;"""
+        )
+        variacao = namedtuplefetchall(cursor)
+
+        cursor.execute(
+            """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2011' ORDER BY ano_exercicio ASC;"""
+        )
+        variacao2 = namedtuplefetchall(cursor)
+        variacao_sp = [
+            {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
+             'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.credito_ex_off),
+             'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
+             'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao]
+        variacao2_sp2 = [
+            {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
+             'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.credito_ex_off),
+             'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
+             'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
+        variacao2_sp2[0]['com_ind'] = float(0.0)
+        variacao2_sp2[0]['prod_rural'] = float(0.0)
+        variacao2_sp2[0]['prest_serv'] = float(0.0)
+        variacao2_sp2[0]['dar_1_aut'] = float(0.0)
+        variacao2_sp2[0]['nai'] = float(0.0)
+        variacao2_sp2[0]['credito_ex_off'] = float(0.0)
+        variacao2_sp2[0]['debito_ex_off'] = float(0.0)
+        variacao2_sp2[0]['total'] = float(0.0)
+
+        variacao_sp[0]['com_ind'] = float(0.01)
+        variacao_sp[0]['prod_rural'] = float(0.001)
+        variacao_sp[0]['prest_serv'] = float(0.001)
+        variacao_sp[0]['dar_1_aut'] = float(0.001)
+        variacao_sp[0]['nai'] = float(0.001)
+        variacao_sp[0]['credito_ex_off'] = float(0.001)
+        variacao_sp[0]['debito_ex_off'] = float(0.001)
+        variacao_sp[0]['total'] = float(0.001)
+        apx = len(variacao2_sp2)
+        try:
+            resu_com_ind = [
+                {'anual': ((variacao2_sp2[x]['com_ind'] / variacao_sp[x]['com_ind']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_com_ind = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_prod_rural = [
+                {'anual': ((variacao2_sp2[x]['prod_rural'] / variacao_sp[x]['prod_rural']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_prod_rural = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_prest_serv = [
+                {'anual': ((variacao2_sp2[x]['prest_serv'] / variacao_sp[x]['prest_serv']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_prest_serv = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_dar_1_aut = [
+                {'anual': ((variacao2_sp2[x]['dar_1_aut'] / variacao_sp[x]['dar_1_aut']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_dar_1_aut = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_nai = [
+                {'anual': ((variacao2_sp2[x]['nai'] / variacao_sp[x]['nai']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_nai = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_credito_ex_off = [
+                {'anual': ((variacao2_sp2[x]['credito_ex_off'] / variacao_sp[x]['credito_ex_off']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_credito_ex_off = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_debito_ex_off = [
+                {'anual': ((variacao2_sp2[x]['debito_ex_off'] / variacao_sp[x]['debito_ex_off']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_debito_ex_off = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        try:
+            resu_total = [
+                {'anual': ((variacao2_sp2[x]['total'] / variacao_sp[x]['total']) - 1) * 100,
+                 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+        except ZeroDivisionError:
+            resu_total = [
+                {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
+                for x in
+                range(apx)]
+    return render(request, 'index_variacao.html', {'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut,
                    'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total})
 
 

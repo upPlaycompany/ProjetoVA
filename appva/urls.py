@@ -5,6 +5,7 @@ from django.contrib import admin
 urlpatterns = [
     path('index/', views.index, name='index'),
     path('index_barras/', views.index_barras, name='index_barras'),
+    path('index_variacao/', views.index_variacao, name='index_variacao'),
 
     path('', views.logar, name='login'),
     path('deslogar', views.deslogar, name='deslogar'),
