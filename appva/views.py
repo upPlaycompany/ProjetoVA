@@ -3312,7 +3312,7 @@ def NFE_e(request):
         if q and t == "ie_remetente":
             nfe_e = Nfe_e.objects.filter(ie_remetente__contains=q)
         elif q and t == "nome":
-            nfe_e = Nfe_e.objects.filter(nome_do_prdoutor__contains=q)
+            nfe_e = Nfe_e.objects.filter(nome_do_produtor__contains=q)
         elif q and t == "municipio":
             nfe_e = Nfe_e.objects.filter(municipio_do_produtor__contains=q)
         elif q and t == "ie_adquirente":
