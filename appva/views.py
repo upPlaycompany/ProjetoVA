@@ -1167,6 +1167,7 @@ def index_variacao(request):
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+            float('p')
     return render(request, 'index_variacao.html', {'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut,
                    'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total})
 
