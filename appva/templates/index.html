@@ -229,7 +229,7 @@ Dashboard
                             <tr>
                                 <td>{{ ranking.posicao }}</td>
                                 <td>{{ ranking.municipio }}</td>
-                                <td>{{ ranking.vr_adic_ano_exercicio }}</td>
+                                <td>{{ ranking.vr_adic_ano_exercicio|floatformat: 2 }}</td>
                                 <td>{{ ranking.ano_exercicio }}</td>
                             </tr>
                             {% endfor %}
@@ -287,7 +287,7 @@ Dashboard
                             <tbody>
                             {% for indice_par in lista2 %}
                             <tr>
-                                <td>{{ indice_par.ind_final }}</td>
+                                <td>{{ indice_par.ind_final|floatformat: 6 }}</td>
                                 <td>{{ indice_par.ano_exercicio }}</td>
                             </tr>
                             {% endfor %}
@@ -345,7 +345,7 @@ Dashboard
                             <tbody>
                             {% for indice_medio in lista4 %}
                             <tr>
-                                <td>{{ indice_medio.iva_med }}</td>
+                                <td>{{ indice_medio.iva_med|floatformat: 6 }}</td>
                                 <td>{{ indice_medio.ano_exercicio }}</td>
                             </tr>
                             {% endfor %}
@@ -400,7 +400,7 @@ Dashboard
                             <tbody>
                             {% for va_total_estado in lista3 %}
                             <tr>
-                                <td>{{ va_total_estado.vr_adic_ano_exercicio }}</td>
+                                <td>{{ va_total_estado.vr_adic_ano_exercicio|floatformat: 2 }}</td>
                                 <td>{{ va_total_estado.ano_exercicio }}</td>
                             </tr>
                             {% endfor %}
@@ -455,7 +455,7 @@ Dashboard
                             <tbody>
                             {% for distribuicao in lista5 %}
                             <tr>
-                                <td>{{ distribuicao.distrib }}</td>
+                                <td>{{ distribuicao.distrib|floatformat: 2 }}</td>
                                 <td>{{ distribuicao.ano }}</td>
                             </tr>
                             {% endfor %}
@@ -512,7 +512,7 @@ Dashboard
                             <tbody>
                             {% for finali in lista6 %}
                             <tr>
-                                <td>{{ finali.arrecad }}</td>
+                                <td>{{ finali.arrecad|floatformat: 2 }}</td>
                                 <td>{{ finali.ano }}</td>
                             </tr>
                             {% endfor %}
@@ -576,13 +576,13 @@ Dashboard
                             {% for indices in lista7 %}
                             <tr>
                                 <td>{{ indices.ano_exercicio }}</td>
-                                <td>{{ indices.iva_med }}</td>
-                                <td>{{ indices.iva_75 }}</td>
-                                <td>{{ indices.populacao }}</td>
-                                <td>{{ indices.ucti }}</td>
-                                <td>{{ indices.trib_propr }}</td>
-                                <td>{{ indices.area }}</td>
-                                <td>{{ indices.coef_soc }}</td>
+                                <td>{{ indices.iva_med|floatformat: 6 }}</td>
+                                <td>{{ indices.iva_75|floatformat: 6 }}</td>
+                                <td>{{ indices.populacao|floatformat: 6 }}</td>
+                                <td>{{ indices.ucti|floatformat: 6 }}</td>
+                                <td>{{ indices.trib_propr|floatformat: 6 }}</td>
+                                <td>{{ indices.area|floatformat: 6 }}</td>
+                                <td>{{ indices.coef_soc|floatformat: 6 }}</td>
                             </tr>
                             {% endfor %}
                             </tbody>
