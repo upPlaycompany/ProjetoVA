@@ -202,8 +202,9 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação de comércio e indústria</h6>
-
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de comércio e indústria - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
             </div>
             <!-- Card Body -->
             <div class="card-body">
@@ -235,7 +236,10 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação de produção rural</h6>
+
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de produção rural - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
 
             </div>
             <!-- Card Body -->
@@ -269,7 +273,10 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação de prestadores de serviço</h6>
+
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de prestação de serviço - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
 
             </div>
             <!-- Card Body -->
@@ -309,7 +316,10 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação de DAR-1/AUT</h6>
+
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de DAR-1/AUT - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
 
             </div>
             <!-- Card Body -->
@@ -343,7 +353,10 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação do N.A.I</h6>
+
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de N.A.I - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
 
             </div>
             <!-- Card Body -->
@@ -377,7 +390,10 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação de crédito</h6>
+
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de crédito - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
 
             </div>
             <!-- Card Body -->
@@ -417,7 +433,10 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação de Débito</h6>
+
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de débito - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
 
             </div>
             <!-- Card Body -->
@@ -451,7 +470,10 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Variação do VA total</h6>
+
+                {% for resu_com_ind in aa %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação do VA total - {{ resu_com_ind.municipio.0 }}</h6>
+                {% endfor %}
 
             </div>
             <!-- Card Body -->
