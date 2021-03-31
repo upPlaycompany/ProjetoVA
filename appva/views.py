@@ -1856,8 +1856,25 @@ def CAP(request):
     r = request.GET.get('r')
     if q:
         q = str(q).upper()
-    e.upper()
-    r.upper()
+    elif e:
+        e = str(e).upper()
+    elif r:
+        r = str(r).upper()
+    elif q and r:
+        q = str(q).upper()
+        r = str(r).upper()
+    elif q and e:
+        q = str(q).upper()
+        e = str(e).upper()
+    elif r and e:
+        r = str(r).upper()
+        e = str(e).upper()
+    elif q and r and e:
+        q = str(q).upper()
+        r = str(r).upper()
+        e = str(e).upper()
+    else:
+        pass
     remessa = REMESSAS.objects.all()
     try:
         if q and t == "cnae":
@@ -2048,20 +2065,22 @@ def GIA_ENTRADAS_SAIDAS_lista_valor_adicionado(request):
     try:
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
-
+                a = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE inscricao = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [q])
+                    [a])
                 lista = namedtuplefetchall(cursor)
             elif q and t == "contribuinte":
+                a = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE contribuinte = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [q])
+                    [a])
                 lista = namedtuplefetchall(cursor)
             elif q and t == "municipio":
+                a = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE municipio = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [q])
+                    [a])
                 lista = namedtuplefetchall(cursor)
             else:
                 cursor.execute(
