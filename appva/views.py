@@ -2060,28 +2060,24 @@ def GIA_ENTRADAS_SAIDAS_lista_valor_adicionado(request):
     page = request.GET.get('page', '')
     q = request.GET.get("q")
     t = request.GET.get("t")
-
+    if q:
+        q = str(q).upper()
     try:
-        if q:
-            q = str(q).upper()
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
-                a = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE inscricao = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [a])
+                    [q])
                 lista = namedtuplefetchall(cursor)
             elif q and t == "contribuinte":
-                a = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE contribuinte = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [a])
+                    [q])
                 lista = namedtuplefetchall(cursor)
             elif q and t == "municipio":
-                a = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE municipio = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [a])
+                    [q])
                 lista = namedtuplefetchall(cursor)
             else:
                 cursor.execute(
