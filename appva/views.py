@@ -960,7 +960,7 @@ def index_barras(request):
             f_ucti = [x.ucti for x in indices]
             f_ano = [x.ano_exercicio for x in indices]
 
-            barwidth = 1.00
+            barwidth = 0.20
             rr1 = np.arange(len(f_ano))
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
