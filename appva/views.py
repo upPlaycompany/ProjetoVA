@@ -961,7 +961,7 @@ def index_barras(request):
             f_ano = [x.ano_exercicio for x in indices]
 
             barwidth = 0.25
-            rr1 = np.arange(len(f_ano) + 1)
+            rr1 = np.arange(len(f_ano))
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
             rr4 = [x + barwidth for x in rr3]
