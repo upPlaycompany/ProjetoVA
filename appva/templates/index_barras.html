@@ -564,9 +564,7 @@ Dashboard
                                 <th>Indice 75%</th>
                                 <th>População</th>
                                 <th>UCTI</th>
-                                <th>Trib. Propr.</th>
-                                <th>Área</th>
-                                <th>Coef. Soc.</th>
+
                             </tr>
                             </thead>
 
@@ -578,9 +576,7 @@ Dashboard
                                 <td>{{ indices.iva_75 }}</td>
                                 <td>{{ indices.populacao }}</td>
                                 <td>{{ indices.ucti }}</td>
-                                <td>{{ indices.trib_propr }}</td>
-                                <td>{{ indices.area }}</td>
-                                <td>{{ indices.coef_soc }}</td>
+
                             </tr>
                             {% endfor %}
                             </tbody>
@@ -628,10 +624,7 @@ Dashboard
                             <thead>
                             <tr>
                                 <th>Ano</th>
-                                <th>Indice médio</th>
-                                <th>Indice 75%</th>
-                                <th>População</th>
-                                <th>UCTI</th>
+
                                 <th>Trib. Propr.</th>
                                 <th>Área</th>
                                 <th>Coef. Soc.</th>
@@ -642,10 +635,6 @@ Dashboard
                             {% for indices in lista7 %}
                             <tr>
                                 <td>{{ indices.ano_exercicio }}</td>
-                                <td>{{ indices.iva_med }}</td>
-                                <td>{{ indices.iva_75 }}</td>
-                                <td>{{ indices.populacao }}</td>
-                                <td>{{ indices.ucti }}</td>
                                 <td>{{ indices.trib_propr }}</td>
                                 <td>{{ indices.area }}</td>
                                 <td>{{ indices.coef_soc }}</td>
