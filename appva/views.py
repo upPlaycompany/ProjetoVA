@@ -974,6 +974,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_prod_rural[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_prod_rural = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -985,6 +986,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_prest_serv[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_prest_serv = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -996,6 +998,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_dar_1_aut[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_dar_1_aut = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1007,6 +1010,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_nai[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_nai = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1018,6 +1022,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_credito_ex_off[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_credito_ex_off = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1029,6 +1034,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_debito_ex_off[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_debito_ex_off = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1040,6 +1046,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_total[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_total = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1080,6 +1087,8 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_com_ind[0]['anual'] = float(0.0)
+
             except ZeroDivisionError:
                 resu_com_ind = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1091,6 +1100,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_prod_rural[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_prod_rural = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1102,6 +1112,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_prest_serv[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_prest_serv = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1113,6 +1124,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_dar_1_aut[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_dar_1_aut = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1124,6 +1136,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_nai[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_nai = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1135,6 +1148,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_credito_ex_off[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_credito_ex_off = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1146,6 +1160,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_debito_ex_off[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_debito_ex_off = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
@@ -1157,6 +1172,7 @@ def index_variacao(request):
                      'ano': variacao2_sp2[x]['ano_exercicio']}
                     for x in
                     range(apx)]
+                resu_total[0]['anual'] = float(0.0)
             except ZeroDivisionError:
                 resu_total = [
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio']}
