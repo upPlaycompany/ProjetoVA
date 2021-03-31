@@ -1052,6 +1052,7 @@ def index_variacao(request):
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio'], 'municipio': variacao2_sp2[x]['municipio']}
                     for x in
                     range(apx)]
+            muni = [{'municipio': municipio_v}]
         else:
             cursor.execute(
                 """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio, municipio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2020' ORDER BY ano_exercicio ASC;"""
@@ -1178,8 +1179,9 @@ def index_variacao(request):
                     {'anual': 0.0, 'ano': variacao2_sp2[x]['ano_exercicio'], 'municipio': variacao2_sp2[x]['municipio']}
                     for x in
                     range(apx)]
+            muni = [{'municipio': 'ACORIZAL'}]
     return render(request, 'index_variacao.html', {'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut,
-                   'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total})
+                   'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total, 'abc': muni})
 
 
 @login_required
