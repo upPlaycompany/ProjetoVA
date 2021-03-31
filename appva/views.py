@@ -4541,32 +4541,18 @@ def EFD_lista_valor_adicionado(request):
     if q:
         q = str(q).upper()
     try:
-        with connections['default'].cursor() as cursor:
-            if q and t == "inscricao":
-                i = str(q)
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_efd WHERE inscricao = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [i])
-                lista = namedtuplefetchall(cursor)
 
-            elif q and t == "contribuinte":
-                c = str(q)
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_efd WHERE contribuinte = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [c])
-                lista = namedtuplefetchall(cursor)
-            elif q and t == "municipio":
-                m = str(q)
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_efd WHERE municipio = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [m])
-                lista = namedtuplefetchall(cursor)
-            else:
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_efd GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;")
-                lista = namedtuplefetchall(cursor)
-            lista = Paginator(lista, 20)
-            lista = lista.page(page)
+        if q and t == "inscricao":
+            lista = Efd.objects.filter(inscricao__contains=q)
+
+        elif q and t == "contribuinte":
+            lista = Efd.objects.filter(contribuinte__contains=q)
+        elif q and t == "municipio":
+            lista = Efd.objects.filter(municipio__contains=q)
+        else:
+            lista = Efd.objects.all()
+        lista = Paginator(lista, 20)
+        lista = lista.page(page)
     except PageNotAnInteger:
         lista = lista.page(1)
     except EmptyPage:
