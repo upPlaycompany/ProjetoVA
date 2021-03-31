@@ -935,7 +935,7 @@ def index_variacao(request):
                 {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
                  'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
                  'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
+                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio, 'municipio': x.municipio} for x in variacao2]
 
             variacao2_sp2[0]['com_ind'] = float(0.0)
             variacao2_sp2[0]['prod_rural'] = float(0.0)
@@ -1071,7 +1071,7 @@ def index_variacao(request):
                 {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
                  'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.credito_ex_off),
                  'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio} for x in variacao2]
+                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio, 'municipio': x.municipio} for x in variacao2]
             variacao2_sp2[0]['com_ind'] = float(0.0)
             variacao2_sp2[0]['prod_rural'] = float(0.0)
             variacao2_sp2[0]['prest_serv'] = float(0.0)
