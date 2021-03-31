@@ -968,6 +968,7 @@ def index_barras(request):
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
             rr4 = [x + barwidth for x in rr3]
+            rr5 = [x + barwidth for x in rr4]
 
 
 
@@ -975,9 +976,8 @@ def index_barras(request):
             pit.bar(rr2, f_75, width=0.25)
             pit.bar(rr3, f_popu, width=0.25)
             pit.bar(rr4, f_ucti, width=0.25)
+            pit.bar(rr5, f_trib, width=0.25)
 
-
-            
             pit.xticks([r + barwidth for r in range(len(f_ano))], f_ano)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
