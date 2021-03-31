@@ -1532,7 +1532,7 @@ def GIA_OMISSO(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-      q.upper()
+        q.upper()
     try:
         if q and t == "mes":
             gia_omisso = Gia_omisso.objects.filter(mes__contains=q)
@@ -1690,8 +1690,8 @@ def IE(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "nome":
             ie = Ie.objects.filter(nome_pessoa__contains=q)
@@ -1741,8 +1741,8 @@ def NFE_EFD(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "inscricao_remetente":
             nfe_efd = Nfe_efd.objects.filter(ie_remetente__contains=q)
@@ -1800,8 +1800,8 @@ def REG_1400_EFD(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "inscricao":
             reg_1400_efd = Reg_1400_efd.objects.filter(inscricao__contains=q)
@@ -1854,8 +1854,8 @@ def CAP(request):
     q = request.GET.get("q")
     e = request.GET.get('e')
     r = request.GET.get('r')
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     e.upper()
     r.upper()
     remessa = REMESSAS.objects.all()
@@ -1936,8 +1936,8 @@ def GIA_COP3(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "mes":
             gia_cop3 = Gia_cop3.objects.filter(mes__contains=q)
@@ -1990,8 +1990,8 @@ def GIA_ENTRADAS_SAIDAS(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "dt_inicial":
             gia_entradas_saidas = Gia_entradas_saidas.objects.filter(dt_inicial__contains=q)
@@ -2043,8 +2043,8 @@ def GIA_ENTRADAS_SAIDAS_lista_valor_adicionado(request):
     page = request.GET.get('page', '')
     q = request.GET.get("q")
     t = request.GET.get("t")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
@@ -3306,8 +3306,8 @@ def NFE_e(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        str(q).upper()
     try:
         if q and t == "ie_remetente":
             nfe_e = Nfe_e.objects.filter(ie_remetente__contains=q)
@@ -3362,8 +3362,8 @@ def ACYPR535(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "municipio":
             acypr535 = Acypr535.objects.filter(municipio__contains=q)
@@ -3410,8 +3410,8 @@ def ACYPR540(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "cod":
             acypr540 = Acypr540.objects.filter(cod__contains=q)
@@ -3461,8 +3461,8 @@ def ACYPR555(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "ano_base":
             acypr555 = Acypr555.objects.filter(ano_base__contains=q)
@@ -3513,8 +3513,8 @@ def ACYPR556(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "codigo":
             acypr556 = Acypr556.objects.filter(codigo__contains=q)
@@ -3563,8 +3563,8 @@ def ACYPR557(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "cod":
             acypr557 = Acypr557.objects.filter(cod__contains=q)
@@ -3615,8 +3615,8 @@ def ACYPR600(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "municipio":
             acypr600 = Acypr600.objects.filter(municipio__contains=q)
@@ -3661,8 +3661,8 @@ def CRED(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "cod":
             cred = Cred.objects.filter(data__contains=q)
@@ -3747,8 +3747,8 @@ def DEB(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "codigo":
             deb = Deb.objects.filter(cod__contains=q)
@@ -3836,8 +3836,8 @@ def GIA_SEM_MOV(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "cod":
             gia_sem_mov = Gia_sem_mov.objects.filter(cod__contains=q)
@@ -3886,8 +3886,8 @@ def EFD(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "dt_inicial":
             efd = Efd.objects.filter(dt_inicial__contains=q)
@@ -4536,8 +4536,8 @@ def EFD_lista_valor_adicionado(request):
     page = request.GET.get('page', '')
     q = request.GET.get("q")
     t = request.GET.get("t")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
@@ -5213,8 +5213,8 @@ def EFD_OMISSO(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "mes":
             efd_omisso = Efd_omisso.objects.filter(mes__contains=q)
@@ -5265,8 +5265,8 @@ def EFD_SEM_MOV(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "num_efd":
             efd_sem_mov = Efd_sem_mov.objects.filter(num_efd__contains=q)
@@ -5319,8 +5319,8 @@ def ACGPT812(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "ie_remetente":
             acgpt812 = Acgpt812.objects.filter(ie_remetente__contains=q)
@@ -5375,8 +5375,8 @@ def PGDAS_D(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "cnae":
             pgdas_d = Pgdas_d.objects.filter(cnae__contains=q)
@@ -5425,8 +5425,8 @@ def ACGPR051(request):
     page = request.GET.get('page', '')
     t = request.GET.get("t")
     q = request.GET.get("q")
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == "inscricao":
             acgpr051 = Acgpr051.objects.filter(inscricao__contains=q)
@@ -5474,8 +5474,8 @@ def CFOP(request):
     page = request.GET.get('page', '')
     t = request.GET.get('t')
     q = request.GET.get('q')
-    if q: 
-      q.upper()
+    if q:
+        q.upper()
     try:
         if q and t == 'codigo':
             cfop = Cfop.objects.filter(codigo__contains=q)
