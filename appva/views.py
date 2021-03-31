@@ -963,11 +963,11 @@ def index_barras(request):
             barwidth = 0.25
             rr1 = np.arange(len(f_ano))
             rr2 = [x + barwidth for x in rr1]
-            rr3 = [x + barwidth for x in rr1]
-            rr4 = [x + barwidth for x in rr1]
-            rr5 = [x + barwidth for x in rr1]
-            rr6 = [x + barwidth for x in rr1]
-            rr7 = [x + barwidth for x in rr1]
+            rr3 = [x + barwidth for x in rr2]
+            rr4 = [x + barwidth for x in rr3]
+            rr5 = [x + barwidth for x in rr4]
+            rr6 = [x + barwidth for x in rr5]
+            rr7 = [x + barwidth for x in rr6]
 
             pit.figure(figsize=(10, 5))
             pit.bar(rr1, f_med, width=0.25)
