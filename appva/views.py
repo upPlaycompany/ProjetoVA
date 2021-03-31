@@ -360,13 +360,8 @@ def index(request):
             f_ucti = [x.ucti for x in indices]
             f_ano = [x.ano_exercicio for x in indices]
             pit.figure(figsize=(10, 5))
-            pit.plot(f_ano, f_med)
-            pit.plot(f_ano, f_75)
-            pit.plot(f_ano, f_popu)
-            pit.plot(f_ano, f_ucti)
-            pit.plot(f_ano, f_trib)
-            pit.plot(f_ano, f_area)
-            pit.plot(f_ano, f_coef)
+            pit.plot(f_ano, [f_med, f_75, f_popu, f_ucti, f_trib, f_area, f_coef])
+
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
             pit.title('Indices do município de Acorizal')
