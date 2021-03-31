@@ -2060,9 +2060,10 @@ def GIA_ENTRADAS_SAIDAS_lista_valor_adicionado(request):
     page = request.GET.get('page', '')
     q = request.GET.get("q")
     t = request.GET.get("t")
-    if q:
-        q = str(q).upper()
+
     try:
+        if q:
+            q = str(q).upper()
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
                 a = str(q)
