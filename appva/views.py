@@ -960,30 +960,25 @@ def index_barras(request):
             f_ucti = [x.ucti for x in indices]
             f_ano = [x.ano_exercicio for x in indices]
 
-            barwidth = 0.20
-            rr1 = np.arange(len(f_ano))
-            rr10 = [x + barwidth for x in rr1]
-            rr2 = [x + barwidth for x in rr10]
-            rr3 = [x + barwidth for x in rr2]
-            rr4 = [x + barwidth for x in rr3]
-            rr5 = [x + barwidth for x in rr4]
-            rr6 = [x + barwidth for x in rr5]
-            rr7 = [x + barwidth for x in rr6]
 
+            barwidth = 0.25
             pit.figure(figsize=(10, 7))
-            pit.bar(rr10, f_med, width=0.20)
-            pit.bar(rr2, f_75, width=0.20)
-            pit.bar(rr3, f_popu, width=0.20)
-            pit.bar(rr4, f_ucti, width=0.20)
-            pit.bar(rr5, f_trib, width=0.20)
-            pit.bar(rr6, f_area, width=0.20)
-            pit.bar(rr7, f_coef, width=0.20)
+            
+            rr1 = np.arange(len(f_ano))
+            rr2 = [x + barwidth for x in rr1]
+            rr3 = [x + barwidth for x in rr2]
+            
+
+
+            pit.bar(rr1, f_med, width=0.25)
+            pit.bar(rr2, f_75, width=0.25)
+            pit.bar(rr3, f_popu, width=0.25)
+            
             pit.xticks([r + barwidth for r in range(len(f_ano))], f_ano)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Valores em padrão de índice')
             pit.title('Indices do município de Acorizal')
-            pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI', 'Indice Trib. própria',
-                        'Indice área', 'Indice Coef. Social'))
+            pit.legend(('Indice médio', '75% do índice', 'Indice população'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
 
             ###ACYPR600
