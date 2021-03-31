@@ -2048,22 +2048,20 @@ def GIA_ENTRADAS_SAIDAS_lista_valor_adicionado(request):
     try:
         with connections['default'].cursor() as cursor:
             if q and t == "inscricao":
-                i = str(q)
+
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE inscricao = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [i])
+                    [q])
                 lista = namedtuplefetchall(cursor)
             elif q and t == "contribuinte":
-                c = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE contribuinte = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [c])
+                    [q])
                 lista = namedtuplefetchall(cursor)
             elif q and t == "municipio":
-                m = str(q)
                 cursor.execute(
                     "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE municipio = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [m])
+                    [q])
                 lista = namedtuplefetchall(cursor)
             else:
                 cursor.execute(
