@@ -121,7 +121,7 @@ def index(request):
             ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 1 AS distrib, ano FROM appva_fpm WHERE ano='2021' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2021' ORDER BY ano ASC;"""
             )
             distribuicao = namedtuplefetchall(cursor)
 
@@ -132,7 +132,7 @@ def index(request):
             pit.plot(ano_distri, distri)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Distribuição por 100 milhões')
-            pit.title('Gráfico de distribuição ICMS do Estado ')
+            pit.title('Distribuição média mensal do ICMS do Estado aos Municípios')
             pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
 
             ### ARRECADACAO ICMS
@@ -306,7 +306,7 @@ def index(request):
             ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 1 AS distrib, ano FROM appva_fpm WHERE ano='2021' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2021' ORDER BY ano ASC;"""
             )
             distribuicao = namedtuplefetchall(cursor)
 
@@ -317,7 +317,7 @@ def index(request):
             pit.plot(ano_distri, distri)
             pit.xlabel('Ano de exercício')
             pit.ylabel('Distribuição por 100 milhões')
-            pit.title('Gráfico de distribuição mensal ICMS do Estado ')
+            pit.title('Distribuição média mensal do ICMS do Estado aos Municípios')
             pit.savefig('/code/ProjetoVA/static/img/va_distri_estado.png')
 
             ### ARRECADACAO ICMS
@@ -700,7 +700,7 @@ def index_barras(request):
             ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 1 AS distrib, ano FROM appva_fpm WHERE ano='2021' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2021' ORDER BY ano ASC;"""
             )
             distribuicao = namedtuplefetchall(cursor)
 
@@ -933,7 +933,7 @@ def index_barras(request):
             ### GRÁFICO DE DISTRIBUIÇÃO ESTADO
 
             cursor.execute(
-                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 10 AS distrib, ano FROM appva_fpm WHERE ano='2020' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2020' ORDER BY ano ASC;"""
+                """SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro) / 1 AS distrib, ano FROM appva_fpm WHERE ano='2021' UNION SELECT (janeiro+fevereiro+marco+abril+maio+junho+julho+agosto+setembro+outubro+novembro+dezembro) /12 AS distrib, ano FROM appva_fpm WHERE ano NOT LIKE '2021' ORDER BY ano ASC;"""
             )
             distribuicao = namedtuplefetchall(cursor)
 
