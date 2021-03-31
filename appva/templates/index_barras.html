@@ -532,13 +532,81 @@ Dashboard
             <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 {% for municipio in abc %}
-                <h6 class="m-0 font-weight-bold text-primary">Variação de todos os índices - {{ municipio.nome }}</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Variação de todos os índices - Parte 1 - {{ municipio.nome }}</h6>
                 {% endfor %}
             </div>
             <!-- Card Body -->
             <div class="card-body">
                 <div class="text-center">
                     <img src="{% static 'img/va_indices_ano.png' %}" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Variação dos índices por ano</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div>
+                    <div class="table-responsive" style="width: 100%; height: 322px;">
+                        <table class="table table-bordered" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>Ano</th>
+                                <th>Indice médio</th>
+                                <th>Indice 75%</th>
+                                <th>População</th>
+                                <th>UCTI</th>
+                                <th>Trib. Propr.</th>
+                                <th>Área</th>
+                                <th>Coef. Soc.</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for indices in lista7 %}
+                            <tr>
+                                <td>{{ indices.ano_exercicio }}</td>
+                                <td>{{ indices.iva_med }}</td>
+                                <td>{{ indices.iva_75 }}</td>
+                                <td>{{ indices.populacao }}</td>
+                                <td>{{ indices.ucti }}</td>
+                                <td>{{ indices.trib_propr }}</td>
+                                <td>{{ indices.area }}</td>
+                                <td>{{ indices.coef_soc }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+        <div class="card shadow mb-4" style="width: 100%">
+            <!-- Card Header - Dropdown -->
+            <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                {% for municipio in abc %}
+                <h6 class="m-0 font-weight-bold text-primary">Variação de todos os índices - Parte 2 - {{ municipio.nome }}</h6>
+                {% endfor %}
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="text-center">
+                    <img src="{% static 'img/va_indices_ano2.png' %}" width="100%">
                 </div>
             </div>
         </div>
