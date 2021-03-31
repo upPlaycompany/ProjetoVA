@@ -3307,7 +3307,7 @@ def NFE_e(request):
     t = request.GET.get("t")
     q = request.GET.get("q")
     if q:
-        str(q).upper()
+        q = str(q).upper()
     try:
         if q and t == "ie_remetente":
             nfe_e = Nfe_e.objects.filter(ie_remetente__contains=q)
