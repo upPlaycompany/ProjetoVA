@@ -2063,28 +2063,16 @@ def GIA_ENTRADAS_SAIDAS_lista_valor_adicionado(request):
     if q:
         q = str(q).upper()
     try:
-        with connections['default'].cursor() as cursor:
-            if q and t == "inscricao":
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE inscricao = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [q])
-                lista = namedtuplefetchall(cursor)
-            elif q and t == "contribuinte":
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE contribuinte SIMILAR TO %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [q])
-                lista = namedtuplefetchall(cursor)
-            elif q and t == "municipio":
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas WHERE municipio = %s GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;",
-                    [q])
-                lista = namedtuplefetchall(cursor)
-            else:
-                cursor.execute(
-                    "SELECT inscricao, contribuinte, municipio FROM appva_gia_entradas_saidas GROUP BY inscricao, contribuinte, municipio ORDER BY inscricao, contribuinte, municipio;")
-                lista = namedtuplefetchall(cursor)
-            lista = Paginator(lista, 20)
-            lista = lista.page(page)
+        if q and t == "inscricao":
+            lista = Gia_entradas_saidas.objects.filter(inscricao__contains=q)
+        elif q and t == "contribuinte":
+            lista = Gia_entradas_saidas.objects.filter(contribuinte__contains=q)
+        elif q and t == "municipio":
+            lista = Gia_entradas_saidas.objects.filter(inscricao__contains=q)
+        else:
+            lista = Gia_entradas_saidas.objects.all()
+        lista = Paginator(lista, 20)
+        lista = lista.page(page)
     except PageNotAnInteger:
         lista = lista.page(1)
     except EmptyPage:
