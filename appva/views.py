@@ -3605,8 +3605,17 @@ def import_cred(request, pk):
 @login_required
 def CNAE(request):
     page = request.GET.get('page', '')
+    t = request.GET.get("t")
+    q = request.GET.get("q")
     try:
-        cnae = Cnae.objects.all()
+        if q and t == 'subclasse':
+            cnae = Cnae.objects.filter(subclasse__contains=q)
+        elif q and t == 'denominacao':
+            cnae = Cnae.objects.filter(denominacao__contains=q)
+        elif q and t == 'arbitramento':
+            cnae = Cnae.objects.filter(arbitramento__contains=q)
+        else:
+            cnae = Cnae.objects.all()
         remessa = REMESSAS.objects.all()
         cnae = Paginator(cnae, 20)
         cnae = cnae.page(page)
@@ -3614,7 +3623,6 @@ def CNAE(request):
         cnae = cnae.page(1)
     except EmptyPage:
         cnae = paginator.page(paginator.num_pages)
-
     remessas = {'lista': remessa, 'order': cnae}
     return render(request, 'CNAE.html', remessas)
 

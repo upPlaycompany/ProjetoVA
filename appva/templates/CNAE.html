@@ -3,7 +3,25 @@
 CNAE
 {% endblock title %}
 {% block content %}
-<!-- DataTales Example -->
+<form method="get">
+    <div class="col-lg-12">
+        <div class="input-group">
+            <div class="form-group col-md-20">
+                <select id="inputState" class="form-control" name="t">
+                    <option selected>Escolha o tipo de filtro</option>
+                    <option value="subclasse">Pesquisar por subclasse</option>
+                    <option value="denominacao">Pesquisar por denominação</option>
+                    <option value="arbitramento">Pesquisar por arbitramento</option>
+                </select>
+            </div>
+            <input type="text" class="form-control" name="q" placeholder="Buscar por filtro">
+            <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Pesquisar</button>
+      </span>
+        </div>
+    </div>
+</form>
+<br>
 <div class="card shadow mb-4">
 
     <div class="card-body">
@@ -38,7 +56,7 @@ CNAE
         </div>
     </div>
 </div>
- <div class="pagination">
+<div class="pagination">
     <span class="step-links">
         {% if order.has_previous %}
            <a href="?page={{ order.previous_page_number }}">Página anterior</a>
@@ -50,7 +68,7 @@ CNAE
             <a href="?page={{ order.next_page_number }}">Próxima página</a>
         {% endif %}
   </span>
- </div>
+</div>
 <br>
 {% if request.user.is_staff == True %}
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
@@ -77,8 +95,8 @@ CNAE
                 <div class="form-group">
                     {% for remessa in lista %}
                     <a href="{% url 'import_cnae' pk=remessa.pk %}">
-                    <label>{{remessa.id}} - {{remessa.arquivo}}
-                    </label></a>
+                        <label>{{remessa.id}} - {{remessa.arquivo}}
+                        </label></a>
                     {% endfor %}
 
 
