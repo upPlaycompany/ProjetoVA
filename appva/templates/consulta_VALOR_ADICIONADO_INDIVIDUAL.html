@@ -231,12 +231,12 @@ Listagem de contribuintes
                 {% for consulta in lista %}
                 <tr>
 
-                    <td>R$ {{ consulta.numr_inscricao_estadual }}</td>
-                    <td>R$ {{ consulta.nome_pessoa }}</td>
-                    <td>R$ {{ consulta.codg_cnae }}</td>
-                    <td>R$ {{ consulta.codg_crc }}</td>
-                    <td>R$ {{ consulta.nome_contabilista }}</td>
-                    <td>R$ {{ consulta.nome_municipio }}</td>
+                    <td>{{ consulta.numr_inscricao_estadual }}</td>
+                    <td>{{ consulta.nome_pessoa }}</td>
+                    <td>{{ consulta.codg_cnae }}</td>
+                    <td>{{ consulta.codg_crc }}</td>
+                    <td>{{ consulta.nome_contabilista }}</td>
+                    <td>{{ consulta.nome_municipio }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
