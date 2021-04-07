@@ -6545,9 +6545,5 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
             )
             consulta = namedtuplefetchall(cursor)
         else:
-            cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap;""",
-                
-            )
-            consulta = namedtuplefetchall(cursor)
+            consulta = ["nada"]
     return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
