@@ -96,11 +96,11 @@ class Acypr557(models.Model):
 # RELATORIO DE VALORES ADICIONADOS
 class Acypr600(models.Model):
     municipio = models.CharField(max_length=255, null=True)
-    com_ind = models.FloatField( null=True)
-    prod_rural = models.FloatField( null=True)
-    prest_serv = models.FloatField( null=True)
-    dar_1_aut = models.FloatField( null=True)
-    nai = models.FloatField( null=True)
+    com_ind = models.FloatField(null=True)
+    prod_rural = models.FloatField(null=True)
+    prest_serv = models.FloatField(null=True)
+    dar_1_aut = models.FloatField(null=True)
+    nai = models.FloatField(null=True)
     credito_ex_off = models.FloatField(null=True)
     debito_ex_off = models.FloatField(null=True)
     total = models.FloatField(null=True)
@@ -409,10 +409,6 @@ class Gia_omisso(models.Model):
     descricao = models.CharField(max_length=500, null=True)
     ano_exercicio = models.CharField(max_length=100, null=True)
     ano_base = models.CharField(max_length=100, null=True)
-    remessa = models.CharField(max_length=100, null=True)
-    descricao = models.CharField(max_length=500, null=True)
-    ano_exercicio = models.CharField(max_length=100, null=True)
-    ano_base = models.CharField(max_length=100, null=True)
 
 
 # DHRPR098 GIA-ICMS DECLARADAS SEM MOVIMENTO(ENTRADAS E SAIDAS ZERADAS)
@@ -430,9 +426,7 @@ class Gia_sem_mov(models.Model):
     remessa = models.CharField(max_length=100, null=True)
     descricao = models.CharField(max_length=500, null=True)
     ano_exercicio = models.CharField(max_length=100, null=True)
-    remessa = models.CharField(max_length=100, null=True)
-    descricao = models.CharField(max_length=500, null=True)
-    ano_exercicio = models.CharField(max_length=100, null=True)
+
 
 
 # IE SIMPLES NACIONAL

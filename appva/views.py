@@ -6480,55 +6480,85 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
     tipo_contabilista = request.GET.get('tipo_contabilista')
     contabilista = request.GET.get('contabilista')
     atividade_economica = request.GET.get('atividade_economica')
-
+    nome_inscrito = request.GET.get('nome_inscrito')
+    numr_documento = request.GET.get('numr_documento')
+    status = request.GET.get('status')
     tipo_relatorio = request.GET.get('tipo_relatorio')
 
 
     with connections['default'].cursor() as cursor:
         if municipio:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_municipio=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_municipio=%s;""", [municipio, municipio]
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_municipio=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_municipio=%s;""", [municipio, municipio]
             )
             consulta = namedtuplefetchall(cursor)
             return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
         elif tipo_contribuinte == 'inscricao' and contribuinte:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE numr_inscricao_estadual=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, nome_contabilista, codg_crc, nome_municipio FROM appva_cap WHERE numr_inscricao_estadual=%s;""",
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE numr_inscricao_estadual=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, nome_contabilista, codg_crc, nome_municipio FROM appva_cap WHERE numr_inscricao_estadual=%s;""",
                 [contribuinte, contribuinte]
             )
             consulta = namedtuplefetchall(cursor)
             return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
         elif tipo_contribuinte == 'razao' and contribuinte:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_pessoa=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_pessoa=%s;""",
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_pessoa=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_pessoa=%s;""",
                 [contribuinte, contribuinte]
             )
             consulta = namedtuplefetchall(cursor)
             return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
         elif tipo_contabilista == 'crc' and contabilista:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE codg_crc=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE codg_crc=%s;""",
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE codg_crc=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE codg_crc=%s;""",
                 [contabilista, contabilista]
             )
             consulta = namedtuplefetchall(cursor)
             return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
         elif tipo_contabilista == 'nome' and contabilista:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_contabilista=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_contabilista=%s;""",
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_contabilista=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_contabilista=%s;""",
                 [contabilista, contabilista]
             )
             consulta = namedtuplefetchall(cursor)
             return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
         elif atividade_economica:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE codg_cnae=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE codg_cnae=%s;""",
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE codg_cnae=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE codg_cnae=%s;""",
                 [atividade_economica, atividade_economica]
+            )
+            consulta = namedtuplefetchall(cursor)
+            return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
+        elif nome_inscrito:
+            cursor.execute(
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_inscrito=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_inscrito=%s;""",
+                [nome_inscrito, nome_inscrito]
+            )
+            consulta = namedtuplefetchall(cursor)
+            return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
+        elif numr_documento:
+            cursor.execute(
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE numr_documento=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE numr_documento=%s;""",
+                [numr_documento, numr_documento]
+            )
+            consulta = namedtuplefetchall(cursor)
+            return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
+        elif status == 'ativo':
+            cursor.execute(
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE status=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE status=%s;""",
+                [status, status]
+            )
+            consulta = namedtuplefetchall(cursor)
+            return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
+        elif status == 'baixado':
+            cursor.execute(
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE status=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE status=%s;""",
+                [status, status]
             )
             consulta = namedtuplefetchall(cursor)
             return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
         else:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci UNION SELECT numr_inscricao_estadual, nome_pessoa, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap;""",
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap;""",
                 
             )
             consulta = namedtuplefetchall(cursor)

@@ -156,7 +156,7 @@ Listagem de contribuintes
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Selecione o dado desejado do contribuinte:</label>
-            <select name="ano_atual" class="form-control" required>
+            <select name="tipo_contribuitne" class="form-control" required>
                 <option selected>Selecione...</option>
                 <option value="inscricao">Inscrição Estadual</option>
                 <option value="razao">Razão Social</option>
@@ -171,7 +171,7 @@ Listagem de contribuintes
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Selecione o dado desejado do contabilista:</label>
-            <select name="ano_atual" class="form-control" required>
+            <select name="tipo_contabilista" class="form-control" required>
                 <option selected>Selecione...</option>
                 <option value="crc">CRC</option>
                 <option value="nome">Nome</option>
@@ -188,6 +188,24 @@ Listagem de contribuintes
             <label>Informe o código CNAE</label>
             <input type="text" class="form-control"
                    name="atividade_economica">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Informe o nome fantasia</label>
+            <input type="text" class="form-control"
+                   name="nome_inscrito">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Informe o número do documento</label>
+            <input type="text" class="form-control"
+                   name="numr_documento">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Informe o status do contribuinte</label>
+            <select name="ano_atual" class="form-control" required>
+                <option selected>Selecione...</option>
+                <option value="ativo">Ativo</option>
+                <option value="baixado">Baixado</option>
+            </select>
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
