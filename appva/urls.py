@@ -130,4 +130,6 @@ urlpatterns = [
 
     path('RELATORIO_SIMULACAO/<str:n>/', views.RELATORIO_SIMULACAO, name='RELATORIO_SIMULACAO'),
 
+    path('consulta_VALOR_ADICIONADO_INDIVIDUAL/', views.consulta_VALOR_ADICIONADO_INDIVIDUAL, name='consulta_VALOR_ADICIONADO_INDIVIDUAL')
+
 ]
