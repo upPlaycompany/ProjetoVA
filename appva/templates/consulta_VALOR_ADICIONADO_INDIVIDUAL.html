@@ -3,6 +3,13 @@
 Listagem de contribuintes
 {% endblock title %}
 {% block content %}
+<script>
+      $( "#conta" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+       $( "#contr" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+        $( "#doc" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+         $( "#insc" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+          $( "#cnae" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+</script>
 <form method="get">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -164,7 +171,7 @@ Listagem de contribuintes
         </div>
         <div class="form-group col-md-6">
             <label>Informe a inscrição ou razão do contribuinte</label>
-            <input type="text" class="form-control"
+            <input id="contr" type="text" class="form-control"
                    name="contribuinte">
         </div>
     </div>
@@ -179,24 +186,24 @@ Listagem de contribuintes
         </div>
         <div class="form-group col-md-6">
             <label>Informe o CRC ou nome do contabilista</label>
-            <input type="text" class="form-control"
+            <input id="conta" type="text" class="form-control"
                    name="contabilista">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Informe o código CNAE</label>
-            <input type="text" class="form-control"
+            <input id="cnae" type="text" class="form-control"
                    name="atividade_economica">
         </div>
         <div class="form-group col-md-3">
             <label>Informe o nome fantasia</label>
-            <input type="text" class="form-control"
+            <input id="insc" type="text" class="form-control"
                    name="nome_inscrito">
         </div>
         <div class="form-group col-md-3">
             <label>Informe o número do documento</label>
-            <input type="text" class="form-control"
+            <input id="doc" type="text" class="form-control"
                    name="numr_documento">
         </div>
         <div class="form-group col-md-3">
