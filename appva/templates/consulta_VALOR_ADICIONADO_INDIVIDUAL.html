@@ -4,11 +4,11 @@ Listagem de contribuintes
 {% endblock title %}
 {% block content %}
 <script>
-      $( "#conta" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
-      $( "#contr" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
-      $( "#doc" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
-      $( "#insc" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
-      $( "#cnae" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+      $( "#conta" ).autocomplete({source: "consulta"});
+      $( "#contr" ).autocomplete({source: "consulta"});
+      $( "#doc" ).autocomplete({source: "consulta"});
+      $( "#insc" ).autocomplete({source: "consulta"});
+      $( "#cnae" ).autocomplete({source: "consulta"});
 
     </script>
 <form method="get">
