@@ -3,6 +3,14 @@
 Listagem de contribuintes
 {% endblock title %}
 {% block content %}
+<script>
+      $( "#conta" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+      $( "#contr" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+      $( "#doc" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+      $( "#insc" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+      $( "#cnae" ).autocomplete({source: "/consulta_VALOR_ADICIONADO_INDIVIDUAL"});
+
+    </script>
 <form method="get">
     <div class="form-row">
         <div class="form-group col-md-6">
