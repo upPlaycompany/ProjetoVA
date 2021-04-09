@@ -4,9 +4,13 @@ Listagem de contribuintes
 {% endblock title %}
 {% block content %}
 <script>
-      $( "#conta" ).autocomplete({source: "consulta"});
+
+      $( "#conta" ).autocomplete({source: "consulta.nome_contabilista"});
+
       $( "#contr" ).autocomplete({source: "consulta"});
+      {% for consulta in lista %}
       $( "#doc" ).autocomplete({source: "consulta"});
+      {% endfor %}
       $( "#insc" ).autocomplete({source: "consulta"});
       $( "#cnae" ).autocomplete({source: "consulta"});
 
