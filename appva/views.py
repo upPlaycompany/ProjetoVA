@@ -6499,7 +6499,7 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
             )
             consulta = namedtuplefetchall(cursor)
             consulta = json.dumps(consulta)
-            return HttpResponse(consulta, content_type='application/json')
+            
         elif tipo_contribuinte == 'inscricao' and contribuinte:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE numr_inscricao_estadual=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, nome_contabilista, codg_crc, nome_municipio FROM appva_cap WHERE numr_inscricao_estadual=%s;""",
