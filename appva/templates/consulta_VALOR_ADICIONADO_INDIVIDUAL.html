@@ -6,11 +6,8 @@ Listagem de contribuintes
 <script>
 
       $( "#conta" ).autocomplete({source: "consulta.nome_contabilista"});
-
       $( "#contr" ).autocomplete({source: "consulta"});
-      {% for consulta in lista %}
       $( "#doc" ).autocomplete({source: "consulta"});
-      {% endfor %}
       $( "#insc" ).autocomplete({source: "consulta"});
       $( "#cnae" ).autocomplete({source: "consulta"});
 
@@ -176,7 +173,7 @@ Listagem de contribuintes
         </div>
         <div class="form-group col-md-6">
             <label>Informe a inscrição ou razão do contribuinte</label>
-            <input id="contr" type="text" class="form-control"
+            <input type="text" class="form-control"
                    name="contribuinte">
         </div>
     </div>
@@ -191,24 +188,24 @@ Listagem de contribuintes
         </div>
         <div class="form-group col-md-6">
             <label>Informe o CRC ou nome do contabilista</label>
-            <input id="conta" type="text" class="form-control"
+            <input type="text" class="form-control"
                    name="contabilista">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-3">
             <label>Informe o código CNAE</label>
-            <input id="cnae" type="text" class="form-control"
+            <input type="text" class="form-control"
                    name="atividade_economica">
         </div>
         <div class="form-group col-md-3">
             <label>Informe o nome fantasia</label>
-            <input id="insc" type="text" class="form-control"
+            <input type="text" class="form-control"
                    name="nome_inscrito">
         </div>
         <div class="form-group col-md-3">
             <label>Informe o número do documento</label>
-            <input id="doc" type="text" class="form-control"
+            <input type="text" class="form-control"
                    name="numr_documento">
         </div>
         <div class="form-group col-md-3">
@@ -243,12 +240,12 @@ Listagem de contribuintes
                 {% for consulta in lista %}
                 <tr>
 
-                    <td>{{ consulta.numr_inscricao_estadual }}</td>
-                    <td>{{ consulta.nome_pessoa }}</td>
-                    <td>{{ consulta.codg_cnae }}</td>
-                    <td>{{ consulta.codg_crc }}</td>
+                    <td id="insc">{{ consulta.numr_inscricao_estadual }}</td>
+                    <td id="contr">{{ consulta.nome_pessoa }}</td>
+                    <td id="cnae">{{ consulta.codg_cnae }}</td>
+                    <td id="conta">{{ consulta.codg_crc }}</td>
                     <td>{{ consulta.nome_contabilista }}</td>
-                    <td>{{ consulta.nome_municipio }}</td>
+                    <td >{{ consulta.nome_municipio }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
