@@ -6497,12 +6497,15 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_municipio=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_municipio=%s;""", [municipio, municipio]
             )
             consulta = namedtuplefetchall(cursor)
+            consulta = json.dumps(consulta)
+            return HttpResponse(consulta, content_type='application/json')
         elif tipo_contribuinte == 'inscricao' and contribuinte:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE numr_inscricao_estadual=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, nome_contabilista, codg_crc, nome_municipio FROM appva_cap WHERE numr_inscricao_estadual=%s;""",
                 [contribuinte, contribuinte]
             )
             consulta = namedtuplefetchall(cursor)
+
         elif tipo_contribuinte == 'razao' and contribuinte:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_pessoa=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_pessoa=%s;""",
