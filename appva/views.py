@@ -14,6 +14,7 @@ from django.contrib.auth.models import User
 from django.core import paginator
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import connections
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 import json
