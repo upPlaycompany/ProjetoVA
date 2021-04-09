@@ -6572,5 +6572,5 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
             consulta = json.dumps(consulta)                                
             data = HttpResponse(consulta, content_type='application/json') 
         else:
-            consulta = ["nada"]
-    return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
+            data = ["nada"]
+    return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': data})
