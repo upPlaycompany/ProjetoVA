@@ -794,16 +794,14 @@ def index_barras(request):
             f_ucti = [x.ucti for x in indices]
             f_ano = [x.ano_exercicio for x in indices]
 
-### Parte 1
+            ### Parte 1
             barwidth = 0.25
             pit.figure(figsize=(10, 7))
-            
+
             rr1 = np.arange(len(f_ano))
             rr2 = [x + barwidth for x in rr1]
             rr3 = [x + barwidth for x in rr2]
             rr4 = [x + barwidth for x in rr3]
-
-
 
             pit.bar(rr1, f_med, width=0.25)
             pit.bar(rr2, f_75, width=0.25)
@@ -817,7 +815,7 @@ def index_barras(request):
             pit.legend(('Indice médio', '75% do índice', 'Indice população', 'Indice do UCTI'))
             pit.savefig('/code/ProjetoVA/static/img/va_indices_ano.png')
 
-### Parte 2
+            ### Parte 2
             barwidth = 0.25
             pit.figure(figsize=(10, 7))
 
@@ -828,7 +826,6 @@ def index_barras(request):
             pit.bar(rr1, f_trib, width=0.25)
             pit.bar(rr2, f_area, width=0.25)
             pit.bar(rr3, f_coef, width=0.25)
-
 
             pit.xticks([r + barwidth for r in range(len(f_ano))], f_ano)
             pit.xlabel('Ano de exercício')
@@ -853,13 +850,12 @@ def index_barras(request):
             do = [x.debito_ex_off for x in acypr600]
             to = [x.total for x in acypr600]
             ae = [x.ano_exercicio for x in acypr600]
-### Parte 1
+            ### Parte 1
             barwidth = 0.25
             r1 = np.arange(len(ae))
             r2 = [x + barwidth for x in r1]
             r3 = [x + barwidth for x in r2]
             r4 = [x + barwidth for x in r3]
-            
 
             pit.figure(figsize=(10, 5))
             pit.bar(r1, ci, width=barwidth)
@@ -887,7 +883,6 @@ def index_barras(request):
             pit.bar(r3, do, width=barwidth)
             pit.bar(r4, to, width=barwidth)
 
-
             pit.xlabel('Ano de exercício')
             pit.xticks([r + barwidth for r in range(len(ae))], [x for x in ae])
             pit.ylabel('Valores adicionados por 100 milhões')
@@ -900,6 +895,7 @@ def index_barras(request):
                   {'abc': municipio, 'lista': ranking, 'ind': ranking_ind, 'lista2': indice_par,
                    'lista3': va_total_estado,
                    'lista4': indice_medio, 'lista5': distribuicao, 'lista6': finali, 'lista7': indices})
+
 
 @login_required
 def index_variacao(request):
@@ -933,7 +929,8 @@ def index_variacao(request):
                 {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
                  'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.nai),
                  'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio, 'municipio': x.municipio} for x in variacao2]
+                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio, 'municipio': x.municipio} for x in
+                variacao2]
 
             variacao2_sp2[0]['com_ind'] = float(0.0)
             variacao2_sp2[0]['prod_rural'] = float(0.0)
@@ -1070,7 +1067,8 @@ def index_variacao(request):
                 {'com_ind': float(x.com_ind), 'prod_rural': float(x.prod_rural), 'prest_serv': float(x.prest_serv),
                  'dar_1_aut': float(x.dar_1_aut), 'nai': float(x.credito_ex_off),
                  'credito_ex_off': float(x.credito_ex_off), 'debito_ex_off': float(x.debito_ex_off),
-                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio, 'municipio': x.municipio} for x in variacao2]
+                 'total': float(x.total), 'ano_exercicio': x.ano_exercicio, 'municipio': x.municipio} for x in
+                variacao2]
             variacao2_sp2[0]['com_ind'] = float(0.0)
             variacao2_sp2[0]['prod_rural'] = float(0.0)
             variacao2_sp2[0]['prest_serv'] = float(0.0)
@@ -1178,7 +1176,8 @@ def index_variacao(request):
                     for x in
                     range(apx)]
             muni = [{'municipio': 'ACORIZAL'}]
-    return render(request, 'index_variacao.html', {'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut,
+    return render(request, 'index_variacao.html',
+                  {'aa': resu_com_ind, 'bb': resu_prod_rural, 'cc': resu_prest_serv, 'dd': resu_dar_1_aut,
                    'ee': resu_nai, 'ff': resu_credito_ex_off, 'gg': resu_debito_ex_off, 'hh': resu_total, 'abc': muni})
 
 
@@ -6492,10 +6491,12 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
     nome_inscrito = request.GET.get('nome_inscrito')
     numr_documento = request.GET.get('numr_documento')
     status = request.GET.get('status')
+    consulta = []
     with connections['default'].cursor() as cursor:
         if municipio:
             cursor.execute(
-                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_municipio=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_municipio=%s;""", [municipio, municipio]
+                """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_municipio=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_municipio=%s;""",
+                [municipio, municipio]
             )
             consulta = namedtuplefetchall(cursor)
 
@@ -6554,6 +6555,5 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
                 [status, status]
             )
             consulta = namedtuplefetchall(cursor)
-        else:
-            consulta = ["nada"]
+
     return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
