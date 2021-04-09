@@ -16,7 +16,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import connections
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-import pandas as pd
+import json
 from .models import *
 
 
