@@ -6492,47 +6492,38 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
     nome_inscrito = request.GET.get('nome_inscrito')
     numr_documento = request.GET.get('numr_documento')
     status = request.GET.get('status')
-    data = []
     with connections['default'].cursor() as cursor:
         if municipio:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_municipio=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_municipio=%s;""", [municipio, municipio]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)
-            data = HttpResponse(consulta, content_type='application/json')
+
         elif tipo_contribuinte == 'inscricao' and contribuinte:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE numr_inscricao_estadual=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, nome_contabilista, codg_crc, nome_municipio FROM appva_cap WHERE numr_inscricao_estadual=%s;""",
                 [contribuinte, contribuinte]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)
-            data = HttpResponse(consulta, content_type='application/json') 
+
         elif tipo_contribuinte == 'razao' and contribuinte:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_pessoa=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_pessoa=%s;""",
                 [contribuinte, contribuinte]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)                                
-            data = HttpResponse(consulta, content_type='application/json')
         elif tipo_contabilista == 'crc' and contabilista:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE codg_crc=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE codg_crc=%s;""",
                 [contabilista, contabilista]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)                                
-            data = HttpResponse(consulta, content_type='application/json') 
         elif tipo_contabilista == 'nome' and contabilista:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE nome_contabilista=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE nome_contabilista=%s;""",
                 [contabilista, contabilista]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)                                
-            data = HttpResponse(consulta, content_type='application/json') 
         elif atividade_economica:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE codg_cnae=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE codg_cnae=%s;""",
@@ -6545,32 +6536,24 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
                 [nome_inscrito, nome_inscrito]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)                                
-            data = HttpResponse(consulta, content_type='application/json') 
         elif numr_documento:
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE numr_documento=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE numr_documento=%s;""",
                 [numr_documento, numr_documento]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)                                
-            data = HttpResponse(consulta, content_type='application/json') 
         elif status == 'ativo':
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE status=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE status=%s;""",
                 [status, status]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)                                
-            data = HttpResponse(consulta, content_type='application/json') 
         elif status == 'baixado':
             cursor.execute(
                 """SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cci WHERE status=%s UNION SELECT numr_inscricao_estadual, nome_pessoa, nome_inscrito, numr_documento, status, codg_cnae, codg_crc, nome_contabilista, nome_municipio FROM appva_cap WHERE status=%s;""",
                 [status, status]
             )
             consulta = namedtuplefetchall(cursor)
-            consulta = json.dumps(consulta)                                
-            data = HttpResponse(consulta, content_type='application/json') 
         else:
-            data = ["nada"]
-    return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': data})
+            consulta = ["nada"]
+    return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
