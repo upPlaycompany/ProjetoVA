@@ -6563,7 +6563,7 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
 def RELATORIO_VALOR_ADICIONADO_SINTETICO(request):
     with connections['default'].cursor() as cursor:
         cursor.execute(
-            """SELECT * FROM apvpa_cfop;"""
+            """SELECT * FROM appva_cfop;"""
         )
         a = namedtuplefetchall(cursor)
     return rendering.render_to_pdf_response(request=request, context={'lista': a}, template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django', encoding='utf-8')
