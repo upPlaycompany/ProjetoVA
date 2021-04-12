@@ -6585,7 +6585,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
     with connections['default'].cursor() as cursor:
         if cadastro == 'CCI':
             cursor.execute(
-                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s GROUP BY numr_inscricao_estadual;""",
+                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s;""",
                 [inscricao]
             )
             dados_inscricao = namedtuplefetchall(cursor)
