@@ -6596,7 +6596,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             )
             dados_inscricao = namedtuplefetchall(cursor)
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='SIM';"""
+            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s;""", [portaria]
         )
         c = namedtuplefetchall(cursor)
         codigo_valido = (x.codigo for x in c)
@@ -6611,6 +6611,6 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             cursor.execute(
                 """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas """
             )
-    return rendering.render_to_pdf_response(request=request, context={'lista': c},
+    return rendering.render_to_pdf_response(request=request, context={'dados_inscrito': dados_inscricao},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
                                             encoding='utf-8')
