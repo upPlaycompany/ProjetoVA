@@ -6591,7 +6591,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             dados_inscricao = namedtuplefetchall(cursor)
         else:
             cursor.execute(
-                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s GROUP BY numr_inscricao_estadual;""",
+                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s;""",
                 [inscricao]
             )
             dados_inscricao = namedtuplefetchall(cursor)
