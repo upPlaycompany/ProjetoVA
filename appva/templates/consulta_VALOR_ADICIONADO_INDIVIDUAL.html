@@ -239,7 +239,7 @@ Listagem de contribuintes
                     <td>{{ consulta.nome_contabilista }}</td>
                     <td>{{ consulta.nome_municipio }}</td>
                     <td>
-                        <span><a href="{% url 'RELATORIO_VALOR_ADICIONADO_SINTETICO' inscricao=consulta.numr_inscricao_estadual %}"><button type="button" class="btn btn-success">Ir para relatórios</button></a></span>
+                        <span><a href="{% url 'PRE_SIMULACAO' inscricao=consulta.numr_inscricao_estadual %}"><button type="button" class="btn btn-success">Ir para relatórios</button></a></span>
                     </td>
                 </tr>
                 {% endfor %}
