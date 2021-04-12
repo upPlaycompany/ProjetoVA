@@ -5393,7 +5393,7 @@ def import_cfop(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cfop', sep=';',
-                 columns=('CODIGO', 'DESCRICAO', 'APLICACAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA', 'VALIDO', 'PORTARIA'))
+                 columns=('CODIGO', 'DESCRICAO', 'APLICACAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA', 'TIPO', 'VALIDO', 'PORTARIA'))
     db.commit()
     st.close()
     db.close()
@@ -6596,10 +6596,15 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             )
             dados_inscricao = namedtuplefetchall(cursor)
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s;""", [portaria]
+            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='SAIDA';""", [portaria]
         )
-        c = namedtuplefetchall(cursor)
-        codigo_valido = (x.codigo for x in c)
+        c1 = namedtuplefetchall(cursor)
+        codigo_valido_saida = (x.codigo for x in c1)
+        cursor.execute(
+            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='ENTRADA';""", [portaria]
+        )
+        c2 = namedtuplefetchall(cursor)
+        codigo_valido_entrada = (x.codigo for x in c2)
         if tabela == 'GIA':
             cursor.execute(
                 """SELECT cnae, inscricao FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY id, cnae;""", [inscricao]
