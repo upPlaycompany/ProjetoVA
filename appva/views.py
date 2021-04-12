@@ -6560,7 +6560,25 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
     return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
 
 
-def RELATORIO_VALOR_ADICIONADO_SINTETICO(request):
+@login_required 
+def PRE_RELATORIO(request, inscricao):
+    with connections['default'].cursor() as cursor:
+        cursor.execute(
+            """SELECT portaria FROM appva_cfop GROUP BY portaria;"""
+        )
+        port = namedtuplefetchall(cursor)
+        if request.method == 'POST':
+            tipo_relatorio = request.POST['tipo_relatorio']
+            portaria = request.POST['portaria']
+            if tipo_relatorio == 'sintetico':
+                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', portaria=portaria, inscricao=inscricao)
+            else:
+                pass
+    return render(request, 'PRE_RELATORIO.html', {'lista': port})
+
+
+@login_required 
+def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao):
     with connections['default'].cursor() as cursor:
         cursor.execute(
             """SELECT * FROM appva_cfop;"""
