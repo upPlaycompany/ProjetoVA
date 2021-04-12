@@ -233,7 +233,8 @@ class Cfop(models.Model):
     aplicacao = models.CharField(max_length=255, null=True)
     inicio_vigencia = models.CharField(max_length=255, null=True)
     fim_vigencia = models.CharField(max_length=255, null=True)
-
+    valido = models.CharField(max_length=3, null=True)
+    portaria = models.CharField(max_length=255, null=True)
 
 
 # CODIGO NACIONAL DE ATIVIDADES ECONÔMICAS

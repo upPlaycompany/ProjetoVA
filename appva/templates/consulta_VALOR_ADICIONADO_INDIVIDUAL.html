@@ -3,15 +3,7 @@
 Listagem de contribuintes
 {% endblock title %}
 {% block content %}
-<script>
 
-      $( "#conta" ).autocomplete({source: "consulta.nome_contabilista"});
-      $( "#contr" ).autocomplete({source: "consulta"});
-      $( "#doc" ).autocomplete({source: "consulta"});
-      $( "#insc" ).autocomplete({source: "consulta"});
-      $( "#cnae" ).autocomplete({source: "consulta"});
-
-    </script>
 <form method="get">
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -240,10 +232,10 @@ Listagem de contribuintes
                 {% for consulta in lista %}
                 <tr>
 
-                    <td id="insc">{{ consulta.numr_inscricao_estadual }}</td>
-                    <td id="contr">{{ consulta.nome_pessoa }}</td>
-                    <td id="cnae">{{ consulta.codg_cnae }}</td>
-                    <td id="conta">{{ consulta.codg_crc }}</td>
+                    <td>{{ consulta.numr_inscricao_estadual }}</td>
+                    <td>{{ consulta.nome_pessoa }}</td>
+                    <td>{{ consulta.codg_cnae }}</td>
+                    <td>{{ consulta.codg_crc }}</td>
                     <td>{{ consulta.nome_contabilista }}</td>
                     <td >{{ consulta.nome_municipio }}</td>
                 </tr>

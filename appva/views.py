@@ -6558,3 +6558,7 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
             consulta = namedtuplefetchall(cursor)
 
     return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
+
+
+def RELATORIO_VALOR_ADICIONADO_SINTETICO(request):
+    return rendering.render_to_pdf_response(request=request, template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django', encoding='utf-8')
