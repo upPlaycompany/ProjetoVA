@@ -5393,7 +5393,7 @@ def import_cfop(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cfop', sep=';',
-                 columns=('CODIGO', 'DESCRICAO', 'APLICACAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA'))
+                 columns=('CODIGO', 'DESCRICAO', 'APLICACAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA', 'VALIDO', 'PORTARIA'))
     db.commit()
     st.close()
     db.close()
