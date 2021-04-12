@@ -6602,7 +6602,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
         codigo_valido = (x.codigo for x in c)
         if tabela == 'GIA':
             cursor.execute(
-                """SELECT cnae, inscricao FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY id AND cnae;""", [inscricao]
+                """SELECT cnae, inscricao FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY id, cnae;""", [inscricao]
             )
             n = namedtuplefetchall(cursor)
             ae = [x.cnae for x in n]
