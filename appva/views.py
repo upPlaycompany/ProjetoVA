@@ -6560,7 +6560,7 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
     return render(request, 'consulta_VALOR_ADICIONADO_INDIVIDUAL.html', {'lista': consulta})
 
 
-@login_required 
+@login_required
 def PRE_RELATORIO(request, inscricao):
     with connections['default'].cursor() as cursor:
         cursor.execute(
@@ -6570,18 +6570,47 @@ def PRE_RELATORIO(request, inscricao):
         if request.method == 'POST':
             tipo_relatorio = request.POST['tipo_relatorio']
             portaria = request.POST['portaria']
+            tabela = request.POST['tabela']
+            cadastro = request.POST['cadastro']
             if tipo_relatorio == 'sintetico':
-                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', portaria=portaria, inscricao=inscricao)
+                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', portaria=portaria, inscricao=inscricao,
+                                tabela=tabela, cadastro=cadastro)
             else:
                 pass
     return render(request, 'PRE_RELATORIO.html', {'lista': port})
 
 
-@login_required 
-def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao):
+@login_required
+def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, cadastro):
     with connections['default'].cursor() as cursor:
+        if cadastro == 'CCI':
+            cursor.execute(
+                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s GROUP BY numr_inscricao_estadual;""",
+                [inscricao]
+            )
+            dados_inscricao = namedtuplefetchall(cursor)
+        else:
+            cursor.execute(
+                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s GROUP BY numr_inscricao_estadual;""",
+                [inscricao]
+            )
+            dados_inscricao = namedtuplefetchall(cursor)
         cursor.execute(
-            """SELECT * FROM appva_cfop;"""
+            """SELECT codigo FROM appva_cfop WHERE valido='SIM';"""
         )
-        a = namedtuplefetchall(cursor)
-    return rendering.render_to_pdf_response(request=request, context={'lista': a}, template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django', encoding='utf-8')
+        c = namedtuplefetchall(cursor)
+        codigo_valido = (x.codigo for x in c)
+        if tabela == 'GIA':
+            cursor.execute(
+                """SELECT cnae, inscricao FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY cnae;"""
+            )
+            n = namedtuplefetchall(cursor)
+            ae = [x.cnae for x in n]
+            cnae = str(ae[0])
+            float('p')
+            cursor.execute(
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas W"""
+            )
+    return rendering.render_to_pdf_response(request=request, context={'lista': c},
+                                            template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
+                                            encoding='utf-8')
