@@ -6602,14 +6602,14 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
         codigo_valido = (x.codigo for x in c)
         if tabela == 'GIA':
             cursor.execute(
-                """SELECT cnae, inscricao FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY cnae;"""
+                """SELECT cnae, inscricao FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY cnae;""", [inscricao]
             )
             n = namedtuplefetchall(cursor)
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
             float('p')
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas W"""
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas """
             )
     return rendering.render_to_pdf_response(request=request, context={'lista': c},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
