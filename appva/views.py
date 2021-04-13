@@ -6687,7 +6687,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             dec_cfop = namedtuplefetchall(cursor)
             dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao} for x in dec_cfop]
             cursor.execute(
-                """SELECT vr_contabil, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s;""", [inscricao, ano]
+                """SELECT vr_contabil, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop;""", [inscricao, ano]
             )
             v_c = namedtuplefetchall(cursor)
             valores_cfop = [{'valor': x.vr_contabil, 'codigo': x.cfop} for x in v_c]
