@@ -6572,26 +6572,27 @@ def PRE_RELATORIO(request, inscricao):
             portaria = request.POST['portaria']
             tabela = request.POST['tabela']
             cadastro = request.POST['cadastro']
+            ano_exercicio = request.POST['ano_exercicio']
             if tipo_relatorio == 'sintetico':
                 return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', portaria=portaria, inscricao=inscricao,
-                                tabela=tabela, cadastro=cadastro)
+                                tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
             else:
                 pass
     return render(request, 'PRE_RELATORIO.html', {'lista': port})
 
 
 @login_required
-def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, cadastro):
+def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, cadastro, ano):
     with connections['default'].cursor() as cursor:
         if cadastro == 'CCI':
             cursor.execute(
-                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s;""",
+                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
                 [inscricao]
             )
             dados_inscricao = namedtuplefetchall(cursor)
         else:
             cursor.execute(
-                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s;""",
+                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
                 [inscricao]
             )
             dados_inscricao = namedtuplefetchall(cursor)
@@ -6607,7 +6608,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
         codigo_valido_entrada = (x.codigo for x in c2)
         if tabela == 'GIA':
             cursor.execute(
-                """SELECT cnae, inscricao FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY id, cnae;""", [inscricao]
+                """SELECT cnae FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY cnae;""", [inscricao]
             )
             n = namedtuplefetchall(cursor)
             ae = [x.cnae for x in n]

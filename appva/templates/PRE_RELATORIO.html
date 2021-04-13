@@ -7,14 +7,14 @@ Pré relatório
 {% block content %}
 <form method="post"> {% csrf_token %}
     <div class="form-row">
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label>Selecionar o tipo de relatório</label>
             <select class="form-control" name="tipo_relatorio">
                 <option selected></option>
                 <option value="sintetico">Sintético</option>
             </select>
         </div>
-        <div class="form-group col-md-3">
+        <div class="form-group col-md-4">
             <label>Selecionar a portaria</label>
             <select class="form-control" name="portaria">
                 <option selected></option>
@@ -23,6 +23,8 @@ Pré relatório
                 {% endfor %}
             </select>
         </div>
+    </div>
+    <div class="form-row">
         <div class="form-group col-md-3">
             <label>Selecionar tabela</label>
             <select class="form-control" name="tabela">
@@ -38,6 +40,23 @@ Pré relatório
                 <option selected></option>
                 <option value="CCI">CCI</option>
                 <option value="CAP">CAP</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar ano de exercício do cadastro e tabela</label>
+            <select class="form-control" name="ano">
+                <option selected></option>
+                <option value="2021">2021</option>
+                <option value="2020">2020</option>
+                <option value="2019">2019</option>
+                <option value="2018">2018</option>
+                <option value="2017">2017</option>
+                <option value="2016">2016</option>
+                <option value="2015">2015</option>
+                <option value="2014">2014</option>
+                <option value="2013">2013</option>
+                <option value="2012">2012</option>
+                <option value="2011">2011</option>
             </select>
         </div>
     </div>
