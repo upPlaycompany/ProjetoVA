@@ -6572,7 +6572,7 @@ def PRE_RELATORIO(request, inscricao):
             portaria = request.POST['portaria']
             tabela = request.POST['tabela']
             cadastro = request.POST['cadastro']
-            ano_exercicio = request.POST['ano_exercicio']
+            ano_exercicio = request.POST['ano']
             if tipo_relatorio == 'sintetico':
                 return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', portaria=portaria, inscricao=inscricao,
                                 tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
