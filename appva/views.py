@@ -6597,12 +6597,12 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             )
             dados_inscricao = namedtuplefetchall(cursor)
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='SAIDA';""", [portaria]
+            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='saida';""", [portaria]
         )
         c1 = namedtuplefetchall(cursor)
         codigo_valido_saida = (x.codigo for x in c1)
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='ENTRADA';""", [portaria]
+            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='entrada';""", [portaria]
         )
         c2 = namedtuplefetchall(cursor)
         codigo_valido_entrada = (x.codigo for x in c2)
