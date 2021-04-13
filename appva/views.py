@@ -6635,22 +6635,34 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             valor_invalido_saida = namedtuplefetchall(cursor)
             if cnae in ('111301', '111302', '111303', '111399', '112101', '112102', '112199', '113000', '114800', '115600', '116401', '116402', '116403', '116499', '119901', '119902', '119903', '119904', '119905', '119906', '119907', '119908', '119909', '119999', '121101', '121102', '122900', '131800', '132600', '133401', '133402', '133403', '133404', '133405', '133406', '133407', '133408', '133409', '133410', '133411', '133499', '134200', '135100', '139301', '139302', '139303', '139304', '139305', '139306', '139399', '141501', '141502', '142300', '161001', '161002', '161003', '161099', '162801', '162802', '162803', '162899', '163600', '230600'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.50 AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
                     [inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
+                if float(str(valor_valido_entrada[0].entrada_computavel)) < float(str(valor_valido_saida[0].saida_computavel)) * 0.50:
+                    valor_valido_entrada = float(str(valor_valido_saida[0].saida_computavel)) * 0.50
+                else:
+                    valor_valido_entrada = valor_valido_entrada
             elif cnae in ('500301', '500302', '600001', '600002', '600003', '710301', '710302', '721901', '721902', '722701', '722702', '723501', '723502', '724301', '724302', '725100', '729401', '729402', '729403', '729404', '729405', '810001', '810002', '810003', '810004', '810005', '810006', '810007', '810008', '810009', '810010', '810099', '891600', '892401', '892402', '892403', '893200', '899101', '899102', '899103', '899199', '910600', '990401', '990402','990403'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.35 AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)))  AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
                     [inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
+                if float(str(valor_valido_entrada[0].entrada_computavel)) < float(str(valor_valido_saida[0].saida_computavel)) * 0.35:
+                    valor_valido_entrada = float(str(valor_valido_saida[0].saida_computavel)) * 0.35
+                else:
+                    valor_valido_entrada = valor_valido_entrada
             elif cnae in ('151201', '151202', '151203', '152101', '152102', '152103', '153901', '153902', '154700', '155501', '155502', '155503', '155504', '155505', '159801', '159802', '159803', '159804', '159899', '311601', '311602', '311603', '311604', '312401', '312402', '312403', '312404', '321301', '321302', '321303', '321304', '321305', '321399', '322101', '322102', '322103', '322104', '322105', '322106', '322107', '322199'):
                 cursor.execute(
                     """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.20 AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
                     [inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
+                if float(str(valor_valido_entrada[0].entrada_computavel)) < float(str(valor_valido_saida[0].saida_computavel)) * 0.20:
+                    valor_valido_entrada = float(str(valor_valido_saida[0].saida_computavel)) * 0.20
+                else:
+                    valor_valido_entrada = valor_valido_entrada
             else:
                 cursor.execute(
                     """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
@@ -6668,6 +6680,13 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
                 """SELECT cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop;"""
             , [inscricao, ano])
             cfop_index = namedtuplefetchall(cursor)
+            cfop_l = tuple([x.cfop for x in cfop_index])
+            cursor.execute(
+                """SELECT codigo, descricao FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
+            )
+            dec_cfop = namedtuplefetchall(cursor)
+            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao} for x in dec_cfop]
+
             float('p')
     return rendering.render_to_pdf_response(request=request, context={'dados_inscrito': dados_inscricao},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
