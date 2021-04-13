@@ -6694,7 +6694,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             v_c = namedtuplefetchall(cursor)
             resu_cfop = [{'valor': x.valor for x in v_c}]
             a = len(dic_cfop)
-            [dic_cfop[x].update(resu_cfop[x]['valor']) for x in range(a)]
+            [dic_cfop[x].update(resu_cfop[x]) for x in range(a)]
             float('p')
     return rendering.render_to_pdf_response(request=request, context={'dados_inscrito': dados_inscricao},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
