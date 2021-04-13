@@ -5393,7 +5393,8 @@ def import_cfop(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_cfop', sep=';',
-                 columns=('CODIGO', 'DESCRICAO', 'APLICACAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA', 'TIPO', 'VALIDO', 'PORTARIA'))
+                 columns=(
+                 'CODIGO', 'DESCRICAO', 'APLICACAO', 'INICIO_VIGENCIA', 'FIM_VIGENCIA', 'TIPO', 'VALIDO', 'PORTARIA'))
     db.commit()
     st.close()
     db.close()
@@ -6600,12 +6601,22 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='saida';""", [portaria]
         )
         c1 = namedtuplefetchall(cursor)
-        codigo_valido_saida = (x.codigo for x in c1)
+        codigo_valido_saida = [x.codigo for x in c1]
         cursor.execute(
             """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='entrada';""", [portaria]
         )
         c2 = namedtuplefetchall(cursor)
-        codigo_valido_entrada = (x.codigo for x in c2)
+        codigo_valido_entrada = [x.codigo for x in c2]
+        cursor.execute(
+            """SELECT codigo FROM appva_cfop WHERE valido='NAO' AND portaria=%s AND tipo='saida';""", [portaria]
+        )
+        c3 = namedtuplefetchall(cursor)
+        codigo_invalido_saida = [x.codigo for x in c3]
+        cursor.execute(
+            """SELECT codigo FROM appva_cfop WHERE valido='NAO' AND portaria=%s AND tipo='entrada';""", [portaria]
+        )
+        c4 = namedtuplefetchall(cursor)
+        codigo_invalido_entrada = [x.codigo for x in c4]
         if tabela == 'GIA':
             cursor.execute(
                 """SELECT cnae FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY cnae;""", [inscricao]
@@ -6613,10 +6624,16 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             n = namedtuplefetchall(cursor)
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
-            float('p')
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas  """
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""", [inscricao, ano, codigo_valido_saida]
             )
+            valor_valido_saida = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [inscricao, ano, codigo_invalido_saida]
+            )
+            valor_invalido_saida = namedtuplefetchall(cursor)
+            float('p')
     return rendering.render_to_pdf_response(request=request, context={'dados_inscrito': dados_inscricao},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
                                             encoding='utf-8')
