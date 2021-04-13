@@ -6684,10 +6684,10 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             cfop_index = namedtuplefetchall(cursor)
             cfop_l = tuple([x.cfop for x in cfop_index])
             cursor.execute(
-                """SELECT codigo, descricao FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
+                """SELECT codigo, descricao, valido FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
             )
             dec_cfop = namedtuplefetchall(cursor)
-            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao} for x in dec_cfop]
+            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido} for x in dec_cfop]
             cursor.execute(
                 """SELECT SUM(vr_contabil) AS valor FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop ORDER BY cfop;""", [inscricao, ano]
             )
