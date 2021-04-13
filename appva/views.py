@@ -6625,11 +6625,11 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""", [inscricao, ano, codigo_valido_saida]
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""", [inscricao, ano, codigo_valido_saida]
             )
             valor_valido_saida = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_nao_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
                 [inscricao, ano, codigo_invalido_saida]
             )
             valor_invalido_saida = namedtuplefetchall(cursor)
