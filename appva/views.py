@@ -6686,7 +6686,11 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
             )
             dec_cfop = namedtuplefetchall(cursor)
             dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao} for x in dec_cfop]
-
+            cursor.execute(
+                """SELECT vr_contabil, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s;""", [inscricao, ano]
+            )
+            v_c = namedtuplefetchall(cursor)
+            valores_cfop = [{'valor': x.vr_contabil, 'codigo': x.cfop} for x in v_c]
             float('p')
     return rendering.render_to_pdf_response(request=request, context={'dados_inscrito': dados_inscricao},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
