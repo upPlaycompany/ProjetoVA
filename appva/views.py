@@ -6633,6 +6633,16 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
                 [inscricao, ano, codigo_invalido_saida]
             )
             valor_invalido_saida = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [inscricao, ano, codigo_valido_entrada]
+            )
+            valor_valido_entrada = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_nao_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [inscricao, ano, codigo_invalido_entrada]
+            )
+            valor_invalido_entrada = namedtuplefetchall(cursor)
             float('p')
     return rendering.render_to_pdf_response(request=request, context={'dados_inscrito': dados_inscricao},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
