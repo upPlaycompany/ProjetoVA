@@ -6822,5 +6822,5 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
                                                      'lista3': valor_invalido_saida, 'lista4': valor_valido_entrada,
                                                      'lista5': valor_invalido_entrada, 'lista6': va, 'lista7': dic_cfop},
-                                            template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html', using='django',
+                                            template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html',
                                             encoding='utf-8')
