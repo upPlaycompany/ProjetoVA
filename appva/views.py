@@ -6719,7 +6719,6 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
             resu_cfop = [{'valor': x.valor} for x in v_c]
             a = len(dic_cfop)
             [dic_cfop[x].update(resu_cfop[x]) for x in range(a)]
-            float('p')
         else:
             cursor.execute(
                 """SELECT cnae FROM appva_efd WHERE inscricao=%s GROUP BY cnae;""", [inscricao]
