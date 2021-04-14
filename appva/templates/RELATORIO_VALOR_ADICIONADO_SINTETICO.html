@@ -278,11 +278,16 @@
         </tr>
         {% endif %}
         {% endfor %}
-        {% for dados in lista4 %}
         <tr>
-            <td>Valor adicionado: {{ dados.entrada_computavel|floatformat:2 }}</td>
+            <td></td>
+            <td>Valores da entrada</td>
+            {% for dados in lista4 %}
+            <td>{{ dados.entrada_computavel|floatformat:2 }}</td>
+            {% endfor %}
+            {% for dados in lista5 %}
+            <td>{{ dados.entrada_nao_computavel|floatformat:2 }}</td>
+            {% endfor %}
         </tr>
-        {% endfor %}
         </tbody>
     </table>
 
