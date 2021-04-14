@@ -288,12 +288,23 @@
             </thead>
 
             <tbody>
+                <tbody>
+            {% for dados in lista7 %}
+            {% if dados.tipo == 'saida' %}
                 <tr>
+                    <td>{{ dados.cod }}</td>
+                    <td>{{ dados.descricao }}</td>
+                    {% if dados.valido == 'SIM' %}
+                    <td>{{ dados.valor }}</td>
                     <td></td>
+                    {% else %}
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ dados.valor }}</td>
+                    {% endif %}
                 </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
             </tbody>
         </table>
     </div>
