@@ -231,7 +231,9 @@
                     {% endfor %}
                     <td></td>
                     <td></td>
-                    <td></td>
+                    {% for dados in lista6 %}
+                    <td>{{ dados.valor_adicionado }}</td>
+                    {% endfor %}
                     <td></td>
                 </tr>
             </tbody>
