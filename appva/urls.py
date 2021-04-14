@@ -131,6 +131,6 @@ urlpatterns = [
     path('RELATORIO_SIMULACAO/<str:n>/', views.RELATORIO_SIMULACAO, name='RELATORIO_SIMULACAO'),
 
     path('consulta_VALOR_ADICIONADO_INDIVIDUAL/', views.consulta_VALOR_ADICIONADO_INDIVIDUAL, name='consulta_VALOR_ADICIONADO_INDIVIDUAL'),
-    path('PRE_RELATORIO/<str:inscricao>/', views.PRE_RELATORIO, name='PRE_RELATORIO'),
-    path('RELATORIO_VALOR_ADICIONADO_SINTETICO/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/', views.RELATORIO_VALOR_ADICIONADO_SINTETICO, name='RELATORIO_VALOR_ADICIONADO_SINTETICO'),
+    path('PRE_RELATORIO/<str:inscricao>/<str:municipio>/', views.PRE_RELATORIO, name='PRE_RELATORIO'),
+    path('RELATORIO_VALOR_ADICIONADO_SINTETICO/<str:municipio>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/', views.RELATORIO_VALOR_ADICIONADO_SINTETICO, name='RELATORIO_VALOR_ADICIONADO_SINTETICO'),
 ]
