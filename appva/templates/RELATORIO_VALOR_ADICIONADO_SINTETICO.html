@@ -170,128 +170,170 @@
 
 </head>
 <body>
-    <div class="div-mun">
-        <div class="img">
-            <img src="../../img.png" alt="Imagem do município">
-        </div>
-        <div class="text">
-            <h2>Prefeitura Municipal de Campos de Julio</h2>
-        </div>
+<div class="div-mun">
+    <div class="img">
+        {% for dados in mun %}
+        <img src="{% get_static_prefix %}LOGO_MT/{{ dados.municipio }}.png" alt="Imagem do município">
+        {% endfor %}
     </div>
-
-    <h1 class="title-rel">Apuração de Valor Adicionado - Sintético</h1>
-
-    <div class="content">
-        <table class="rTable" id="tb-va-sint">
-            <thead >
-                <tr>
-                    <th>Inscrição</th>
-                    <th>Razão Social</th>
-                    <th>Situação</th>
-                    <th>CNAE</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>ffffff</td>
-                    <td>fffffff</td>
-                    <td>ffffff</td>
-                    <td>ffffff</td>
-                </tr>
-                <tr>
-                    <td>ffffff</td>
-                    <td>fffffff</td>
-                    <td>ffffff</td>
-                    <td>ffffff</td>
-                </tr>
-                <tr>
-                    <td>ffffff</td>
-                    <td>fffffff</td>
-                    <td>ffffff</td>
-                    <td>ffffff</td>
-                </tr>
-                <tr>
-                    <td>ffffff</td>
-                    <td>fffffff</td>
-                    <td>ffffff</td>
-                    <td>ffffff</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2 class="subtitle-rel">RESUMO DA APURAÇÃO</h2>
-        <table class="rTable" id="tb-va-sint2">
-            <thead>
-                <tr>
-                    <th>Entrada Computável</th>
-                    <th>IPI RET. Entrada</th>
-                    <th>ICMS RET. Entrada</th>
-                    <th>Entrada não Computável</th>
-                    <th>Saída Computável</th>
-                    <th>IPI RET. Saída</th>
-                    <th>ICMS RET. Saída</th>
-                    <th>Saída não Computável</th>
-                    <th>Valor Adicionado</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>ffff</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>ENTRADAS</h3>
-        <table class="rTable" id="tb-va-sint3">
-            <thead>
-                <tr>
-                    <th>CFOP</th>
-                    <th>Descrição</th>
-                    <th>Computável</th>
-                    <th>Não Computável</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>ffff</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h3>SAÍDAS</h3>
-        <table class="rTable" id="tb-va-sint4">
-            <thead>
-                <tr>
-                    <th>CFOP</th>
-                    <th>Descrição</th>
-                    <th>Computável</th>
-                    <th>Não Computável</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>ffff</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="text">
+        {% for dados in mun %}
+        <h2>PREFEITURA MUNICIPAL DE(A) {{ dados.municipio }}</h2>
+        {% endfor %}
     </div>
+</div>
+
+<h1 class="title-rel">Apuração de Valor Adicionado - Sintético</h1>
+
+<div class="content">
+    <table class="rTable" id="tb-va-sint">
+        <thead>
+        <tr>
+            <th>Inscrição</th>
+            <th>Razão Social</th>
+            <th>Situação</th>
+            <th>CNAE</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for dados in lista1 %}
+        <tr>
+            <td>{{ dados.numr_inscricao_estadual }}</td>
+            <td>{{ dados.nome_inscrito }}</td>
+            <td>{{ dados.status }}</td>
+            <td>{{ dados.codg_cnae }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="subtitle-rel">RESUMO DA APURAÇÃO</h2>
+    <table class="rTable" id="tb-va-sint2">
+        <thead>
+        <tr>
+            <th>Entrada Computável</th>
+            <th>IPI RET. Entrada</th>
+            <th>ICMS RET. Entrada</th>
+            <th>Entrada não Computável</th>
+            <th>Saída Computável</th>
+            <th>IPI RET. Saída</th>
+            <th>ICMS RET. Saída</th>
+            <th>Saída não Computável</th>
+            <th>Valor Adicionado</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            {% for dados in lista4 %}
+            <td>{{ dados.entrada_computavel|floatformat:2 }}</td>
+            {% endfor %}
+            {% for dados in lista9 %}
+            <td>{{ dados.ipi }}</td>
+            <td>{{ dados.icms }}</td>
+            {% endfor %}
+            {% for dados in lista5 %}
+            <td>{{ dados.entrada_nao_computavel|floatformat:2 }}</td>
+            {% endfor %}
+            {% for dados in lista2 %}
+            <td>{{ dados.saida_computavel|floatformat:2 }}</td>
+            {% endfor %}
+            {% for dados in lista8 %}
+            <td>{{ dados.ipi }}</td>
+            <td>{{ dados.icms }}</td>
+            {% endfor %}
+            {% for dados in lista3 %}
+            <td>{{ dados.saida_nao_computavel|floatformat:2 }}</td>
+            {% endfor %}
+            {% for dados in lista6 %}
+            <td>{{ dados.valor_adicionado|floatformat:2 }}</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>ENTRADAS</h3>
+    <table class="rTable" id="tb-va-sint3">
+        <thead>
+        <tr>
+            <th>CFOP</th>
+            <th>Descrição</th>
+            <th>Computável</th>
+            <th>Não Computável</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for dados in lista7 %}
+        {% if dados.tipo == 'entrada' %}
+        <tr>
+            <td>{{ dados.cod }}</td>
+            <td>{{ dados.descricao }}</td>
+            {% if dados.valido == 'SIM' %}
+            <td>{{ dados.valor|floatformat:2 }}</td>
+            <td></td>
+            {% else %}
+            <td></td>
+            <td>{{ dados.valor|floatformat:2 }}</td>
+            {% endif %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td>Valores da entrada</td>
+            {% for dados in lista4 %}
+            <td>{{ dados.entrada_computavel|floatformat:2 }}</td>
+            {% endfor %}
+            {% for dados in lista5 %}
+            <td>{{ dados.entrada_nao_computavel|floatformat:2 }}</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>SAÍDAS</h3>
+    <table class="rTable" id="tb-va-sint4">
+        <thead>
+        <tr>
+            <th>CFOP</th>
+            <th>Descrição</th>
+            <th>Computável</th>
+            <th>Não Computável</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tbody>
+        {% for dados in lista7 %}
+        {% if dados.tipo == 'saida' %}
+        <tr>
+            <td>{{ dados.cod }}</td>
+            <td>{{ dados.descricao }}</td>
+            {% if dados.valido == 'SIM' %}
+            <td>{{ dados.valor|floatformat:2 }}</td>
+            <td></td>
+            {% else %}
+            <td></td>
+            <td>{{ dados.valor|floatformat:2 }}</td>
+            {% endif %}
+        </tr>
+        {% endif %}
+        {% endfor %}
+        <tr>
+            <td></td>
+            <td>Valores da saída</td>
+            {% for dados in lista2 %}
+            <td>{{ dados.saida_computavel|floatformat:2 }}</td>
+            {% endfor %}
+            {% for dados in lista3 %}
+            <td>{{ dados.saida_nao_computavel|floatformat:2 }}</td>
+            {% endfor %}
+        </tr>
+        </tbody>
+
+    </table>
+</div>
 </body>
 </html>
