@@ -189,18 +189,14 @@
             </thead>
 
             <tbody>
+            {% for dados in lista1 %}
                 <tr>
-                    <td>ffffff</td>
-                    <td>fffffff</td>
-                    <td>ffffff</td>
-                    <td>ffffff</td>
+                    <td>{{ dados.numr_inscricao_estadual }}</td>
+                    <td>{{ dados.nome_inscrito }}</td>
+                    <td>{{ dados.status }}</td>
+                    <td>{{ dados.codg_cnae }}</td>
                 </tr>
-                <tr>
-                    <td>ffffff</td>
-                    <td>fffffff</td>
-                    <td>ffffff</td>
-                    <td>ffffff</td>
-                </tr>
+            {% endfor %}
             </tbody>
         </table>
 
