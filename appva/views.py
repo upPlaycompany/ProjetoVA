@@ -6628,11 +6628,11 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FORM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
                 , [inscricao, ano, codigo_valido_saida])
             impostos_saida = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FORM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
                 , [inscricao, ano, codigo_valido_entrada])
             impostos_entrada = namedtuplefetchall(cursor)
             cursor.execute(
@@ -6737,11 +6737,11 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FORM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
                 , [inscricao, ano, codigo_valido_saida])
             impostos_saida = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FORM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
                 , [inscricao, ano, codigo_valido_entrada])
             impostos_entrada = namedtuplefetchall(cursor)
             cursor.execute(
