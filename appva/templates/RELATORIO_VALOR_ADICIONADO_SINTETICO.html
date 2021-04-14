@@ -231,10 +231,12 @@
                     {% endfor %}
                     <td></td>
                     <td></td>
-                    {% for dados in lista6 %}
-                    <td>{{ dados.valor_adicionado }}</td>
+                    {% for dados in lista3 %}
+                    <td>{{ dados.saida_nao_computavel|floatformat:2 }}</td>
                     {% endfor %}
-                    <td></td>
+                    {% for dados in lista6 %}
+                    <td>{{ dados.valor_adicionado|floatformato:2 }}</td>
+                    {% endfor %}
                 </tr>
             </tbody>
         </table>
