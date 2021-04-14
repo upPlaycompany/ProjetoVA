@@ -258,12 +258,21 @@
             </thead>
 
             <tbody>
+            {% for dados in lista7 %}
+            {% if dados.tipo == 'entrada' %}
                 <tr>
+                    <td>{{ dados.codigo }}</td>
+                    <td>{{ dados.descricao }}</td>
+                    {% if dados.valido == 'SIM' %}
+                    <td>{{ dados.valor }}</td>
                     <td></td>
+                    {% else %}
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ dados.valor }}</td>
+                    {% endif %}
                 </tr>
+            {% endif %}
+            {% endfor %}
             </tbody>
         </table>
 
