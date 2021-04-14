@@ -6576,7 +6576,8 @@ def PRE_RELATORIO(request, inscricao, municipio):
             cadastro = request.POST['cadastro']
             ano_exercicio = request.POST['ano']
             if tipo_relatorio == 'sintetico':
-                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', municipio=municipio, portaria=portaria, inscricao=inscricao,
+                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', municipio=municipio, portaria=portaria,
+                                inscricao=inscricao,
                                 tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
             else:
                 pass
@@ -6626,6 +6627,14 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
             n = namedtuplefetchall(cursor)
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
+            cursor.execute(
+                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [inscricao, ano, codigo_valido_saida])
+            impostos_saida = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [inscricao, ano, codigo_valido_entrada])
+            impostos_entrada = namedtuplefetchall(cursor)
             cursor.execute(
                 """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
                 [inscricao, ano, codigo_valido_saida]
@@ -6710,7 +6719,8 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
                 """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
             )
             dec_cfop = namedtuplefetchall(cursor)
-            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in dec_cfop]
+            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
+                        dec_cfop]
             cursor.execute(
                 """SELECT SUM(vr_contabil) AS valor FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop ORDER BY cfop;""",
                 [inscricao, ano]
@@ -6726,6 +6736,14 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
             n = namedtuplefetchall(cursor)
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
+            cursor.execute(
+                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [inscricao, ano, codigo_valido_saida])
+            impostos_saida = namedtuplefetchall(cursor)
+            cursor.execute(
+                """SELECT SUM(ipi) AS ipi. SUM(icms_st) AS icms FORM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [inscricao, ano, codigo_valido_entrada])
+            impostos_entrada = namedtuplefetchall(cursor)
             cursor.execute(
                 """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
                 [inscricao, ano, codigo_valido_saida]
@@ -6810,7 +6828,8 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
                 """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
             )
             dec_cfop = namedtuplefetchall(cursor)
-            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in dec_cfop]
+            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
+                        dec_cfop]
             cursor.execute(
                 """SELECT SUM(vr_contabil) AS valor FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop ORDER BY cfop;""",
                 [inscricao, ano]
@@ -6823,6 +6842,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
                                                      'lista3': valor_invalido_saida, 'lista4': valor_valido_entrada,
                                                      'lista5': valor_invalido_entrada, 'lista6': va_final,
-                                                     'lista7': dic_cfop, 'mun': nome_municipio},
+                                                     'lista7': dic_cfop, 'lista8': impostos_saida,
+                                                     'lista9': impostos_entrada, 'mun': nome_municipio},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html',
                                             encoding='utf-8')

@@ -227,16 +227,20 @@
             {% for dados in lista4 %}
             <td>{{ dados.entrada_computavel|floatformat:2 }}</td>
             {% endfor %}
-            <td></td>
-            <td></td>
+            {% for dados in lista9 %}
+            <td>{{ dados.ipi }}</td>
+            <td>{{ dados.icms }}</td>
+            {% endfor %}
             {% for dados in lista5 %}
             <td>{{ dados.entrada_nao_computavel|floatformat:2 }}</td>
             {% endfor %}
             {% for dados in lista2 %}
             <td>{{ dados.saida_computavel|floatformat:2 }}</td>
             {% endfor %}
-            <td></td>
-            <td></td>
+            {% for dados in lista8 %}
+            <td>{{ dados.ipi }}</td>
+            <td>{{ dados.icms }}</td>
+            {% endfor %}
             {% for dados in lista3 %}
             <td>{{ dados.saida_nao_computavel|floatformat:2 }}</td>
             {% endfor %}
