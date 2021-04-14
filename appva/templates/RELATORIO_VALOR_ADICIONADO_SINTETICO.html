@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -85,11 +84,7 @@
 
         .rTable thead {
             font-weight: bold;
-            color: #000;
-        }
-
-        .rTable tbody tr:nth-child(2n){
-            background: #ccc !important;
+            color: black;
         }
 
         .rTable th, .rTable td {
@@ -167,6 +162,7 @@
         #tb-va-sint4 tbody tr td:nth-child(4) {
             width: 20%;
         }
+
     </style>
 
 </head>
@@ -189,7 +185,7 @@
 <div class="content">
     <table class="rTable" id="tb-va-sint">
         <thead>
-        <tr>
+        <tr style="background-color: #ddd;">
             <th>Inscrição</th>
             <th>Razão Social</th>
             <th>Situação</th>
@@ -212,7 +208,7 @@
     <h2 class="subtitle-rel">RESUMO DA APURAÇÃO</h2>
     <table class="rTable" id="tb-va-sint2">
         <thead>
-        <tr>
+        <tr style="background-color: #ddd;">
             <th>Entrada Computável</th>
             <th>IPI RET. Entrada</th>
             <th>ICMS RET. Entrada</th>
@@ -257,7 +253,7 @@
     <h3>ENTRADAS</h3>
     <table class="rTable" id="tb-va-sint3">
         <thead>
-        <tr>
+        <tr style="background-color: #ddd;">
             <th>CFOP</th>
             <th>Descrição</th>
             <th>Computável</th>
@@ -281,7 +277,7 @@
         </tr>
         {% endif %}
         {% endfor %}
-        <tr>
+        <tr style="background-color: #ddd;">
             <td></td>
             <td>Valores da entrada</td>
             {% for dados in lista4 %}
@@ -297,7 +293,7 @@
     <h3>SAÍDAS</h3>
     <table class="rTable" id="tb-va-sint4">
         <thead>
-        <tr>
+        <tr style="background-color: #ddd;">
             <th>CFOP</th>
             <th>Descrição</th>
             <th>Computável</th>
@@ -305,7 +301,6 @@
         </tr>
         </thead>
 
-        <tbody>
         <tbody>
         {% for dados in lista7 %}
         {% if dados.tipo == 'saida' %}
@@ -322,7 +317,7 @@
         </tr>
         {% endif %}
         {% endfor %}
-        <tr>
+        <tr style="background-color: #ddd;">
             <td></td>
             <td>Valores da saída</td>
             {% for dados in lista2 %}
@@ -333,7 +328,6 @@
             {% endfor %}
         </tr>
         </tbody>
-
     </table>
 </div>
 </body>
