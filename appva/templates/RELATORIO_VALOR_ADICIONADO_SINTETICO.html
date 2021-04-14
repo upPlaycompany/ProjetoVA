@@ -264,11 +264,11 @@
                     <td>{{ dados.cod }}</td>
                     <td>{{ dados.descricao }}</td>
                     {% if dados.valido == 'SIM' %}
-                    <td>{{ dados.valor }}</td>
+                    <td>{{ dados.valor|floatformat:2 }}</td>
                     <td></td>
                     {% else %}
                     <td></td>
-                    <td>{{ dados.valor }}</td>
+                    <td>{{ dados.valor|floatformat:2 }}</td>
                     {% endif %}
                 </tr>
             {% endif %}
@@ -295,11 +295,11 @@
                     <td>{{ dados.cod }}</td>
                     <td>{{ dados.descricao }}</td>
                     {% if dados.valido == 'SIM' %}
-                    <td>{{ dados.valor }}</td>
+                    <td>{{ dados.valor|floatformat:2 }}</td>
                     <td></td>
                     {% else %}
                     <td></td>
-                    <td>{{ dados.valor }}</td>
+                    <td>{{ dados.valor|floatformat:2 }}</td>
                     {% endif %}
                 </tr>
             {% endif %}
