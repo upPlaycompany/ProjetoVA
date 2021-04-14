@@ -6637,7 +6637,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 , [remessa, inscricao, ano, codigo_valido_entrada])
             impostos_entrada = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s ANDinscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
                 [remessa, inscricao, ano, codigo_valido_saida]
             )
             valor_valido_saida = namedtuplefetchall(cursor)
