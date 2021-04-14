@@ -6563,7 +6563,7 @@ def consulta_VALOR_ADICIONADO_INDIVIDUAL(request):
 
 
 @login_required
-def PRE_RELATORIO(request, inscricao):
+def PRE_RELATORIO(request, inscricao, municipio):
     with connections['default'].cursor() as cursor:
         cursor.execute(
             """SELECT portaria FROM appva_cfop GROUP BY portaria;"""
@@ -6576,7 +6576,7 @@ def PRE_RELATORIO(request, inscricao):
             cadastro = request.POST['cadastro']
             ano_exercicio = request.POST['ano']
             if tipo_relatorio == 'sintetico':
-                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', portaria=portaria, inscricao=inscricao,
+                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', municipio=municipio, portaria=portaria, inscricao=inscricao,
                                 tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
             else:
                 pass
@@ -6584,7 +6584,7 @@ def PRE_RELATORIO(request, inscricao):
 
 
 @login_required
-def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, cadastro, ano):
+def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, portaria, inscricao, tabela, cadastro, ano):
     with connections['default'].cursor() as cursor:
         if cadastro == 'CCI':
             cursor.execute(
@@ -6618,6 +6618,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
         )
         c4 = namedtuplefetchall(cursor)
         codigo_invalido_entrada = tuple([x.codigo for x in c4])
+        nome_municipio = [{'municipio': municipio}]
         if tabela == 'GIA':
             cursor.execute(
                 """SELECT cnae FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY cnae;""", [inscricao]
@@ -6822,6 +6823,6 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, portaria, inscricao, tabela, c
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
                                                      'lista3': valor_invalido_saida, 'lista4': valor_valido_entrada,
                                                      'lista5': valor_invalido_entrada, 'lista6': va_final,
-                                                     'lista7': dic_cfop},
+                                                     'lista7': dic_cfop, 'mun': nome_municipio},
                                             template='RELATORIO_VALOR_ADICIONADO_SINTETICO.html',
                                             encoding='utf-8')

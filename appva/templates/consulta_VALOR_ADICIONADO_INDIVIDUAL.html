@@ -239,7 +239,7 @@ Listagem de contribuintes
                     <td>{{ consulta.nome_contabilista }}</td>
                     <td>{{ consulta.nome_municipio }}</td>
                     <td>
-                        <span><a href="{% url 'PRE_RELATORIO' inscricao=consulta.numr_inscricao_estadual %}"><button type="button" class="btn btn-success">Ir para relatórios</button></a></span>
+                        <span><a href="{% url 'PRE_RELATORIO' inscricao=consulta.numr_inscricao_estadual municipio=consulta.nome_municipio %}"><button type="button" class="btn btn-success">Ir para relatórios</button></a></span>
                     </td>
                 </tr>
                 {% endfor %}
