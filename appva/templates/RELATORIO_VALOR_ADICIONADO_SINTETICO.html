@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Valor Adicionado - Sintético</title>
-    <style type="text/css">
+
+    <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
         }
 
         .div-mun {
@@ -38,30 +38,31 @@
         }
 
         .div-mun .text h2 {
-            font-size: 1.6em;
+            font-size: 20px;
         }
 
         .title-rel {
             margin-top: 48px;
             margin-bottom: 22px;
-            font-size: 1.6em;
+            font-size: 24px;
             text-align: center;
         }
 
         .subtitle-rel {
             margin-top: 70px;
             margin-bottom: 22px;
-            font-size: 1.6em;
+            font-size: 20px;
             text-align: center;
         }
 
         h3 {
-            font-size: 1.4em;
+            font-size: 18px;
             margin-top: 45px;
             margin-bottom: 20px;
         }
 
         .content {
+            width: 900px;
             display: block;
             margin: auto;
             margin-bottom: 50px;
@@ -73,199 +74,208 @@
         }
 
         .rTable thead {
-            background: black;
+
             font-weight: bold;
-            color: white;
+            color: #000;
+        }
+
+        .rTable thead th {
+            border: 2px solid #000;
         }
 
         .rTable tbody tr:nth-child(2n){
-            background: #ccc;
+            background: #ccc !important;
         }
 
         .rTable th, .rTable td {
             padding: 7px 0;
         }
 
+        @media print {
+            body {-webkit-print-color-adjust: exact;}
+        }
 
-            .content {
-                width: 90%;
-            }
+        /* Tabelas de Valor Adicionado Sintético */
+        #tb-va-sint tbody tr td:nth-child(1) {
+            width: 20%;
+        }
+        #tb-va-sint tbody tr td:nth-child(2) {
+            width: 30%;
+        }
+        #tb-va-sint tbody tr td:nth-child(3) {
+            width: 20%;
+        }
+        #tb-va-sint tbody tr td:nth-child(4) {
+            width: 30%;
+        }
 
-            /* Tabelas de Valor Adicionado Sintético */
-            #tb-va-sint tbody tr td:nth-child(1) {
-                width: 20%;
-            }
-            #tb-va-sint tbody tr td:nth-child(2) {
-                width: 30%;
-            }
-            #tb-va-sint tbody tr td:nth-child(3) {
-                width: 20%;
-            }
-            #tb-va-sint tbody tr td:nth-child(4) {
-                width: 30%;
-            }
+        #tb-va-sint2 tbody tr td:nth-child(1) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(2) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(3) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(4) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(5) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(6) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(7) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(8) {
+            width: 10%;
+        }
+        #tb-va-sint2 tbody tr td:nth-child(9) {
+            width: 10%;
+        }
 
-            #tb-va-sint2 tbody tr td:nth-child(1) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(2) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(3) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(4) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(5) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(6) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(7) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(8) {
-                width: 10%;
-            }
-            #tb-va-sint2 tbody tr td:nth-child(9) {
-                width: 10%;
-            }
+        #tb-va-sint3 tbody tr td:nth-child(1) {
+            width: 10%;
+        }
+        #tb-va-sint3 tbody tr td:nth-child(2) {
+            width: 50%;
+        }
+        #tb-va-sint3 tbody tr td:nth-child(3) {
+            width: 20%;
+        }
+        #tb-va-sint3 tbody tr td:nth-child(4) {
+            width: 20%;
+        }
 
-            #tb-va-sint3 tbody tr td:nth-child(1) {
-                width: 10%;
-            }
-            #tb-va-sint3 tbody tr td:nth-child(2) {
-                width: 50%;
-            }
-            #tb-va-sint3 tbody tr td:nth-child(3) {
-                width: 20%;
-            }
-            #tb-va-sint3 tbody tr td:nth-child(4) {
-                width: 20%;
-            }
-
-            #tb-va-sint4 tbody tr td:nth-child(1) {
-                width: 10%;
-            }
-            #tb-va-sint4 tbody tr td:nth-child(2) {
-                width: 50%;
-            }
-            #tb-va-sint4 tbody tr td:nth-child(3) {
-                width: 20%;
-            }
-            #tb-va-sint4 tbody tr td:nth-child(4) {
-                width: 20%;
-            }
+        #tb-va-sint4 tbody tr td:nth-child(1) {
+            width: 10%;
+        }
+        #tb-va-sint4 tbody tr td:nth-child(2) {
+            width: 50%;
+        }
+        #tb-va-sint4 tbody tr td:nth-child(3) {
+            width: 20%;
+        }
+        #tb-va-sint4 tbody tr td:nth-child(4) {
+            width: 20%;
+        }
     </style>
 
 </head>
 <body>
-<div class="div-mun">
-    <div class="img">
-        <img src="{% get_static_prefix %}LOGO_MT/municipio.nome .png" alt="Imagem do município">
+    <div class="div-mun">
+        <div class="img">
+            <img src="../../img.png" alt="Imagem do município">
+        </div>
+        <div class="text">
+            <h2>Prefeitura Municipal de Campos de Julio</h2>
+        </div>
     </div>
-    <div class="text">
-        <h2>Prefeitura Municipal de Campos de Julio </h2>
+
+    <h1 class="title-rel">Apuração de Valor Adicionado - Sintético</h1>
+
+    <div class="content">
+        <table class="rTable" id="tb-va-sint">
+            <thead >
+                <tr>
+                    <th>Inscrição</th>
+                    <th>Razão Social</th>
+                    <th>Situação</th>
+                    <th>CNAE</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>ffffff</td>
+                    <td>fffffff</td>
+                    <td>ffffff</td>
+                    <td>ffffff</td>
+                </tr>
+                <tr>
+                    <td>ffffff</td>
+                    <td>fffffff</td>
+                    <td>ffffff</td>
+                    <td>ffffff</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="subtitle-rel">RESUMO DA APURAÇÃO</h2>
+        <table class="rTable" id="tb-va-sint2">
+            <thead>
+                <tr>
+                    <th>Entrada Computável</th>
+                    <th>IPI RET. Entrada</th>
+                    <th>ICMS RET. Entrada</th>
+                    <th>Entrada não Computável</th>
+                    <th>Saída Computável</th>
+                    <th>IPI RET. Saída</th>
+                    <th>ICMS RET. Saída</th>
+                    <th>Saída não Computável</th>
+                    <th>Valor Adicionado</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>ENTRADAS</h3>
+        <table class="rTable" id="tb-va-sint3">
+            <thead>
+                <tr>
+                    <th>CFOP</th>
+                    <th>Descrição</th>
+                    <th>Computável</th>
+                    <th>Não Computável</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>SAÍDAS</h3>
+        <table class="rTable" id="tb-va-sint4">
+            <thead>
+                <tr>
+                    <th>CFOP</th>
+                    <th>Descrição</th>
+                    <th>Computável</th>
+                    <th>Não Computável</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
-
-<h1 class="title-rel">Apuração de Valor Adicionado - Sintético</h1>
-
-<div class="content">
-    <table class="rTable" id="tb-va-sint">
-        <thead>
-        <tr>
-            <th>Inscrição</th>
-            <th>Razão Social</th>
-            <th>Situação</th>
-            <th>CNAE</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h2 class="subtitle-rel">RESUMO DA APURAÇÃO</h2>
-    <table class="rTable" id="tb-va-sint2">
-        <thead>
-        <tr>
-            <th>Entrada Computável</th>
-            <th>IPI RET. Entrada</th>
-            <th>ICMS RET. Entrada</th>
-            <th>Entrada não Computável</th>
-            <th>Saída Computável</th>
-            <th>IPI RET. Saída</th>
-            <th>ICMS RET. Saída</th>
-            <th>Saída não Computável</th>
-            <th>Valor Adicionado</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h3>ENTRADAS</h3>
-    <table class="rTable" id="tb-va-sint3">
-        <thead>
-        <tr>
-            <th>CFOP</th>
-            <th>Descrição</th>
-            <th>Computável</th>
-            <th>Não Computável</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <h3>SAÍDAS</h3>
-    <table class="rTable" id="tb-va-sint4">
-        <thead>
-        <tr>
-            <th>CFOP</th>
-            <th>Descrição</th>
-            <th>Computável</th>
-            <th>Não Computável</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-</div>
 </body>
 </html>
