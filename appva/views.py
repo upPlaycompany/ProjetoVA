@@ -6989,7 +6989,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_ent_valido = tuple([x.codigo for x in cfop_ent_val])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_ent_valido]
             )
             va_ent_valido = namedtuplefetchall(cursor)
@@ -7005,7 +7005,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_ent_invalido = tuple([x.codigo for x in cfop_ent_inval])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_ent_invalido]
             )
             va_ent_invalido = namedtuplefetchall(cursor)
@@ -7021,7 +7021,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_sai_valido = tuple([x.codigo for x in cfop_sai_val])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_sai_valido]
             )
             va_sai_valido = namedtuplefetchall(cursor)
@@ -7037,7 +7037,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_sai_invalido = tuple([x.codigo for x in cfop_sai_inval])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_sai_invalido]
             )
             va_sai_invalido = namedtuplefetchall(cursor)
@@ -7143,7 +7143,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_ent_valido = tuple([x.codigo for x in cfop_ent_val])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_ent_valido]
             )
             va_ent_valido = namedtuplefetchall(cursor)
@@ -7159,7 +7159,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_ent_invalido = tuple([x.codigo for x in cfop_ent_inval])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_ent_invalido]
             )
             va_ent_invalido = namedtuplefetchall(cursor)
@@ -7175,7 +7175,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_sai_valido = tuple([x.codigo for x in cfop_sai_val])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_sai_valido]
             )
             va_sai_valido = namedtuplefetchall(cursor)
@@ -7191,7 +7191,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             cfop_sai_invalido = tuple([x.codigo for x in cfop_sai_inval])
 
             cursor.execute(
-                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s ORDER BY cfop;""",
                 [inscricao, ano, cfop_sai_invalido]
             )
             va_sai_invalido = namedtuplefetchall(cursor)
