@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valor Adicionado - Analítico</title>
+
+    <style>
+       * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+
+        .div-mun {
+            margin-top: 45px;
+            text-align: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .div-mun .img,
+        .div-mun .text {
+            display: inline-block;
+        }
+
+        .div-mun .img {
+            margin-right: 26px;
+        }
+
+        .div-mun .img img {
+            width: 60px;
+        }
+
+        .div-mun .text h2 {
+            font-size: 20px;
+        }
+
+        .title-rel {
+            margin-top: 48px;
+            margin-bottom: 22px;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .subtitle-rel {
+            margin-top: 70px;
+            margin-bottom: 22px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 45px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            width: 700px;
+            display: block;
+            margin: auto;
+        }
+
+        table, th {
+            border: 2px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        table tbody td {
+            border-right: 2px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .rTable {
+            width: 100%;
+            text-align: center;
+        }
+
+        .rTable thead {
+            font-weight: bold;
+            color: black;
+        }
+
+        .rTable th, .rTable td {
+            padding: 7px 0;
+        }
+
+        .total td {
+            font-weight: bold;
+            text-align: right;
+            padding-right: 15px;
+        }
+
+        @media print {
+            body {-webkit-print-color-adjust: exact;}
+        }
+
+        #table-va tbody tr td:nth-child(1) {
+            width: 20%;
+        }
+        #table-va tbody tr td:nth-child(2) {
+            width: 30%;
+        }
+        #table-va tbody tr td:nth-child(3) {
+            width: 20%;
+        }
+        #table-va tbody tr td:nth-child(4) {
+            width: 30%;
+        }
+
+        #table-va2 tbody tr td:nth-child(1) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(2) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(3) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(4) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(5) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(6) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(7) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(8) {
+            width: 10%;
+        }
+        #table-va2 tbody tr td:nth-child(9) {
+            width: 10%;
+        }
+
+        #table-va3 tbody tr td:nth-child(1) {
+            width: 15%;
+        }
+        #table-va3 tbody tr td:nth-child(2) {
+            width: 15%;
+        }
+        #table-va3 tbody tr td:nth-child(3) {
+            width: 15%;
+        }
+        #table-va3 tbody tr td:nth-child(4) {
+            width: 15%;
+        }
+        #table-va3 tbody tr td:nth-child(5) {
+            width: 15%;
+        }
+        #table-va3 tbody tr td:nth-child(6) {
+            width: 20%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="div-mun">
+    <div class="img">
+        {% for dados in mun %}
+        <img src="{% get_static_prefix %}LOGO_MT/{{ dados.municipio }}.png" alt="Imagem do município">
+        {% endfor %}
+    </div>
+    <div class="text">
+        {% for dados in mun %}
+        <h2>PREFEITURA MUNICIPAL DE(A) {{ dados.municipio }}</h2>
+        {% endfor %}
+    </div>
+</div>
+
+<h1 class="title-rel">Apuração de Valor Adicionado - Analítico</h1>
+
+<div class="content">
+    <table class="rTable" id="table-va">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>Inscrição</th>
+            <th>Razão Social</th>
+            <th>Situação</th>
+            <th>CNAE</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for dados in lista1 %}
+        <tr>
+            <td>{{ dados.numr_inscricao_estadual }}</td>
+            <td>{{ dados.nome_inscrito }}</td>
+            <td>{{ dados.status }}</td>
+            <td>{{ dados.codg_cnae }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2 class="subtitle-rel">RESUMO DA APURAÇÃO</h2>
+    <table class="rTable" id="table-va2">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>Entrada Computável</th>
+            <th>IPI RET. Entrada</th>
+            <th>ICMS RET. Entrada</th>
+            <th>Entrada não Computável</th>
+            <th>Saída Computável</th>
+            <th>IPI RET. Saída</th>
+            <th>ICMS RET. Saída</th>
+            <th>Saída não Computável</th>
+            <th>Valor Adicionado</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>ENTRADA COMPUTÁVEL</h3>
+    <table class="rTable" id="table-va3">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+            <th>Tipo</th>
+            <th>Data Processo</th>
+            <th>CFOP</th>
+            <th>VR Contabil</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr style="background-color: #ddd;" class="total">
+            <td colspan="5">TOTAL DO CFOP</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>ENTRADA NÃO COMPUTÁVEL</h3>
+    <table class="rTable" id="table-va3">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+            <th>Tipo</th>
+            <th>Data Processo</th>
+            <th>CFOP</th>
+            <th>VR Contabil</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr style="background-color: #ddd;" class="total">
+            <td colspan="5">TOTAL DO CFOP</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>SAÍDA COMPUTÁVEL</h3>
+    <table class="rTable" id="table-va3">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+            <th>Tipo</th>
+            <th>Data Processo</th>
+            <th>CFOP</th>
+            <th>VR Contabil</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr style="background-color: #ddd;" class="total">
+            <td colspan="5">TOTAL DO CFOP</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3>SAÍDA NÃO COMPUTÁVEL</h3>
+    <table class="rTable" id="table-va3">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>Data Inicial</th>
+            <th>Data Final</th>
+            <th>Tipo</th>
+            <th>Data Processo</th>
+            <th>CFOP</th>
+            <th>VR Contabil</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr style="background-color: #ddd;" class="total">
+            <td colspan="5">TOTAL DO CFOP</td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+

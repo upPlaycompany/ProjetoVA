@@ -6577,7 +6577,13 @@ def PRE_RELATORIO(request, inscricao, municipio):
             cadastro = request.POST['cadastro']
             ano_exercicio = request.POST['ano']
             if tipo_relatorio == 'sintetico':
-                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', municipio=municipio, remessa=remessa, portaria=portaria,
+                return redirect('RELATORIO_VALOR_ADICIONADO_SINTETICO', municipio=municipio, remessa=remessa,
+                                portaria=portaria,
+                                inscricao=inscricao,
+                                tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
+            elif tipo_relatorio == 'analitico':
+                return redirect('RELATORIO_VALOR_ADICIONADO_ANALITICO', municipio=municipio, remessa=remessa,
+                                portaria=portaria,
                                 inscricao=inscricao,
                                 tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
             else:
@@ -6590,14 +6596,14 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
     with connections['default'].cursor() as cursor:
         if cadastro == 'CCI':
             cursor.execute(
-                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s AND remessa=%s;""",
-                [inscricao, ano, remessa]
+                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
+                [inscricao, ano]
             )
             dados_inscricao = namedtuplefetchall(cursor)
         else:
             cursor.execute(
-                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s AND remessa=%s;""",
-                [inscricao, ano, remessa]
+                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
+                [inscricao, ano]
             )
             dados_inscricao = namedtuplefetchall(cursor)
         cursor.execute(
@@ -6893,21 +6899,21 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
-                , [inscricao, ano, codigo_valido_saida])
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [remessa, inscricao, ano, codigo_valido_saida])
             impostos_saida = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
-                , [inscricao, ano, codigo_valido_entrada])
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [remessa, inscricao, ano, codigo_valido_entrada])
             impostos_entrada = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                [inscricao, ano, codigo_valido_saida]
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [remessa, inscricao, ano, codigo_valido_saida]
             )
             valor_valido_saida = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_nao_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                [inscricao, ano, codigo_invalido_saida]
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_nao_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [remessa, inscricao, ano, codigo_invalido_saida]
             )
             valor_invalido_saida = namedtuplefetchall(cursor)
             if cnae in (
@@ -6919,8 +6925,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     '141501', '141502', '142300', '161001', '161002', '161003', '161099', '162801', '162802', '162803',
                     '162899', '163600', '230600'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_saida]
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) AS entrada_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -6935,8 +6941,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     '810010', '810099', '891600', '892401', '892402', '892403', '893200', '899101', '899102', '899103',
                     '899199', '910600', '990401', '990402', '990403'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)))  AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_saida]
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)))  AS entrada_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -6951,8 +6957,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     '321304', '321305', '321399', '322101', '322102', '322103', '322104', '322105', '322106', '322107',
                     '322199'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.20 AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_saida]
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.20 AS entrada_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -6962,38 +6968,83 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     valor_valido_entrada = valor_valido_entrada
             else:
                 cursor.execute(
-                    """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_entrada]
+                    """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_nao_computavel FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                [inscricao, ano, codigo_invalido_entrada]
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_nao_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [remessa, inscricao, ano, codigo_invalido_entrada]
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
             va_final = [{'valor_adicionado': float(str(valor_valido_saida[0].saida_computavel)) - float(
                 str(valor_valido_entrada[0].entrada_computavel))}]
 
+            ##ENTRADA VALIDA
             cursor.execute(
-                """SELECT cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop;"""
-                , [inscricao, ano])
-            cfop_index = namedtuplefetchall(cursor)
-            cfop_l = tuple([x.cfop for x in cfop_index])
-            cursor.execute(
-                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='SIM';"""
             )
-            dec_cfop = namedtuplefetchall(cursor)
-            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
-                        dec_cfop]
+            cfop_ent_val = namedtuplefetchall(cursor)
+            cfop_ent_valido = tuple([{'codigo': x.codigo} for x in cfop_ent_val])
+
             cursor.execute(
-                """SELECT SUM(vr_contabil) AS valor FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop ORDER BY cfop;""",
-                [inscricao, ano]
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %S;""",
+                [inscricao, ano, cfop_ent_valido]
             )
-            v_c = namedtuplefetchall(cursor)
-            resu_cfop = [{'valor': x.valor} for x in v_c]
-            a = len(dic_cfop)
-            [dic_cfop[x].update(resu_cfop[x]) for x in range(a)]
+            va_ent_valido = namedtuplefetchall(cursor)
+            resu_ent_valido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_ent_valido]
+
+            ##ENTRADA INVÁLIDA
+            cursor.execute(
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='NAO';"""
+            )
+            cfop_ent_inval = namedtuplefetchall(cursor)
+            cfop_ent_invalido = tuple([{'codigo': x.codigo} for x in cfop_ent_inval])
+
+            cursor.execute(
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [inscricao, ano, cfop_ent_invalido]
+            )
+            va_ent_invalido = namedtuplefetchall(cursor)
+            resu_ent_invalido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_ent_invalido]
+
+            ##SAIDA VÁLIDA
+            cursor.execute(
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='SIM';"""
+            )
+            cfop_sai_val = namedtuplefetchall(cursor)
+            cfop_sai_valido = tuple([{'codigo': x.codigo} for x in cfop_sai_val])
+
+            cursor.execute(
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %S;""",
+                [inscricao, ano, cfop_sai_valido]
+            )
+            va_sai_valido = namedtuplefetchall(cursor)
+            resu_sai_valido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_sai_valido]
+
+            ##SAÍDA INVÁLIDA
+            cursor.execute(
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='NAO';"""
+            )
+            cfop_sai_inval = namedtuplefetchall(cursor)
+            cfop_sai_invalido = tuple([{'codigo': x.codigo} for x in cfop_sai_inval])
+
+            cursor.execute(
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_gia_entradas_saidas WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %S;""",
+                [inscricao, ano, cfop_sai_invalido]
+            )
+            va_sai_invalido = namedtuplefetchall(cursor)
+            resu_sai_invalido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_sai_invalido]
+
         else:
             cursor.execute(
                 """SELECT cnae FROM appva_efd WHERE inscricao=%s GROUP BY cnae;""", [inscricao]
@@ -7002,21 +7053,21 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
             ae = [x.cnae for x in n]
             cnae = str(ae[0])
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
-                , [inscricao, ano, codigo_valido_saida])
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [remessa, inscricao, ano, codigo_valido_saida])
             impostos_saida = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
-                , [inscricao, ano, codigo_valido_entrada])
+                """SELECT SUM(ipi) AS ipi, SUM(icms_st) AS icms FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;"""
+                , [remessa, inscricao, ano, codigo_valido_entrada])
             impostos_entrada = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                [inscricao, ano, codigo_valido_saida]
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [remessa, inscricao, ano, codigo_valido_saida]
             )
             valor_valido_saida = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_nao_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                [inscricao, ano, codigo_invalido_saida]
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS saida_nao_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [remessa, inscricao, ano, codigo_invalido_saida]
             )
             valor_invalido_saida = namedtuplefetchall(cursor)
             if cnae in (
@@ -7028,8 +7079,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     '141501', '141502', '142300', '161001', '161002', '161003', '161099', '162801', '162802', '162803',
                     '162899', '163600', '230600'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) AS entrada_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_saida]
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -7044,8 +7095,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     '810010', '810099', '891600', '892401', '892402', '892403', '893200', '899101', '899102', '899103',
                     '899199', '910600', '990401', '990402', '990403'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)))  AS entrada_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_saida]
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)))  AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -7060,8 +7111,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     '321304', '321305', '321399', '322101', '322102', '322103', '322104', '322105', '322106', '322107',
                     '322199'):
                 cursor.execute(
-                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.20 AS entrada_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_saida]
+                    """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.20 AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_saida]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -7071,43 +7122,91 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao
                     valor_valido_entrada = valor_valido_entrada
             else:
                 cursor.execute(
-                    """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [inscricao, ano, codigo_valido_entrada]
+                    """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                    [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
             cursor.execute(
-                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_nao_computavel FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                [inscricao, ano, codigo_invalido_entrada]
+                """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_nao_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [remessa, inscricao, ano, codigo_invalido_entrada]
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
             va_final = [{'valor_adicionado': float(str(valor_valido_saida[0].saida_computavel)) - float(
                 str(valor_valido_entrada[0].entrada_computavel))}]
 
+            ##ENTRADA VALIDA
             cursor.execute(
-                """SELECT cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop;"""
-                , [inscricao, ano])
-            cfop_index = namedtuplefetchall(cursor)
-            cfop_l = tuple([x.cfop for x in cfop_index])
-            cursor.execute(
-                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='SIM';"""
             )
-            dec_cfop = namedtuplefetchall(cursor)
-            dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
-                        dec_cfop]
+            cfop_ent_val = namedtuplefetchall(cursor)
+            cfop_ent_valido = tuple([{'codigo': x.codigo} for x in cfop_ent_val])
+
             cursor.execute(
-                """SELECT SUM(vr_contabil) AS valor FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop ORDER BY cfop;""",
-                [inscricao, ano]
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %S;""",
+                [inscricao, ano, cfop_ent_valido]
             )
-            v_c = namedtuplefetchall(cursor)
-            resu_cfop = [{'valor': x.valor} for x in v_c]
-            a = len(dic_cfop)
-            [dic_cfop[x].update(resu_cfop[x]) for x in range(a)]
+            va_ent_valido = namedtuplefetchall(cursor)
+            resu_ent_valido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_ent_valido]
+
+            ##ENTRADA INVÁLIDA
+            cursor.execute(
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='NAO';"""
+            )
+            cfop_ent_inval = namedtuplefetchall(cursor)
+            cfop_ent_invalido = tuple([{'codigo': x.codigo} for x in cfop_ent_inval])
+
+            cursor.execute(
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
+                [inscricao, ano, cfop_ent_invalido]
+            )
+            va_ent_invalido = namedtuplefetchall(cursor)
+            resu_ent_invalido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_ent_invalido]
+
+            ##SAIDA VÁLIDA
+            cursor.execute(
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='SIM';"""
+            )
+            cfop_sai_val = namedtuplefetchall(cursor)
+            cfop_sai_valido = tuple([{'codigo': x.codigo} for x in cfop_sai_val])
+
+            cursor.execute(
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %S;""",
+                [inscricao, ano, cfop_sai_valido]
+            )
+            va_sai_valido = namedtuplefetchall(cursor)
+            resu_sai_valido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_sai_valido]
+
+            ##SAÍDA INVÁLIDA
+            cursor.execute(
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='NAO';"""
+            )
+            cfop_sai_inval = namedtuplefetchall(cursor)
+            cfop_sai_invalido = tuple([{'codigo': x.codigo} for x in cfop_sai_inval])
+
+            cursor.execute(
+                """SELECT vr_contabil , dt_inicial, dt_final, tipo, dt_process, cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s AND cfop IN %S;""",
+                [inscricao, ano, cfop_sai_invalido]
+            )
+            va_sai_invalido = namedtuplefetchall(cursor)
+            resu_sai_invalido = [
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
+                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_sai_invalido]
+
+
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
                                                      'lista3': valor_invalido_saida, 'lista4': valor_valido_entrada,
                                                      'lista5': valor_invalido_entrada, 'lista6': va_final,
-                                                     'lista7': dic_cfop, 'lista8': impostos_saida,
-                                                     'lista9': impostos_entrada, 'mun': nome_municipio},
+                                                     'lista8': impostos_saida,
+                                                     'lista9': impostos_entrada, 'lista10': resu_ent_valido,
+                                                     'lista11': resu_ent_invalido, 'lista12': resu_sai_valido,
+                                                     'lista13': resu_sai_invalido, 'mun': nome_municipio},
                                             template='RELATORIO_VALOR_ADICIONADO_ANALITICO.html',
                                             encoding='utf-8')
