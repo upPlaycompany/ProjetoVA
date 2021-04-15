@@ -274,7 +274,9 @@
         {% endfor %}
         <tr style="background-color: #ddd;" class="total">
             <td colspan="5">TOTAL DO CFOP</td>
-            <td></td>
+            {% for dados in lista4 %}
+            <td>{{ dados.entrada_computavel|floatformat:2 }}</td>
+            {% endfor %}
         </tr>
         </tbody>
     </table>
@@ -306,7 +308,9 @@
         {% endfor %}
         <tr style="background-color: #ddd;" class="total">
             <td colspan="5">TOTAL DO CFOP</td>
-            <td></td>
+            {% for dados in lista5 %}
+            <td>{{ dados.entrada_nao_computavel|floatformat:2 }}</td>
+            {% endfor %}
         </tr>
         </tbody>
     </table>
@@ -338,7 +342,9 @@
         {% endfor %}
         <tr style="background-color: #ddd;" class="total">
             <td colspan="5">TOTAL DO CFOP</td>
-            <td></td>
+            {% for dados in lista2 %}
+            <td>{{ dados.saida_computavel|floatformat:2 }}</td>
+            {% endfor %}
         </tr>
         </tbody>
     </table>
@@ -370,7 +376,9 @@
         {% endfor %}
         <tr style="background-color: #ddd;" class="total">
             <td colspan="5">TOTAL DO CFOP</td>
-            <td></td>
+            {% for dados in lista3 %}
+            <td>{{ dados.saida_nao_computavel|floatformat:2 }}</td>
+            {% endfor %}
         </tr>
         </tbody>
     </table>
