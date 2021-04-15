@@ -6856,7 +6856,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
 
 
 @login_required
-def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, portaria, inscricao, tabela, cadastro, ano):
+def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano):
     with connections['default'].cursor() as cursor:
         if cadastro == 'CCI':
             cursor.execute(
