@@ -6607,22 +6607,22 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             )
             dados_inscricao = namedtuplefetchall(cursor)
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='saida';""", [portaria]
+            """SELECT codigo FROM appva_cfop WHERE valido='sim' AND portaria=%s AND tipo='saida';""", [portaria]
         )
         c1 = namedtuplefetchall(cursor)
         codigo_valido_saida = tuple([x.codigo for x in c1])
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='SIM' AND portaria=%s AND tipo='entrada';""", [portaria]
+            """SELECT codigo FROM appva_cfop WHERE valido='sim' AND portaria=%s AND tipo='entrada';""", [portaria]
         )
         c2 = namedtuplefetchall(cursor)
         codigo_valido_entrada = tuple([x.codigo for x in c2])
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='NAO' AND portaria=%s AND tipo='saida';""", [portaria]
+            """SELECT codigo FROM appva_cfop WHERE valido='nao' AND portaria=%s AND tipo='saida';""", [portaria]
         )
         c3 = namedtuplefetchall(cursor)
         codigo_invalido_saida = tuple([x.codigo for x in c3])
         cursor.execute(
-            """SELECT codigo FROM appva_cfop WHERE valido='NAO' AND portaria=%s AND tipo='entrada';""", [portaria]
+            """SELECT codigo FROM appva_cfop WHERE valido='nao' AND portaria=%s AND tipo='entrada';""", [portaria]
         )
         c4 = namedtuplefetchall(cursor)
         codigo_invalido_entrada = tuple([x.codigo for x in c4])
