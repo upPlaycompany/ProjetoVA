@@ -7132,7 +7132,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
-            va_final = [{'valor_adicionado': float(str(valor_valido_saida[0].saida_computavel)) - float(str(valor_valido_entrada[0].entrada_computavel))}]
+            va_final = [{'valor_adicionado': float(str(valor_valido_saida[0].saida_computavel)) - float(valor_valido_entrada[0].entrada_computavel)}]
 
             ##ENTRADA VALIDA
             cursor.execute(
