@@ -6983,8 +6983,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##ENTRADA VALIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='SIM';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='sim' AND portaria=%s;"""
+                , [portaria])
             cfop_ent_val = namedtuplefetchall(cursor)
             cfop_ent_valido = tuple([x.codigo for x in cfop_ent_val])
 
@@ -6999,8 +6999,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##ENTRADA INVÁLIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='nao';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='nao' AND portaria=%s;"""
+                , [portaria])
             cfop_ent_inval = namedtuplefetchall(cursor)
             cfop_ent_invalido = tuple([x.codigo for x in cfop_ent_inval])
 
@@ -7015,8 +7015,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##SAIDA VÁLIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='sim';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='sim' AND portaria=%s;"""
+                , [portaria])
             cfop_sai_val = namedtuplefetchall(cursor)
             cfop_sai_valido = tuple([x.codigo for x in cfop_sai_val])
 
@@ -7031,8 +7031,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##SAÍDA INVÁLIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='nao';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='nao' AND portaria=%s;"""
+                , [portaria])
             cfop_sai_inval = namedtuplefetchall(cursor)
             cfop_sai_invalido = tuple([x.codigo for x in cfop_sai_inval])
 
@@ -7136,8 +7136,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##ENTRADA VALIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='sim';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='sim' AND portaria=%s;"""
+            ,[portaria])
             cfop_ent_val = namedtuplefetchall(cursor)
             cfop_ent_valido = tuple([x.codigo for x in cfop_ent_val])
 
@@ -7152,8 +7152,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##ENTRADA INVÁLIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='nao';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='nao' AND portaria=%s;"""
+            ,[portaria])
             cfop_ent_inval = namedtuplefetchall(cursor)
             cfop_ent_invalido = tuple([x.codigo for x in cfop_ent_inval])
 
@@ -7168,8 +7168,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##SAIDA VÁLIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='sim';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='sim' AND portaria=%s;"""
+            ,[portaria])
             cfop_sai_val = namedtuplefetchall(cursor)
             cfop_sai_valido = tuple([x.codigo for x in cfop_sai_val])
 
@@ -7184,8 +7184,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
             ##SAÍDA INVÁLIDA
             cursor.execute(
-                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='nao';"""
-            )
+                """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='nao' AND portaria=%s;"""
+            ,[portaria])
             cfop_sai_inval = namedtuplefetchall(cursor)
             cfop_sai_invalido = tuple([x.codigo for x in cfop_sai_inval])
 
