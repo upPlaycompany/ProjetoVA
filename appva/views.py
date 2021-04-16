@@ -6838,7 +6838,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
                         dec_cfop]
             cursor.execute(
-                """SELECT SUM(vr_contabil) AS valor FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s ANDGROUP BY cfop ORDER BY cfop;""",
+                """SELECT SUM(vr_contabil) AS valor FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s GROUP BY cfop ORDER BY cfop;""",
                 [remessa, inscricao, ano]
             )
             v_c = namedtuplefetchall(cursor)
