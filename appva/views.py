@@ -6723,7 +6723,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             cfop_index = namedtuplefetchall(cursor)
             cfop_l = tuple([x.cfop for x in cfop_index])
             cursor.execute(
-                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
+                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s GROUP BY codigo;""", [cfop_l]
             )
             dec_cfop = namedtuplefetchall(cursor)
             dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
@@ -6832,7 +6832,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             cfop_index = namedtuplefetchall(cursor)
             cfop_l = tuple([x.cfop for x in cfop_index])
             cursor.execute(
-                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s""", [cfop_l]
+                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s GROUP BY codigo""", [cfop_l]
             )
             dec_cfop = namedtuplefetchall(cursor)
             dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
