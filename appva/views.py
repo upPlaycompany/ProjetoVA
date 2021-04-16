@@ -7195,8 +7195,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             )
             va_sai_invalido = namedtuplefetchall(cursor)
             resu_sai_invalido = [
-                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
-                 'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_sai_invalido]
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in va_sai_invalido]
 
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
