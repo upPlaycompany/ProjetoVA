@@ -7198,7 +7198,7 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
                 {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'tipo': x.tipo,
                  'dt_process': x.dt_process, 'cfop': x.cfop} for x in va_sai_invalido]
 
-
+            float('p')
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
                                                      'lista3': valor_invalido_saida, 'lista4': valor_valido_entrada,
