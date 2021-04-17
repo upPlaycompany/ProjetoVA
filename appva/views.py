@@ -6678,7 +6678,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     '899199', '910600', '990401', '990402', '990403'):
                 cursor.execute(
                     """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)))  AS entrada_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [remessa, inscricao, ano, codigo_valido_saida]
+                    [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -6694,7 +6694,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     '322199'):
                 cursor.execute(
                     """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.20 AS entrada_computavel FROM appva_gia_entradas_saidas WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [remessa, inscricao, ano, codigo_valido_saida]
+                    [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -6771,7 +6771,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     '162899', '163600', '230600'):
                 cursor.execute(
                     """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [remessa, inscricao, ano, codigo_valido_saida]
+                    [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -6787,7 +6787,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     '899199', '910600', '990401', '990402', '990403'):
                 cursor.execute(
                     """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)))  AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [remessa, inscricao, ano, codigo_valido_saida]
+                    [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
@@ -6803,7 +6803,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     '322199'):
                 cursor.execute(
                     """SELECT (SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st))) * 0.20 AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
-                    [remessa, inscricao, ano, codigo_valido_saida]
+                    [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
