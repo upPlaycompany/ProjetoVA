@@ -6627,6 +6627,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
         c4 = namedtuplefetchall(cursor)
         codigo_invalido_entrada = tuple([x.codigo for x in c4])
         nome_municipio = [{'municipio': municipio}]
+
         if tabela == 'GIA':
             cursor.execute(
                 """SELECT cnae FROM appva_gia_entradas_saidas WHERE inscricao=%s GROUP BY cnae;""", [inscricao]
@@ -6774,9 +6775,9 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
-                if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
-                        str(valor_valido_saida[0].saida_computavel)) * 0.50:
-                    valor_valido_entrada = float(str(valor_valido_saida[0].saida_computavel)) * 0.50
+                if float(valor_valido_entrada[0].entrada_computavel) < float(
+                        valor_valido_saida[0].saida_computavel) * 0.50:
+                    valor_valido_entrada = float(valor_valido_saida[0].saida_computavel) * 0.50
                 else:
                     valor_valido_entrada = valor_valido_entrada
             elif cnae in (
@@ -6790,9 +6791,9 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
-                if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
-                        str(valor_valido_saida[0].saida_computavel)) * 0.35:
-                    valor_valido_entrada = float(str(valor_valido_saida[0].saida_computavel)) * 0.35
+                if float(valor_valido_entrada[0].entrada_computavel) < float(
+                        valor_valido_saida[0].saida_computavel) * 0.35:
+                    valor_valido_entrada = float(valor_valido_saida[0].saida_computavel) * 0.35
                 else:
                     valor_valido_entrada = valor_valido_entrada
             elif cnae in (
@@ -6806,9 +6807,9 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                     [remessa, inscricao, ano, codigo_valido_entrada]
                 )
                 valor_valido_entrada = namedtuplefetchall(cursor)
-                if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
-                        str(valor_valido_saida[0].saida_computavel)) * 0.20:
-                    valor_valido_entrada = float(str(valor_valido_saida[0].saida_computavel)) * 0.20
+                if float(valor_valido_entrada[0].entrada_computavel) < float(
+                        valor_valido_saida[0].saida_computavel) * 0.20:
+                    valor_valido_entrada = float(valor_valido_saida[0].saida_computavel) * 0.20
                 else:
                     valor_valido_entrada = valor_valido_entrada
             else:
@@ -6823,7 +6824,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
-            va_final = [{'valor_adicionado': float(str(valor_valido_saida[0].saida_computavel)) - float(
+            va_final = [{'valor_adicionado': float(valor_valido_saida[0].saida_computavel) - float(
                 valor_valido_entrada[0].entrada_computavel)}]
 
             cursor.execute(
