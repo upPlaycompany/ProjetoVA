@@ -7215,29 +7215,30 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
 
 @login_required
 def PRE_RELATORIO_CNAE(request):
+    municipio = request.GET.get('municipio')
     atividade_economica = request.GET.get('atividade_economica')
     subclasse = request.GET.get('subclasse')
     arbitramento = request.GET.get('arbitramento')
     if atividade_economica:
         if atividade_economica == 'AGROPECUARIO':
-            return redirect('RELATORIO_CNAE', atividade_economica=atividade_economica, subclasse='VAZIO',
+            return redirect('RELATORIO_CNAE', municipio=municipio, atividade_economica=atividade_economica, subclasse='VAZIO',
                             arbitramento='VAZIO')
         elif atividade_economica == 'COMERCIO_INDUSTRIA':
-            return redirect('RELATORIO_CNAE', atividade_economica=atividade_economica, subclasse='VAZIO',
+            return redirect('RELATORIO_CNAE', municipio=municipio, atividade_economica=atividade_economica, subclasse='VAZIO',
                             arbitramento='VAZIO')
         else:
-            return redirect('RELATORIO_CNAE', atividade_economica=atividade_economica, subclasse='VAZIO',
+            return redirect('RELATORIO_CNAE', municipio=municipio, atividade_economica=atividade_economica, subclasse='VAZIO',
                             arbitramento='VAZIO')
     else:
         pass
 
     if subclasse:
-        return redirect('RELATORIO_CNAE', atividade_economica='VAZiO', subclasse=subclasse, arbitramento='VAZIO')
+        return redirect('RELATORIO_CNAE', municipio=municipio, atividade_economica='VAZiO', subclasse=subclasse, arbitramento='VAZIO')
     else:
         pass
 
     if arbitramento:
-        return redirect('RELATORIO_CNAE', atividade_economica='VAZiO', subclasse='VAZIO',
+        return redirect('RELATORIO_CNAE', municipio=municipio, atividade_economica='VAZiO', subclasse='VAZIO',
                         arbitramento=arbitramento)
     else:
         pass
@@ -7246,7 +7247,7 @@ def PRE_RELATORIO_CNAE(request):
 
 
 @login_required
-def RELATORIO_CNAE(request, atividade_economica, subclasse, arbitramento):
+def RELATORIO_CNAE(request, municipio, atividade_economica, subclasse, arbitramento):
     with connections['default'].cursor() as cursor:
         if atividade_economica != 'VAZIO':
             if atividade_economica == 'AGROPECUARIO':
@@ -7322,6 +7323,6 @@ def RELATORIO_CNAE(request, atividade_economica, subclasse, arbitramento):
         else:
             pass
     return rendering.render_to_pdf_response(request=request,
-                                            context={'lista1': resultados},
+                                            context={'lista1': resultados, 'mun': municipio},
                                             template='RELATORIO_CNAE.html',
                                             encoding='utf-8')

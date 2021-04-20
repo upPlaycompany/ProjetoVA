@@ -125,10 +125,14 @@
 <body>
 <div class="div-mun">
     <div class="img">
-        <img src="" alt="Imagem do município">
+        {% for dados in mun %}
+        <img src="{% get_static_prefix %}LOGO_MT/{{ dados.municipio }}.png" alt="Imagem do município">
+        {% endfor %}
     </div>
     <div class="text">
-        <h2>Prefeitura Municipal de Campos de Julio</h2>
+        {% for dados in mun %}
+        <h2>PREFEITURA MUNICIPAL DE {{ dados.municipio }}</h2>
+        {% endfor %}
     </div>
 </div>
 
