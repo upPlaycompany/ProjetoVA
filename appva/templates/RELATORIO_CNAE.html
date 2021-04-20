@@ -118,49 +118,50 @@
         #tb-cnae tbody tr td:nth-child(7) {
             width: 15%;
         }
+
     </style>
 
 </head>
 <body>
-    <div class="div-mun">
-        <div class="img">
-            <img src="" alt="Imagem do município">
-        </div>
-        <div class="text">
-            <h2>Prefeitura Municipal de Campos de Julio</h2>
-        </div>
+<div class="div-mun">
+    <div class="img">
+        <img src="" alt="Imagem do município">
     </div>
-
-    <h1 class="title-rel">Relatório de CNAE - Classificação Nacional de <br> Atividades Econômicas</h1>
-
-    <div class="content">
-        <table class="rTable" id="tb-cnae">
-            <thead>
-                <tr style="background-color: #ddd;">
-                    <th>Seção</th>
-                    <th>Divisão</th>
-                    <th>Grupo</th>
-                    <th>Classe</th>
-                    <th>Subclasse</th>
-                    <th>Denominação</th>
-                    <th>L.C. 157 20-01-2004 ART. 18</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
-                    </tr>
-
-            </tbody>
-        </table>
+    <div class="text">
+        <h2>Prefeitura Municipal de Campos de Julio</h2>
     </div>
+</div>
+
+<h1 class="title-rel">Relatório de CNAE - Classificação Nacional de <br> Atividades Econômicas</h1>
+
+<div class="content">
+    <table class="rTable" id="tb-cnae">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>Seção</th>
+            <th>Divisão</th>
+            <th>Grupo</th>
+            <th>Classe</th>
+            <th>Subclasse</th>
+            <th>Denominação</th>
+            <th>L.C. 157 20-01-2004 ART. 18</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for x in resultados %}
+        <tr>
+            <td>{{ x.secao }}</td>
+            <td>{{ x.divisao }}</td>
+            <td>{{ x.grupo }}</td>
+            <td>{{ x.classe }}</td>
+            <td>{{ x.subclasse }}</td>
+            <td>{{ x.denominacao }}</td>
+            <td>{{ x.arbitramento }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
