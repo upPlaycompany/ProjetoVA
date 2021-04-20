@@ -7220,24 +7220,24 @@ def PRE_RELATORIO_CNAE(request):
     arbitramento = request.GET.get('arbitramento')
     if atividade_economica:
         if atividade_economica == 'AGROPECUARIO':
-            return redirect('RELATORIO_CNAE.html', atividade_economica=atividade_economica, subclasse='VAZIO',
+            return redirect('RELATORIO_CNAE', atividade_economica=atividade_economica, subclasse='VAZIO',
                             arbitramento='VAZIO')
         elif atividade_economica == 'COMERCIO_INDUSTRIA':
-            return redirect('RELATORIO_CNAE.html', atividade_economica=atividade_economica, subclasse='VAZIO',
+            return redirect('RELATORIO_CNAE', atividade_economica=atividade_economica, subclasse='VAZIO',
                             arbitramento='VAZIO')
         else:
-            return redirect('RELATORIO_CNAE.html', atividade_economica=atividade_economica, subclasse='VAZIO',
+            return redirect('RELATORIO_CNAE', atividade_economica=atividade_economica, subclasse='VAZIO',
                             arbitramento='VAZIO')
     else:
         pass
 
     if subclasse:
-        return redirect('RELATORIO_CNAE.html', atividade_economica='VAZiO', subclasse=subclasse, arbitramento='VAZIO')
+        return redirect('RELATORIO_CNAE', atividade_economica='VAZiO', subclasse=subclasse, arbitramento='VAZIO')
     else:
         pass
 
     if arbitramento:
-        return redirect('RELATORIO_CNAE.html', atividade_economica='VAZiO', subclasse='VAZIO',
+        return redirect('RELATORIO_CNAE', atividade_economica='VAZiO', subclasse='VAZIO',
                         arbitramento=arbitramento)
     else:
         pass
@@ -7307,14 +7307,14 @@ def RELATORIO_CNAE(request, atividade_economica, subclasse, arbitramento):
                 resultados = namedtuplefetchall(cursor)
         else:
             pass
-        if subclasse:
+        if subclasse != 'VAZIO':
             cursor.execute(
                 """SELECT * FROM appva_cnae WHERE subclasse=%s;""", [subclasse]
             )
             resultados = namedtuplefetchall(cursor)
         else:
             pass
-        if arbitramento:
+        if arbitramento != 'VAZIO':
             cursor.execute(
                 """SELECT * FROM appva_cnae WHERE arbitramento=%s;""", [subclasse]
             )
