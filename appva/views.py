@@ -7248,6 +7248,7 @@ def PRE_RELATORIO_CNAE(request):
 
 @login_required
 def RELATORIO_CNAE(request, municipio, atividade_economica, subclasse, arbitramento):
+    municipio = [{'municipio': municipio}]
     with connections['default'].cursor() as cursor:
         if atividade_economica != 'VAZIO':
             if atividade_economica == 'AGROPECUARIO':
