@@ -134,4 +134,10 @@ urlpatterns = [
     path('PRE_RELATORIO/<str:inscricao>/<str:municipio>/', views.PRE_RELATORIO, name='PRE_RELATORIO'),
     path('RELATORIO_VALOR_ADICIONADO_SINTETICO/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/', views.RELATORIO_VALOR_ADICIONADO_SINTETICO, name='RELATORIO_VALOR_ADICIONADO_SINTETICO'),
     path('RELATORIO_VALOR_ADICIONADO_ANALITICO/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/', views.RELATORIO_VALOR_ADICIONADO_ANALITICO, name='RELATORIO_VALOR_ADICIONADO_ANALITICO'),
+
+    path('PRE_RELATORIO_CNAE/', views.PRE_RELATORIO_CNAE, name='PRE_RELATORIO_CNAE'),
+    path(
+        'RELATORIO_CNAE/<str:atividade_economica>/<str:subclasse>/<str:arbitramento>/',
+        views.RELATORIO_CNAE, name='RELATORIO_CNAE'),
+
 ]

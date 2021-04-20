@@ -6833,7 +6833,8 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             cfop_index = namedtuplefetchall(cursor)
             cfop_l = tuple([x.cfop for x in cfop_index])
             cursor.execute(
-                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s ORDER BY codigo ASC;""", [cfop_l]
+                """SELECT codigo, descricao, valido, tipo FROM appva_cfop WHERE codigo IN %s ORDER BY codigo ASC;""",
+                [cfop_l]
             )
             dec_cfop = namedtuplefetchall(cursor)
             dic_cfop = [{'cod': x.codigo, 'descricao': x.descricao, 'valido': x.valido, 'tipo': x.tipo} for x in
@@ -7133,12 +7134,13 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
-            va_final = [{'valor_adicionado': float(str(valor_valido_saida[0].saida_computavel)) - float(valor_valido_entrada[0].entrada_computavel)}]
+            va_final = [{'valor_adicionado': float(valor_valido_saida[0].saida_computavel) - float(
+                valor_valido_entrada[0].entrada_computavel)}]
 
             ##ENTRADA VALIDA
             cursor.execute(
                 """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='sim' AND portaria=%s;"""
-            ,[portaria])
+                , [portaria])
             cfop_ent_val = namedtuplefetchall(cursor)
             cfop_ent_valido = tuple([x.codigo for x in cfop_ent_val])
 
@@ -7148,12 +7150,13 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             )
             va_ent_valido = namedtuplefetchall(cursor)
             resu_ent_valido = [
-                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in va_ent_valido]
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in
+                va_ent_valido]
 
             ##ENTRADA INVÁLIDA
             cursor.execute(
                 """SELECT codigo FROM appva_cfop WHERE tipo='entrada' AND valido='nao' AND portaria=%s;"""
-            ,[portaria])
+                , [portaria])
             cfop_ent_inval = namedtuplefetchall(cursor)
             cfop_ent_invalido = tuple([x.codigo for x in cfop_ent_inval])
 
@@ -7163,12 +7166,13 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             )
             va_ent_invalido = namedtuplefetchall(cursor)
             resu_ent_invalido = [
-                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in va_ent_invalido]
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in
+                va_ent_invalido]
 
             ##SAIDA VÁLIDA
             cursor.execute(
                 """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='sim' AND portaria=%s;"""
-            ,[portaria])
+                , [portaria])
             cfop_sai_val = namedtuplefetchall(cursor)
             cfop_sai_valido = tuple([x.codigo for x in cfop_sai_val])
 
@@ -7178,12 +7182,13 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             )
             va_sai_valido = namedtuplefetchall(cursor)
             resu_sai_valido = [
-                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in va_sai_valido]
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in
+                va_sai_valido]
 
             ##SAÍDA INVÁLIDA
             cursor.execute(
                 """SELECT codigo FROM appva_cfop WHERE tipo='saida' AND valido='nao' AND portaria=%s;"""
-            ,[portaria])
+                , [portaria])
             cfop_sai_inval = namedtuplefetchall(cursor)
             cfop_sai_invalido = tuple([x.codigo for x in cfop_sai_inval])
 
@@ -7193,7 +7198,8 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
             )
             va_sai_invalido = namedtuplefetchall(cursor)
             resu_sai_invalido = [
-                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in va_sai_invalido]
+                {'valor': x.vr_contabil, 'dt_inicial': x.dt_inicial, 'dt_final': x.dt_final, 'cfop': x.cfop} for x in
+                va_sai_invalido]
 
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
@@ -7204,4 +7210,118 @@ def RELATORIO_VALOR_ADICIONADO_ANALITICO(request, municipio, remessa, portaria, 
                                                      'lista11': resu_ent_invalido, 'lista12': resu_sai_valido,
                                                      'lista13': resu_sai_invalido, 'mun': nome_municipio},
                                             template='RELATORIO_VALOR_ADICIONADO_ANALITICO.html',
+                                            encoding='utf-8')
+
+
+@login_required
+def PRE_RELATORIO_CNAE(request):
+    atividade_economica = request.GET.get('atividade_economica')
+    subclasse = request.GET.get('subclasse')
+    arbitramento = request.GET.get('arbitramento')
+    if atividade_economica:
+        if atividade_economica == 'AGROPECUARIO':
+            return redirect('RELATORIO_CNAE.html', atividade_economica=atividade_economica, subclasse='VAZIO',
+                            arbitramento='VAZIO')
+        elif atividade_economica == 'COMERCIO_INDUSTRIA':
+            return redirect('RELATORIO_CNAE.html', atividade_economica=atividade_economica, subclasse='VAZIO',
+                            arbitramento='VAZIO')
+        else:
+            return redirect('RELATORIO_CNAE.html', atividade_economica=atividade_economica, subclasse='VAZIO',
+                            arbitramento='VAZIO')
+    else:
+        pass
+
+    if subclasse:
+        return redirect('RELATORIO_CNAE.html', atividade_economica='VAZiO', subclasse=subclasse, arbitramento='VAZIO')
+    else:
+        pass
+
+    if arbitramento:
+        return redirect('RELATORIO_CNAE.html', atividade_economica='VAZiO', subclasse='VAZIO',
+                        arbitramento=arbitramento)
+    else:
+        pass
+
+    return render(request, 'PRE_RELATORIO_CNAE.html')
+
+
+@login_required
+def RELATORIO_CNAE(request, atividade_economica, subclasse, arbitramento):
+    with connections['default'].cursor() as cursor:
+        if atividade_economica != 'VAZIO':
+            if atividade_economica == 'AGROPECUARIO':
+                codigos = (
+                    '151201', '151203', '220901', '151202', '115600', '210107', '119906', '322101', '134200', '121101',
+                    '111399', '111301', '116499', '220903', '139399', '159801', '155505', '133402', '133499', '133405',
+                    '131700', '119905', '154700', '116401', '111302', '119908')
+                cursor.execute(
+                    """SELECT * FROM appva_cnae WHERE subclasse IN %s;""", [codigos]
+                )
+                resultados = namedtuplefetchall(cursor)
+            elif atividade_economica == 'COMERCIO_INDUSTRIA':
+                codigos = (
+                    '4711302', '1011201', '1011205', '3511501', '1013902', '4744099', '4619200', '151201', '4635402',
+                    '4731800',
+                    '4753900', '2330301', '4683400', '1610203', '4541203', '5620101', '162899', '4771701', '4635499',
+                    '4671100',
+                    '4661300', '4511101', '4744001', '4772500', '4530703', '4639701', '4771704', '4781400', '4634601',
+                    '4520001', '4623109', '1052000', '4759899', '4751201', '4744002', '4530705', '4742300', '4644301',
+                    '4681805', '4784900', '4741500', '1099699', '4530701', '4723700', '1629301', '4754701', '4755503',
+                    '4712100', '2930101', '4782201', '2532201', '4632001', '1621800', '4721104', '4755501', '4774100',
+                    '724301',
+                    '4761003', '4729699', '2342702', '1812100', '4763602', '2539001', '4541202', '4789005', '4511102',
+                    '5611201', '220901', '4729602', '1622602', '810099', '1081302', '2950600', '1610204', '5611203',
+                    '1032501', '4616800', '3321000', '4637106', '1066000', '5620104', '4646001', '220902', '4789099',
+                    '1741902',
+                    '1053800', '4686902', '810006', '4691500', '4755502', '8650006', '2330302', '4752100', '7732201',
+                    '4669999',
+                    '4763603', '2330305', '4679604', '5510801', '4541206', '3299003', '1352900', '4722902', '4743100',
+                    '6810201', '4771702', '7722500', '3101200', '4721102', '4689301', '7500100', '2512800', '1412601',
+                    '2061400', '4543900', '2542000', '7319003', '4617600', '4757100', '4789002',
+                    '3313901', '4621400', '4732600', '2391503', '4681802', '1091101', '2511000', '4724500', '9529106',
+                    '4754702', '1099604', '1031700', '4641903', '1412602', '4665600', '4530704', '4520003', '2869100',
+                    '4637199', '4789004', '4642702', '4611700', '9602501', '4789001', '4713002', '4330404', '4729601',
+                    '5612100', '1813099', '5611204', '4651602', '4763601', '4930202', '2543800', '4783101', '4930204',
+                    '322104',
+                    '4618499', '7319002', '1064300', '4759801', '3831901', '4399103', '1931400', '4789007', '4541204',
+                    '4930201', '3299099', '2330399', '1529700', '9609208', '8592999', '4330499', '4520002', '1063500',
+                    '1091102', '9529104', '4761001', '4321500', '9512600', '3314702', '4692300', '4761002', '4520007',
+                    '9602502', '3211602', '1069400', '5620103''1622699', '9521500', '9511800', '4744004', '4652400',
+                    '8230001',
+                    '4399199', '4785799', '4789003', '7911200', '4721103', '1411801', '5620102', '9529101', '3832700',
+                    '4789008', '1071600', '1359600', '3314719', '3314712', '1095300', '4520006', '4782202', '9001906',
+                    '4322302', '3831999', '1094500', '8130300', '7721700', '6190699', '1539400', '2592601', '8219901',
+                    '8610101', '8599604', '8599603',
+                    '1821100')
+                cursor.execute(
+                    """SELECT * FROM appva_cnae WHERE subclasse IN %s;""", [codigos]
+                )
+                resultados = namedtuplefetchall(cursor)
+            else:
+                codigos = (
+                    '3514000', '6190699', '6110801', '4922101', '4930202', '6120501', '4930201', '4921301', '4922102',
+                    '4929902', '8012900', '4921302', '4930203', '6110803', '6143400', '6022501', '5320201', '6190601')
+                cursor.execute(
+                    """SELECT * FROM appva_cnae WHERE subclasse IN %s;""", [codigos]
+                )
+                resultados = namedtuplefetchall(cursor)
+        else:
+            pass
+        if subclasse:
+            cursor.execute(
+                """SELECT * FROM appva_cnae WHERE subclasse=%s;""", [subclasse]
+            )
+            resultados = namedtuplefetchall(cursor)
+        else:
+            pass
+        if arbitramento:
+            cursor.execute(
+                """SELECT * FROM appva_cnae WHERE arbitramento=%s;""", [subclasse]
+            )
+            resultados = namedtuplefetchall(cursor)
+        else:
+            pass
+    return rendering.render_to_pdf_response(request=request,
+                                            context={'lista1': resultados},
+                                            template='RELATORIO_CNAE.html',
                                             encoding='utf-8')

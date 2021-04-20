@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pré relatório
+{% endblock title %}
+
+{% block content %}
+<form method="get"> {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label>Selecione a atividade econômica(Opcional)</label>
+            <select class="form-control" name="atividade_economica">
+                <option selected></option>
+                <option value="AGROPECUARIO">Agropecuário</option>
+                <option value="PRESTACAO_SERVICOS">Prestação de serviços</option>
+                <option value="COMERCIO_INDUSTRIA">Comércio e indústria</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label>Informe o código da subclasse</label>
+            <input type="text" class="form-control" name="subclasse">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Informe o arbitramento(Opcional)</label>
+            <input type="text" class="form-control" name="subclasse" placeholder="Exemplo: 0.5">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Gerar relatório</button>
+</form>
+{% endblock %}

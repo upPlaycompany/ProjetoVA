@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de CNAE</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+        }
+
+        .div-mun {
+            margin-top: 45px;
+            text-align: center;
+
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .div-mun .img,
+        .div-mun .text {
+            display: inline-block;
+        }
+
+        .div-mun .img {
+            margin-right: 26px;
+        }
+
+        .div-mun .img img {
+            width: 60px;
+        }
+
+        .div-mun .text h2 {
+            font-size: 18px;
+        }
+
+        .title-rel {
+            margin-top: 48px;
+            margin-bottom: 22px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .subtitle-rel {
+            margin-top: 70px;
+            margin-bottom: 22px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-top: 45px;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            width: 700px;
+            display: block;
+            margin: auto;
+        }
+
+        table, th {
+            border: 2px solid #ddd;
+            border-collapse: collapse;
+        }
+
+        table tbody td {
+            border-right: 2px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .rTable {
+            width: 100%;
+            text-align: center;
+        }
+
+        .rTable thead {
+            font-weight: bold;
+            color: black;
+        }
+
+        .rTable th, .rTable td {
+            padding: 7px 0;
+        }
+
+        @media print {
+            body {-webkit-print-color-adjust: exact;}
+        }
+
+        /* Tabelas de CNAE */
+        #tb-cnae tbody tr td:nth-child(1) {
+            width: 10%;
+        }
+        #tb-cnae tbody tr td:nth-child(2) {
+            width: 10%;
+        }
+        #tb-cnae tbody tr td:nth-child(3) {
+            width: 10%;
+        }
+        #tb-cnae tbody tr td:nth-child(4) {
+            width: 10%;
+        }
+        #tb-cnae tbody tr td:nth-child(5) {
+            width: 10%;
+        }
+        #tb-cnae tbody tr td:nth-child(6) {
+            width: 35%;
+        }
+        #tb-cnae tbody tr td:nth-child(7) {
+            width: 15%;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="div-mun">
+        <div class="img">
+            <img src="" alt="Imagem do município">
+        </div>
+        <div class="text">
+            <h2>Prefeitura Municipal de Campos de Julio</h2>
+        </div>
+    </div>
+
+    <h1 class="title-rel">Relatório de CNAE - Classificação Nacional de <br> Atividades Econômicas</h1>
+
+    <div class="content">
+        <table class="rTable" id="tb-cnae">
+            <thead>
+                <tr style="background-color: #ddd;">
+                    <th>Seção</th>
+                    <th>Divisão</th>
+                    <th>Grupo</th>
+                    <th>Classe</th>
+                    <th>Subclasse</th>
+                    <th>Denominação</th>
+                    <th>L.C. 157 20-01-2004 ART. 18</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
