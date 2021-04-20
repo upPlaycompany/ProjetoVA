@@ -137,7 +137,7 @@ urlpatterns = [
 
     path('PRE_RELATORIO_CNAE/', views.PRE_RELATORIO_CNAE, name='PRE_RELATORIO_CNAE'),
     path(
-        'RELATORIO_CNAE/<str:atividade_economica>/<str:subclasse>/<str:arbitramento>/',
+        'RELATORIO_CNAE/<str:municipio>/<str:atividade_economica>/<str:subclasse>/<str:arbitramento>/',
         views.RELATORIO_CNAE, name='RELATORIO_CNAE'),
 
 ]
