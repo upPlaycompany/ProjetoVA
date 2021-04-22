@@ -7414,7 +7414,7 @@ def RELATORIO_CONTRIBUINTE(request, tipo_cadastro, inscricao, razao_social, cpf_
                     '3514000', '6190699', '6110801', '4922101', '4930202', '6120501', '4930201', '4921301', '4922102',
                     '4929902', '8012900', '4921302', '4930203', '6110803', '6143400', '6022501', '5320201', '6190601')
                 cursor.execute(
-                    """SELECT * FROM appva_cci WHERE codg_cnae IN %s;""", [codigos]
+                    """SELECT * FROM appva_cci WHERE codg_cnae IN %s GROUP BY numr_inscricao_estadual;""", [codigos]
                 )
 
                 resultados = namedtuplefetchall(cursor)
