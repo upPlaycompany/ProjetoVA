@@ -101,43 +101,48 @@
         .td-4 {
             width: 20%;
         }
+
     </style>
 
 </head>
 <body>
-    <div class="div-mun">
-        <div class="img">
-            <img src="" alt="Imagem do município">
-        </div>
-        <div class="text">
-            <h2>Prefeitura Municipal de Campos de Julio</h2>
-        </div>
+<div class="div-mun">
+    <div class="img">
+        {% for dados in mun %}
+        <img src="{% get_static_prefix %}LOGO_MT/{{ dados.municipio }}.png" alt="Imagem do município">
+        {% endfor %}
     </div>
-
-    <h1 class="title-rel">Relatório Contribuintes do ICMS - Agropecuário</h1>
-
-    <div class="content">
-        <table class="rTable" id="tb-icms">
-            <thead>
-                <tr style="background-color: #ddd;">
-                    <th>IE</th>
-                    <th>Razão Social</th>
-                    <th>Tipo</th>
-                    <th>Situação</th>
-                </tr>
-            </thead>
-
-            <tbody>
-            {% for x in lista1 %}
-                <tr>
-                    <td class="td-1">{{ x.numr_inscricao_estadual }}</td>
-                    <td class="td-2">{{ x.nome_pessoa }}</td>
-                    <td class="td-3">{{ x.tipo_inscrito }}</td>
-                    <td class="td-4">{{ x.status }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <div class="text">
+        {% for dados in mun %}
+        <h2>PREFEITURA MUNICIPAL DE {{ dados.municipio }}</h2>
+        {% endfor %}
     </div>
+</div>
+
+<h1 class="title-rel">Relatório Contribuintes do ICMS - Agropecuário</h1>
+
+<div class="content">
+    <table class="rTable" id="tb-icms">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>IE</th>
+            <th>Razão Social</th>
+            <th>Tipo</th>
+            <th>Situação</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for x in lista1 %}
+        <tr>
+            <td class="td-1">{{ x.numr_inscricao_estadual }}</td>
+            <td class="td-2">{{ x.nome_pessoa }}</td>
+            <td class="td-3">{{ x.tipo_inscrito }}</td>
+            <td class="td-4">{{ x.status }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
