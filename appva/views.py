@@ -7598,7 +7598,7 @@ def RELATORIO_PTS(request, municipio, tabela):
             resultados = namedtuplefetchall(cursor)
         else:
             cursor.execute(
-                """SELECT * FROM appva_reg_1400_efd WHERE municipio=%s GROUP BY inscricao;""", [municipio]
+                """SELECT * FROM appva_reg_1400_efd WHERE municipio=%s GROUP BY id, inscricao;""", [municipio]
             )
             resultados = namedtuplefetchall(cursor)
     return rendering.render_to_pdf_response(request=request,
