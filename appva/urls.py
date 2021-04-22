@@ -122,7 +122,8 @@ urlpatterns = [
     path('import_pts/<int:pk>/', views.import_pts, name='import_pts'),
 
     path('pre_simulacao/', views.pre_simulacao, name='pre_simulacao'),
-    path('insercao_dados_simulacao/<str:remessa>/<str:municipio>/<str:ano_atu>/<str:ano_ant>', views.insercao_dados_simulacao,
+    path('insercao_dados_simulacao/<str:remessa>/<str:municipio>/<str:ano_atu>/<str:ano_ant>',
+         views.insercao_dados_simulacao,
          name='insercao_dados_simulacao'),
     path(
         'resultado_simulacao/<str:municipio>/<str:ano>/<str:contribuinte_atual>/<str:contribuinte_anterior>/<str:municipio_atual>/<str:municipio_anterior>/<str:estado_atual>/<str:estado_anterior>/<str:comercio>/<str:prod_rural>/<str:pts>/<str:dar1aut>/<str:nai>/<str:creditoexoff>/<str:debitoexoff>/<str:total>/<str:variacao_distribuicao_estado>/',
@@ -130,14 +131,24 @@ urlpatterns = [
 
     path('RELATORIO_SIMULACAO/<str:n>/', views.RELATORIO_SIMULACAO, name='RELATORIO_SIMULACAO'),
 
-    path('consulta_VALOR_ADICIONADO_INDIVIDUAL/', views.consulta_VALOR_ADICIONADO_INDIVIDUAL, name='consulta_VALOR_ADICIONADO_INDIVIDUAL'),
+    path('consulta_VALOR_ADICIONADO_INDIVIDUAL/', views.consulta_VALOR_ADICIONADO_INDIVIDUAL,
+         name='consulta_VALOR_ADICIONADO_INDIVIDUAL'),
     path('PRE_RELATORIO/<str:inscricao>/<str:municipio>/', views.PRE_RELATORIO, name='PRE_RELATORIO'),
-    path('RELATORIO_VALOR_ADICIONADO_SINTETICO/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/', views.RELATORIO_VALOR_ADICIONADO_SINTETICO, name='RELATORIO_VALOR_ADICIONADO_SINTETICO'),
-    path('RELATORIO_VALOR_ADICIONADO_ANALITICO/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/', views.RELATORIO_VALOR_ADICIONADO_ANALITICO, name='RELATORIO_VALOR_ADICIONADO_ANALITICO'),
+    path(
+        'RELATORIO_VALOR_ADICIONADO_SINTETICO/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/',
+        views.RELATORIO_VALOR_ADICIONADO_SINTETICO, name='RELATORIO_VALOR_ADICIONADO_SINTETICO'),
+    path(
+        'RELATORIO_VALOR_ADICIONADO_ANALITICO/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/',
+        views.RELATORIO_VALOR_ADICIONADO_ANALITICO, name='RELATORIO_VALOR_ADICIONADO_ANALITICO'),
 
     path('PRE_RELATORIO_CNAE/', views.PRE_RELATORIO_CNAE, name='PRE_RELATORIO_CNAE'),
     path(
         'RELATORIO_CNAE/<str:municipio>/<str:atividade_economica>/<str:subclasse>/<str:arbitramento>/',
         views.RELATORIO_CNAE, name='RELATORIO_CNAE'),
+
+    path('PRE_RELATORIO_CONTRIBUINTE/', views.PRE_RELATORIO_CONTRIBUINTE, name='PRE_RELATORIO_CONTRIBUINTE'),
+    path(
+        'RELATORIO_CONTRIBUINTE/<str:tipo_cadastro>/<str:inscricao>/<str:razao_social>/<str:cpf_cnpj>/<str:atividade_economica>/<str:tipo_contabilista>/<str:contabilista>/<str:situacao>/',
+        views.RELATORIO_CONTRIBUINTE, name='RELATORIO_CONTRIBUINTE'),
 
 ]
