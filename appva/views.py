@@ -7561,6 +7561,8 @@ def RELATORIO_CONTRIBUINTE(request, tipo_cadastro, inscricao, razao_social, cpf_
                     """SELECT * FROM appva_cap;"""
                 )
                 resultados = namedtuplefetchall(cursor)
+
+            float('p')
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': resultados},
                                             template='RELATORIO_CONTRIBUINTE.html',
