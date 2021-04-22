@@ -7356,17 +7356,17 @@ def PRE_RELATORIO_CONTRIBUINTE(request):
                             razao_social=razao_social,
                             cpf_cnpj='VAZIO', atividade_economica='VAZIO', tipo_contabilista='VAZIO',
                             contabilista='VAZIO', situacao='VAZIO')
-        elif cpf_cnpj:
+        elif cpf_cnpj and tipo_cadastro:
             return redirect('RELATORIO_CONTRIBUINTE', tipo_cadastro=tipo_cadastro, inscricao='VAZIO',
                             razao_social='VAZIO',
                             cpf_cnpj=cpf_cnpj, atividade_economica='VAZIO', tipo_contabilista='VAZIO',
                             contabilista='VAZIO', situacao='VAZIO')
-        elif atividade_economica:
+        elif atividade_economica and tipo_cadastro:
             return redirect('RELATORIO_CONTRIBUINTE', tipo_cadastro=tipo_cadastro, inscricao='VAZIO',
                             razao_social='VAZIO',
                             cpf_cnpj='VAZIO', atividade_economica=atividade_economica, tipo_contabilista='VAZIO',
                             contabilista='VAZIO', situacao='VAZIO')
-        elif contabilista:
+        elif contabilista and tipo_cadastro:
             return redirect('RELATORIO_CONTRIBUINTE', tipo_cadastro=tipo_cadastro, inscricao='VAZIO',
                             razao_social='VAZIO',
                             cpf_cnpj='VAZIO', atividade_economica='VAZIO', tipo_contabilista=tipo_contabilista,
