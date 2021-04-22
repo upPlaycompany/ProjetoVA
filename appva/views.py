@@ -7593,12 +7593,12 @@ def RELATORIO_PTS(request, municipio, tabela):
     with connections['default'].cursor() as cursor:
         if tabela == 'COP3':
             cursor.execute(
-                """SELECT * FROM appva_gia_cop3 WHERE municipio=%s;""", [municipio]
+                """SELECT * FROM appva_gia_cop3 WHERE municipio=%s GROUP BY inscricao;""", [municipio]
             )
             resultados = namedtuplefetchall(cursor)
         else:
             cursor.execute(
-                """SELECT * FROM appva_reg_1400_efd WHERE municipio=%s;""", [municipio]
+                """SELECT * FROM appva_reg_1400_efd WHERE municipio=%s GROUP BY inscricao;""", [municipio]
             )
             resultados = namedtuplefetchall(cursor)
     return rendering.render_to_pdf_response(request=request,
