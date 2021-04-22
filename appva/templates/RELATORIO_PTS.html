@@ -136,20 +136,21 @@
 <body>
     <div class="div-mun">
     <div class="img">
-        {% for dados in mun %}
+        {% for dados in dados %}
         <img src="{% get_static_prefix %}LOGO_MT/{{ dados.municipio }}.png" alt="Imagem do município">
         {% endfor %}
     </div>
     <div class="text">
-        {% for dados in mun %}
+        {% for dados in dadosg %}
         <h2>PREFEITURA MUNICIPAL DE {{ dados.municipio }}</h2>
         {% endfor %}
     </div>
 </div>
 
     <h1 class="title-rel">Relatório Contribuintes do ICMS - Prestações de Serviços</h1>
-    <h2 class="subtitle-rel">Contribuintes Campos de Julio</h2>
-
+    {% for dados in dados %}
+    <h2 class="subtitle-rel">CONTRIBUINTES {{ dados.municipio }}</h2>
+  {% endfor %}
     <div class="content">
         <table class="rTable" id="tb-icms">
             <thead>
