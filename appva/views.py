@@ -7601,7 +7601,6 @@ def RELATORIO_PTS(request, municipio, tabela):
                 """SELECT * FROM appva_reg_1400_efd WHERE municipio=%s;""", [municipio]
             )
             resultados = namedtuplefetchall(cursor)
-
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': resultados, 'dados': mun},
                                             template='RELATORIO_PTS.html',
