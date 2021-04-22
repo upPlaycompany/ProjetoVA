@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Pré relatório
+{% endblock title %}
+
+{% block content %}
+<form method="post"> {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <label>Selecionar o tipo de cadastro</label>
+            <select class="form-control" name="tipo_relatorio" required>
+                <option selected></option>
+                <option value="CCI">CCI</option>
+                <option value="CAP">CAP</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label>Filtrar por inscrição</label>
+                <input type="text" class="form-control" name="inscricao">
+        </div>
+        <div class="form-group col-md-4">
+            <label>Filtrar por razão social</label>
+            <input type="text" class="form-control" name="razao_social">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label>Filtrar por CPF ou CNPJ</label>
+            <input type="text" class="form-control" name="cpf_cnpj">
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar atividade econômica</label>
+            <select class="form-control" name="atividade_economica">
+                <option selected></option>
+                <option value="AGROPECUARIO">AGROPECUÁRIO</option>
+                <option value="PRESTACAO_SERVICOS">PRESTAÇÃO DE SERVIÇOS</option>
+                <option value="COMERCIO_INDUSTRIA">COMÉRCIO E INDÚSTRIA</option>
+
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Selecionar dado que deseja usar do contabilista</label>
+            <select class="form-control" name="tipo_contabilista">
+                <option selected></option>
+                <option value="CRC">CRC</option>
+                <option value="NOME">Nome do contabilista</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Filtrar por dado selecionado do contabilista</label>
+           <input type="text" class="form-control" name="contabilista">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Filtrar por situação</label>
+            <select class="form-control" name="situacao">
+                <option selected></option>
+                <option value="ATIVO">ATIVO</option>
+                <option value="CASSADO">CASSADO</option>
+                <option value="SUSPENSO">SUSPENSO</option>
+                <option value="BAIXADO">BAIXADO</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Gerar relatório</button>
+</form>
+{% endblock %}
