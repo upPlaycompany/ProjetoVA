@@ -7383,6 +7383,7 @@ def PRE_RELATORIO_CONTRIBUINTE(request):
 
 def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_social, cpf_cnpj, atividade_economica,
                            tipo_contabilista, contabilista, situacao):
+    municipio = [{'municipio': municipio}]
     with connections['default'].cursor() as cursor:
         if tipo_cadastro == 'CCI':
             if inscricao != 'VAZIO':
@@ -7568,6 +7569,6 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 )
                 resultados = namedtuplefetchall(cursor)
     return rendering.render_to_pdf_response(request=request,
-                                            context={'lista1': resultados},
+                                            context={'lista1': resultados, 'dados': municipio},
                                             template='RELATORIO_CONTRIBUINTE.html',
                                             encoding='utf-8')
