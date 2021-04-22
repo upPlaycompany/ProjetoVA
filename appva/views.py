@@ -7365,16 +7365,18 @@ def PRE_RELATORIO_CONTRIBUINTE(request):
                         razao_social='VAZIO',
                         cpf_cnpj='VAZIO', atividade_economica=atividade_economica, tipo_contabilista='VAZIO',
                         contabilista='VAZIO', situacao='VAZIO')
-    elif tipo_cadastro and contabilista and tipo_cadastro:
+    elif tipo_cadastro and contabilista:
         return redirect('RELATORIO_CONTRIBUINTE', tipo_cadastro=tipo_cadastro, inscricao='VAZIO',
                         razao_social='VAZIO',
                         cpf_cnpj='VAZIO', atividade_economica='VAZIO', tipo_contabilista=tipo_contabilista,
                         contabilista=contabilista, situacao='VAZIO')
-    else:
+    elif tipo_cadastro and situacao:
         return redirect('RELATORIO_CONTRIBUINTE', tipo_cadastro=tipo_cadastro, inscricao='VAZIO',
                         razao_social='VAZIO',
                         cpf_cnpj='VAZIO', atividade_economica='VAZIO', tipo_contabilista='VAZIO',
                         contabilista='VAZIO', situacao=situacao)
+    else:
+        pass
     return render(request, 'PRE_RELATORIO_CONTRIBUINTE.html')
 
 
