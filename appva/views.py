@@ -7399,7 +7399,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif cpf_cnpj != 'VAZIO':
                 cursor.execute(
-                    """SELECT * FROM appva_cci WHERE numr_documento=%s AND nome_municipio=%s;""", [razao_social, municipio]
+                    """SELECT * FROM appva_cci WHERE numr_documento=%s AND nome_municipio=%s;""",
+                    [razao_social, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             elif atividade_economica == 'AGROPECUARIO':
@@ -7463,7 +7464,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif contabilista and tipo_contabilista == 'NOME':
                 cursor.execute(
-                    """SELECT * FROM appva_cci WHERE nome_contabilista=%s AND nome_municipio=%s;""", [contabilista, municipio]
+                    """SELECT * FROM appva_cci WHERE nome_contabilista=%s AND nome_municipio=%s;""",
+                    [contabilista, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             elif situacao:
@@ -7491,7 +7493,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif cpf_cnpj != 'VAZIO':
                 cursor.execute(
-                    """SELECT * FROM appva_cap WHERE numr_documento=%s AND nome_municipio=%s;""", [razao_social, municipio]
+                    """SELECT * FROM appva_cap WHERE numr_documento=%s AND nome_municipio=%s;""",
+                    [razao_social, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             elif atividade_economica == 'AGROPECUARIO':
@@ -7555,7 +7558,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif contabilista and tipo_contabilista == 'NOME':
                 cursor.execute(
-                    """SELECT * FROM appva_cap WHERE nome_contabilista=%s AND nome_municipio=%s;""", [contabilista, municipio]
+                    """SELECT * FROM appva_cap WHERE nome_contabilista=%s AND nome_municipio=%s;""",
+                    [contabilista, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             elif situacao:
@@ -7571,4 +7575,34 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': resultados, 'dados': mun},
                                             template='RELATORIO_CONTRIBUINTE.html',
+                                            encoding='utf-8')
+
+
+def PRE_RELATORIO_PTS(request):
+    municipio = request.GET.get('municipio')
+    tabela = request.GET.get('tabela')
+    if municipio and tabela:
+        return redirect('RELATORIO_PTS', municipio=municipio, tabela=tabela)
+    else:
+        pass
+    return render(request, 'PRE_RELATORIO_PTS.html')
+
+
+def RELATORIO_PTS(request, municipio, tabela):
+    mun = [{'municipio': municipio}]
+    with connections['default'].cursor() as cursor:
+        if tabela == 'COP3':
+            cursor.execute(
+                """SELECT * FROM appva_gia_cop3 WHERE municipio=%s;""", [municipio]
+            )
+            resultados = namedtuplefetchall(cursor)
+        else:
+            cursor.execute(
+                """SELECT * FROM appva_reg_1400_efd WHERE municipio=%s;""", [municipio]
+            )
+            resultados = namedtuplefetchall(cursor)
+
+    return rendering.render_to_pdf_response(request=request,
+                                            context={'lista1': resultados, 'dados': mun},
+                                            template='RELATORIO_PTS.html',
                                             encoding='utf-8')

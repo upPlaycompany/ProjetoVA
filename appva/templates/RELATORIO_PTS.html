@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribuintes do ICMS - PTS</title>
+
+    <style>
+        * {
+             margin: 0;
+             padding: 0;
+             box-sizing: border-box;
+             font-family: Arial, Helvetica, sans-serif;
+             font-size: 11px;
+         }
+
+         .div-mun {
+             margin-top: 45px;
+             text-align: center;
+
+             display: flex;
+             align-items: center;
+             justify-content: center
+         }
+
+         .div-mun .img,
+         .div-mun .text {
+             display: inline-block;
+         }
+
+         .div-mun .img {
+             margin-right: 26px;
+         }
+
+         .div-mun .img img {
+             width: 60px;
+         }
+
+         .div-mun .text h2 {
+             font-size: 20px;
+         }
+
+         .title-rel {
+             margin-top: 48px;
+             margin-bottom: 22px;
+             font-size: 24px;
+             text-align: center;
+         }
+
+         .subtitle-rel {
+             margin-top: 70px;
+             margin-bottom: 22px;
+             font-size: 20px;
+             text-align: center;
+         }
+
+         h3 {
+             font-size: 18px;
+             margin-top: 45px;
+             margin-bottom: 20px;
+         }
+
+         .content {
+             width: 700px;
+             display: block;
+             margin: auto;
+         }
+
+         table, th {
+             border: 2px solid #ddd;
+             border-collapse: collapse;
+         }
+
+         table tbody td {
+             border-right: 2px solid #ddd;
+             border-bottom: 1px solid #ddd;
+         }
+
+         .rTable {
+             width: 100%;
+             text-align: center;
+             margin-bottom: 40px;
+         }
+
+         .rTable thead {
+             font-weight: bold;
+             color: black;
+         }
+
+         .rTable th, .rTable td {
+             padding: 4px 0;
+         }
+
+         .total td {
+             font-weight: bold;
+             text-align: right;
+             padding-right: 15px;
+         }
+
+         .footer {
+
+             display: float;
+         }
+
+         .footer .text {
+            float: left;
+            border-top: 1px solid black;
+            padding-right: 50px;
+         }
+         .footer .date {
+            float: right;
+         }
+
+         @media print {
+             body {-webkit-print-color-adjust: exact;}
+         }
+
+        /* Tabelas de ICMS */
+        .td-1 {
+            width: 20%;
+        }
+        .td-2 {
+            width: 40%;
+        }
+        .td-3 {
+            width: 20%;
+        }
+        .td-4 {
+            width: 20%;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="div-mun">
+        <div class="img">
+            <img src="" alt="Imagem do município">
+        </div>
+        <div class="text">
+            <h2>Prefeitura Municipal de Campos de Julio</h2>
+        </div>
+    </div>
+
+    <h1 class="title-rel">Relatório Contribuintes do ICMS - Prestações de Serviços</h1>
+    <h2 class="subtitle-rel">Contribuintes Campos de Julio</h2>
+
+    <div class="content">
+        <table class="rTable" id="tb-icms">
+            <thead>
+                <tr style="background-color: #ddd;">
+                    <th>IE</th>
+                    <th>Razão Social</th>
+                    <th>Tipo</th>
+                    <th>Situação</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for x in lista1 %}
+                    <tr>
+                        <td class="td-1">{{ x.inscricao }}</td>
+                        <td class="td-2">{{ x.contribuinte }}</td>
+                        <td class="td-3"></td>
+                        <td class="td-4"></td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <footer>
+            <div class="footer">
+                <div class="text">
+                    <p>IPM-e</p>
+                </div>
+
+                <div class="date">
+                    <p>Segunda-feira, 29 de março de 2021</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
