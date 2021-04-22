@@ -148,7 +148,7 @@ urlpatterns = [
 
     path('PRE_RELATORIO_CONTRIBUINTE/', views.PRE_RELATORIO_CONTRIBUINTE, name='PRE_RELATORIO_CONTRIBUINTE'),
     path(
-        'RELATORIO_CONTRIBUINTE/<str:tipo_cadastro>/<str:inscricao>/<str:razao_social>/<str:cpf_cnpj>/<str:atividade_economica>/<str:tipo_contabilista>/<str:contabilista>/<str:situacao>/',
+        'RELATORIO_CONTRIBUINTE/<str:municipio>/<str:tipo_cadastro>/<str:inscricao>/<str:razao_social>/<str:cpf_cnpj>/<str:atividade_economica>/<str:tipo_contabilista>/<str:contabilista>/<str:situacao>/',
         views.RELATORIO_CONTRIBUINTE, name='RELATORIO_CONTRIBUINTE'),
 
 ]
