@@ -44,6 +44,38 @@
         <br>
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'index' %}">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'index_variacao' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Tela de variações</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'consulta_VALOR_ADICIONADO_INDIVIDUAL' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Valor adicionado detalhado</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'PRE_RELATORIO_CONTRIBUINTE' %}">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Relatórios de contribuintes</span>
+            </a>
+        </li>
+        <hr class="sidebar-divider my-0">
         {% if request.user.is_staff == True %}
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -83,37 +115,7 @@
 
         <hr class="sidebar-divider my-0">
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'index' %}">
-                <i class="fas fa-fw fa-home"></i>
-                <span>Home</span>
-            </a>
-        </li>
 
-        <hr class="sidebar-divider my-0">
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'index_variacao' %}">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Tela de variações</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider my-0">
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'consulta_VALOR_ADICIONADO_INDIVIDUAL' %}">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Valor adicionado detalhado</span>
-            </a>
-        </li>
-        <hr class="sidebar-divider my-0">
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="{% url 'PRE_RELATORIO_CONTRIBUINTE' %}">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Relatórios de contribuintes</span>
-            </a>
-        </li>
         <hr class="sidebar-divider">
         <!-- Heading -->
         <div class="sidebar-heading">
