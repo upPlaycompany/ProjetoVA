@@ -7507,6 +7507,7 @@ def RELATORIO_CONTRIBUINTE(request, tipo_cadastro, inscricao, razao_social, cpf_
                 )
 
                 resultados = namedtuplefetchall(cursor)
+                float('p')
             elif atividade_economica == 'COMERCIO_INDUSTRIA':
                 codigos = (
                     '4711302', '1011201', '1011205', '3511501', '1013902', '4744099', '4619200', '151201', '4635402',
@@ -7562,7 +7563,7 @@ def RELATORIO_CONTRIBUINTE(request, tipo_cadastro, inscricao, razao_social, cpf_
                 )
                 resultados = namedtuplefetchall(cursor)
 
-            float('p')
+
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': resultados},
                                             template='RELATORIO_CONTRIBUINTE.html',
