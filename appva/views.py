@@ -7394,7 +7394,7 @@ def RELATORIO_CONTRIBUINTE(request, tipo_cadastro, inscricao, razao_social, cpf_
                     """SELECT * FROM appva_cci WHERE nome_pessoa=%s;""", [razao_social]
                 )
                 resultados = namedtuplefetchall(cursor)
-            elif cpf_cnpj:
+            elif cpf_cnpj != 'VAZIO':
                 cursor.execute(
                     """SELECT * FROM appva_cci WHERE numr_documento=%s;""", [razao_social]
                 )
@@ -7473,7 +7473,7 @@ def RELATORIO_CONTRIBUINTE(request, tipo_cadastro, inscricao, razao_social, cpf_
                     """SELECT * FROM appva_cci;"""
                 )
                 resultados = namedtuplefetchall(cursor)
-                float('p')
+
         else:
             if inscricao != 'VAZIO':
                 cursor.execute(
@@ -7563,8 +7563,6 @@ def RELATORIO_CONTRIBUINTE(request, tipo_cadastro, inscricao, razao_social, cpf_
                     """SELECT * FROM appva_cap;"""
                 )
                 resultados = namedtuplefetchall(cursor)
-
-
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': resultados},
                                             template='RELATORIO_CONTRIBUINTE.html',
