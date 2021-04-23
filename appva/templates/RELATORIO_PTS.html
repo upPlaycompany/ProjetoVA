@@ -130,11 +130,12 @@
         .td-4 {
             width: 20%;
         }
+
     </style>
 
 </head>
 <body>
-    <div class="div-mun">
+<div class="div-mun">
     <div class="img">
         {% for dados in dados %}
         <img src="{% get_static_prefix %}LOGO_MT/{{ dados.municipio }}.png" alt="Imagem do município">
@@ -147,44 +148,44 @@
     </div>
 </div>
 
-    <h1 class="title-rel">Relatório Contribuintes do ICMS - Prestações de Serviços</h1>
-    {% for dados in dados %}
-    <h2 class="subtitle-rel">CONTRIBUINTES {{ dados.municipio }}</h2>
-  {% endfor %}
-    <div class="content">
-        <table class="rTable" id="tb-icms">
-            <thead>
-                <tr style="background-color: #ddd;">
-                    <th>IE</th>
-                    <th>Razão Social</th>
-                    <th>Tipo</th>
-                    <th>Situação</th>
-                </tr>
-            </thead>
+<h1 class="title-rel">Relatório Contribuintes do ICMS - Prestações de Serviços</h1>
+{% for dados in dados %}
+<h2 class="subtitle-rel">CONTRIBUINTES {{ dados.municipio }}</h2>
+{% endfor %}
+<div class="content">
+    <table class="rTable" id="tb-icms">
+        <thead>
+        <tr style="background-color: #ddd;">
+            <th>IE</th>
+            <th>Razão Social</th>
+            <th>Tipo</th>
+            <th>Situação</th>
+        </tr>
+        </thead>
 
-            <tbody>
-            {% for x in lista1 %}
-                    <tr>
-                        <td class="td-1">{{ x.inscricao }}</td>
-                        <td class="td-2">{{ x.contribuinte }}</td>
-                        <td class="td-3"></td>
-                        <td class="td-4"></td>
-                    </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <tbody>
+        {% for x in lista1 %}
+        <tr>
+            <td class="td-1">{{ x.inscricao }}</td>
+            <td class="td-2">{{ x.contribuinte }}</td>
+            <td class="td-3"></td>
+            <td class="td-4"></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-        <footer>
-            <div style="display: float;">
-                <div style="float: left; border-top: 1px solid black; padding-right: 50px;">
-                    <p>IPM-e</p>
-                </div>
-
-                <div style="float: right;">
-                    <p>Segunda-feira, 29 de março de 2021</p>
-                </div>
+    <footer>
+        <div style="display: float;">
+            <div style="float: left; border-top: 1px solid black; padding-right: 50px;">
+                <p>IPM-e</p>
             </div>
-        </footer>
-    </div>
+
+            <div style="float: right;">
+                <p>Segunda-feira, 29 de março de 2021</p>
+            </div>
+        </div>
+    </footer>
+</div>
 </body>
 </html>
