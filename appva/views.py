@@ -1227,14 +1227,13 @@ def remessas_novo(request):
     if not request.user.is_staff:
         return redirect('index')
     if request.method == 'POST':
-        id = request.POST['id']
         descricao_arquivo = request.POST['descricao_arquivo']
         ano_base = request.POST['ano_base']
         ano_exercicio = request.POST['ano_exercicio']
         tabela = request.POST['tabela']
         data_hora_importacao = request.POST['data_hora_importacao']
         arquivo = request.FILES['arquivo']
-        remessa = REMESSAS.objects.create(id=id, descricao_arquivo=descricao_arquivo, ano_base=ano_base,
+        remessa = REMESSAS.objects.create(descricao_arquivo=descricao_arquivo, ano_base=ano_base,
                                           ano_exercicio=ano_exercicio,
                                           tabela=tabela, data_hora_importacao=data_hora_importacao, arquivo=arquivo)
         remessa.save()

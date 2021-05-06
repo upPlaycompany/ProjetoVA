@@ -9,11 +9,8 @@ Criar envio
 <form method="post" enctype="multipart/form-data"> {% csrf_token %}
 
     <div class="form-row">
-        <div class="form-group col-md-3">
-            <label>ID</label>
-            <input type="text" class="form-control" name="id" placeholder="Digite o número de identificação da tabela">
-        </div>
-         <div class="form-group col-md-9">
+
+         <div class="form-group col-md-12">
             <label>Descrição da tabela</label>
             <input type="text" class="form-control" name="descricao_arquivo"
                    placeholder="Insira a descrição da tabela">
