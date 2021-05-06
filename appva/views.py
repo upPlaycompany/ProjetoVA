@@ -7380,7 +7380,7 @@ def PRE_RELATORIO_CONTRIBUINTE(request):
         pass
     return render(request, 'PRE_RELATORIO_CONTRIBUINTE.html')
 
-
+@login_required
 def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_social, cpf_cnpj, atividade_economica,
                            tipo_contabilista, contabilista, situacao):
     mun = [{'municipio': municipio}]
@@ -7577,7 +7577,7 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                                             template='RELATORIO_CONTRIBUINTE.html',
                                             encoding='utf-8')
 
-
+@login_required
 def PRE_RELATORIO_PTS(request):
     municipio = request.GET.get('municipio')
     tabela = request.GET.get('tabela')
@@ -7587,7 +7587,7 @@ def PRE_RELATORIO_PTS(request):
         pass
     return render(request, 'PRE_RELATORIO_PTS.html')
 
-
+@login_required
 def RELATORIO_PTS(request, municipio, tabela):
     mun = [{'municipio': municipio}]
     with connections['default'].cursor() as cursor:
@@ -7605,3 +7605,14 @@ def RELATORIO_PTS(request, municipio, tabela):
                                             context={'lista1': resultados, 'dados': mun},
                                             template='RELATORIO_PTS.html',
                                             encoding='utf-8')
+
+
+@login_required
+def PRE_RELATORIO_CONTABILISTA(request):
+    municipio = request.GET.get('municipio')
+    ano_exercicio = request.GET.get('ano_exercicio')
+    if municipio and ano_exercicio:
+        return redirect('RELATORIO_CONTABILISTA', municipio=municipio, ano_exercicio=ano_exercicio)
+    else:
+        pass
+    return render(request, 'PRE_RELATORIO_CONTABILISTA.html')
