@@ -6810,7 +6810,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                         valor_valido_saida[0].saida_computavel) * 0.20:
                     valor_valido_entrada = float(valor_valido_saida[0].saida_computavel) * 0.20
                 else:
-                    valor_valido_entrada = valor_valido_entrada
+                    valor_valido_entrada = float(valor_valido_entrada)
             else:
                 cursor.execute(
                     """SELECT SUM(vr_contabil) - (SUM(ipi)+SUM(icms_st)) AS entrada_computavel FROM appva_efd WHERE remessa=%s AND inscricao=%s AND ano_exercicio=%s AND cfop IN %s;""",
@@ -6823,7 +6823,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
-            va_final = [{'valor_adicionado': valor_valido_saida[0].saida_computavel - valor_valido_entrada[0].entrada_computavel}]
+            va_final = [{'valor_adicionado': float(valor_valido_saida[0].saida_computavel) - float(valor_valido_entrada[0].entrada_computavel)}]
 
             cursor.execute(
                 """SELECT cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop;"""
