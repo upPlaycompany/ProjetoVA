@@ -6849,7 +6849,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             )
             v_c = namedtuplefetchall(cursor)
             resu_cfop = [{'valor': x.valor} for x in v_c]
-            a = len(dic_cfop)
+            a = len(resu_cfop)
             [dic_cfop[x].update(resu_cfop[x]) for x in range(a)]
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
