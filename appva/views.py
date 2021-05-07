@@ -6667,6 +6667,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
                         str(valor_valido_saida[0].saida_computavel)) * 0.50:
+                    valor_valido_entrada = [{'entrada_computavel': x.entrada_computavel} for x in valor_valido_entrada]
                     valor_valido_entrada[0]['entrada_computavel'] = float(valor_valido_saida[0].saida_computavel) * 0.50
                 else:
                     valor_valido_entrada = valor_valido_entrada
@@ -6683,9 +6684,10 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
                         str(valor_valido_saida[0].saida_computavel)) * 0.35:
+                    valor_valido_entrada = [{'entrada_computavel': x.entrada_computavel} for x in valor_valido_entrada]
                     valor_valido_entrada[0]['entrada_computavel'] = float(valor_valido_saida[0].saida_computavel) * 0.35
                 else:
-                    valor_valido_entrada = valor_valido_entrada
+                    pass
             elif cnae in (
                     '151201', '151202', '151203', '152101', '152102', '152103', '153901', '153902', '154700', '155501',
                     '155502', '155503', '155504', '155505', '159801', '159802', '159803', '159804', '159899', '311601',
@@ -6699,6 +6701,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(str(valor_valido_entrada[0].entrada_computavel)) < float(
                         str(valor_valido_saida[0].saida_computavel)) * 0.20:
+                    valor_valido_entrada = [{'entrada_computavel': x.entrada_computavel} for x in valor_valido_entrada]
                     valor_valido_entrada[0]['entrada_computavel'] = float(valor_valido_saida[0].saida_computavel) * 0.20
                 else:
                     pass
@@ -6776,6 +6779,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(valor_valido_entrada[0].entrada_computavel) < float(
                         valor_valido_saida[0].saida_computavel) * 0.50:
+                    valor_valido_entrada = [{'entrada_computavel': x.entrada_computavel} for x in valor_valido_entrada]
                     valor_valido_entrada[0]['entrada_computavel'] = float(valor_valido_saida[0].saida_computavel) * 0.50
                 else:
                     valor_valido_entrada = valor_valido_entrada
@@ -6792,6 +6796,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(valor_valido_entrada[0].entrada_computavel) < float(
                         valor_valido_saida[0].saida_computavel) * 0.35:
+                    valor_valido_entrada = [{'entrada_computavel': x.entrada_computavel} for x in valor_valido_entrada]
                     valor_valido_entrada[0]['entrada_computavel'] = float(valor_valido_saida[0].saida_computavel) * 0.35
                 else:
                     pass
@@ -6808,6 +6813,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(valor_valido_entrada[0].entrada_computavel) < float(
                         valor_valido_saida[0].saida_computavel) * 0.20:
+                    valor_valido_entrada = [{'entrada_computavel': x.entrada_computavel} for x in valor_valido_entrada]
                     valor_valido_entrada[0]['entrada_computavel'] = float(valor_valido_saida[0].saida_computavel) * 0.20
                 else:
                     pass
