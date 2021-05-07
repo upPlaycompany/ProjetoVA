@@ -6823,8 +6823,7 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
-            va_final = [{'valor_adicionado': float(valor_valido_saida[0].saida_computavel) - float(
-                valor_valido_entrada[0].entrada_computavel)}]
+            va_final = [{'valor_adicionado': float(valor_valido_saida[0].saida_computavel) - valor_valido_entrada[0].entrada_computavel}]
 
             cursor.execute(
                 """SELECT cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop;"""
@@ -6846,7 +6845,6 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             resu_cfop = [{'valor': x.valor} for x in v_c]
             a = len(dic_cfop)
             [dic_cfop[x].update(resu_cfop[x]) for x in range(a)]
-            float('p')
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': dados_inscricao, 'lista2': valor_valido_saida,
                                                      'lista3': valor_invalido_saida, 'lista4': valor_valido_entrada,
