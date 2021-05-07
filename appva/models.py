@@ -551,7 +551,6 @@ class PTS(models.Model):
 
 
 class REMESSAS(models.Model):
-    id = models.IntegerField(primary_key=True, null=False, auto_created=True)
     arquivo = models.FileField(upload_to='.')
     descricao_arquivo = models.CharField(max_length=255)
     tabela = models.CharField(max_length=255)
