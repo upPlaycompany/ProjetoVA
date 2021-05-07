@@ -6813,8 +6813,8 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
                 valor_valido_entrada = namedtuplefetchall(cursor)
                 if float(valor_valido_entrada[0].entrada_computavel) < float(
                         valor_valido_saida[0].saida_computavel) * 0.20:
-                    valor_valido_entrada = [{'entrada_computavel': x.entrada_computavel} for x in valor_valido_entrada]
-                    valor_valido_entrada[0]['entrada_computavel'] = float(valor_valido_saida[0].saida_computavel) * 0.20
+                    Lista = namedtuple('Lista', 'entrada_computavel')
+                    valor_valido_entrada = [Lista(float(valor_valido_saida[0].saida_computavel) * 0.20)]
                 else:
                     pass
             else:
