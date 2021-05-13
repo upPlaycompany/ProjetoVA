@@ -155,4 +155,7 @@ urlpatterns = [
     path(
         'RELATORIO_PTS/<str:municipio>/<str:tabela>/',
         views.RELATORIO_PTS, name='RELATORIO_PTS'),
+
+    path('PRE_RELATORIO_CONTABILISTA/', views.PRE_RELATORIO_CONTABILISTA, name='PRE_RELATORIO_CONTABILISTA'),
+    path('RELATORIO_CONTABILISTA/<str:municipio>/<str:ano_exercicio>/<str:tabela>/', views.RELATORIO_CONTABILISTA, name='RELATORIO_CONTABILISTA'),
 ]

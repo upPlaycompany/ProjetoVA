@@ -6830,7 +6830,8 @@ def RELATORIO_VALOR_ADICIONADO_SINTETICO(request, municipio, remessa, portaria, 
             )
             valor_invalido_entrada = namedtuplefetchall(cursor)
 
-            va_final = [{'valor_adicionado': float(valor_valido_saida[0].saida_computavel) - float(valor_valido_entrada[0].entrada_computavel)}]
+            va_final = [{'valor_adicionado': float(valor_valido_saida[0].saida_computavel) - float(
+                valor_valido_entrada[0].entrada_computavel)}]
 
             cursor.execute(
                 """SELECT cfop FROM appva_efd WHERE inscricao=%s AND ano_exercicio=%s GROUP BY cfop;"""
@@ -7391,6 +7392,7 @@ def PRE_RELATORIO_CONTRIBUINTE(request):
         pass
     return render(request, 'PRE_RELATORIO_CONTRIBUINTE.html')
 
+
 @login_required
 def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_social, cpf_cnpj, atividade_economica,
                            tipo_contabilista, contabilista, situacao):
@@ -7405,7 +7407,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif razao_social != 'VAZIO':
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE nome_pessoa=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [razao_social, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE nome_pessoa=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [razao_social, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             elif cpf_cnpj != 'VAZIO':
@@ -7420,7 +7423,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                     '111399', '111301', '116499', '220903', '139399', '159801', '155505', '133402', '133499', '133405',
                     '131700', '119905', '154700', '116401', '111302', '119908')
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [codigos, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [codigos, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
@@ -7429,7 +7433,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                     '3514000', '6190699', '6110801', '4922101', '4930202', '6120501', '4930201', '4921301', '4922102',
                     '4929902', '8012900', '4921302', '4930203', '6110803', '6143400', '6022501', '5320201', '6190601')
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [codigos, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [codigos, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
@@ -7463,13 +7468,15 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                     '4782202', '9001906', '4322302', '3831999', '1094500', '8130300', '7721700', '6190699', '1539400',
                     '2592601', '8219901', '8610101', '8599604', '8599603', '1821100')
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_cnae IN %s AND municipio=%s numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [codigos, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_cnae IN %s AND municipio=%s numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [codigos, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
             elif contabilista and tipo_contabilista == 'CRC':
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_crc=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [contabilista, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE codg_crc=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [contabilista, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
@@ -7481,12 +7488,14 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif situacao:
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE status=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [situacao, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE status=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [situacao, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             else:
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cci WHERE nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
 
@@ -7499,7 +7508,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif razao_social != 'VAZIO':
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE nome_pessoa=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [razao_social, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE nome_pessoa=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [razao_social, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             elif cpf_cnpj != 'VAZIO':
@@ -7514,7 +7524,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                     '111399', '111301', '116499', '220903', '139399', '159801', '155505', '133402', '133499', '133405',
                     '131700', '119905', '154700', '116401', '111302', '119908')
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [codigos, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [codigos, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
@@ -7523,7 +7534,8 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                     '3514000', '6190699', '6110801', '4922101', '4930202', '6120501', '4930201', '4921301', '4922102',
                     '4929902', '8012900', '4921302', '4930203', '6110803', '6143400', '6022501', '5320201', '6190601')
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [codigos, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_cnae IN %s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [codigos, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
@@ -7557,13 +7569,15 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                     '4782202', '9001906', '4322302', '3831999', '1094500', '8130300', '7721700', '6190699', '1539400',
                     '2592601', '8219901', '8610101', '8599604', '8599603', '1821100')
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_cnae IN %s AND municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [codigos, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_cnae IN %s AND municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [codigos, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
             elif contabilista and tipo_contabilista == 'CRC':
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_crc=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [contabilista, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE codg_crc=%s AND nome_municipio=%s GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [contabilista, municipio]
                 )
 
                 resultados = namedtuplefetchall(cursor)
@@ -7575,18 +7589,21 @@ def RELATORIO_CONTRIBUINTE(request, municipio, tipo_cadastro, inscricao, razao_s
                 resultados = namedtuplefetchall(cursor)
             elif situacao:
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE status=%s AND nome_municipio=% GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""", [situacao, municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE status=%s AND nome_municipio=% GROUP BY numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito;""",
+                    [situacao, municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
             else:
                 cursor.execute(
-                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE nome_municipio=%s;""", [municipio]
+                    """SELECT numr_inscricao_estadual, nome_pessoa, status, tipo_inscrito FROM appva_cap WHERE nome_municipio=%s;""",
+                    [municipio]
                 )
                 resultados = namedtuplefetchall(cursor)
     return rendering.render_to_pdf_response(request=request,
                                             context={'lista1': resultados, 'dados': mun},
                                             template='RELATORIO_CONTRIBUINTE.html',
                                             encoding='utf-8')
+
 
 @login_required
 def PRE_RELATORIO_PTS(request):
@@ -7598,18 +7615,21 @@ def PRE_RELATORIO_PTS(request):
         pass
     return render(request, 'PRE_RELATORIO_PTS.html')
 
+
 @login_required
 def RELATORIO_PTS(request, municipio, tabela):
     mun = [{'municipio': municipio}]
     with connections['default'].cursor() as cursor:
         if tabela == 'COP3':
             cursor.execute(
-                """SELECT inscricao, contribuinte FROM appva_gia_cop3 WHERE municipio=%s GROUP BY inscricao, contribuinte;""", [municipio]
+                """SELECT inscricao, contribuinte FROM appva_gia_cop3 WHERE municipio=%s GROUP BY inscricao, contribuinte;""",
+                [municipio]
             )
             resultados = namedtuplefetchall(cursor)
         else:
             cursor.execute(
-                """SELECT inscricao, contribuinte FROM appva_reg_1400_efd WHERE municipio=%s GROUP BY inscricao, contribuinte;""", [municipio]
+                """SELECT inscricao, contribuinte FROM appva_reg_1400_efd WHERE municipio=%s GROUP BY inscricao, contribuinte;""",
+                [municipio]
             )
             resultados = namedtuplefetchall(cursor)
     return rendering.render_to_pdf_response(request=request,
@@ -7622,8 +7642,29 @@ def RELATORIO_PTS(request, municipio, tabela):
 def PRE_RELATORIO_CONTABILISTA(request):
     municipio = request.GET.get('municipio')
     ano_exercicio = request.GET.get('ano_exercicio')
+    tabela = request.GET.get('tabela')
     if municipio and ano_exercicio:
-        return redirect('RELATORIO_CONTABILISTA', municipio=municipio, ano_exercicio=ano_exercicio)
+        return redirect('RELATORIO_CONTABILISTA', municipio=municipio, ano_exercicio=ano_exercicio, tabela=tabela)
     else:
         pass
     return render(request, 'PRE_RELATORIO_CONTABILISTA.html')
+
+
+@login_required
+def RELATORIO_CONTABILISTA(request, municipio, ano_exercicio, tabela):
+    mun = [{'municipio': municipio}]
+    with connections['default'].cursor() as cursor:
+        if tabela == 'CCI':
+            cursor.execute(
+                """SELECT codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista FROM appva_cci WHERE ano_exercicio=%s AND municipio_contabilista=%s GROUP BY codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista ORDER BY nome_contabilista ASC;""",
+                [ano_exercicio, municipio])
+            resultados = namedtuplefetchall(cursor)
+        else:
+            cursor.execute(
+                """SELECT codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista FROM appva_cap WHERE ano_exercicio=%s AND municipio_contabilista=%s GROUP BY codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista ORDER BY nome_contabilista ASC;""",
+                [ano_exercicio, municipio])
+            resultados = namedtuplefetchall(cursor)
+        return rendering.render_to_pdf_response(request=request,
+                                                context={'lista1': resultados, 'dados': mun},
+                                                template='RELATORIO_CONTABILISTA.html',
+                                                encoding='utf-8')

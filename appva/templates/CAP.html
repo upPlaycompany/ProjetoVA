@@ -175,10 +175,13 @@ CAP
   </span>
  </div>
 <br>
+<span><a href="{% url 'PRE_RELATORIO_CONTABILISTA' %}"><button type="button" class="btn btn-warning">
+    Relatório de contabilistas
+</button></a></span>
 {% if request.user.is_staff == True %}
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<span><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
     Importar dados
-</button>
+</button></span>
 <br>
 <br>
 
