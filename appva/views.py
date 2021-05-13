@@ -7670,6 +7670,5 @@ def RELATORIO_CONTABILISTA(request, municipio, ano_exercicio, tabela):
                                                 encoding='utf-8')
 
 
-@login_required
-def PRE_RELATORIO_CONTRIBUINTE_OMISSO(request):
+
     
