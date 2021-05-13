@@ -7643,7 +7643,7 @@ def PRE_RELATORIO_CONTABILISTA(request):
     municipio = request.GET.get('municipio')
     ano_exercicio = request.GET.get('ano_exercicio')
     tabela = request.GET.get('tabela')
-    if municipio and ano_exercicio:
+    if municipio and ano_exercicio and tabela:
         return redirect('RELATORIO_CONTABILISTA', municipio=municipio, ano_exercicio=ano_exercicio, tabela=tabela)
     else:
         pass
