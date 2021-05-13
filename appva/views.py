@@ -7656,15 +7656,20 @@ def RELATORIO_CONTABILISTA(request, municipio, ano_exercicio, tabela):
     with connections['default'].cursor() as cursor:
         if tabela == 'CCI':
             cursor.execute(
-                """SELECT codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista FROM appva_cci WHERE ano_exercicio=%s AND municipio_contabilista=%s GROUP BY codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista ORDER BY nome_contabilista ASC;""",
+                """SELECT codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_telefone_contabilista, telefone_contabilista FROM appva_cci WHERE ano_exercicio=%s AND municipio_contabilista=%s GROUP BY codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_telefone_contabilista, telefone_contabilista ORDER BY nome_contabilista ASC;""",
                 [ano_exercicio, municipio])
             resultados = namedtuplefetchall(cursor)
         else:
             cursor.execute(
-                """SELECT codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista FROM appva_cap WHERE ano_exercicio=%s AND municipio_contabilista=%s GROUP BY codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_celular_contabilista, celular_contabilista ORDER BY nome_contabilista ASC;""",
+                """SELECT codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_telefone_contabilista, telefone_contabilista FROM appva_cap WHERE ano_exercicio=%s AND municipio_contabilista=%s GROUP BY codg_crc, nome_contabilista, municipio_contabilista, email_contabilista, ddd_telefone_contabilista, telefone_contabilista ORDER BY nome_contabilista ASC;""",
                 [ano_exercicio, municipio])
             resultados = namedtuplefetchall(cursor)
         return rendering.render_to_pdf_response(request=request,
                                                 context={'lista1': resultados, 'dados': mun},
                                                 template='RELATORIO_CONTABILISTA.html',
                                                 encoding='utf-8')
+
+
+@login_required
+def PRE_RELATORIO_CONTRIBUINTE_OMISSO(request):
+    
