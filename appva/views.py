@@ -321,7 +321,7 @@ def index(request):
             ### ARRECADACAO ICMS
 
             cursor.execute(
-                """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO' AND ano_exercicio NOT LIKE '2020';
+                """ SELECT ind_final, ano_exercicio FROM appva_acypr535 WHERE municipio='ACORIZAL' AND remessa='DOE DEFINITIVO';
             """
             )
             indi = namedtuplefetchall(cursor)
