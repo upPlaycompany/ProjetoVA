@@ -3367,6 +3367,7 @@ def ACYPR555(request):
             acypr555 = Acypr555.objects.filter(inscricao__contains=q)
         elif q and t == "municipio":
             acypr555 = Acypr555.objects.filter(municipio__contains=q)
+            float('p')
         elif q and t == "remessa":
             acypr555 = Acypr555.objects.filter(remessa__contains=q)
         else:
