@@ -7668,7 +7668,3 @@ def RELATORIO_CONTABILISTA(request, municipio, ano_exercicio, tabela):
                                                 context={'lista1': resultados, 'dados': mun},
                                                 template='RELATORIO_CONTABILISTA.html',
                                                 encoding='utf-8')
-
-
-
-    
