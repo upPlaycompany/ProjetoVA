@@ -533,8 +533,7 @@ def index_barras(request):
             )
             icms_indi = namedtuplefetchall(cursor)
             ax = len(indi)
-            finali = [{'arrecad': (indi[ax].ind_final * icms_indi[ax].media) / 100, 'ano': [icms_indi[x].ano for x in
-                                                                                            range(ax)]}]
+            finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media) / 100, 'ano': icms_indi[x].ano} for x in range(ax)]
             arre = [x['arrecad'] for x in finali]
             ano_arre = [x['ano'] for x in finali]
 
