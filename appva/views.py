@@ -3392,7 +3392,7 @@ def import_acypr555(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr555', sep=';', columns=(
-        'TIPO_CONTRIB', 'COD', 'MUNICIPIO', 'INSCRICAO', 'CNAE', 'CONTRIBUINTE', 'VR_ADICIONADO', 'ENTRADAS', 'SAIDAS',
+        'TIPO_CONTRIB', 'COD', 'INSCRICAO', 'CNAE', 'MUNICIPIO', 'CONTRIBUINTE', 'VR_ADICIONADO', 'ENTRADAS', 'SAIDAS',
         'ST_ENTRADAS', 'ST_SAIDAS', 'IPI_ENTRADAS', 'IPI_SAIDAS', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
@@ -3494,7 +3494,7 @@ def import_acypr557(request, pk):
     db = psycopg2.connect(constr)
     st = db.cursor()
     st.copy_from(file=f, table='appva_acypr557', sep=';', columns=(
-        'TIPO_CONTRIB', 'COD', 'MUNICIPIO', 'INSCRICAO', 'CNAE', 'CONTRIBUINTE', 'VR_ADICIONADO', 'ENTRADAS', 'SAIDAS',
+        'TIPO_CONTRIB', 'COD', 'INSCRICAO', 'CNAE', 'MUNICIPIO', 'CONTRIBUINTE', 'VR_ADICIONADO', 'ENTRADAS', 'SAIDAS',
         'ST_ENTRADAS', 'ST_SAIDAS', 'IPI_ENTRADAS', 'IPI_SAIDAS', 'REMESSA', 'DESCRICAO', 'ANO_EXERCICIO', 'ANO_BASE'))
     db.commit()
     st.close()
@@ -6584,6 +6584,11 @@ def PRE_RELATORIO(request, inscricao, municipio):
                                 portaria=portaria,
                                 inscricao=inscricao,
                                 tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
+            elif tipo_relatorio == 'variacao_historica':
+                return redirect('RELATORIO_VARIACAO_HISTORICA', municipio=municipio, remessa=remessa,
+                                portaria=portaria,
+                                inscricao=inscricao,
+                                tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
             else:
                 pass
     return render(request, 'PRE_RELATORIO.html', {'lista': port})
@@ -7667,3 +7672,25 @@ def RELATORIO_CONTABILISTA(request, municipio, ano_exercicio, tabela):
                                                 context={'lista1': resultados, 'dados': mun},
                                                 template='RELATORIO_CONTABILISTA.html',
                                                 encoding='utf-8')
+
+
+@login_required
+def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano):
+    with connections['default'].cursor() as cursor:
+        if cadastro == 'CCI':
+            cursor.execute(
+                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
+                [inscricao, ano]
+            )
+            dados_inscricao = namedtuplefetchall(cursor)
+        else:
+            cursor.execute(
+                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
+                [inscricao, ano]
+            )
+            dados_inscricao = namedtuplefetchall(cursor)
+        L
+    return rendering.render_to_pdf_response(request=request,
+                                            context={'lista1': dados_inscricao},
+                                            template='RELATORIO_VARIACAO_HISTORICA.html',
+                                            encoding='utf-8')
