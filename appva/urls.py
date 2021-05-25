@@ -157,5 +157,12 @@ urlpatterns = [
         views.RELATORIO_PTS, name='RELATORIO_PTS'),
 
     path('PRE_RELATORIO_CONTABILISTA/', views.PRE_RELATORIO_CONTABILISTA, name='PRE_RELATORIO_CONTABILISTA'),
-    path('RELATORIO_CONTABILISTA/<str:municipio>/<str:ano_exercicio>/<str:tabela>/', views.RELATORIO_CONTABILISTA, name='RELATORIO_CONTABILISTA'),
+
+    path(
+        'PRE_RELATORIO_VARIACAO_HISTORICA/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/',
+        views.PRE_RELATORIO_VARIACAO_HISTORICA, name='PRE_RELATORIO_VARIACAO_HISTORICA'),
+
+path(
+        'RELATORIO_VARIACAO_HISTORICA/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano_inicial>/<str:ano_final>/',
+        views.RELATORIO_VARIACAO_HISTORICA, name='RELATORIO_VARIACAO_HISTORICA'),
 ]

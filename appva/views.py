@@ -533,7 +533,8 @@ def index_barras(request):
             )
             icms_indi = namedtuplefetchall(cursor)
             ax = len(indi)
-            finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media) / 100, 'ano': icms_indi[x].ano} for x in range(ax)]
+            finali = [{'arrecad': (indi[x].ind_final * icms_indi[x].media) / 100, 'ano': icms_indi[x].ano} for x in
+                      range(ax)]
             arre = [x['arrecad'] for x in finali]
             ano_arre = [x['ano'] for x in finali]
 
@@ -6585,7 +6586,7 @@ def PRE_RELATORIO(request, inscricao, municipio):
                                 inscricao=inscricao,
                                 tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
             elif tipo_relatorio == 'variacao_historica':
-                return redirect('RELATORIO_VARIACAO_HISTORICA', municipio=municipio, remessa=remessa,
+                return redirect('PRE_RELATORIO_VARIACAO_HISTORICA', municipio=municipio, remessa=remessa,
                                 portaria=portaria,
                                 inscricao=inscricao,
                                 tabela=tabela, cadastro=cadastro, ano=ano_exercicio)
@@ -7675,7 +7676,17 @@ def RELATORIO_CONTABILISTA(request, municipio, ano_exercicio, tabela):
 
 
 @login_required
-def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano):
+def PRE_RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano):
+    if request.method == 'POST':
+        ano_iv = request.POST['ano_iv']
+        ano_fv = request.POST['ano_fv']
+        return redirect('RELATORIO_VARIACAO_HISTORICA', municipio=municipio, remessa=remessa, portaria=portaria,
+                        inscricao=inscricao, tabela=tabela, cadastro=cadastro, ano_inicial=ano_iv, ano_final=ano_fv)
+    return render(request, 'PRE_RELATORIO_VARIACAO_HISTORICA.html')
+
+
+@login_required
+def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano_inicial, ano_final):
     with connections['default'].cursor() as cursor:
         if cadastro == 'CCI':
             cursor.execute(
