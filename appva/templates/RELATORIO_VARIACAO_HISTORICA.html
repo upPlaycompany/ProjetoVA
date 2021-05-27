@@ -213,13 +213,13 @@
         <tr>
             <td class="tb2-1">{{ x.ano_exercicio }}</td>
             <td class="tb2-2">{{ x.entradas }}</td>
-            <td class="tb2-3">{{ x.cresc_entradas }}</td>
+            <td class="tb2-3">{{ x.cresc_entradas|floatformat:0 }}%</td>
             <td class="tb2-4"></td>
             <td class="tb2-5">{{ x.saidas }}</td>
-            <td class="tb2-6">{{ x.cresc_saidas }}</td>
+            <td class="tb2-6">{{ x.cresc_saidas|floatformat:0 }}%</td>
             <td class="tb2-7"></td>
             <td class="tb2-8">{{ x.vr_adicionado }}</td>
-            <td class="tb2-9">{{ x.cresc_vr_adicionado }}</td>
+            <td class="tb2-9">{{ x.cresc_vr_adicionado|floatformat:0 }}%</td>
             <td class="tb2-10"></td>
         </tr>
         {% endfor %}
