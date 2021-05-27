@@ -7681,12 +7681,14 @@ def PRE_RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, insc
         ano_iv = request.POST['ano_iv']
         ano_fv = request.POST['ano_fv']
         return redirect('RELATORIO_VARIACAO_HISTORICA', municipio=municipio, remessa=remessa, portaria=portaria,
-                        inscricao=inscricao, tabela=tabela, cadastro=cadastro, ano_inicial=ano_iv, ano_final=ano_fv)
+                        inscricao=inscricao, tabela=tabela, cadastro=cadastro, ano=ano, ano_inicial=ano_iv, ano_final=ano_fv)
     return render(request, 'PRE_RELATORIO_VARIACAO_HISTORICA.html')
 
 
 @login_required
-def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano_inicial, ano_final):
+def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano, ano_inicial,
+                                 ano_final):
+    mun = [{'municipio': municipio}]
     with connections['default'].cursor() as cursor:
         if cadastro == 'CCI':
             cursor.execute(
@@ -7700,8 +7702,56 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
                 [inscricao, ano]
             )
             dados_inscricao = namedtuplefetchall(cursor)
-        L
-    return rendering.render_to_pdf_response(request=request,
-                                            context={'lista1': dados_inscricao},
-                                            template='RELATORIO_VARIACAO_HISTORICA.html',
-                                            encoding='utf-8')
+
+        cursor.execute(
+            """SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr555 WHERE inscricao=%s AND ano_exercicio BETWEEN %s and %s AND ano_exercicio NOT LIKE %s UNION SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr557 WHERE inscricao=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;
+                """
+            , [inscricao, ano_inicial, ano_final, ano_final, inscricao, ano_inicial, ano_final, ano_final])
+        variacao1 = namedtuplefetchall(cursor)
+
+        cursor.execute(
+            """SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr555 WHERE inscricao=%s AND ano_exercicio BETWEEN %s and %s AND ano_exercicio NOT LIKE %s UNION SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr557 WHERE inscricao=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;
+                """
+            , [inscricao, ano_inicial, ano_final, ano_final, inscricao, ano_inicial, ano_final, ano_inicial])
+        variacao2 = namedtuplefetchall(cursor)
+
+        variacao_sp = [
+            {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
+             'ano_exercicio': x.ano_exercicio} for x in variacao1]
+
+        variacao2_sp2 = [
+            {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
+             'ano_exercicio': x.ano_exercicio} for x in variacao2]
+
+        variacao2_sp2[0]['vr_adicionado'] = float(0.0)
+        variacao2_sp2[0]['entradas'] = float(0.0)
+        variacao2_sp2[0]['saidas'] = float(0.0)
+
+        variacao_sp[0]['vr_adicionado'] = float(0.01)
+        variacao_sp[0]['entradas'] = float(0.001)
+        variacao_sp[0]['saidas'] = float(0.001)
+
+        apx = len(variacao2_sp2)
+
+        try:
+            resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': variacao2_sp2[x]['entradas'],
+                        'cresc_entradas': ((variacao2_sp2[x]['entradas'] / variacao_sp[x]['entradas']) - 1) * 100,
+                        'saidas': variacao2_sp2[x]['saidas'],
+                        'cresc_saidas': ((variacao2_sp2[x]['saidas'] / variacao_sp[x]['saidas']) - 1) * 100,
+                        'vr_adicionado': variacao2_sp2[x]['entradas'], 'cresc_vr_adicionado': ((variacao2_sp2[x][
+                                                                                                    'vr_adicionado'] /
+                                                                                                variacao_sp[x][
+                                                                                                    'vr_adicionado']) - 1) * 100}
+                       for x in range(apx)]
+        except ZeroDivisionError:
+            resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': variacao2_sp2[x]['entradas'],
+                        'cresc_entradas': 0.0,
+                        'saidas': variacao2_sp2[x]['saidas'],
+                        'cresc_saidas': 0.0,
+                        'vr_adicionado': variacao2_sp2[x]['entradas'], 'cresc_vr_adicionado': 0.0}
+                       for x in range(apx)]
+
+        return rendering.render_to_pdf_response(request=request,
+                                                context={'dados': mun, 'lista1': dados_inscricao, 'lista2': resu_vr},
+                                                template='RELATORIO_VARIACAO_HISTORICA.html',
+                                                encoding='utf-8')

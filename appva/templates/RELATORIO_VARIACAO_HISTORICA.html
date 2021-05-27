@@ -178,13 +178,14 @@
         </thead>
 
         <tbody>
+        {% for x in lista1 %}
         <tr>
-            <td class="tb-1"></td>
-            <td class="tb-2"></td>
-            <td class="tb-3"></td>
-            <td class="tb-4"></td>
-            <td class="tb-5"></td>
-            <td class="tb-6"></td>
+            <td class="tb-1">{{ x.nome_pessoa }}</td>
+            <td class="tb-2">{{ x.nome_municipio }}</td>
+            <td class="tb-3">{{ x.nome_contabilista }}</td>
+            <td class="tb-4">{{ x.numr_inscricao_estadual }}</td>
+            <td class="tb-5">{{ x.codg_crc }}</td>
+            <td class="tb-6">({{ x.ddd_telefone_contribuinte}}) {{ x.telefone_contribuinte }}</td>
         </tr>
         </tbody>
     </table>
@@ -206,16 +207,17 @@
         </thead>
 
         <tbody>
+        {% for x in lista2 %}
         <tr>
-            <td class="tb2-1"></td>
-            <td class="tb2-2"></td>
-            <td class="tb2-3"></td>
+            <td class="tb2-1">{{ x.ano_exercicio }}</td>
+            <td class="tb2-2">{{ x.entradas }}</td>
+            <td class="tb2-3">{{ x.cresc_entradas }}</td>
             <td class="tb2-4"></td>
-            <td class="tb2-5"></td>
-            <td class="tb2-6"></td>
+            <td class="tb2-5">{{ x.saidas }}</td>
+            <td class="tb2-6">{{ x.cresc_saidas }}</td>
             <td class="tb2-7"></td>
-            <td class="tb2-8"></td>
-            <td class="tb2-9"></td>
+            <td class="tb2-8">{{ x.vr_adicionado }}</td>
+            <td class="tb2-9">{{ x.cresc_vr_adicionado }}</td>
             <td class="tb2-10"></td>
         </tr>
 
