@@ -7681,7 +7681,8 @@ def PRE_RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, insc
         ano_iv = request.POST['ano_iv']
         ano_fv = request.POST['ano_fv']
         return redirect('RELATORIO_VARIACAO_HISTORICA', municipio=municipio, remessa=remessa, portaria=portaria,
-                        inscricao=inscricao, tabela=tabela, cadastro=cadastro, ano=ano, ano_inicial=ano_iv, ano_final=ano_fv)
+                        inscricao=inscricao, tabela=tabela, cadastro=cadastro, ano=ano, ano_inicial=ano_iv,
+                        ano_final=ano_fv)
     return render(request, 'PRE_RELATORIO_VARIACAO_HISTORICA.html')
 
 
@@ -7733,23 +7734,15 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
 
         apx = len(variacao2_sp2)
 
-        try:
-            resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': variacao2_sp2[x]['entradas'],
-                        'cresc_entradas': ((variacao2_sp2[x]['entradas'] / variacao_sp[x]['entradas']) - 1) * 100,
-                        'saidas': variacao2_sp2[x]['saidas'],
-                        'cresc_saidas': ((variacao2_sp2[x]['saidas'] / variacao_sp[x]['saidas']) - 1) * 100,
-                        'vr_adicionado': variacao2_sp2[x]['entradas'], 'cresc_vr_adicionado': ((variacao2_sp2[x][
-                                                                                                    'vr_adicionado'] /
-                                                                                                variacao_sp[x][
-                                                                                                    'vr_adicionado']) - 1) * 100}
-                       for x in range(apx)]
-        except ZeroDivisionError:
-            resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': variacao2_sp2[x]['entradas'],
-                        'cresc_entradas': 0.0,
-                        'saidas': variacao2_sp2[x]['saidas'],
-                        'cresc_saidas': 0.0,
-                        'vr_adicionado': variacao2_sp2[x]['entradas'], 'cresc_vr_adicionado': 0.0}
-                       for x in range(apx)]
+        resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': variacao2_sp2[x]['entradas'],
+                    'cresc_entradas': ((variacao2_sp2[x]['entradas'] / variacao_sp[x]['entradas']) - 1) * 100,
+                    'saidas': variacao2_sp2[x]['saidas'],
+                    'cresc_saidas': ((variacao2_sp2[x]['saidas'] / variacao_sp[x]['saidas']) - 1) * 100,
+                    'vr_adicionado': variacao2_sp2[x]['entradas'], 'cresc_vr_adicionado': ((variacao2_sp2[x][
+                                                                                                'vr_adicionado'] /
+                                                                                            variacao_sp[x][
+                                                                                                'vr_adicionado']) - 1) * 100}
+                   for x in range(apx)]
 
         return rendering.render_to_pdf_response(request=request,
                                                 context={'dados': mun, 'lista1': dados_inscricao, 'lista2': resu_vr},
