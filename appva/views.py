@@ -7724,6 +7724,13 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
             {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
              'ano_exercicio': x.ano_exercicio} for x in variacao2]
 
+        variacao2_sp2[0]['vr_adicionado'] = float(0.0)
+        variacao2_sp2[0]['entradas'] = float(0.0)
+        variacao2_sp2[0]['saidas'] = float(0.0)
+
+        variacao_sp[0]['vr_adicionado'] = float(0.01)
+        variacao_sp[0]['entradas'] = float(0.001)
+        variacao_sp[0]['saidas'] = float(0.001)
 
         apx = len(variacao2_sp2)
 
@@ -7736,6 +7743,7 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
                                                                                             variacao_sp[x][
                                                                                                 'vr_adicionado']) - 1) * 100}
                    for x in range(apx)]
+
         return rendering.render_to_pdf_response(request=request,
                                                 context={'dados': mun, 'lista1': dados_inscricao, 'lista2': resu_vr},
                                                 template='RELATORIO_VARIACAO_HISTORICA.html',
