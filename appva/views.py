@@ -7731,7 +7731,7 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
                     'cresc_entradas': ((variacao2_sp2[x]['entradas'] / variacao_sp[x]['entradas']) - 1) * 100,
                     'saidas': variacao2_sp2[x]['saidas'],
                     'cresc_saidas': ((variacao2_sp2[x]['saidas'] / variacao_sp[x]['saidas']) - 1) * 100,
-                    'vr_adicionado': variacao2_sp2[x]['entradas'], 'cresc_vr_adicionado': ((variacao2_sp2[x][
+                    'vr_adicionado': variacao2_sp2[x]['vr_adicionado'], 'cresc_vr_adicionado': ((variacao2_sp2[x][
                                                                                                 'vr_adicionado'] /
                                                                                             variacao_sp[x][
                                                                                                 'vr_adicionado']) - 1) * 100}
