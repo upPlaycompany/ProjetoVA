@@ -7713,7 +7713,7 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
         cursor.execute(
             """SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr555 WHERE inscricao=%s AND ano_exercicio BETWEEN %s and %s AND ano_exercicio NOT LIKE %s UNION SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr557 WHERE inscricao=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;
                 """
-            , [inscricao, ano_inicial, ano_final, ano_final, inscricao, ano_inicial, ano_final, ano_inicial])
+            , [inscricao, ano_inicial, ano_final, ano_inicial, inscricao, ano_inicial, ano_final, ano_inicial])
         variacao2 = namedtuplefetchall(cursor)
 
         variacao_sp = [
