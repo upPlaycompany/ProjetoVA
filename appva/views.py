@@ -7724,14 +7724,6 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
             {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
              'ano_exercicio': x.ano_exercicio} for x in variacao2]
 
-        variacao2_sp2[0]['vr_adicionado'] = float(0.0)
-        variacao2_sp2[0]['entradas'] = float(0.0)
-        variacao2_sp2[0]['saidas'] = float(0.0)
-
-        variacao_sp[0]['vr_adicionado'] = float(0.01)
-        variacao_sp[0]['entradas'] = float(0.001)
-        variacao_sp[0]['saidas'] = float(0.001)
-
         apx = len(variacao2_sp2)
 
         resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': str(f"{variacao2_sp2[x]['entradas']:,.2f}")
