@@ -7745,6 +7745,10 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
                                                                                                 'vr_adicionado']) - 1) * 100}
                    for x in range(apx)]
 
+        resu_vr[0]['cresc_entradas'] = float(0.0)
+        resu_vr[0]['cresc_saidas'] = float(0.0)
+        resu_vr[0]['cresc_vr_adicionado'] = float(0.0)
+
         return rendering.render_to_pdf_response(request=request,
                                                 context={'dados': mun, 'lista1': dados_inscricao, 'lista2': resu_vr},
                                                 template='RELATORIO_VARIACAO_HISTORICA.html',
