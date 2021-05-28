@@ -7692,6 +7692,7 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
                                  ano_final):
     try:
         mun = [{'municipio': municipio}]
+        ano_inicial = int(ano_inicial) - 1
         with connections['default'].cursor() as cursor:
             if cadastro == 'CCI':
                 cursor.execute(
