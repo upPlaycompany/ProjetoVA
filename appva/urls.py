@@ -165,4 +165,6 @@ urlpatterns = [
     path(
         'RELATORIO_VARIACAO_HISTORICA/<str:municipio>/<str:remessa>/<str:portaria>/<str:inscricao>/<str:tabela>/<str:cadastro>/<str:ano>/<str:ano_inicial>/<str:ano_final>/',
         views.RELATORIO_VARIACAO_HISTORICA, name='RELATORIO_VARIACAO_HISTORICA'),
+
+    path('erro_tela_variacao_historica/', views.erro_tela_variacao_historica, name='erro_tela_variacao_historica')
 ]
