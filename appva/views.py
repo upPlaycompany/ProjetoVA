@@ -7689,59 +7689,69 @@ def PRE_RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, insc
 @login_required
 def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscricao, tabela, cadastro, ano, ano_inicial,
                                  ano_final):
-    mun = [{'municipio': municipio}]
-    with connections['default'].cursor() as cursor:
-        if cadastro == 'CCI':
+    try:
+        mun = [{'municipio': municipio}]
+        with connections['default'].cursor() as cursor:
+            if cadastro == 'CCI':
+                cursor.execute(
+                    """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
+                    [inscricao, ano]
+                )
+                dados_inscricao = namedtuplefetchall(cursor)
+            else:
+                cursor.execute(
+                    """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
+                    [inscricao, ano]
+                )
+                dados_inscricao = namedtuplefetchall(cursor)
+
             cursor.execute(
-                """SELECT * FROM appva_cci WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
-                [inscricao, ano]
-            )
-            dados_inscricao = namedtuplefetchall(cursor)
-        else:
+                """SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr555 WHERE inscricao=%s AND ano_exercicio BETWEEN %s and %s AND ano_exercicio NOT LIKE %s UNION SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr557 WHERE inscricao=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;
+                    """
+                , [inscricao, ano_inicial, ano_final, ano_final, inscricao, ano_inicial, ano_final, ano_final])
+            variacao1 = namedtuplefetchall(cursor)
+
             cursor.execute(
-                """SELECT * FROM appva_cap WHERE numr_inscricao_estadual=%s AND ano_exercicio=%s;""",
-                [inscricao, ano]
-            )
-            dados_inscricao = namedtuplefetchall(cursor)
+                """SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr555 WHERE inscricao=%s AND ano_exercicio BETWEEN %s and %s AND ano_exercicio NOT LIKE %s UNION SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr557 WHERE inscricao=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;
+                    """
+                , [inscricao, ano_inicial, ano_final, ano_inicial, inscricao, ano_inicial, ano_final, ano_inicial])
+            variacao2 = namedtuplefetchall(cursor)
 
-        cursor.execute(
-            """SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr555 WHERE inscricao=%s AND ano_exercicio BETWEEN %s and %s AND ano_exercicio NOT LIKE %s UNION SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr557 WHERE inscricao=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;
-                """
-            , [inscricao, ano_inicial, ano_final, ano_final, inscricao, ano_inicial, ano_final, ano_final])
-        variacao1 = namedtuplefetchall(cursor)
+            variacao_sp = [
+                {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
+                 'ano_exercicio': x.ano_exercicio} for x in variacao1]
 
-        cursor.execute(
-            """SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr555 WHERE inscricao=%s AND ano_exercicio BETWEEN %s and %s AND ano_exercicio NOT LIKE %s UNION SELECT inscricao, vr_adicionado, entradas, saidas, ano_exercicio FROM appva_acypr557 WHERE inscricao=%s AND ano_exercicio BETWEEN %s AND %s AND ano_exercicio NOT LIKE %s ORDER BY ano_exercicio ASC;
-                """
-            , [inscricao, ano_inicial, ano_final, ano_inicial, inscricao, ano_inicial, ano_final, ano_inicial])
-        variacao2 = namedtuplefetchall(cursor)
+            variacao2_sp2 = [
+                {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
+                 'ano_exercicio': x.ano_exercicio} for x in variacao2]
 
-        variacao_sp = [
-            {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
-             'ano_exercicio': x.ano_exercicio} for x in variacao1]
+            apx = len(variacao2_sp2)
 
-        variacao2_sp2 = [
-            {'inscricao': x.inscricao, 'vr_adicionado': x.vr_adicionado, 'entradas': x.entradas, 'saidas': x.saidas,
-             'ano_exercicio': x.ano_exercicio} for x in variacao2]
+            resu_vr = [
+                {'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': str(f"{variacao2_sp2[x]['entradas']:,.2f}")
+                    ,
+                 'cresc_entradas': ((variacao2_sp2[x]['entradas'] / variacao_sp[x]['entradas']) - 1) * 100,
+                 'saidas': str(f"{variacao2_sp2[x]['saidas']:,.2f}"),
+                 'cresc_saidas': ((variacao2_sp2[x]['saidas'] / variacao_sp[x]['saidas']) - 1) * 100,
+                 'vr_adicionado': str(f"{variacao2_sp2[x]['vr_adicionado']:,.2f}"),
+                 'cresc_vr_adicionado': ((variacao2_sp2[x][
+                                              'vr_adicionado'] /
+                                          variacao_sp[x][
+                                              'vr_adicionado']) - 1) * 100}
+                for x in range(apx)]
 
-        apx = len(variacao2_sp2)
+            resu_vr[0]['cresc_entradas'] = float(0.0)
+            resu_vr[0]['cresc_saidas'] = float(0.0)
+            resu_vr[0]['cresc_vr_adicionado'] = float(0.0)
 
-        resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': str(f"{variacao2_sp2[x]['entradas']:,.2f}")
-                       ,
-                    'cresc_entradas': ((variacao2_sp2[x]['entradas'] / variacao_sp[x]['entradas']) - 1) * 100,
-                    'saidas': str(f"{variacao2_sp2[x]['saidas']:,.2f}"),
-                    'cresc_saidas': ((variacao2_sp2[x]['saidas'] / variacao_sp[x]['saidas']) - 1) * 100,
-                    'vr_adicionado': str(f"{variacao2_sp2[x]['vr_adicionado']:,.2f}"), 'cresc_vr_adicionado': ((variacao2_sp2[x][
-                                                                                                'vr_adicionado'] /
-                                                                                            variacao_sp[x][
-                                                                                                'vr_adicionado']) - 1) * 100}
-                   for x in range(apx)]
+            return rendering.render_to_pdf_response(request=request,
+                                                    context={'dados': mun, 'lista1': dados_inscricao, 'lista2': resu_vr},
+                                                    template='RELATORIO_VARIACAO_HISTORICA.html',
+                                                    encoding='utf-8')
+    except IndexError:
+        return redirect('erro_tela_variacao_historica')
+    
 
-        resu_vr[0]['cresc_entradas'] = float(0.0)
-        resu_vr[0]['cresc_saidas'] = float(0.0)
-        resu_vr[0]['cresc_vr_adicionado'] = float(0.0)
-
-        return rendering.render_to_pdf_response(request=request,
-                                                context={'dados': mun, 'lista1': dados_inscricao, 'lista2': resu_vr},
-                                                template='RELATORIO_VARIACAO_HISTORICA.html',
-                                                encoding='utf-8')
+@login_required 
+def erro_tela_variacao_historica(request):
+    return render(request, 'erro_tela_variacao_historica.html')
