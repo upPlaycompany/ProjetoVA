@@ -7728,11 +7728,12 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
 
         apx = len(variacao2_sp2)
 
-        resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': variacao2_sp2[x]['entradas'],
+        resu_vr = [{'ano_exercicio': variacao2_sp2[x]['ano_exercicio'], 'entradas': str(f"{variacao2_sp2[x]['entradas']:,.2f}")
+                       ,
                     'cresc_entradas': ((variacao2_sp2[x]['entradas'] / variacao_sp[x]['entradas']) - 1) * 100,
-                    'saidas': variacao2_sp2[x]['saidas'],
+                    'saidas': str(f"{variacao2_sp2[x]['saidas']:,.2f}"),
                     'cresc_saidas': ((variacao2_sp2[x]['saidas'] / variacao_sp[x]['saidas']) - 1) * 100,
-                    'vr_adicionado': variacao2_sp2[x]['vr_adicionado'], 'cresc_vr_adicionado': ((variacao2_sp2[x][
+                    'vr_adicionado': str(f"{variacao2_sp2[x]['vr_adicionado']:,.2f}"), 'cresc_vr_adicionado': ((variacao2_sp2[x][
                                                                                                 'vr_adicionado'] /
                                                                                             variacao_sp[x][
                                                                                                 'vr_adicionado']) - 1) * 100}
