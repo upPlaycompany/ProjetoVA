@@ -1048,6 +1048,7 @@ def index_variacao(request):
                     for x in
                     range(apx)]
             muni = [{'municipio': municipio_v}]
+            float('p')
         else:
             cursor.execute(
                 """SELECT com_ind, prod_rural, prest_serv, dar_1_aut, nai, credito_ex_off, debito_ex_off, total, ano_exercicio, municipio FROM appva_acypr600 WHERE municipio='ACORIZAL' AND ano_exercicio BETWEEN '2011' AND '2020' AND ano_exercicio NOT LIKE '2020' ORDER BY ano_exercicio ASC;"""
