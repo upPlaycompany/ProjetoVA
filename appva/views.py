@@ -7755,3 +7755,5 @@ def RELATORIO_VARIACAO_HISTORICA(request, municipio, remessa, portaria, inscrica
 @login_required 
 def erro_tela_variacao_historica(request):
     return render(request, 'erro_tela_variacao_historica.html')
+
+
